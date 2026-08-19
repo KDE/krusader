@@ -370,8 +370,7 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     syncList->setSelectionMode(QAbstractItemView::ExtendedSelection);
     syncList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     syncList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    header->setSortIndicatorShown(false);
-    syncList->setSortingEnabled(false);
+    syncList->setSortingEnabled(true);
     syncList->setRootIsDecorated(true);
     syncList->setIndentation(10);
     syncList->setDragEnabled(true);
@@ -1003,6 +1002,11 @@ void SynchronizerGUI::compare()
     btnScrollResults->show();
     disableMarkButtons();
 
+    // In order to avoid performance problems (e.g.
+    // when there are huge quantities of files):
+    // disable sorting before inserting the items
+    syncList->setSortingEnabled(false);
+
     int fileCount = synchronizer.compare(leftLocation->currentText(),
                                          rightLocation->currentText(),
                                          &query,
@@ -1018,6 +1022,10 @@ void SynchronizerGUI::compare()
                                          convertToSeconds(timeShiftSpinBox->value(), timeShiftUnitCombo->currentIndex()),
                                          parallelThreadsSpinBox->value(),
                                          ignoreHiddenFilesCB->isChecked());
+
+    // Re-enable sorting after the items have been inserted
+    syncList->setSortingEnabled(true);
+
     enableMarkButtons();
     btnStopComparing->setEnabled(isComparing = false);
     btnStopComparing->hide();
@@ -1218,7 +1226,17 @@ void SynchronizerGUI::refresh()
         btnSynchronize->setEnabled(false);
         btnFeedToListBox->setEnabled(false);
         disableMarkButtons();
+
+        // In order to avoid performance problems (e.g.
+        // when there are huge quantities of files):
+        // disable sorting before `synchronizer.refresh()`
+        syncList->setSortingEnabled(false);
+
         int fileCount = synchronizer.refresh();
+
+        // Re-enable sorting after `synchronizer.refresh()`
+        syncList->setSortingEnabled(true);
+
         enableMarkButtons();
         btnCompareDirs->setEnabled(true);
         profileManager->setEnabled(true);
