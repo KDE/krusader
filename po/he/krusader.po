@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-17 00:50+0000\n"
+"POT-Creation-Date: 2026-08-20 00:49+0000\n"
 "PO-Revision-Date: 2026-08-13 08:59+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -956,7 +956,7 @@ msgid "Delete"
 msgstr "מחיקה"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
-#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
 #, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
 msgstr "לא ניתן לפתוח את הקובץ הזמני עם התבנית „%1”."
@@ -1530,12 +1530,12 @@ msgstr "מפורט"
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1284
+#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "הבא"
 
-#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1288
+#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "הקודם"
@@ -1819,7 +1819,7 @@ msgctxt "%1=folder path"
 msgid "Access to %1 denied"
 msgstr "הגישה אל %1 נדחתה"
 
-#: app/FileSystem/filesystem.cpp:109
+#: app/FileSystem/filesystem.cpp:110
 #, kde-format
 msgid ""
 "Malformed URL:\n"
@@ -2263,7 +2263,7 @@ msgstr "מכיל את הטקסט"
 msgid "&Text:"
 msgstr "&טקסט:"
 
-#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1302
+#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "ביטוי רגולרי"
@@ -3387,7 +3387,7 @@ msgstr "מצב כללי"
 msgid "Use the system's default viewer"
 msgstr "להשתמש במציג ברירת המחדל של המערכת"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2272
 #, kde-format
 msgid "Text mode"
 msgstr "מצב טקסט"
@@ -3397,8 +3397,8 @@ msgstr "מצב טקסט"
 msgid "View the file in text-only mode"
 msgstr "להציג את הקובץ במצב טקסט בלבד"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2275
 #, kde-format
 msgid "Hex mode"
 msgstr "מצב הקסדצימלי"
@@ -3828,7 +3828,7 @@ msgstr "ההקלדה תתחיל"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "אפשר לפתוח את סרגל החיפוש והתחלת החיפוש על ידי הקלדה בלוח."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1298
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "תלוי רישיות"
@@ -3872,7 +3872,7 @@ msgstr "מקום:"
 msgid "Default mode:"
 msgstr "מצב ברירת מחדל:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
@@ -5560,8 +5560,8 @@ msgid "Bring Main Window to Top"
 msgstr "קידום החלון הראשי לחזית"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
-#: app/KrViewer/lister.cpp:1929
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1895
+#: app/KrViewer/lister.cpp:1930
 #, kde-format
 msgid "Lister"
 msgstr "מציגון"
@@ -5743,129 +5743,129 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "מוצג: %1"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1919
 #, kde-format
 msgid "Save selection..."
 msgstr "שמירת הבחירה…"
 
-#: app/KrViewer/lister.cpp:1205
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "שמירה בשם…"
 
-#: app/KrViewer/lister.cpp:1209
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "הדפסה…"
 
-#: app/KrViewer/lister.cpp:1219
+#: app/KrViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "חיפוש הבא"
 
-#: app/KrViewer/lister.cpp:1224
+#: app/KrViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "חיפוש הקודם"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1858
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
+#: app/KrViewer/lister.cpp:1884
 #, kde-format
 msgid "Jump to position"
 msgstr "דילוג לנקודה"
 
-#: app/KrViewer/lister.cpp:1239
+#: app/KrViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "בחירת ערכת תווים"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1489
 #, kde-format
 msgid "Lister:"
 msgstr "מציגון:"
 
-#: app/KrViewer/lister.cpp:1269
+#: app/KrViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "עצירת החיפוש"
 
-#: app/KrViewer/lister.cpp:1285
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "דילוג לתוצאה הבאה"
 
-#: app/KrViewer/lister.cpp:1289
+#: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "דילוג לתוצאה הקודמת"
 
-#: app/KrViewer/lister.cpp:1292
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "אפשרויות"
 
-#: app/KrViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "שינוי התנהגות החיפוש"
 
-#: app/KrViewer/lister.cpp:1295
+#: app/KrViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "מהסמן"
 
-#: app/KrViewer/lister.cpp:1300
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "לכידת מילים שלמות בלבד"
 
-#: app/KrViewer/lister.cpp:1304
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "הקסדצימלי"
 
-#: app/KrViewer/lister.cpp:1362
+#: app/KrViewer/lister.cpp:1363
 #, kde-format
 msgid "Error reading file %1."
 msgstr "שגיאה בקריאת הקובץ %1."
 
-#: app/KrViewer/lister.cpp:1459
+#: app/KrViewer/lister.cpp:1460
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "עמודה: %1, מקום: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
+#: app/KrViewer/lister.cpp:1475 app/KrViewer/lister.cpp:1825
 #, kde-format
 msgid "Search:"
 msgstr "חיפוש:"
 
-#: app/KrViewer/lister.cpp:1840
+#: app/KrViewer/lister.cpp:1841
 #, kde-format
 msgid "Search position:"
 msgstr "מקום חיפוש:"
 
-#: app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1858
 #, kde-format
 msgid "Text position:"
 msgstr "מקום טקסט:"
 
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
 #, kde-format
 msgid "Invalid number."
 msgstr "מספר שגוי."
 
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1884
 #, kde-format
 msgid "Number out of range."
 msgstr "המספר מחוץ לתחום."
 
-#: app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1919
 #, kde-format
 msgid "Nothing is selected."
 msgstr "לא נבחר כלום."
 
-#: app/KrViewer/lister.cpp:1997
+#: app/KrViewer/lister.cpp:1998
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "אין תמיכה בהדפסה הפוכה. להמשיך בהדפסה רגילה?"
@@ -5881,12 +5881,12 @@ msgstr "לא נבחר קובץ או שלא ניתן להציג את הקובץ �
 msgid "Error at opening %1."
 msgstr "שגיאה בפתיחת %1."
 
-#: app/KrViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:336
 #, kde-format
 msgid "Missing Plugin"
 msgstr "תוסף חסר"
 
-#: app/KrViewer/panelviewer.cpp:343
+#: app/KrViewer/panelviewer.cpp:342
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5896,12 +5896,12 @@ msgstr ""
 "<b>אין תוסף עורך טקסט זמין.</b><br/>העורך הפנימי לא יעבוד בלעדיו.<br/>אפשר "
 "לתקן את זה על ידי התקנה של Kate:<br/>%1"
 
-#: app/KrViewer/panelviewer.cpp:362
+#: app/KrViewer/panelviewer.cpp:361
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 גדול מ־%2 מ״ב"
 
-#: app/KrViewer/panelviewer.cpp:390
+#: app/KrViewer/panelviewer.cpp:389
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "לא ניתן לערוך את %1"
@@ -7756,7 +7756,7 @@ msgstr "עמודות"
 msgid "Automatically Resize Columns"
 msgstr "שינוי גודל העמודות אוטומטית"
 
-#: app/Panel/PanelView/krview.cpp:456
+#: app/Panel/PanelView/krview.cpp:458
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7765,7 +7765,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 מתוך %2, %3 (%4) מתוך %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:467
+#: app/Panel/PanelView/krview.cpp:469
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7773,22 +7773,22 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 מתוך %2, %3 מתוך %4"
 
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1133
 #, kde-format
 msgid "Apply filter to folder&s"
 msgstr "החלת מסנן על &תיקיות"
 
-#: app/Panel/PanelView/krview.cpp:1135
+#: app/Panel/PanelView/krview.cpp:1138
 #, kde-format
 msgid "Filter Files"
 msgstr "סינון קבצים"
 
-#: app/Panel/PanelView/krview.cpp:1160
+#: app/Panel/PanelView/krview.cpp:1163
 #, kde-format
 msgid "Apply &selection to folders"
 msgstr "ה&חלת בחירה על תיקיות"
 
-#: app/Panel/PanelView/krview.cpp:1161
+#: app/Panel/PanelView/krview.cpp:1164
 #, kde-format
 msgid "Select Files"
 msgstr "בחירת קבצים"
@@ -9763,7 +9763,7 @@ msgstr "אין תמיכה בהעתקה מארכיון לארכיון."
 msgid "Listing folders is not supported for %1 archives."
 msgstr "אין תמיכה בהצגת תוכן תיקיות בארכיוני %1."
 
-#: plugins/krarc/krarc.cpp:1569
+#: plugins/krarc/krarc.cpp:1570
 #, kde-format
 msgid ""
 "\"%1\".\n"
@@ -9772,12 +9772,12 @@ msgstr ""
 "„%1”.\n"
 "נא לוודא שהבינרי „%2” מותקן במערכת שלך כראוי"
 
-#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
+#: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "חלונית סיסמה של Karc"
 
-#: plugins/krarc/krarc.cpp:1902
+#: plugins/krarc/krarc.cpp:1903
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "הגישה לקובץ דורשת סיסמה."

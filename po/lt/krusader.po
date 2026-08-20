@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-17 00:50+0000\n"
+"POT-Creation-Date: 2026-08-20 00:49+0000\n"
 "PO-Revision-Date: 2019-03-17 17:31+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -989,7 +989,7 @@ msgid "Delete"
 msgstr "Pašalinti"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
-#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
 #, fuzzy, kde-format
 #| msgid "Expander: tempfile couldn't be opened (%1)"
 msgid "A temporary file with the template \"%1\" could not be opened."
@@ -1618,12 +1618,12 @@ msgstr "Išsamiai"
 msgid "Filelight"
 msgstr "Skritulio vaizdas"
 
-#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1284
+#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Kitas"
 
-#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1288
+#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Ankstesnis"
@@ -1920,7 +1920,7 @@ msgctxt "%1=folder path"
 msgid "Access to %1 denied"
 msgstr "Prieiga nesuteikta naudotojui"
 
-#: app/FileSystem/filesystem.cpp:109
+#: app/FileSystem/filesystem.cpp:110
 #, kde-format
 msgid ""
 "Malformed URL:\n"
@@ -2401,7 +2401,7 @@ msgstr "Turinčių tekstą"
 msgid "&Text:"
 msgstr "&Tekstas:"
 
-#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1302
+#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
@@ -3561,7 +3561,7 @@ msgstr "Bendras režimas"
 msgid "Use the system's default viewer"
 msgstr "Naudoti sistemos numatytą žiūryklę"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2272
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstinis režimas"
@@ -3571,8 +3571,8 @@ msgstr "Tekstinis režimas"
 msgid "View the file in text-only mode"
 msgstr "Failui peržiūrėti naudoti tekstinį režimą"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2275
 #, kde-format
 msgid "Hex mode"
 msgstr "Šešioliktainis režimas"
@@ -4040,7 +4040,7 @@ msgstr "Eilutės pradžia"
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1298
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Skirti raidžių dydį"
@@ -4084,7 +4084,7 @@ msgstr "Pozicija:"
 msgid "Default mode:"
 msgstr "Numatytoji peržiūros veiksena"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
@@ -5896,8 +5896,8 @@ msgid "Bring Main Window to Top"
 msgstr ""
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
-#: app/KrViewer/lister.cpp:1929
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1895
+#: app/KrViewer/lister.cpp:1930
 #, fuzzy, kde-format
 #| msgid "History"
 msgid "Lister"
@@ -6086,140 +6086,140 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Žvalgosi"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1919
 #, fuzzy, kde-format
 #| msgid "I&nvert selection"
 msgid "Save selection..."
 msgstr "Ap&versti žymėjimą"
 
-#: app/KrViewer/lister.cpp:1205
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Įrašyti kaip..."
 
-#: app/KrViewer/lister.cpp:1209
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Spausdinti..."
 
-#: app/KrViewer/lister.cpp:1219
+#: app/KrViewer/lister.cpp:1220
 #, fuzzy, kde-format
 #| msgid "&Search in"
 msgid "Search next"
 msgstr "Ieškoti kito"
 
-#: app/KrViewer/lister.cpp:1224
+#: app/KrViewer/lister.cpp:1225
 #, fuzzy, kde-format
 #| msgid "Search results"
 msgid "Search previous"
 msgstr "Ieškoti ankstesnio"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1858
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
+#: app/KrViewer/lister.cpp:1884
 #, fuzzy, kde-format
 #| msgid "Jump to a Location..."
 msgid "Jump to position"
 msgstr "Šokti į poziciją"
 
-#: app/KrViewer/lister.cpp:1239
+#: app/KrViewer/lister.cpp:1240
 #, fuzzy, kde-format
 #| msgid "Select Remote Charset"
 msgid "Select charset"
 msgstr "Parinkti koduotę"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1489
 #, fuzzy, kde-format
 #| msgid "History"
 msgid "Lister:"
 msgstr "Žurnalas"
 
-#: app/KrViewer/lister.cpp:1269
+#: app/KrViewer/lister.cpp:1270
 #, fuzzy, kde-format
 #| msgid "Search"
 msgid "Stop search"
 msgstr "Paieška"
 
-#: app/KrViewer/lister.cpp:1285
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Eiti prie kito sutapimo"
 
-#: app/KrViewer/lister.cpp:1289
+#: app/KrViewer/lister.cpp:1290
 #, fuzzy, kde-format
 msgid "Jump to previous match"
 msgstr "Eiti prie ankstesnio sutapimo"
 
-#: app/KrViewer/lister.cpp:1292
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Parinktys"
 
-#: app/KrViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Keisti paieškos elgseną"
 
-#: app/KrViewer/lister.cpp:1295
+#: app/KrViewer/lister.cpp:1296
 #, fuzzy, kde-format
 msgid "From cursor"
 msgstr "Nuo žymeklio"
 
-#: app/KrViewer/lister.cpp:1300
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Sutampa tik pilni žodžiai"
 
-#: app/KrViewer/lister.cpp:1304
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Šešioliktainė"
 
-#: app/KrViewer/lister.cpp:1362
+#: app/KrViewer/lister.cpp:1363
 #, fuzzy, kde-format
 #| msgid "Error reading file %1!"
 msgid "Error reading file %1."
 msgstr "Klaida skaitant failą."
 
-#: app/KrViewer/lister.cpp:1459
+#: app/KrViewer/lister.cpp:1460
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
+#: app/KrViewer/lister.cpp:1475 app/KrViewer/lister.cpp:1825
 #, kde-format
 msgid "Search:"
 msgstr "Ieškoti:"
 
-#: app/KrViewer/lister.cpp:1840
+#: app/KrViewer/lister.cpp:1841
 #, fuzzy, kde-format
 #| msgid "&Search in"
 msgid "Search position:"
 msgstr "&Ieškoti"
 
-#: app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1858
 #, kde-format
 msgid "Text position:"
 msgstr "Teksto pozicija:"
 
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
 #, fuzzy, kde-format
 #| msgid "Invalid volume size!"
 msgid "Invalid number."
 msgstr "netaisyklingas skaičius"
 
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1884
 #, fuzzy, kde-format
 #| msgid "Number of..."
 msgid "Number out of range."
 msgstr "Kiekis..."
 
-#: app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1919
 #, kde-format
 msgid "Nothing is selected."
 msgstr ""
 
-#: app/KrViewer/lister.cpp:1997
+#: app/KrViewer/lister.cpp:1998
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
@@ -6236,12 +6236,12 @@ msgstr "Nepažymėtas joks failas arba pažymėtų failų nepavyko parodyti."
 msgid "Error at opening %1."
 msgstr "Atveriant %1 įvyko klaida."
 
-#: app/KrViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:336
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Trūksta papildinio"
 
-#: app/KrViewer/panelviewer.cpp:343
+#: app/KrViewer/panelviewer.cpp:342
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -6249,12 +6249,12 @@ msgid ""
 "without this.<br/>You can fix this by installing Kate:<br/>%1"
 msgstr ""
 
-#: app/KrViewer/panelviewer.cpp:362
+#: app/KrViewer/panelviewer.cpp:361
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr ""
 
-#: app/KrViewer/panelviewer.cpp:390
+#: app/KrViewer/panelviewer.cpp:389
 #, fuzzy, kde-format
 #| msgid "Cannot open %1!"
 msgid "Cannot edit %1"
@@ -8237,7 +8237,7 @@ msgstr "Stulpeliai"
 msgid "Automatically Resize Columns"
 msgstr "Automatiškai apsaugoti tarpo simbolius"
 
-#: app/Panel/PanelView/krview.cpp:456
+#: app/Panel/PanelView/krview.cpp:458
 #, fuzzy, kde-format
 #| msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgctxt ""
@@ -8247,7 +8247,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 iš %2, %3 (%4) iš %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:467
+#: app/Panel/PanelView/krview.cpp:469
 #, fuzzy, kde-format
 #| msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgctxt ""
@@ -8256,24 +8256,24 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 iš %2, %3 (%4) iš %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1133
 #, fuzzy, kde-format
 #| msgid "Split the file %1 to directory:"
 msgid "Apply filter to folder&s"
 msgstr "Suskaidyti failą %1 į aplanką:"
 
-#: app/Panel/PanelView/krview.cpp:1135
+#: app/Panel/PanelView/krview.cpp:1138
 #, kde-format
 msgid "Filter Files"
 msgstr "Filtro failai"
 
-#: app/Panel/PanelView/krview.cpp:1160
+#: app/Panel/PanelView/krview.cpp:1163
 #, fuzzy, kde-format
 #| msgid "Split the file %1 to directory:"
 msgid "Apply &selection to folders"
 msgstr "Suskaidyti failą %1 į aplanką:"
 
-#: app/Panel/PanelView/krview.cpp:1161
+#: app/Panel/PanelView/krview.cpp:1164
 #, kde-format
 msgid "Select Files"
 msgstr "Pažymėti failus"
@@ -10384,7 +10384,7 @@ msgstr "Rašymas į %1 archyvus nepalaikomas"
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Aplankų išvardinimas nepalaikomas %1 archyvuose"
 
-#: plugins/krarc/krarc.cpp:1569
+#: plugins/krarc/krarc.cpp:1570
 #, fuzzy, kde-format
 #| msgid ""
 #| "\n"
@@ -10396,12 +10396,12 @@ msgstr ""
 "\n"
 "Įsitikinkite, kad vykdomasis failas %1 tinkamai įdiegtas jūsų sistemoje."
 
-#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
+#: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Krarc slaptažodžio dialogas"
 
-#: plugins/krarc/krarc.cpp:1902
+#: plugins/krarc/krarc.cpp:1903
 #, fuzzy, kde-format
 #| msgid "Accessing the file requires password."
 msgid "Accessing the file requires a password."

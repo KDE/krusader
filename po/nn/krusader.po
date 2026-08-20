@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-17 00:50+0000\n"
+"POT-Creation-Date: 2026-08-20 00:49+0000\n"
 "PO-Revision-Date: 2026-07-05 16:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -963,7 +963,7 @@ msgid "Delete"
 msgstr "Slett"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
-#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
 #, fuzzy, kde-format
 #| msgid "Expander: temporary file could not be opened (%1)"
 msgid "A temporary file with the template \"%1\" could not be opened."
@@ -1546,12 +1546,12 @@ msgstr "Detaljert"
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1284
+#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Neste"
 
-#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1288
+#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Førre"
@@ -1835,7 +1835,7 @@ msgctxt "%1=folder path"
 msgid "Access to %1 denied"
 msgstr "Nekta tilgang til %1"
 
-#: app/FileSystem/filesystem.cpp:109
+#: app/FileSystem/filesystem.cpp:110
 #, kde-format
 msgid ""
 "Malformed URL:\n"
@@ -2283,7 +2283,7 @@ msgstr "Inneheld tekst"
 msgid "&Text:"
 msgstr "&Tekst:"
 
-#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1302
+#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
@@ -3407,7 +3407,7 @@ msgstr "Generisk visemåte"
 msgid "Use the system's default viewer"
 msgstr "Bruk standardvisaren på systemet."
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2272
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstmodus"
@@ -3417,8 +3417,8 @@ msgstr "Tekstmodus"
 msgid "View the file in text-only mode"
 msgstr "Vis fila som berre tekst."
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2275
 #, kde-format
 msgid "Hex mode"
 msgstr "Heksmodus"
@@ -3863,7 +3863,7 @@ msgstr "Start ved skriving"
 msgid "Open search bar and start searching by typing in panel."
 msgstr "Opna søkjelinja og start søket ved å skriva i panelet."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1298
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Skil mellom store og små bokstavar"
@@ -3908,7 +3908,7 @@ msgstr "Plassering:"
 msgid "Default mode:"
 msgstr "Standardmodus:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
@@ -5624,8 +5624,8 @@ msgid "Bring Main Window to Top"
 msgstr "Hev hovundvindauget"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
-#: app/KrViewer/lister.cpp:1929
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1895
+#: app/KrViewer/lister.cpp:1930
 #, kde-format
 msgid "Lister"
 msgstr "Listar"
@@ -5809,129 +5809,129 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Viser: %1"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1919
 #, kde-format
 msgid "Save selection..."
 msgstr "Lagra filmerking …"
 
-#: app/KrViewer/lister.cpp:1205
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Lagra som …"
 
-#: app/KrViewer/lister.cpp:1209
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Skriv ut …"
 
-#: app/KrViewer/lister.cpp:1219
+#: app/KrViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "Søk etter neste"
 
-#: app/KrViewer/lister.cpp:1224
+#: app/KrViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "Søk etter førre"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1858
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
+#: app/KrViewer/lister.cpp:1884
 #, kde-format
 msgid "Jump to position"
 msgstr "Hopp til posisjon"
 
-#: app/KrViewer/lister.cpp:1239
+#: app/KrViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "Vel teiknkoding"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1489
 #, kde-format
 msgid "Lister:"
 msgstr "Listar:"
 
-#: app/KrViewer/lister.cpp:1269
+#: app/KrViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "Stopp søket"
 
-#: app/KrViewer/lister.cpp:1285
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Gå til neste treff"
 
-#: app/KrViewer/lister.cpp:1289
+#: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Gå til førre treff"
 
-#: app/KrViewer/lister.cpp:1292
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Val"
 
-#: app/KrViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Endra søkjeåtferd"
 
-#: app/KrViewer/lister.cpp:1295
+#: app/KrViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "Frå skrivemerket"
 
-#: app/KrViewer/lister.cpp:1300
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Treff berre heile ord"
 
-#: app/KrViewer/lister.cpp:1304
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Heksadesimal"
 
-#: app/KrViewer/lister.cpp:1362
+#: app/KrViewer/lister.cpp:1363
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Feil ved lesinga av fila %1."
 
-#: app/KrViewer/lister.cpp:1459
+#: app/KrViewer/lister.cpp:1460
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Kolonne: %1, posisjon: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
+#: app/KrViewer/lister.cpp:1475 app/KrViewer/lister.cpp:1825
 #, kde-format
 msgid "Search:"
 msgstr "Søk:"
 
-#: app/KrViewer/lister.cpp:1840
+#: app/KrViewer/lister.cpp:1841
 #, kde-format
 msgid "Search position:"
 msgstr "Søkjeposisjon:"
 
-#: app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1858
 #, kde-format
 msgid "Text position:"
 msgstr "Tekstplassering:"
 
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
 #, kde-format
 msgid "Invalid number."
 msgstr "Ugyldig tal."
 
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1884
 #, kde-format
 msgid "Number out of range."
 msgstr "Talet utanfor gyldig område."
 
-#: app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1919
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Ikkje noko er valt."
 
-#: app/KrViewer/lister.cpp:1997
+#: app/KrViewer/lister.cpp:1998
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr ""
@@ -5948,12 +5948,12 @@ msgstr "Inkje fil vald, eller så kan ikkje vald fil visast."
 msgid "Error at opening %1."
 msgstr "Feil ved opning av %1."
 
-#: app/KrViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:336
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Manglar programtillegg"
 
-#: app/KrViewer/panelviewer.cpp:343
+#: app/KrViewer/panelviewer.cpp:342
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -5964,12 +5964,12 @@ msgstr ""
 "ikkje verka utan dette tillegget.<br/>Du kan retta på dette ved å installera "
 "Kate:<br/>%1"
 
-#: app/KrViewer/panelviewer.cpp:362
+#: app/KrViewer/panelviewer.cpp:361
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 er større enn %2 MB"
 
-#: app/KrViewer/panelviewer.cpp:390
+#: app/KrViewer/panelviewer.cpp:389
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Kan ikkje redigera %1"
@@ -7809,7 +7809,7 @@ msgstr "Kolonnar"
 msgid "Automatically Resize Columns"
 msgstr "Endra kolonnebreidd automatisk"
 
-#: app/Panel/PanelView/krview.cpp:456
+#: app/Panel/PanelView/krview.cpp:458
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7818,7 +7818,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 av %2, %3 (%4) av %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:467
+#: app/Panel/PanelView/krview.cpp:469
 #, kde-format
 msgctxt ""
 "%1=number of selected items,%2=total number of items,                     "
@@ -7826,22 +7826,22 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 av %2, %3 av %4"
 
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1133
 #, kde-format
 msgid "Apply filter to folder&s"
 msgstr "Bruk filter på &mapper"
 
-#: app/Panel/PanelView/krview.cpp:1135
+#: app/Panel/PanelView/krview.cpp:1138
 #, kde-format
 msgid "Filter Files"
 msgstr "Filtrer filer"
 
-#: app/Panel/PanelView/krview.cpp:1160
+#: app/Panel/PanelView/krview.cpp:1163
 #, kde-format
 msgid "Apply &selection to folders"
 msgstr "Bruk &utval på mapper"
 
-#: app/Panel/PanelView/krview.cpp:1161
+#: app/Panel/PanelView/krview.cpp:1164
 #, kde-format
 msgid "Select Files"
 msgstr "Merk filer"
@@ -9823,7 +9823,7 @@ msgstr "Kopiering frå arkiv til arkiv er ikkje støtta."
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Mappeoversikt er ikkje støtta for %1-arkiv."
 
-#: plugins/krarc/krarc.cpp:1569
+#: plugins/krarc/krarc.cpp:1570
 #, fuzzy, kde-format
 #| msgid ""
 #| "\n"
@@ -9835,12 +9835,12 @@ msgstr ""
 "\n"
 "Sjå til at programfila %1 er rett installert på systemet."
 
-#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
+#: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Passordvindauge for Krarc"
 
-#: plugins/krarc/krarc.cpp:1902
+#: plugins/krarc/krarc.cpp:1903
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Du treng passord for å få tilgang til fila."

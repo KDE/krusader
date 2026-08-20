@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-17 00:50+0000\n"
+"POT-Creation-Date: 2026-08-20 00:49+0000\n"
 "PO-Revision-Date: 2014-10-20 19:23+0000\n"
 "Last-Translator: Admir Becirbasic <abecirbasi1@etf.unsa.ba>\n"
 "Language-Team: <bhld@lists.linux.org.ba>\n"
@@ -991,7 +991,7 @@ msgid "Delete"
 msgstr "Obriši"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
-#: app/KrViewer/lister.cpp:1345 app/Panel/panelfunc.cpp:542
+#: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
 #, fuzzy, kde-format
 #| msgid "Expander: temporary file could not be opened (%1)"
 msgid "A temporary file with the template \"%1\" could not be opened."
@@ -1595,12 +1595,12 @@ msgstr "Detaljno"
 msgid "Filelight"
 msgstr "Filelight"
 
-#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1284
+#: app/DiskUsage/diskusage.cpp:802 app/KrViewer/lister.cpp:1285
 #, kde-format
 msgid "Next"
 msgstr "Sljedeća"
 
-#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1288
+#: app/DiskUsage/diskusage.cpp:806 app/KrViewer/lister.cpp:1289
 #, kde-format
 msgid "Previous"
 msgstr "Prethodna"
@@ -1898,7 +1898,7 @@ msgctxt "%1=folder path"
 msgid "Access to %1 denied"
 msgstr "Pristup ka %1 obdijen."
 
-#: app/FileSystem/filesystem.cpp:109
+#: app/FileSystem/filesystem.cpp:110
 #, kde-format
 msgid ""
 "Malformed URL:\n"
@@ -2374,7 +2374,7 @@ msgstr "Sadrži tekst"
 msgid "&Text:"
 msgstr "&Tekst:"
 
-#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1302
+#: app/Filter/generalfilter.cpp:294 app/KrViewer/lister.cpp:1303
 #, kde-format
 msgid "RegExp"
 msgstr "RegExp"
@@ -3524,7 +3524,7 @@ msgstr "Generički režim"
 msgid "Use the system's default viewer"
 msgstr "Koristi sistemski podrazumijevan pregledač"
 
-#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2271
+#: app/Konfigurator/kggeneral.cpp:106 app/KrViewer/lister.cpp:2272
 #, kde-format
 msgid "Text mode"
 msgstr "Tekstualni režim"
@@ -3534,8 +3534,8 @@ msgstr "Tekstualni režim"
 msgid "View the file in text-only mode"
 msgstr "Pregledaj datoteku u čisto tekstualnom režimu"
 
-#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1234
-#: app/KrViewer/lister.cpp:2274
+#: app/Konfigurator/kggeneral.cpp:107 app/KrViewer/lister.cpp:1235
+#: app/KrViewer/lister.cpp:2275
 #, kde-format
 msgid "Hex mode"
 msgstr "Heks. režim"
@@ -4005,7 +4005,7 @@ msgstr "Početak linije"
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1298
+#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Razlikuj mala i velika slova"
@@ -4051,7 +4051,7 @@ msgstr "Pozicija:"
 msgid "Default mode:"
 msgstr "Osnovni mod pogleda:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1214
+#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
@@ -5799,8 +5799,8 @@ msgid "Bring Main Window to Top"
 msgstr "Prebaci glavni prozor naprijed"
 
 #. i18n: ectx: Menu (lister)
-#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1894
-#: app/KrViewer/lister.cpp:1929
+#: app/krusaderlisterui.rc:5 app/KrViewer/lister.cpp:1895
+#: app/KrViewer/lister.cpp:1930
 #, kde-format
 msgid "Lister"
 msgstr "Klizac"
@@ -5985,129 +5985,129 @@ msgctxt "filestate: filename"
 msgid "Viewing: %1"
 msgstr "Pregledavanje: %1"
 
-#: app/KrViewer/lister.cpp:1201 app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1202 app/KrViewer/lister.cpp:1919
 #, kde-format
 msgid "Save selection..."
 msgstr "Sacuvaj oznaceno..."
 
-#: app/KrViewer/lister.cpp:1205
+#: app/KrViewer/lister.cpp:1206
 #, kde-format
 msgid "Save as..."
 msgstr "Sačuvaj kao..."
 
-#: app/KrViewer/lister.cpp:1209
+#: app/KrViewer/lister.cpp:1210
 #, kde-format
 msgid "Print..."
 msgstr "Štampaj..."
 
-#: app/KrViewer/lister.cpp:1219
+#: app/KrViewer/lister.cpp:1220
 #, kde-format
 msgid "Search next"
 msgstr "Pretraži sljedece"
 
-#: app/KrViewer/lister.cpp:1224
+#: app/KrViewer/lister.cpp:1225
 #, kde-format
 msgid "Search previous"
 msgstr "Pretrazi prethodno"
 
-#: app/KrViewer/lister.cpp:1229 app/KrViewer/lister.cpp:1857
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1230 app/KrViewer/lister.cpp:1858
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
+#: app/KrViewer/lister.cpp:1884
 #, kde-format
 msgid "Jump to position"
 msgstr "Odi na poziciju"
 
-#: app/KrViewer/lister.cpp:1239
+#: app/KrViewer/lister.cpp:1240
 #, kde-format
 msgid "Select charset"
 msgstr "Odaberi string"
 
-#: app/KrViewer/lister.cpp:1258 app/KrViewer/lister.cpp:1488
+#: app/KrViewer/lister.cpp:1259 app/KrViewer/lister.cpp:1489
 #, kde-format
 msgid "Lister:"
 msgstr "Klizac:"
 
-#: app/KrViewer/lister.cpp:1269
+#: app/KrViewer/lister.cpp:1270
 #, kde-format
 msgid "Stop search"
 msgstr "Zaustavi pretragu"
 
-#: app/KrViewer/lister.cpp:1285
+#: app/KrViewer/lister.cpp:1286
 #, kde-format
 msgid "Jump to next match"
 msgstr "Skoči na sljedeće poklapanje"
 
-#: app/KrViewer/lister.cpp:1289
+#: app/KrViewer/lister.cpp:1290
 #, kde-format
 msgid "Jump to previous match"
 msgstr "Skoči na prethodno poklapanje"
 
-#: app/KrViewer/lister.cpp:1292
+#: app/KrViewer/lister.cpp:1293
 #, kde-format
 msgid "Options"
 msgstr "Mogućnosti"
 
-#: app/KrViewer/lister.cpp:1293
+#: app/KrViewer/lister.cpp:1294
 #, kde-format
 msgid "Modify search behavior"
 msgstr "Podesi ponašanje pretrage"
 
-#: app/KrViewer/lister.cpp:1295
+#: app/KrViewer/lister.cpp:1296
 #, kde-format
 msgid "From cursor"
 msgstr "Od pokazivaca"
 
-#: app/KrViewer/lister.cpp:1300
+#: app/KrViewer/lister.cpp:1301
 #, kde-format
 msgid "Match whole words only"
 msgstr "Povezuj samo cijele rijeci"
 
-#: app/KrViewer/lister.cpp:1304
+#: app/KrViewer/lister.cpp:1305
 #, kde-format
 msgid "Hexadecimal"
 msgstr "Heksadekadni"
 
-#: app/KrViewer/lister.cpp:1362
+#: app/KrViewer/lister.cpp:1363
 #, kde-format
 msgid "Error reading file %1."
 msgstr "Greska kod citanja datoteke %1."
 
-#: app/KrViewer/lister.cpp:1459
+#: app/KrViewer/lister.cpp:1460
 #, kde-format
 msgid "Column: %1, Position: %2 (%3, %4%)"
 msgstr "Kolona: %1, Pozicija: %2 (%3, %4%)"
 
-#: app/KrViewer/lister.cpp:1474 app/KrViewer/lister.cpp:1824
+#: app/KrViewer/lister.cpp:1475 app/KrViewer/lister.cpp:1825
 #, kde-format
 msgid "Search:"
 msgstr "Traži:"
 
-#: app/KrViewer/lister.cpp:1840
+#: app/KrViewer/lister.cpp:1841
 #, kde-format
 msgid "Search position:"
 msgstr "Pozicija pretrage:"
 
-#: app/KrViewer/lister.cpp:1857
+#: app/KrViewer/lister.cpp:1858
 #, kde-format
 msgid "Text position:"
 msgstr "Položaj teksta:"
 
-#: app/KrViewer/lister.cpp:1868 app/KrViewer/lister.cpp:1876
+#: app/KrViewer/lister.cpp:1869 app/KrViewer/lister.cpp:1877
 #, kde-format
 msgid "Invalid number."
 msgstr "Neispravan broj."
 
-#: app/KrViewer/lister.cpp:1883
+#: app/KrViewer/lister.cpp:1884
 #, kde-format
 msgid "Number out of range."
 msgstr "Broj izvan opsega."
 
-#: app/KrViewer/lister.cpp:1918
+#: app/KrViewer/lister.cpp:1919
 #, kde-format
 msgid "Nothing is selected."
 msgstr "Nista nije oznaceno."
 
-#: app/KrViewer/lister.cpp:1997
+#: app/KrViewer/lister.cpp:1998
 #, kde-format
 msgid "Reverse printing is not supported. Continue with normal printing?"
 msgstr "Printanje unatrag nije podrzano. Nastaviti sa normalnim printanjem?"
@@ -6123,12 +6123,12 @@ msgstr "Nema oznacene datoteke ili oznacena datoteka ne moze biti prikazana."
 msgid "Error at opening %1."
 msgstr "Greska pri otvaranju %1."
 
-#: app/KrViewer/panelviewer.cpp:337
+#: app/KrViewer/panelviewer.cpp:336
 #, kde-format
 msgid "Missing Plugin"
 msgstr "Nedostaje priključak"
 
-#: app/KrViewer/panelviewer.cpp:343
+#: app/KrViewer/panelviewer.cpp:342
 #, kde-format
 msgctxt "missing kpart - arg1 is a URL"
 msgid ""
@@ -6138,12 +6138,12 @@ msgstr ""
 "<b>Nema dostupnog plugina za urednik teksta.</b><br/>Ugrađeni editor nece "
 "raditi bez ovoga.<br/>Ovo mozete popraviti instaliranjem Kate-a:<br/>%1"
 
-#: app/KrViewer/panelviewer.cpp:362
+#: app/KrViewer/panelviewer.cpp:361
 #, kde-format
 msgid "%1 is bigger than %2 MB"
 msgstr "%1 je vece nego %2 MB"
 
-#: app/KrViewer/panelviewer.cpp:390
+#: app/KrViewer/panelviewer.cpp:389
 #, kde-format
 msgid "Cannot edit %1"
 msgstr "Nemoguce urediti %1"
@@ -8088,7 +8088,7 @@ msgstr "Kolone"
 msgid "Automatically Resize Columns"
 msgstr "Automatski promijeni velicinu kolona"
 
-#: app/Panel/PanelView/krview.cpp:456
+#: app/Panel/PanelView/krview.cpp:458
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "%1=number of selected items,%2=total number of items,                     "
@@ -8102,7 +8102,7 @@ msgctxt ""
 msgid "%1 out of %2, %3 (%4) out of %5 (%6)"
 msgstr "%1 od %2, %3 (%4) od %5 (%6)"
 
-#: app/Panel/PanelView/krview.cpp:467
+#: app/Panel/PanelView/krview.cpp:469
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "%1=number of selected items,%2=total number of items,                     "
@@ -8114,24 +8114,24 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 od %2, %3 od %4"
 
-#: app/Panel/PanelView/krview.cpp:1130
+#: app/Panel/PanelView/krview.cpp:1133
 #, fuzzy, kde-format
 #| msgid "Apply filter to directories"
 msgid "Apply filter to folder&s"
 msgstr "Primjeni filtere na direktorije"
 
-#: app/Panel/PanelView/krview.cpp:1135
+#: app/Panel/PanelView/krview.cpp:1138
 #, kde-format
 msgid "Filter Files"
 msgstr "Filtriraj datoteke"
 
-#: app/Panel/PanelView/krview.cpp:1160
+#: app/Panel/PanelView/krview.cpp:1163
 #, fuzzy, kde-format
 #| msgid "Apply selection to directories"
 msgid "Apply &selection to folders"
 msgstr "Primjeni odabire na direktorije"
 
-#: app/Panel/PanelView/krview.cpp:1161
+#: app/Panel/PanelView/krview.cpp:1164
 #, kde-format
 msgid "Select Files"
 msgstr "Izaberi datoteke"
@@ -10187,7 +10187,7 @@ msgstr "Pisanje u %1 arhiva nije podrzano"
 msgid "Listing folders is not supported for %1 archives."
 msgstr "Listanje direktorija sa %1 arhiva nije podrzano"
 
-#: plugins/krarc/krarc.cpp:1569
+#: plugins/krarc/krarc.cpp:1570
 #, fuzzy, kde-format
 #| msgid ""
 #| "\n"
@@ -10199,12 +10199,12 @@ msgstr ""
 "\n"
 "Uvjerite se da je %1 binarno instalirano pravilno na vasem sistemu."
 
-#: plugins/krarc/krarc.cpp:1859 plugins/krarc/krarc.cpp:1885
+#: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format
 msgid "Krarc Password Dialog"
 msgstr "Krarc Dijalog Lozinki"
 
-#: plugins/krarc/krarc.cpp:1902
+#: plugins/krarc/krarc.cpp:1903
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Pristupanje datoteci zahtjeva lozinku."
