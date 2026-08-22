@@ -132,8 +132,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow)
     actDeleteF8->setToolTip(i18n("Delete file, folder, etc."));
     actTerminalF9->setToolTip(
         i18n("<qt><p>Open terminal in current folder.</p>"
-             "<p>The terminal can be defined in Konfigurator, "
-             "default is <b>konsole</b>.</p></qt>"));
+             "<p>It uses the system default terminal emulator.</p></qt>"));
 }
 
 void ListPanelActions::activePanelChanged()

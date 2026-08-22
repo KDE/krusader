@@ -270,13 +270,6 @@ void KgGeneral::createGeneralTab()
     QGroupBox *terminalGrp = createFrame(i18n("Terminal"), tab);
     QGridLayout *terminalGrid = createGridLayout(terminalGrp);
 
-    QLabel *label3 = new QLabel(i18n("External Terminal:"), generalGrp);
-    terminalGrid->addWidget(label3, 0, 0);
-    KonfiguratorURLRequester *urlReq2 = createURLRequester("General", "Terminal", _Terminal, label3, generalGrp, false, QString(), PAGE_GENERAL, false);
-    terminalGrid->addWidget(urlReq2, 0, 1);
-    QLabel *terminalLabel = new QLabel(i18n("%d will be replaced by the workdir."), terminalGrp);
-    terminalGrid->addWidget(terminalLabel, 1, 1);
-
     KONFIGURATOR_CHECKBOX_PARAM terminal_settings[] = {
         //   cfg_class  cfg_name     default        text            restart tooltip
         {"General",

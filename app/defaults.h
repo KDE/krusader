@@ -111,8 +111,6 @@
 /////////////////////// [General]
 // Move To Trash //////
 #define _MoveToTrash true
-// Terminal ///////////
-#define _Terminal "konsole --separate"
 // Send CDs ///////////
 #define _SendCDs true
 // Follow Terminal CD ///////////

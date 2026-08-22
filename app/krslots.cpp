@@ -24,8 +24,7 @@
 #include <KIO/FileCopyJob>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KSharedConfig>
-#include <KShell>
+#include <KTerminalLauncherJob>
 #include <KToggleAction>
 #include <utility>
 
@@ -54,8 +53,8 @@
 #include "GUI/krusaderstatus.h"
 #include "GUI/mediabutton.h"
 #include "GUI/terminaldock.h"
-#include "KrViewer/krviewer.h"
 #include "Konfigurator/konfigurator.h"
+#include "KrViewer/krviewer.h"
 #include "Locate/locate.h"
 #include "MountMan/kmountman.h"
 #include "Panel/PanelView/krselectionmode.h"
@@ -398,23 +397,9 @@ void KrSlots::locate()
 
 void KrSlots::runTerminal(const QString &dir)
 {
-    KProcess proc;
-    proc.setWorkingDirectory(dir);
-    KConfigGroup group(krConfig, "General");
-    QString term = group.readEntry("Terminal", _Terminal);
-    QStringList sepdArgs = KShell::splitArgs(term, KShell::TildeExpand);
-    if (sepdArgs.isEmpty()) {
-        KMessageBox::error(krMainWindow, i18nc("Arg is a string containing the bad quoting.", "Bad quoting in terminal command:\n%1", term));
-        return;
-    }
-    for (int i = 0; i < sepdArgs.size(); i++) {
-        if (sepdArgs[i] == "%d") {
-            sepdArgs[i] = dir;
-        }
-    }
-    proc << sepdArgs;
-    if (!proc.startDetached())
-        KMessageBox::error(krApp, i18n("Error executing %1.", term));
+    auto *job = new KTerminalLauncherJob({}); // pass an empty command
+    job->setWorkingDirectory(dir);
+    job->start();
 }
 
 void KrSlots::homeTerminal()
