@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(MIN_QT_VERSION "6.4.0")
 set(KF6_MIN_VERSION "5.240.0")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # ===== Packages =====
 
