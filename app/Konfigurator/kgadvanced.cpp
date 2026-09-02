@@ -33,7 +33,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget *parent)
         //   cfg_class  cfg_name             default              text                                                        restart tooltip
         {{"Advanced",
           "AutoMount",
-          _AutoMount,
+          Defaults::autoMount,
           i18n("Automount filesystems"),
           false,
           i18n("When stepping into a folder which is defined as a mount point in the <b>fstab</b>, try mounting it with the defined parameters.")}};
@@ -43,7 +43,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget *parent)
     generalGrid->addWidget(generals, 1, 0);
 
     QLabel *labelNonMount = addLabel(generalGrid, 2, 0, i18n("MountMan will not (un)mount the following mount-points:"), generalGrp);
-    KonfiguratorEditBox *nonMountPoints = createEditBox("Advanced", "Nonmount Points", _NonMountPoints, labelNonMount, generalGrp, false);
+    KonfiguratorEditBox *nonMountPoints = createEditBox("Advanced", "Nonmount Points", Defaults::nonMountPoints, labelNonMount, generalGrp, false);
     generalGrid->addWidget(nonMountPoints, 2, 1);
 
 #ifdef BSD
@@ -61,13 +61,13 @@ KgAdvanced::KgAdvanced(bool first, QWidget *parent)
 
     KONFIGURATOR_CHECKBOX_PARAM confirmations[] =
         //   cfg_class  cfg_name                default             text                                          restart ToolTip
-        {{"Advanced", "Confirm Unempty Dir", _ConfirmUnemptyDir, i18n("Deleting non-empty folders"), false, ""},
-         {"Advanced", "Confirm Delete", _ConfirmDelete, i18n("Deleting files"), false, ""},
-         {"Advanced", "Confirm Copy", _ConfirmCopy, i18n("Copying files"), false, ""},
-         {"Advanced", "Confirm Move", _ConfirmMove, i18n("Moving files"), false, ""},
+        {{"Advanced", "Confirm Unempty Dir", Defaults::confirmUnemptyDir, i18n("Deleting non-empty folders"), false, ""},
+         {"Advanced", "Confirm Delete", Defaults::confirmDelete, i18n("Deleting files"), false, ""},
+         {"Advanced", "Confirm Copy", Defaults::confirmCopy, i18n("Copying files"), false, ""},
+         {"Advanced", "Confirm Move", Defaults::confirmMove, i18n("Moving files"), false, ""},
          {"Advanced",
           "Confirm Feed to Listbox",
-          _ConfirmFeedToListbox,
+          Defaults::confirmFeedToListbox,
           i18n("Confirm feed to listbox"),
           false,
           i18n("Ask for a result name when feeding items to the listbox. By default the standard value is used.")},
@@ -89,7 +89,7 @@ KgAdvanced::KgAdvanced(bool first, QWidget *parent)
         i18n("The icon cache size influences how fast the contents of a panel can be displayed. However, too large a cache might consume your memory.");
     QLabel *label = new QLabel(i18n("Icon cache size (KB):"), fineTuneGrp);
     fineTuneGrid->addWidget(label, 0, 0);
-    KonfiguratorSpinBox *spinBox = createSpinBox("Advanced", "Icon Cache Size", _IconCacheSize, 1, 8192, label, fineTuneGrp, false, cacheTip);
+    KonfiguratorSpinBox *spinBox = createSpinBox("Advanced", "Icon Cache Size", Defaults::iconCacheSize, 1, 8192, label, fineTuneGrp, false, cacheTip);
     spinBox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     fineTuneGrid->addWidget(spinBox, 0, 1);
 

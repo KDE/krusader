@@ -62,7 +62,7 @@ KgArchives::KgArchives(bool first, QWidget *parent)
         //   cfg_class  cfg_name                  default           text                                          restart ToolTip
         {{"Archives",
           "ArchivesAsDirectories",
-          _ArchivesAsDirectories,
+          Defaults::archivesAsDirectories,
           i18n("Browse Archives As Folders"),
           false,
           i18n("Krusader will browse archives as folders.")}};
@@ -80,10 +80,15 @@ KgArchives::KgArchives(bool first, QWidget *parent)
 
     KONFIGURATOR_CHECKBOX_PARAM finetuners[] =
         //   cfg_class  cfg_name                  default           text                                          restart ToolTip
-        {{"Archives", "Test Archives", _TestArchives, i18n("Test archive after packing"), false, i18n("Check the archive's integrity after packing it.")},
+        {{"Archives",
+          "Test Archives",
+          Defaults::testArchives,
+          i18n("Test archive after packing"),
+          false,
+          i18n("Check the archive's integrity after packing it.")},
          {"Archives",
           "Test Before Unpack",
-          _TestBeforeUnpack,
+          Defaults::testBeforeUnpack,
           i18n("Test archive before unpacking"),
           false,
           i18n("Some corrupted archives might cause a crash; therefore, testing is suggested.")}};

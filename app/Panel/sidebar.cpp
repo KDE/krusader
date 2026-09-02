@@ -44,7 +44,7 @@ Sidebar::Sidebar(QWidget *parent)
     // create the label+buttons setup
     dataLine = new KrSqueezedTextLabel(this);
     KConfigGroup lg(krConfig, "Look&Feel");
-    dataLine->setFont(lg.readEntry("Filelist Font", _FilelistFont));
+    dataLine->setFont(lg.readEntry("Filelist Font", Defaults::filelistFont()));
     // --- hack: setup colors to be the same as an inactive panel
     dataLine->setBackgroundRole(QPalette::Window);
     int sheight = QFontMetrics(dataLine->font()).height() + 4;

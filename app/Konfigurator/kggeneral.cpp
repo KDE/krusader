@@ -68,7 +68,7 @@ void KgGeneral::createViewerTab()
 
     tabLayout->addWidget(createCheckBox("General",
                                         "View In Separate Window",
-                                        _ViewInSeparateWindow,
+                                        Defaults::viewInSeparateWindow,
                                         i18n("Internal editor and viewer opens each file in a separate window"),
                                         tab,
                                         false,
@@ -77,7 +77,7 @@ void KgGeneral::createViewerTab()
 
     tabLayout->addWidget(createCheckBox("General",
                                         "Viewer Hide Single Tab",
-                                        _ViewerHideSingleTab,
+                                        Defaults::viewerHideSingleTab,
                                         i18n("Hide the tab bar when only one tab is opened"),
                                         tab,
                                         false,
@@ -112,7 +112,7 @@ void KgGeneral::createViewerTab()
 
     vbox->addWidget(createCheckBox("General",
                                    "UseOktetaViewer",
-                                   _UseOktetaViewer,
+                                   Defaults::useOktetaViewer,
                                    i18n("Use Okteta as Hex viewer"),
                                    vboxWidget,
                                    false,
@@ -126,7 +126,7 @@ void KgGeneral::createViewerTab()
     QLabel *label5 = new QLabel(i18n("Use lister if the text file is bigger than:"), hboxWidget4);
     hbox4->addWidget(label5);
     KonfiguratorSpinBox *spinBox =
-        createSpinBox("General", "Lister Limit", _ListerLimit, 0, 0x7FFFFFFF, label5, hboxWidget4, false, listerLimitTip, PAGE_VIEWER);
+        createSpinBox("General", "Lister Limit", Defaults::listerLimit, 0, 0x7FFFFFFF, label5, hboxWidget4, false, listerLimitTip, PAGE_VIEWER);
     hbox4->addWidget(spinBox);
     QLabel *label6 = new QLabel(i18n("MB"), hboxWidget4);
     hbox4->addWidget(label6);
@@ -219,13 +219,13 @@ void KgGeneral::createGeneralTab()
         //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel",
          "Warn On Exit",
-         _WarnOnExit,
+         Defaults::warnOnExit,
          i18n("Warn on exit"),
          false,
          i18n("Display a warning when trying to close the main window.")}, // KDE4: move warn on exit to the other confirmations
         {"Look&Feel",
          "Minimize To Tray",
-         _ShowTrayIcon,
+         Defaults::showTrayIcon,
          i18n("Show and close to tray"),
          false,
          i18n("Show an icon in the system tray and keep running in the background when the window is closed.")},
@@ -239,7 +239,8 @@ void KgGeneral::createGeneralTab()
 
     QLabel *labelGrp = new QLabel(i18n("Temp Folder:"), generalGrp);
     hbox->addWidget(labelGrp);
-    KonfiguratorURLRequester *urlReq3 = createURLRequester("General", "Temp Directory", _TempDirectory, labelGrp, generalGrp, false, QString(), PAGE_GENERAL);
+    KonfiguratorURLRequester *urlReq3 =
+        createURLRequester("General", "Temp Directory", Defaults::tempDirectory, labelGrp, generalGrp, false, QString(), PAGE_GENERAL);
     urlReq3->setMode(KFile::Directory);
     connect(urlReq3->extension(), &KonfiguratorExtension::applyManually, this, &KgGeneral::applyTempDir);
     hbox->addWidget(urlReq3);
@@ -260,7 +261,7 @@ void KgGeneral::createGeneralTab()
         {{i18n("Move to trash"), "true", i18n("Files will be moved to trash when deleted.")},
          {i18n("Delete files"), "false", i18n("Files will be permanently deleted.")}};
     KonfiguratorRadioButtons *trashRadio =
-        createRadioButtonGroup("General", "Move To Trash", _MoveToTrash ? "true" : "false", 2, 0, deleteMode, 2, delGrp, false, PAGE_GENERAL);
+        createRadioButtonGroup("General", "Move To Trash", Defaults::moveToTrash ? "true" : "false", 2, 0, deleteMode, 2, delGrp, false, PAGE_GENERAL);
     delGrid->addWidget(trashRadio);
 
     kgGeneralLayout->addWidget(delGrp, 1, 0);
@@ -274,13 +275,13 @@ void KgGeneral::createGeneralTab()
         //   cfg_class  cfg_name     default        text            restart tooltip
         {"General",
          "Send CDs",
-         _SendCDs,
+         Defaults::sendCDs,
          i18n("Embedded Terminal sends Chdir on panel change"),
          false,
          i18n("When checked, whenever the panel is changed (for example, by pressing Tab), Krusader changes the current folder in the embedded terminal.")},
         {"General",
          "Follow Terminal CD",
-         _FollowTerminalCD,
+         Defaults::followTerminalCD,
          i18n("Active panel follows Embedded Terminal working directory"),
          false,
          i18n("When checked, whenever terminal working directory is changed (for example, by executing 'cd' or 'popd' command), Krusader changes the current "

@@ -43,7 +43,7 @@ KrInterDetailedView::KrInterDetailedView(QWidget *parent, KrViewInstance &instan
     setWidget(this);
 
     KConfigGroup grpSvr(_config, "Look&Feel");
-    _viewFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
+    _viewFont = grpSvr.readEntry("Filelist Font", Defaults::filelistFont());
 
     setModel(_model);
     setRootIsDecorated(false);

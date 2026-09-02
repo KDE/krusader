@@ -619,7 +619,7 @@ void KrSearchDialog::feedToListBox()
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
-    if (ga.readEntry("Confirm Feed to Listbox", _ConfirmFeedToListbox)) {
+    if (ga.readEntry("Confirm Feed to Listbox", Defaults::confirmFeedToListbox)) {
         bool ok;
         fileSystemName = QInputDialog::getText(this, i18n("Query name"), i18n("Here you can name the file collection"), QLineEdit::Normal, fileSystemName, &ok);
         if (!ok)

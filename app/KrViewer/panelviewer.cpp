@@ -139,7 +139,7 @@ KParts::ReadOnlyPart *PanelViewer::getHexPart()
 {
     KParts::ReadOnlyPart *part = nullptr;
 
-    if (KConfigGroup(krConfig, "General").readEntry("UseOktetaViewer", _UseOktetaViewer)) {
+    if (KConfigGroup(krConfig, "General").readEntry("UseOktetaViewer", Defaults::useOktetaViewer)) {
         if (mimes->find("oktetapart") == mimes->end()) {
             const KPluginMetaData metaData(QStringLiteral("kf6/parts/oktetapart"));
             KPluginFactory *factory = KPluginFactory::loadFactory(metaData).plugin;
@@ -190,7 +190,7 @@ KParts::ReadOnlyPart *PanelViewer::getDefaultPart(const KFileItem &fi)
     }
 
     KIO::filesize_t fileSize = fi.size();
-    KIO::filesize_t limit = static_cast<KIO::filesize_t>(group.readEntry("Lister Limit", _ListerLimit) * 0x100000);
+    KIO::filesize_t limit = static_cast<KIO::filesize_t>(group.readEntry("Lister Limit", Defaults::listerLimit) * 0x100000);
 
     QString mimetype = fi.mimetype();
 
@@ -349,7 +349,7 @@ void PanelEditor::openFile(const KFileItem fi)
 {
     KIO::filesize_t fileSize = fi.size();
     KConfigGroup group(krConfig, "General");
-    KIO::filesize_t limitMB = static_cast<KIO::filesize_t>(group.readEntry("Lister Limit", _ListerLimit));
+    KIO::filesize_t limitMB = static_cast<KIO::filesize_t>(group.readEntry("Lister Limit", Defaults::listerLimit));
     QString mimetype = fi.mimetype();
 
     if (mode == KrViewer::Generic)

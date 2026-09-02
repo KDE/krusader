@@ -323,7 +323,7 @@ KrViewer *KrViewer::getViewer(bool new_window)
 void KrViewer::view(QUrl url, QWidget *parent)
 {
     KConfigGroup group(krConfig, "General");
-    bool defaultWindow = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
+    bool defaultWindow = group.readEntry("View In Separate Window", Defaults::viewInSeparateWindow);
 
     view(std::move(url), Default, defaultWindow, parent);
 }
@@ -343,10 +343,10 @@ void KrViewer::edit(QUrl url, QWidget *parent)
 void KrViewer::edit(const QUrl &url, Mode mode, int new_window, QWidget *parent)
 {
     KConfigGroup group(krConfig, "General");
-    QString editor = group.readEntry("Editor", _Editor);
+    QString editor = group.readEntry("Editor", Defaults::editor);
 
     if (new_window == -1)
-        new_window = group.readEntry("View In Separate Window", _ViewInSeparateWindow);
+        new_window = group.readEntry("View In Separate Window", Defaults::viewInSeparateWindow);
 
     if (editor != "internal editor" && !editor.isEmpty()) {
         KProcess proc;

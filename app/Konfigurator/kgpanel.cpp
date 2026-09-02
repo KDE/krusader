@@ -33,7 +33,14 @@
 #include "../icon.h"
 #include "../krglobal.h"
 
-enum { PAGE_GENERAL = 0, PAGE_VIEW, PAGE_PANELTOOLBAR, PAGE_MOUSE, PAGE_MEDIA_MENU, PAGE_LAYOUT };
+enum {
+    PAGE_GENERAL = 0,
+    PAGE_VIEW,
+    PAGE_PANELTOOLBAR,
+    PAGE_MOUSE,
+    PAGE_MEDIA_MENU,
+    PAGE_LAYOUT
+};
 
 KgPanel::KgPanel(bool first, QWidget *parent)
     : KonfiguratorPage(first, parent)
@@ -92,7 +99,7 @@ void KgPanel::setupGeneralTab()
         // cfg_class, cfg_name, default, text, restart, tooltip
         {"Look&Feel",
          "Mark Dirs",
-         _MarkDirs,
+         Defaults::markDirs,
          i18n("Autoselect folders"),
          false,
          i18n("When matching the select criteria, not only files will be selected, but also folders.")},
@@ -105,13 +112,13 @@ void KgPanel::setupGeneralTab()
               "option.")},
         {"Look&Feel",
          "UnselectBeforeOperation",
-         _UnselectBeforeOperation,
+         Defaults::unselectBeforeOperation,
          i18n("Unselect files before copy/move"),
          false,
          i18n("Unselect files, which are to be copied/moved, before the operation starts.")},
         {"Look&Feel",
          "FilterDialogRemembersSettings",
-         _FilterDialogRemembersSettings,
+         Defaults::filterDialogRemembersSettings,
          i18n("Filter dialog remembers settings"),
          false,
          i18n("The filter dialog is opened with the last filter settings that where applied to the panel.")},
@@ -131,7 +138,7 @@ void KgPanel::setupGeneralTab()
         //   cfg_class    cfg_name                      default             text                                     restart tooltip
         {"Look&Feel",
          "Fullpath Tab Names",
-         _FullPathTabNames,
+         Defaults::fullPathTabNames,
          i18n("Use full path tab names"),
          true,
          i18n("Display the full path in the folder tabs. By default only the last part of the path is displayed.")},
@@ -182,7 +189,7 @@ void KgPanel::setupGeneralTab()
 
     KONFIGURATOR_NAME_VALUE_PAIR positions[] = {{i18n("Top"), "top"}, {i18n("Bottom"), "bottom"}};
 
-    cmb = createComboBox("Look&Feel", "Tab Bar Position", _TabBarPosition, positions, 2, labelTabBar, groupBox, true, false, QString(), PAGE_GENERAL);
+    cmb = createComboBox("Look&Feel", "Tab Bar Position", Defaults::tabBarPosition, positions, 2, labelTabBar, groupBox, true, false, QString(), PAGE_GENERAL);
 
     hbox->addWidget(cmb);
     gridLayout->addLayout(hbox, 2, 0, Qt::AlignLeft);
@@ -199,11 +206,11 @@ void KgPanel::setupGeneralTab()
         //   cfg_class  cfg_name                default             text                              restart tooltip
         {"Look&Feel",
          "New Style Quicksearch",
-         _NewStyleQuicksearch,
+         Defaults::newStyleQuicksearch,
          i18n("Start by typing"),
          false,
          i18n("Open search bar and start searching by typing in panel.")},
-        {"Look&Feel", "Case Sensitive Quicksearch", _CaseSensitiveQuicksearch, i18n("Case sensitive"), false, i18n("Search must match case.")},
+        {"Look&Feel", "Case Sensitive Quicksearch", Defaults::caseSensitiveQuicksearch, i18n("Case sensitive"), false, i18n("Search must match case.")},
         {"Look&Feel",
          "Up/Down Cancels Quicksearch",
          false,
@@ -212,7 +219,7 @@ void KgPanel::setupGeneralTab()
          i18n("Pressing the Up/Down buttons closes the search bar (only in search mode).")},
         {"Look&Feel",
          "Navigation with Right Arrow Quicksearch",
-         _NavigationWithRightArrowQuicksearch,
+         Defaults::navigationWithRightArrowQuicksearch,
          i18n("Folder navigation with Right Arrow"),
          false,
          i18n("Pressing the Right button enters folder if no search text editing intention is captured.")},
@@ -371,7 +378,7 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
         iconSizes[i].text = iconSizes[i].value = QString::number(KrView::iconSizes[i]);
     KonfiguratorComboBox *cmb = createComboBox(instance->name(),
                                                "IconSize",
-                                               _FilelistIconSize,
+                                               QString::number(Defaults::filelistIconSize),
                                                iconSizes,
                                                static_cast<int>(KrView::iconSizes.count()),
                                                labelIconSize,
@@ -392,7 +399,7 @@ void KgPanel::setupView(KrViewInstance *instance, QWidget *parent)
     KONFIGURATOR_CHECKBOX_PARAM iconSettings[] =
         //   cfg_class             cfg_name        default       text            restart        tooltip
         {
-            {instance->name(), "With Icons", _WithIcons, i18n("Use icons in the filenames"), true, i18n("Show the icons for filenames and folders.")},
+            {instance->name(), "With Icons", Defaults::withIcons, i18n("Use icons in the filenames"), true, i18n("Show the icons for filenames and folders.")},
             {instance->name(), "ShowPreviews", false, i18n("Show previews by default"), false, i18n("Show previews of files and folders.")},
         };
 
@@ -430,7 +437,8 @@ void KgPanel::setupPanelTab()
     auto *fontLayout = new QHBoxLayout();
     QLabel *labelFontLay = new QLabel(i18n("View font:"), panelGrp);
     fontLayout->addWidget(labelFontLay);
-    KonfiguratorFontChooser *chsr = createFontChooser("Look&Feel", "Filelist Font", _FilelistFont, labelFontLay, panelGrp, true, QString(), PAGE_VIEW);
+    KonfiguratorFontChooser *chsr =
+        createFontChooser("Look&Feel", "Filelist Font", Defaults::filelistFont(), labelFontLay, panelGrp, true, QString(), PAGE_VIEW);
     fontLayout->addWidget(chsr);
     fontLayout->addStretch(1);
     hbox->addLayout(fontLayout, 1);
@@ -457,26 +465,26 @@ void KgPanel::setupPanelTab()
         {
             {"Look&Feel",
              "Human Readable Size",
-             _HumanReadableSize,
+             Defaults::humanReadableSize,
              i18n("Use human-readable file size"),
              true,
              i18n("File sizes are displayed in B, KB, MB and GB, not just in bytes.")},
-            {"Look&Feel", "Show Hidden", _ShowHidden, i18n("Show hidden files"), false, i18n("Display files beginning with a dot.")},
+            {"Look&Feel", "Show Hidden", Defaults::showHidden, i18n("Show hidden files"), false, i18n("Display files beginning with a dot.")},
             {"Look&Feel",
              "Numeric permissions",
-             _NumericPermissions,
+             Defaults::numericPermissions,
              i18n("Numeric Permissions"),
              true,
              i18n("Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in the permission column.")},
             {"Look&Feel",
              "Load User Defined Folder Icons",
-             _UserDefinedFolderIcons,
+             Defaults::userDefinedFolderIcons,
              i18n("Load the user defined folder icons"),
              true,
              i18n("Load the user defined folder icons (can cause decrease in performance).")},
             {"Look&Feel",
              "Always Show Current Item",
-             _AlwaysShowCurrentItem,
+             Defaults::alwaysShowCurrentItem,
              i18n("Always show current item"),
              false,
              i18n("Show current item border decoration in inactive panel.")},
@@ -496,13 +504,23 @@ void KgPanel::setupPanelTab()
     QLabel *labelSort = new QLabel(i18n("Sort method:"), panelGrp);
     hbox->addWidget(labelSort);
 
-    KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {{i18n("Alphabetical"), QString::number(static_cast<int>(KrViewProperties::Alphabetical))},
-                                                  {i18n("Alphabetical and numbers"), QString::number(static_cast<int>(KrViewProperties::AlphabeticalNumbers))},
-                                                  {i18n("Character code"), QString::number(static_cast<int>(KrViewProperties::CharacterCode))},
-                                                  {i18n("Character code and numbers"), QString::number(static_cast<int>(KrViewProperties::CharacterCodeNumbers))},
-                                                  {i18nc("Krusader sort", "Krusader"), QString::number(static_cast<int>(KrViewProperties::Krusader))}};
-    KonfiguratorComboBox *cmb =
-        createComboBox("Look&Feel", "Sort method", QString::number(static_cast<int>(_DefaultSortMethod)), sortMethods, 5, labelSort, panelGrp, true, false, QString(), PAGE_VIEW);
+    KONFIGURATOR_NAME_VALUE_PAIR sortMethods[] = {
+        {i18n("Alphabetical"), QString::number(static_cast<int>(KrViewProperties::Alphabetical))},
+        {i18n("Alphabetical and numbers"), QString::number(static_cast<int>(KrViewProperties::AlphabeticalNumbers))},
+        {i18n("Character code"), QString::number(static_cast<int>(KrViewProperties::CharacterCode))},
+        {i18n("Character code and numbers"), QString::number(static_cast<int>(KrViewProperties::CharacterCodeNumbers))},
+        {i18nc("Krusader sort", "Krusader"), QString::number(static_cast<int>(KrViewProperties::Krusader))}};
+    KonfiguratorComboBox *cmb = createComboBox("Look&Feel",
+                                               "Sort method",
+                                               QString::number(static_cast<int>(KrViewProperties::defaultSortMethod)),
+                                               sortMethods,
+                                               5,
+                                               labelSort,
+                                               panelGrp,
+                                               true,
+                                               false,
+                                               QString(),
+                                               PAGE_VIEW);
     hbox->addWidget(cmb);
     hbox->addWidget(createSpacer(panelGrp));
 
@@ -514,7 +532,7 @@ void KgPanel::setupPanelTab()
         {
             {"Look&Feel",
              "Case Sensative Sort",
-             _CaseSensativeSort,
+             Defaults::caseSensativeSort,
              i18n("Case sensitive sorting"),
              true,
              i18n("All files beginning with capital letters appear before files beginning with non-capital letters (UNIX default).")},
@@ -611,7 +629,7 @@ void KgPanel::setupButtonsTab()
             {"Look&Feel", "Forward Button Visible", false, i18n("Show Forward Button"), true, "Goes forward in history."},
             {"Look&Feel", "History Button Visible", true, i18n("Show History Button"), true, i18n("The history button will be visible.")},
             {"Look&Feel", "Bookmarks Button Visible", true, i18n("Show Bookmarks Button"), true, i18n("The bookmarks button will be visible.")},
-            {"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n("Show Panel Toolbar"), true, i18n("The panel toolbar will be visible.")},
+            {"Look&Feel", "Panel Toolbar visible", Defaults::panelToolBar, i18n("Show Panel Toolbar"), true, i18n("The panel toolbar will be visible.")},
         };
     buttonsCheckboxes = createCheckBoxGroup(1, 0, buttonsParams, 7 /*count*/, tab, PAGE_PANELTOOLBAR);
     connect(buttonsCheckboxes->find("Panel Toolbar visible"), &KonfiguratorCheckBox::stateChanged, this, &KgPanel::slotEnablePanelToolbar);
@@ -621,13 +639,13 @@ void KgPanel::setupButtonsTab()
     QGridLayout *panelToolbarGrid = createGridLayout(panelToolbarGrp);
     KONFIGURATOR_CHECKBOX_PARAM panelToolbarButtonsParams[] = {
         //   cfg_class    cfg_name                default             text                       restart tooltip
-        {"Look&Feel", "Equal Button Visible", _cdOther, i18n("Equal button (=)"), true, i18n("Changes the panel folder to the other panel folder.")},
-        {"Look&Feel", "Up Button Visible", _cdUp, i18n("Up button (..)"), true, i18n("Changes the panel folder to the parent folder.")},
-        {"Look&Feel", "Home Button Visible", _cdHome, i18n("Home button (~)"), true, i18n("Changes the panel folder to the home folder.")},
-        {"Look&Feel", "Root Button Visible", _cdRoot, i18n("Root button (/)"), true, i18n("Changes the panel folder to the root folder.")},
+        {"Look&Feel", "Equal Button Visible", Defaults::cdOther, i18n("Equal button (=)"), true, i18n("Changes the panel folder to the other panel folder.")},
+        {"Look&Feel", "Up Button Visible", Defaults::cdUp, i18n("Up button (..)"), true, i18n("Changes the panel folder to the parent folder.")},
+        {"Look&Feel", "Home Button Visible", Defaults::cdHome, i18n("Home button (~)"), true, i18n("Changes the panel folder to the home folder.")},
+        {"Look&Feel", "Root Button Visible", Defaults::cdRoot, i18n("Root button (/)"), true, i18n("Changes the panel folder to the root folder.")},
         {"Look&Feel",
          "SyncBrowse Button Visible",
-         _syncBrowseButton,
+         Defaults::syncBrowseButton,
          i18n("Toggle-button for sync-browsing"),
          true,
          i18n("Each folder change in the panel is also performed in the other panel.")},
@@ -717,76 +735,76 @@ void KgPanel::setupMouseModeTab()
         //  tooltip }
         {"Custom Selection Mode",
          "QT Selection",
-         _QtSelection,
+         Defaults::qtSelection,
          i18n("Based on KDE's selection mode"),
          true,
          i18n("If checked, use a mode based on KDE's style.")},
         {"Custom Selection Mode",
          "Left Selects",
-         _LeftSelects,
+         Defaults::leftSelects,
          i18n("Left mouse button selects"),
          true,
          i18n("If checked, left clicking an item will select it.")},
         {"Custom Selection Mode",
          "Left Preserves",
-         _LeftPreserves,
+         Defaults::leftPreserves,
          i18n("Left mouse button preserves selection"),
          true,
          i18n("If checked, left clicking an item will select it, but will not unselect other, already selected items.")},
         {"Custom Selection Mode",
          "ShiftCtrl Left Selects",
-         _ShiftCtrlLeft,
+         Defaults::shiftCtrlLeft,
          i18n("Shift/Ctrl-Left mouse button selects"),
          true,
          i18n("If checked, Shift/Ctrl left clicking will select items.\nNote: this is meaningless if 'Left Button Selects' is checked.")},
         {"Custom Selection Mode",
          "Right Selects",
-         _RightSelects,
+         Defaults::rightSelects,
          i18n("Right mouse button selects"),
          true,
          i18n("If checked, right clicking an item will select it.")},
         {"Custom Selection Mode",
          "Right Preserves",
-         _RightPreserves,
+         Defaults::rightPreserves,
          i18n("Right mouse button preserves selection"),
          true,
          i18n("If checked, right clicking an item will select it, but will not unselect other, already selected items.")},
         {"Custom Selection Mode",
          "ShiftCtrl Right Selects",
-         _ShiftCtrlRight,
+         Defaults::shiftCtrlRight,
          i18n("Shift/Ctrl-Right mouse button selects"),
          true,
          i18n("If checked, Shift/Ctrl right clicking will select items.\nNote: this is meaningless if 'Right Button Selects' is checked.")},
         {"Custom Selection Mode",
          "Space Moves Down",
-         _SpaceMovesDown,
+         Defaults::spaceMovesDown,
          i18n("Spacebar moves down"),
          true,
          i18n("If checked, pressing the spacebar will select the current item and move down.\nOtherwise, current item is selected, but remains the current "
               "item.")},
         {"Custom Selection Mode",
          "Space Calc Space",
-         _SpaceCalcSpace,
+         Defaults::spaceCalcSpace,
          i18n("Spacebar calculates disk space"),
          true,
          i18n("If checked, pressing the spacebar while the current item is a folder, will (except from selecting the folder)\ncalculate space occupied of the "
               "folder (recursively).")},
         {"Custom Selection Mode",
          "Insert Moves Down",
-         _InsertMovesDown,
+         Defaults::insertMovesDown,
          i18n("Insert moves down"),
          true,
          i18n("If checked, pressing Insert will select the current item, and move down to the next item.\nOtherwise, current item is not changed.")},
         {"Custom Selection Mode",
          "Immediate Context Menu",
-         _ImmediateContextMenu,
+         Defaults::immediateContextMenu,
          i18n("Right clicking pops context menu immediately"),
          true,
          i18n("If checked, right clicking will result in an immediate showing of the context menu.\nOtherwise, user needs to click and hold the right mouse "
               "button for 500ms.")},
         {"Custom Selection Mode",
          "Reset Selection Items",
-         _ResetSelectionItems,
+         Defaults::resetSelectionItems,
          i18n("A plain mouse button resets selection"),
          true,
          i18n("Reset selection on a mouse click without modifiers (i.e. Shift or Ctrl).\nSelection with Shift/Ctrl for the mouse button have to be enabled for "
@@ -971,11 +989,11 @@ bool KgPanel::apply()
     KConfigGroup briefView(krConfig, "KrInterBriefView");
     KConfigGroup detailedView(krConfig, "KrInterDetailedView");
 
-    int oldiconBriefSize = briefView.readEntry("IconSize", _FilelistIconSize).toInt();
-    int oldiconDetailSize = detailedView.readEntry("IconSize", _FilelistIconSize).toInt();
+    int oldiconBriefSize = briefView.readEntry("IconSize", Defaults::filelistIconSize);
+    int oldiconDetailSize = detailedView.readEntry("IconSize", Defaults::filelistIconSize);
     KonfiguratorPage::apply();
-    int iconBriefSize = briefView.readEntry("IconSize", _FilelistIconSize).toInt();
-    int iconDetailSize = detailedView.readEntry("IconSize", _FilelistIconSize).toInt();
+    int iconBriefSize = briefView.readEntry("IconSize", Defaults::filelistIconSize);
+    int iconDetailSize = detailedView.readEntry("IconSize", Defaults::filelistIconSize);
 
     return oldiconBriefSize != iconBriefSize || oldiconDetailSize != iconDetailSize;
 }

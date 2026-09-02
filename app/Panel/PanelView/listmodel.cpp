@@ -32,7 +32,7 @@ ListModel::ListModel(KrInterView *view)
     , _alternatingTable(false)
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
-    _defaultFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
+    _defaultFont = grpSvr.readEntry("Filelist Font", Defaults::filelistFont());
 }
 
 void ListModel::populate(const QList<FileItem *> &files, FileItem *dummy)

@@ -14,7 +14,7 @@
 
 QSize FileListIcon::size() const
 {
-    int linearSize = KConfigGroup(krConfig, "Look&Feel").readEntry("Filelist Icon Size", _FilelistIconSize).toInt();
+    int linearSize = KConfigGroup(krConfig, "Look&Feel").readEntry("Filelist Icon Size", Defaults::filelistIconSize);
     return QSize(linearSize, linearSize);
 }
 

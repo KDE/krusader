@@ -172,7 +172,7 @@ LocateDlg::LocateDlg(QWidget *parent)
     resultList->setColumnWidth(0, QFontMetrics(resultList->font()).horizontalAdvance("W") * 60);
 
     KConfigGroup gl(krConfig, "Look&Feel");
-    resultList->setFont(gl.readEntry("Filelist Font", _FilelistFont));
+    resultList->setFont(gl.readEntry("Filelist Font", Defaults::filelistFont()));
 
     resultList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     resultList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -627,7 +627,7 @@ void LocateDlg::feedToListBox()
     group.writeEntry("Feed To Listbox Counter", listBoxNum);
 
     KConfigGroup ga(krConfig, "Advanced");
-    if (ga.readEntry("Confirm Feed to Listbox", _ConfirmFeedToListbox)) {
+    if (ga.readEntry("Confirm Feed to Listbox", Defaults::confirmFeedToListbox)) {
         bool ok;
         queryName = QInputDialog::getText(this, i18n("Query Name"), i18n("Here you can name the file collection:"), QLineEdit::Normal, queryName, &ok);
         if (!ok)

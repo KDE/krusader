@@ -51,7 +51,7 @@ KrInterBriefView::KrInterBriefView(QWidget *parent, KrViewInstance &instance, KC
     setSelectionModel(new DummySelectionModel(_model, this));
 
     KConfigGroup grpSvr(_config, "Look&Feel");
-    _viewFont = grpSvr.readEntry("Filelist Font", _FilelistFont);
+    _viewFont = grpSvr.readEntry("Filelist Font", Defaults::filelistFont());
 
     auto *style = new KrStyleProxy();
     style->setParent(this);
@@ -80,7 +80,7 @@ KrInterBriefView::~KrInterBriefView()
 
 void KrInterBriefView::doRestoreSettings(KConfigGroup group)
 {
-    _properties->numberOfColumns = group.readEntry("Number Of Brief Columns", _NumberOfBriefColumns);
+    _properties->numberOfColumns = group.readEntry("Number Of Brief Columns", Defaults::numberOfBriefColumns);
     if (_properties->numberOfColumns < 1)
         _properties->numberOfColumns = 1;
     else if (_properties->numberOfColumns > MAX_BRIEF_COLS)

@@ -134,7 +134,7 @@ void KrusaderView::start(const KConfigGroup &cfg, bool restoreSettings, const QL
 
 void KrusaderView::updateGUI(const KConfigGroup &cfg)
 {
-    if (!cfg.readEntry("Show Cmd Line", _ShowCmdline)) {
+    if (!cfg.readEntry("Show Cmd Line", Defaults::showCmdline)) {
         cmdLine()->hide();
         KrActions::actToggleCmdline->setChecked(false);
     } else {
@@ -143,7 +143,7 @@ void KrusaderView::updateGUI(const KConfigGroup &cfg)
     }
     // update the Fn bar to the shortcuts selected by the user
     fnKeys()->updateShortcuts();
-    if (!cfg.readEntry("Show FN Keys", _ShowFNkeys)) {
+    if (!cfg.readEntry("Show FN Keys", Defaults::showFNkeys)) {
         fnKeys()->hide();
         KrActions::actToggleFnkeys->setChecked(false);
     } else {
@@ -154,7 +154,7 @@ void KrusaderView::updateGUI(const KConfigGroup &cfg)
     if (cfg.readEntry("Vertical Mode", false)) {
         toggleVerticalMode();
     }
-    if (cfg.readEntry("Show Terminal Emulator", _ShowTerminalEmulator)) {
+    if (cfg.readEntry("Show Terminal Emulator", Defaults::showTerminalEmulator)) {
         setTerminalEmulator(true); // create konsole_part
     };
 }
@@ -202,7 +202,7 @@ void KrusaderView::updateCurrentActivePath()
     emit activePathChanged(folderName);
 
     KConfigGroup cfg = krConfig->group("General");
-    if (_terminalDock->isInitialised() && cfg.readEntry("Send CDs", _SendCDs)) {
+    if (_terminalDock->isInitialised() && cfg.readEntry("Send CDs", Defaults::sendCDs)) {
         _terminalDock->sendCd(path);
     }
 }

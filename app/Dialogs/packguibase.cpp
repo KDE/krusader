@@ -161,9 +161,9 @@ PackGUIBase::PackGUIBase(QWidget *parent)
 
     compressLayout->addLayout(volumeHbox);
 
-    int level = group.readEntry("Compression level", _defaultCompressionLevel);
+    int level = group.readEntry("Compression level", Defaults::defaultCompressionLevel);
     setCompressionLevel = new QCheckBox(i18n("Set compression level"), advancedWidget);
-    if (level != _defaultCompressionLevel)
+    if (level != Defaults::defaultCompressionLevel)
         setCompressionLevel->setChecked(true);
     connect(setCompressionLevel, &QCheckBox::toggled, this, &PackGUIBase::checkConsistency);
     compressLayout->addWidget(setCompressionLevel, 0, Qt::Alignment());

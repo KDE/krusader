@@ -21,6 +21,7 @@
 #include "krselectionmode.h"
 #include "krviewfactory.h"
 #include "krviewitem.h"
+#include "krviewproperties.h"
 
 // QtCore
 #include <QDebug>
@@ -212,7 +213,7 @@ void KrView::init(bool enableUpdateDefaultSettings)
     setup();
     restoreDefaultSettings();
 
-    _updateDefaultSettings = enableUpdateDefaultSettings && KConfigGroup(_config, "Startup").readEntry("Update Default Panel Settings", _RememberPos);
+    _updateDefaultSettings = enableUpdateDefaultSettings && KConfigGroup(_config, "Startup").readEntry("Update Default Panel Settings", Defaults::rememberPos);
 
     _instance.m_objects.append(this);
 }
@@ -220,26 +221,25 @@ void KrView::init(bool enableUpdateDefaultSettings)
 void KrView::initProperties()
 {
     const KConfigGroup grpInstance(_config, _instance.name());
-    const bool displayIcons = grpInstance.readEntry("With Icons", _WithIcons);
+    const bool displayIcons = grpInstance.readEntry("With Icons", Defaults::withIcons);
 
     const KConfigGroup grpSvr(_config, "Look&Feel");
-    const bool numericPermissions = grpSvr.readEntry("Numeric permissions", _NumericPermissions);
+    const bool numericPermissions = grpSvr.readEntry("Numeric permissions", Defaults::numericPermissions);
 
     int sortOps = 0;
     if (grpSvr.readEntry("Show Directories First", true))
         sortOps |= KrViewProperties::DirsFirst;
     if (grpSvr.readEntry("Always sort dirs by name", false))
         sortOps |= KrViewProperties::AlwaysSortDirsByName;
-    if (!grpSvr.readEntry("Case Sensative Sort", _CaseSensativeSort))
+    if (!grpSvr.readEntry("Case Sensative Sort", Defaults::caseSensativeSort))
         sortOps |= KrViewProperties::IgnoreCase;
     if (grpSvr.readEntry("Locale Aware Sort", true))
         sortOps |= KrViewProperties::LocaleAwareSort;
     auto sortOptions = static_cast<KrViewProperties::SortOptions>(sortOps);
 
-    KrViewProperties::SortMethod sortMethod = static_cast<KrViewProperties::SortMethod>(
-        grpSvr.readEntry("Sort method", static_cast<int>(_DefaultSortMethod))
-    );
-    const bool humanReadableSize = grpSvr.readEntry("Human Readable Size", _HumanReadableSize);
+    KrViewProperties::SortMethod sortMethod =
+        static_cast<KrViewProperties::SortMethod>(grpSvr.readEntry("Sort method", static_cast<int>(KrViewProperties::defaultSortMethod)));
+    const bool humanReadableSize = grpSvr.readEntry("Human Readable Size", Defaults::humanReadableSize);
 
     // see KDE bug #40131
     const bool localeAwareCompareIsCaseSensitive = QString("a").localeAwareCompare("B") > 0;
@@ -322,7 +322,7 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size, const QColor 
     QString cacheName;
 
     if (!size)
-        size = _FilelistIconSize.toInt();
+        size = Defaults::filelistIconSize;
 
     QColor dimColor;
     int dimFactor;
@@ -347,7 +347,7 @@ QPixmap KrView::getIcon(FileItem *fileitem, bool active, int size, const QColor 
         cacheName.append(QStringLiteral("TINT%1_").arg(tint.rgba(), 8, 16, QLatin1Char('0')));
     cacheName.append(iconName);
 
-    // QPixmapCache::setCacheLimit( ag.readEntry("Icon Cache Size",_IconCacheSize) );
+    // QPixmapCache::setCacheLimit(ag.readEntry("Icon Cache Size", Defaults::iconCacheSize));
 
     // first try the cache
     if (!QPixmapCache::find(cacheName, &icon)) {
@@ -482,7 +482,7 @@ QString KrView::statistics()
 bool KrView::changeSelection(const KrQuery &filter, bool select)
 {
     KConfigGroup grpSvr(_config, "Look&Feel");
-    return changeSelection(filter, select, grpSvr.readEntry("Mark Dirs", _MarkDirs), true);
+    return changeSelection(filter, select, grpSvr.readEntry("Mark Dirs", Defaults::markDirs), true);
 }
 
 bool KrView::changeSelection(const KrQuery &filter, bool select, bool includeDirs, bool makeVisible)
@@ -539,7 +539,7 @@ void KrView::invertSelection()
     if (op())
         op()->setMassSelectionUpdate(true);
     KConfigGroup grpSvr(_config, "Look&Feel");
-    bool markDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
+    bool markDirs = grpSvr.readEntry("Mark Dirs", Defaults::markDirs);
 
     KrViewItem *temp = getCurrentKrViewItem();
     for (KrViewItem *it = getFirst(); it != nullptr; it = getNext(it)) {
@@ -914,7 +914,7 @@ void KrView::setFileIconSize(int size)
 int KrView::defaultFileIconSize()
 {
     KConfigGroup grpSvr(_config, _instance.name());
-    return grpSvr.readEntry("IconSize", _FilelistIconSize).toInt();
+    return grpSvr.readEntry("IconSize", Defaults::filelistIconSize);
 }
 
 void KrView::saveDefaultSettings(KrViewProperties::PropertyType properties)
@@ -976,8 +976,7 @@ void KrView::applySettingsToOthers()
 
 void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool descending)
 {
-    if (sortColumn == _properties->sortColumn && 
-        descending == static_cast<bool>(_properties->sortOptions & KrViewProperties::Descending))
+    if (sortColumn == _properties->sortColumn && descending == static_cast<bool>(_properties->sortOptions & KrViewProperties::Descending))
         return;
 
     int options = _properties->sortOptions;
@@ -991,7 +990,7 @@ void KrView::sortModeUpdated(KrViewProperties::ColumnType sortColumn, bool desce
 
 bool KrView::drawCurrent() const
 {
-    return isFocused() || KConfigGroup(_config, "Look&Feel").readEntry("Always Show Current Item", _AlwaysShowCurrentItem);
+    return isFocused() || KConfigGroup(_config, "Look&Feel").readEntry("Always Show Current Item", Defaults::alwaysShowCurrentItem);
 }
 
 void KrView::saveSortMode(KConfigGroup &group)
@@ -1124,7 +1123,7 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter, const FilterSettings
 void KrView::setFilter(KrViewProperties::FilterSpec filter)
 {
     KConfigGroup cfg(_config, "Look&Feel");
-    bool rememberSettings = cfg.readEntry("FilterDialogRemembersSettings", _FilterDialogRemembersSettings);
+    bool rememberSettings = cfg.readEntry("FilterDialogRemembersSettings", Defaults::filterDialogRemembersSettings);
     bool applyToDirs = rememberSettings ? _properties->filterApplysToDirs : false;
     switch (filter) {
     case KrViewProperties::All:
@@ -1158,7 +1157,7 @@ void KrView::setFilter(KrViewProperties::FilterSpec filter)
 void KrView::customSelection(bool select)
 {
     KConfigGroup grpSvr(_config, "Look&Feel");
-    bool includeDirs = grpSvr.readEntry("Mark Dirs", _MarkDirs);
+    bool includeDirs = grpSvr.readEntry("Mark Dirs", Defaults::markDirs);
 
     QString applySelToFolders = i18n("Apply &selection to folders");
     FilterDialog dialog(nullptr, i18n("Select Files"), QStringList(applySelToFolders), false);

@@ -280,7 +280,7 @@ qulonglong KrArcHandler::arcFileCount(const QString &archive, const QString &typ
 bool KrArcHandler::unpack(QString archive, const QString &type, const QString &password, const QString &dest, KrArcObserver *observer)
 {
     KConfigGroup group(krConfig, "Archives");
-    if (group.readEntry("Test Before Unpack", _TestBeforeUnpack)) {
+    if (group.readEntry("Test Before Unpack", Defaults::testBeforeUnpack)) {
         // test first - or be sorry later...
         if (type != "rpm" && type != "deb" && !test(archive, type, password, observer, 0)) {
             observer->error(i18n("Failed to unpack %1.", archive));
@@ -651,7 +651,7 @@ bool KrArcHandler::pack(QStringList fileNames, QString type, const QString &dest
     }
 
     KConfigGroup group(krConfig, "Archives");
-    if (group.readEntry("Test Archives", _TestArchives) && !test(dest, type, password, observer, count)) {
+    if (group.readEntry("Test Archives", Defaults::testArchives) && !test(dest, type, password, observer, count)) {
         observer->error(i18n("Failed to pack %1.", dest));
         return false;
     }

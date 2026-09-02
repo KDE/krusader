@@ -297,7 +297,7 @@ void TerminalDock::onTerminalFocusChanged(bool focused)
     }
 
     const KConfigGroup cfg = krConfig->group("General");
-    if (!cfg.readEntry("Follow Terminal CD", _FollowTerminalCD)) {
+    if (!cfg.readEntry("Follow Terminal CD", Defaults::followTerminalCD)) {
         return;
     }
 

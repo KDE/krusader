@@ -231,7 +231,7 @@ int main(int argc, char *argv[])
     KrServices::setGlobalKrMessageHandler(parser.isSet("debug"));
 
     KConfigGroup cfg(KSharedConfig::openConfig(), QStringLiteral("Look&Feel"));
-    bool singleInstanceMode = cfg.readEntry("Single Instance Mode", _SingleInstanceMode);
+    bool singleInstanceMode = cfg.readEntry("Single Instance Mode", Defaults::singleInstanceMode);
 
     QString url;
     if (!parser.positionalArguments().isEmpty()) {
@@ -276,7 +276,7 @@ int main(int argc, char *argv[])
     // splash screen - if the user wants one
     QSplashScreen *splash = nullptr;
     { // don't remove bracket
-        if (cfg.readEntry("Show splashscreen", _ShowSplashScreen)) {
+        if (cfg.readEntry("Show splashscreen", Defaults::showSplashScreen)) {
             QString splashFilename = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("splash.png"));
             QPixmap pixmap(splashFilename);
             if (!pixmap.isNull()) {

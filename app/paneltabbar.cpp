@@ -178,7 +178,7 @@ QString PanelTabBar::squeeze(const QUrl &url, int tabIndex)
         setTabToolTip(tabIndex, longText);
 
     const KConfigGroup group(krConfig, "Look&Feel");
-    const bool showLongNames = group.readEntry("Fullpath Tab Names", _FullPathTabNames);
+    const bool showLongNames = group.readEntry("Fullpath Tab Names", Defaults::fullPathTabNames);
 
     QString text;
     if (!showLongNames) {

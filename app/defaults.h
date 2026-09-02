@@ -12,227 +12,168 @@
 // QtGui
 #include <QFontDatabase>
 
+namespace Defaults
+{
 ///////////////////////   [Startup]
 // UI Save component Settings
-#define _UiSave true
+constexpr bool uiSave = true;
 // Show Cmd Line
-#define _ShowCmdline false
-// Show status bar
-#define _ShowStatusBar true
-// Show actions tool bar
-#define _ShowActionsToolBar true
-// Show tool bar
-#define _ShowToolBar true
+constexpr bool showCmdline = false;
 // Show FN Keys
-#define _ShowFNkeys true
+constexpr bool showFNkeys = true;
 // Show Terminal Emulator
-#define _ShowTerminalEmulator false
+constexpr bool showTerminalEmulator = false;
 // Remember Position
-#define _RememberPos true
+constexpr bool rememberPos = true;
 // Start to tray
-#define _StartToTray false
+constexpr bool startToTray = false;
 // The position of the tab bar
-#define _TabBarPosition "top"
+constexpr const char *tabBarPosition = "top";
 // Left Tab Bar
 // Right Tab Bar
 // Size where lister is the default viewer
-#define _ListerLimit 10
+constexpr int listerLimit = 10;
 
 ////////////////////////[Look&Feel]
 // Filelist Font ///////
-#define _FilelistFont QFontDatabase::systemFont(QFontDatabase::GeneralFont)
+inline QFont filelistFont()
+{
+    return QFontDatabase::systemFont(QFontDatabase::GeneralFont);
+}
+
 // Warn On Exit ////////
-#define _WarnOnExit false
+constexpr bool warnOnExit = false;
 // Minimize To Tray ////
-#define _ShowTrayIcon false
+constexpr bool showTrayIcon = false;
 // Mark Dirs ///////////
-#define _MarkDirs false
+constexpr bool markDirs = false;
 // Show Hidden /////////
-#define _ShowHidden true
-// Sort By Extension ///
-#define _SortByExt false
+constexpr bool showHidden = true;
 // Case Sensative Sort /
-#define _CaseSensativeSort false
-// Html Min Font Size //
-#define _HtmlMinFontSize 12
+constexpr bool caseSensativeSort = false;
 // Filelist Icon Size //
-#define _FilelistIconSize QString("22")
-// Mouse Selection /////
-#define _MouseSelection 0 // 0 - normal (shift+click, ctrl+click), 1 - left click, 2 - right click
+constexpr int filelistIconSize = 22;
 // Use fullpath tab names /////
-#define _FullPathTabNames false
+constexpr bool fullPathTabNames = false;
 // User defined folder icons
-#define _UserDefinedFolderIcons true
+constexpr bool userDefinedFolderIcons = true;
 // Always show current item decoration in panel
-#define _AlwaysShowCurrentItem true
+constexpr bool alwaysShowCurrentItem = true;
 // Unslect files before copy/move
-#define _UnselectBeforeOperation false
+constexpr bool unselectBeforeOperation = false;
 // Filter dialog remembers settings
-#define _FilterDialogRemembersSettings false
+constexpr bool filterDialogRemembersSettings = false;
 
 // Panel Toolbar Checkboxes
 // Panel Toolbar Visible checkbox turned off
-#define _PanelToolBar true
+constexpr bool panelToolBar = true;
 // cd / is turned on
-#define _cdRoot true
+constexpr bool cdRoot = true;
 // cd ~ is turned on
-#define _cdHome false
+constexpr bool cdHome = false;
 // cd .. is turned on
-#define _cdUp true
+constexpr bool cdUp = true;
 // cd other panel is turned on
-#define _cdOther false
+constexpr bool cdOther = false;
 // syncBrowseButton is turned on
-#define _syncBrowseButton false
+constexpr bool syncBrowseButton = false;
 // Use the default colors of KDE
-#define _KDEDefaultColors true
+constexpr bool plasmaDefaultColors = true;
 // Enable Alternate Background colors
-#define _AlternateBackground true
+constexpr bool alternateBackground = true;
 // Show current item even if not focused
-#define _ShowCurrentItemAlways false
+constexpr bool showCurrentItemAlways = false;
 // Dim the colors of the inactive panel
-#define _DimInactiveColors false
+constexpr bool dimInactiveColors = false;
 // Human Readable Size
-#define _HumanReadableSize true
+constexpr bool humanReadableSize = true;
 // With Icons
-#define _WithIcons true
+constexpr bool withIcons = true;
 // Single Click Selects
-#define _SingleClickSelects false
+constexpr bool singleClickSelects = false;
 // Numeric Permissions
-#define _NumericPermissions false
+constexpr bool numericPermissions = false;
 // Number of Columns in the Brief View
-#define _NumberOfBriefColumns 3
-// Default Sort Method
-#define _DefaultSortMethod KrViewProperties::Krusader
+constexpr int numberOfBriefColumns = 3;
 // Show splashscreen
-#define _ShowSplashScreen false
+constexpr bool showSplashScreen = false;
 // Single instance mode
-#define _SingleInstanceMode false
+constexpr bool singleInstanceMode = false;
 
 /////////////////////// [General]
 // Move To Trash //////
-#define _MoveToTrash true
+constexpr bool moveToTrash = true;
 // Send CDs ///////////
-#define _SendCDs true
+constexpr bool sendCDs = true;
 // Follow Terminal CD ///////////
-#define _FollowTerminalCD true
+constexpr bool followTerminalCD = true;
 // Editor /////////////
-#define _Editor "internal editor"
+constexpr const char *editor = "internal editor";
 // Use Okteta as Hex viewer ///////
-#define _UseOktetaViewer false
+constexpr bool useOktetaViewer = false;
 // Temp Directory /////
-#define _TempDirectory "/tmp/krusader.tmp"
+constexpr const char *tempDirectory = "/tmp/krusader.tmp";
 // Classic Quicksearch
-#define _NewStyleQuicksearch true
-// Case Sensitive quick search, if _NewStyleQuicksearch is true
-#define _CaseSensitiveQuicksearch false
+constexpr bool newStyleQuicksearch = true;
+// Case Sensitive quick search, if Defaults::newStyleQuicksearch is true
+constexpr bool caseSensitiveQuicksearch = false;
 // Special handling of Right Arrow in Quicksearch
-#define _NavigationWithRightArrowQuicksearch true
+constexpr bool navigationWithRightArrowQuicksearch = true;
 // View In Separate Window
-#define _ViewInSeparateWindow false
+constexpr bool viewInSeparateWindow = false;
 // Hide Single Tab in Viewer
-#define _ViewerHideSingleTab false
+constexpr bool viewerHideSingleTab = false;
 
 /////////////////////// [Advanced]
 // Permission Check ///
-// #define _PermCheck     true
+// constexpr bool permCheck = true;
 // AutoMount //////////
-#define _AutoMount false
-// Preserving date //////////
-#define _PreserveAttributes false
+constexpr bool autoMount = false;
 // Nonmount Points ////
-#define _NonMountPoints "/, "
+constexpr const char *nonMountPoints = "/, ";
 // Confirm Unempty Dir //     (for delete)
-#define _ConfirmUnemptyDir true
+constexpr bool confirmUnemptyDir = true;
 // Confirm Delete /////       (for deleting files)
-#define _ConfirmDelete true
+constexpr bool confirmDelete = true;
 // Confirm Copy ///////       (for copying files)
-#define _ConfirmCopy true
+constexpr bool confirmCopy = true;
 // Confirm Move ///////       (for moving files)
-#define _ConfirmMove true
+constexpr bool confirmMove = true;
 // Icon Cache Size ////
-#define _IconCacheSize 2048
+constexpr int iconCacheSize = 2048;
 
 /////////////////////// [Archives]
-// Do Tar /////////////
-#define _DoTar true
-// Do GZip ////////////
-#define _DoGZip true
-// Do Zip /////////////
-#define _DoZip true
-// Do UnZip ///////////
-#define _DoUnZip true
-// Do BZip2 ///////////
-#define _DoBZip2 true
-// Do LZMA ///////////
-#define _DoLZMA true
-// Do XZ ///////////
-#define _DoXZ true
-// Do Rar /////////////
-#define _DoRar true
-// Do UnRar ///////////
-#define _DoUnRar true
-// Do UnAce ///////////
-#define _DoUnAce true
-// Do Arj /////////////
-#define _DoArj true
-// Do UnArj ///////////
-#define _DoUnarj true
-// Do RPM /////////////
-#define _DoRPM true
-// Do DEB /////////////          ====> new
-#define _DoDEB true
-// Do Lha /////////////
-#define _DoLha true
-// Do 7z /////////////          ====> new
-#define _Do7z true
-// Allow Move Into Archive //
-#define _MoveIntoArchive false
 // Test Archives //////
-#define _TestArchives false
+constexpr bool testArchives = false;
 // Test Before Unpack ////
-#define _TestBeforeUnpack true
+constexpr bool testBeforeUnpack = true;
 // Supported Packers // ====> a QStringList of SYSTEM supported archives ( also new )
 // default compression level
-#define _defaultCompressionLevel 5
+constexpr int defaultCompressionLevel = 5;
 // treat Archives as Directories
-#define _ArchivesAsDirectories true
+constexpr bool archivesAsDirectories = true;
 
 /////////////////////// [UserActions]
 // Terminal for UserActions ///////////
-#define _UserActions_Terminal "konsole --noclose --workdir %d --title %t -e"
+constexpr const char *userActionsTerminal = "konsole --noclose --workdir %d --title %t -e";
 // Normal font for output collection ///////
-#define _UserActions_NormalFont QFontDatabase::systemFont(QFontDatabase::GeneralFont)
+inline QFont userActionsNormalFont()
+{
+    return QFontDatabase::systemFont(QFontDatabase::GeneralFont);
+}
 // Font for output collection with fixed width ///////
-#define _UserActions_FixedFont QFontDatabase::systemFont(QFontDatabase::FixedFont)
+inline QFont userActionsFixedFont()
+{
+    return QFontDatabase::systemFont(QFontDatabase::FixedFont);
+}
 // Use for output collection  fixed width font as default ///////
-#define _UserActions_UseFixedFont false
-
-/////////////////////// [Private]
-// Start Position /////
-#define _StartPosition QPoint(QApplication::primaryScreen()->geometry().width() / 2 - MAIN_VIEW->sizeHint().width() / 2, QApplication::primaryScreen()->geometry().height() / 2 - 250)
-// Start Size /////////
-#define _StartSize QSize(MAIN_VIEW->sizeHint().width(), 500)
-// Panel Size /////////
-#define _PanelSize 0
-// Terminal Size //////
-#define _TerminalSize 0
-// Left Name Size  - size of the left panel's name column
-// Left Size Size  - size of the left panel's size column
-// Left Date Size  - size of the left panel's date column
-// Right Name Size - size of the right panel's name column
-// Right Size Size - size of the left panel's size column
-// Right Date Size - size of the left panel's date column
-// Splitter Sizes - sizes of the splitter
-
-/////////////////////// [RemoteMan]
-// Connections ////////
-// the basic connections are defined internally
+constexpr bool userActionsUseFixedFont = false;
 
 /////////////////////// [Search]
 // Saved Searches /////
 // holds an index of saved searches
 // Confirm Feed to Listbox ///// (costum-name on feed ti listbox)
-#define _ConfirmFeedToListbox true
+constexpr bool confirmFeedToListbox = true;
 
 /////////// here are additional variables used internally by Krusader ////////////
 // BookmarkArchives   - The infobox about not allowing bookmarks inside archives
@@ -248,61 +189,62 @@
 
 /////////////////////// [Synchronize directories]
 // Don't overwrite automatically /////////////
-#define _ConfirmOverWrites false
+constexpr bool confirmOverWrites = false;
 // Recursive search in the subdirectories /////////////
-#define _RecurseSubdirs true
+constexpr bool recurseSubdirs = true;
 // The searcher follows symlinks /////////////
-#define _FollowSymlinks false
+constexpr bool followSymlinks = false;
 // Files with similar size are compared by content /////////////
-#define _CompareByContent false
+constexpr bool compareByContent = false;
 // The date information is ignored at synchronization /////////////
-#define _IgnoreDate false
+constexpr bool ignoreDate = false;
 // Asymmetric Client-File Server compare mode /////////////
-#define _Asymmetric false
+constexpr bool asymmetric = false;
 // Case insensitive compare in synchronizer /////////////
-#define _IgnoreCase false
+constexpr bool ignoreCase = false;
 // Scrolls the results of the synchronization /////////////
-#define _ScrollResults false
+constexpr bool scrollResults = false;
 // The right arrow button is turned on /////////////
-#define _BtnLeftToRight true
+constexpr bool btnLeftToRight = true;
 // The equals button is turned on /////////////
-#define _BtnEquals true
+constexpr bool btnEquals = true;
 // The not equals button is turned on /////////////
-#define _BtnDifferents true
+constexpr bool btnDifferents = true;
 // The left arrow button is turned on /////////////
-#define _BtnRightToLeft true
+constexpr bool btnRightToLeft = true;
 // The trash button is turned on /////////////
-#define _BtnDeletable true
+constexpr bool btnDeletable = true;
 // The duplicates button is turned on /////////////
-#define _BtnDuplicates true
+constexpr bool btnDuplicates = true;
 // The singles button is turned on /////////////
-#define _BtnSingles true
+constexpr bool btnSingles = true;
 
 /////////////////////// [Custom Selection Mode]
 // QT Selection
-#define _QtSelection false
+constexpr bool qtSelection = false;
 // Left Selects
-#define _LeftSelects true
+constexpr bool leftSelects = true;
 // Left Preserves
-#define _LeftPreserves false
+constexpr bool leftPreserves = false;
 // ShiftCtrl Left Selects
-#define _ShiftCtrlLeft false
+constexpr bool shiftCtrlLeft = false;
 // Right Selects
-#define _RightSelects true
+constexpr bool rightSelects = true;
 // Right Preserves
-#define _RightPreserves false
+constexpr bool rightPreserves = false;
 // ShiftCtrl Right Selects
-#define _ShiftCtrlRight false
+constexpr bool shiftCtrlRight = false;
 // Space Moves Down
-#define _SpaceMovesDown true
+constexpr bool spaceMovesDown = true;
 // Space Calc Space
-#define _SpaceCalcSpace true
+constexpr bool spaceCalcSpace = true;
 // Insert Moves Down
-#define _InsertMovesDown true
+constexpr bool insertMovesDown = true;
 // Immediate Context Menu
-#define _ImmediateContextMenu true
+constexpr bool immediateContextMenu = true;
 // Reset selection items
-#define _ResetSelectionItems false
+constexpr bool resetSelectionItems = false;
+} // namespace Defaults
 
 // Root directory
 #ifdef Q_OS_WIN

@@ -158,7 +158,7 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
 {
     KRFUNC;
     KConfigGroup group(&krConf, "General");
-    QString tmpDirPath = group.readEntry("Temp Directory", _TempDirectory);
+    QString tmpDirPath = group.readEntry("Temp Directory", Defaults::tempDirectory);
     QDir tmpDir(tmpDirPath);
     if (!tmpDir.exists()) {
         for (qsizetype i = 1; i != -1; i = tmpDirPath.indexOf('/', i + 1))

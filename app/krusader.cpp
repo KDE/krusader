@@ -144,7 +144,7 @@ Krusader::Krusader(const QCommandLineParser &parser)
     KgProtocols::init();
 
     const KConfigGroup lookFeelGroup(krConfig, "Look&Feel");
-    FileItem::loadUserDefinedFolderIcons(lookFeelGroup.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
+    FileItem::loadUserDefinedFolderIcons(lookFeelGroup.readEntry("Load User Defined Folder Icons", Defaults::userDefinedFolderIcons));
 
     const KConfigGroup startupGroup(krConfig, "Startup");
     QString startProfile = startupGroup.readEntry("Starter Profile Name", QString());
@@ -179,7 +179,7 @@ Krusader::Krusader(const QCommandLineParser &parser)
              "about file below mouse pointer."));
 
     // create tray icon (if needed)
-    const bool startToTray = startupGroup.readEntry("Start To Tray", _StartToTray);
+    const bool startToTray = startupGroup.readEntry("Start To Tray", Defaults::startToTray);
     setTray(startToTray);
 
     setCentralWidget(MAIN_VIEW);
@@ -223,10 +223,13 @@ Krusader::Krusader(const QCommandLineParser &parser)
 
     if (!runKonfig) {
         KConfigGroup cfg(krConfig, "Private");
-        const auto position = cfg.readEntry("Start Position", _StartPosition);
+        const auto startPosition = QPoint(QApplication::primaryScreen()->geometry().width() / 2 - MAIN_VIEW->sizeHint().width() / 2,
+                                          QApplication::primaryScreen()->geometry().height() / 2 - 250);
+        const auto position = cfg.readEntry("Start Position", startPosition);
         windowHandle()->setX(position.x());
         windowHandle()->setY(position.y());
-        resize(cfg.readEntry("Start Size", _StartSize));
+        const auto startSize = QSize(MAIN_VIEW->sizeHint().width(), 500);
+        resize(cfg.readEntry("Start Size", startSize));
     }
 
     // view initialized; show window or only tray
@@ -273,7 +276,7 @@ Krusader::~Krusader()
 
 void Krusader::setTray(bool forceCreation)
 {
-    const bool trayIsNeeded = forceCreation || KConfigGroup(krConfig, "Look&Feel").readEntry("Minimize To Tray", _ShowTrayIcon);
+    const bool trayIsNeeded = forceCreation || KConfigGroup(krConfig, "Look&Feel").readEntry("Minimize To Tray", Defaults::showTrayIcon);
     if (!sysTray && trayIsNeeded) {
         sysTray = new KStatusNotifierItem(this);
         sysTray->setIconByName(appIconName());
@@ -390,11 +393,11 @@ void Krusader::saveSettings()
     cfg.writeEntry("State", saveState());
 
     // save panel and window settings
-    if (cfg.readEntry("Remember Position", _RememberPos))
+    if (cfg.readEntry("Remember Position", Defaults::rememberPos))
         savePosition();
 
     // save the gui components visibility
-    if (cfg.readEntry("UI Save Settings", _UiSave)) {
+    if (cfg.readEntry("UI Save Settings", Defaults::uiSave)) {
         cfg.writeEntry("Show FN Keys", KrActions::actToggleFnkeys->isChecked());
         cfg.writeEntry("Show Cmd Line", KrActions::actToggleCmdline->isChecked());
         cfg.writeEntry("Show Terminal Emulator", KrActions::actToggleTerminal->isChecked());
@@ -422,7 +425,7 @@ void Krusader::closeEvent(QCloseEvent *event)
 void Krusader::showEvent(QShowEvent *event)
 {
     const KConfigGroup lookFeelGroup(krConfig, "Look&Feel");
-    if (sysTray && !lookFeelGroup.readEntry("Minimize To Tray", _ShowTrayIcon)) {
+    if (sysTray && !lookFeelGroup.readEntry("Minimize To Tray", Defaults::showTrayIcon)) {
         // restoring from "start to tray", tray icon is not needed anymore
         sysTray->deleteLater();
     }
@@ -441,7 +444,7 @@ bool Krusader::queryClose()
     }
 
     const KConfigGroup cfg = krConfig->group("Look&Feel");
-    const bool confirmExit = cfg.readEntry("Warn On Exit", _WarnOnExit);
+    const bool confirmExit = cfg.readEntry("Warn On Exit", Defaults::warnOnExit);
 
     // ask user and wait until all KIO::job operations are terminated. Krusader won't exit before
     // that anyway

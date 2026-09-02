@@ -134,7 +134,7 @@ void ListPanelFunc::openFileNameInternal(const QString &name, bool externallyExe
     QUrl arcPath = browsableArchivePath(name);
     if (!arcPath.isEmpty()) {
         bool browseAsDirectory = !externallyExecutable
-            || (KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
+            || (KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", Defaults::archivesAsDirectories)
                 && (KrArcHandler::arcSupported(mime) || KrServices::isoSupported(mime)));
         if (browseAsDirectory) {
             openUrl(arcPath);
@@ -605,7 +605,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
     }
 
     const KConfigGroup group(krConfig, "Advanced");
-    const bool showDialog = move ? group.readEntry("Confirm Move", _ConfirmMove) : group.readEntry("Confirm Copy", _ConfirmCopy);
+    const bool showDialog = move ? group.readEntry("Confirm Move", Defaults::confirmMove) : group.readEntry("Confirm Copy", Defaults::confirmCopy);
 
     if (showDialog) {
         QString operationText;
@@ -643,7 +643,7 @@ void ListPanelFunc::copyFiles(bool enqueue, bool move)
     const KIO::CopyJob::CopyMode mode = move ? KIO::CopyJob::Move : KIO::CopyJob::Copy;
     FileSystemProvider::instance().startCopyFiles(fileUrls, destination, mode, true, startMode);
 
-    if (KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+    if (KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", Defaults::unselectBeforeOperation)) {
         panel->view->saveSelection();
         panel->view->unselectAll();
     }
@@ -777,7 +777,7 @@ void ListPanelFunc::mkdir()
 
 void ListPanelFunc::defaultOrAlternativeDeleteFiles(bool invert)
 {
-    const bool trash = KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash);
+    const bool trash = KConfigGroup(krConfig, "General").readEntry("Move To Trash", Defaults::moveToTrash);
     deleteFiles(trash != invert);
 }
 
@@ -823,7 +823,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
     }
 
     const KConfigGroup advancedGroup(krConfig, "Advanced");
-    if (advancedGroup.readEntry("Confirm Delete", _ConfirmDelete)) {
+    if (advancedGroup.readEntry("Confirm Delete", Defaults::confirmDelete)) {
         QString s; // text
         KGuiItem b; // continue button
 
@@ -851,7 +851,7 @@ QList<QUrl> ListPanelFunc::confirmDeletion(const QList<QUrl> &urls, bool moveToT
     }
 
     // we want to warn the user about non-empty dir
-    const bool emptyDirVerify = advancedGroup.readEntry("Confirm Unempty Dir", _ConfirmUnemptyDir);
+    const bool emptyDirVerify = advancedGroup.readEntry("Confirm Unempty Dir", Defaults::confirmUnemptyDir);
 
     QList<QUrl> urlsMarkedForDeletion;
     if (emptyDirVerify) {
@@ -1356,7 +1356,7 @@ void ListPanelFunc::pasteFromClipboard()
     if (urls.isEmpty())
         return;
 
-    if (origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+    if (origin && KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", Defaults::unselectBeforeOperation)) {
         origin->panel->view->saveSelection();
         for (KrViewItem *item = origin->panel->view->getFirst(); item != nullptr; item = origin->panel->view->getNext(item)) {
             if (urls.contains(item->getFileItem()->getUrl()))

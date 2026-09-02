@@ -374,8 +374,8 @@ class KrColorCacheImpl
 KrColorGroup KrColorCacheImpl::getColors(const KrColorItemType &type) const
 {
     KrColorGroup result;
-    if (m_colorSettings.getBoolValue("KDE Default", _KDEDefaultColors)) {
-        bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", _AlternateBackground);
+    if (m_colorSettings.getBoolValue("KDE Default", Defaults::plasmaDefaultColors)) {
+        bool enableAlternateBackground = m_colorSettings.getBoolValue("Enable Alternate Background", Defaults::alternateBackground);
 
         QPalette p = QGuiApplication::palette();
         QColor background = enableAlternateBackground && type.m_alternateBackgroundColor ? p.color(QPalette::Active, QPalette::Base)
@@ -395,7 +395,7 @@ KrColorGroup KrColorCacheImpl::getColors(const KrColorItemType &type) const
           }*/
         return result;
     }
-    bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", _ShowCurrentItemAlways);
+    bool markCurrentAlways = m_colorSettings.getBoolValue("Show Current Item Always", Defaults::showCurrentItemAlways);
     bool dimBackground = m_colorSettings.getBoolValue("Dim Inactive Colors", false);
 
     // cache m_activePanel flag. If color dimming is turned on, it is set to true, as the inactive colors

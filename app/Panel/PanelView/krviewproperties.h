@@ -74,6 +74,8 @@ public:
         Custom = 0x4
     };
 
+    static constexpr SortMethod defaultSortMethod = Krusader;
+
     KrViewProperties(bool displayIcons,
                      bool numericPermissions,
                      SortOptions sortOptions,

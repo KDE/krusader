@@ -206,7 +206,7 @@ void KrActions::setupActions(Krusader *krusaderApp)
     NEW_KACTION(actTrashBin, i18n("Trash Popup Menu"), KrTrashHandler::trashIconName(), 0, SLOTS, SLOT(trashPopupMenu()), "trashbin");
 
     NEW_KACTION(actSwapSides, i18n("Sw&ap Sides"), nullptr, Qt::CTRL | Qt::SHIFT | Qt::Key_U, SLOTS, SLOT(toggleSwapSides()), "toggle swap sides");
-    actToggleHidden->setChecked(KConfigGroup(krConfig, "Look&Feel").readEntry("Show Hidden", _ShowHidden));
+    actToggleHidden->setChecked(KConfigGroup(krConfig, "Look&Feel").readEntry("Show Hidden", Defaults::showHidden));
 
     // and then the DONE actions
     NEW_KACTION(actCmdlinePopup, i18n("popup cmdline"), nullptr, Qt::CTRL | Qt::Key_Slash, SLOTS, SLOT(cmdlinePopup()), "cmdline popup");

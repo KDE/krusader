@@ -263,7 +263,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     // TODO nice to have: rename
 
     // trash
-    if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash)) {
+    if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", Defaults::moveToTrash)) {
         QAction *moveToTrashAction = new QAction(Icon(QStringLiteral("user-trash")), i18nc("@action:inmenu", "Move to Trash"), this);
         const bool enableMoveToTrash = capabilities.isLocal() && capabilities.supportsMoving();
         moveToTrashAction->setEnabled(enableMoveToTrash);

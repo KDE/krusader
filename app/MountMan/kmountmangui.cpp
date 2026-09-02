@@ -137,7 +137,7 @@ QLayout *KMountManGUI::createMainPage()
     layout->setSpacing(10);
     mountList = new KrTreeWidget(this); // create the main container
     KConfigGroup grp(krConfig, "Look&Feel");
-    mountList->setFont(grp.readEntry("Filelist Font", _FilelistFont));
+    mountList->setFont(grp.readEntry("Filelist Font", Defaults::filelistFont()));
     mountList->setSelectionMode(QAbstractItemView::SingleSelection);
     mountList->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     mountList->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);

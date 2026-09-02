@@ -38,7 +38,7 @@ KrMouseHandler::KrMouseHandler(KrView *view, int contextMenuShift)
     KConfigGroup grpSvr(krConfig, "Look&Feel");
     // decide on single click/double click selection
     bool singleClickTmp = QApplication::style()->styleHint(QStyle::SH_ItemView_ActivateItemOnSingleClick);
-    _singleClick = grpSvr.readEntry("Single Click Selects", _SingleClickSelects) && singleClickTmp;
+    _singleClick = grpSvr.readEntry("Single Click Selects", Defaults::singleClickSelects) && singleClickTmp;
     connect(&_contextMenuTimer, &QTimer::timeout, this, &KrMouseHandler::showContextMenu);
     connect(&_renameTimer, &QTimer::timeout, this, &KrMouseHandler::renameCurrentItem);
 }

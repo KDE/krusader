@@ -101,9 +101,9 @@ KrActionProcDlg::KrActionProcDlg(const QString &caption, bool enableStderr, QWid
         connect(_stderr, &KTextEdit::textChanged, this, &KrActionProcDlg::currentTextEditChanged);
 
     KConfigGroup group(krConfig, "UserActions");
-    normalFont = group.readEntry("Normal Font", _UserActions_NormalFont);
-    fixedFont = group.readEntry("Fixed Font", _UserActions_FixedFont);
-    bool startupState = group.readEntry("Use Fixed Font", _UserActions_UseFixedFont);
+    normalFont = group.readEntry("Normal Font", Defaults::userActionsNormalFont());
+    fixedFont = group.readEntry("Fixed Font", Defaults::userActionsFixedFont());
+    bool startupState = group.readEntry("Use Fixed Font", Defaults::userActionsUseFixedFont);
     toggleFixedFont(startupState);
 
     auto *hbox = new QHBoxLayout;
@@ -281,7 +281,7 @@ void KrActionProc::start(QStringList cmdLineList)
         if (_action->execType() == KrAction::Normal || _action->execType() == KrAction::Terminal) { // not collect output
             if (_action->execType() == KrAction::Terminal) { // run in terminal
                 KConfigGroup group(krConfig, "UserActions");
-                QString term = group.readEntry("Terminal", _UserActions_Terminal);
+                QString term = group.readEntry("Terminal", Defaults::userActionsTerminal);
                 QStringList termArgs = KShell::splitArgs(term, KShell::TildeExpand);
                 if (termArgs.isEmpty()) {
                     KMessageBox::error(nullptr, i18nc("Arg is a string containing the bad quoting.", "Bad quoting in terminal command:\n%1", term));

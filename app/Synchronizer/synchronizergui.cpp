@@ -245,32 +245,32 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     optionBox->addWidget(optionGridWidget);
 
     cbSubdirs = new QCheckBox(i18n("Recurse subfolders"), optionGridWidget);
-    cbSubdirs->setChecked(group.readEntry("Recurse Subdirectories", _RecurseSubdirs));
+    cbSubdirs->setChecked(group.readEntry("Recurse Subdirectories", Defaults::recurseSubdirs));
     optionGrid->addWidget(cbSubdirs, 0, 0);
     cbSubdirs->setWhatsThis(i18n("Compare not only the base folders but their subfolders as well."));
     cbSymlinks = new QCheckBox(i18n("Follow symlinks"), optionGridWidget);
-    cbSymlinks->setChecked(group.readEntry("Follow Symlinks", _FollowSymlinks));
+    cbSymlinks->setChecked(group.readEntry("Follow Symlinks", Defaults::followSymlinks));
     cbSymlinks->setEnabled(cbSubdirs->isChecked());
     optionGrid->addWidget(cbSymlinks, 0, 1);
     cbSymlinks->setWhatsThis(i18n("Follow symbolic links during the compare process."));
     cbByContent = new QCheckBox(i18n("Compare by content"), optionGridWidget);
-    cbByContent->setChecked(group.readEntry("Compare By Content", _CompareByContent));
+    cbByContent->setChecked(group.readEntry("Compare By Content", Defaults::compareByContent));
     optionGrid->addWidget(cbByContent, 0, 2);
     cbByContent->setWhatsThis(i18n("Compare duplicated files with same size by content."));
     cbIgnoreDate = new QCheckBox(i18n("Ignore Date"), optionGridWidget);
-    cbIgnoreDate->setChecked(group.readEntry("Ignore Date", _IgnoreDate));
+    cbIgnoreDate->setChecked(group.readEntry("Ignore Date", Defaults::ignoreDate));
     optionGrid->addWidget(cbIgnoreDate, 1, 0);
     cbIgnoreDate->setWhatsThis(
         i18n("<p>Ignore date information during the compare process.</p><p><b>Note</b>: useful if the files are located on network filesystems or in "
              "archives.</p>"));
     cbAsymmetric = new QCheckBox(i18n("Asymmetric"), optionGridWidget);
-    cbAsymmetric->setChecked(group.readEntry("Asymmetric", _Asymmetric));
+    cbAsymmetric->setChecked(group.readEntry("Asymmetric", Defaults::asymmetric));
     optionGrid->addWidget(cbAsymmetric, 1, 1);
     cbAsymmetric->setWhatsThis(
         i18n("<p><b>Asymmetric mode</b></p><p>The left side is the destination, the right is the source folder. Files existing only in the left folder will be "
              "deleted, the other differing ones will be copied from right to left.</p><p><b>Note</b>: useful when updating a folder from a file server.</p>"));
     cbIgnoreCase = new QCheckBox(i18n("Ignore Case"), optionGridWidget);
-    cbIgnoreCase->setChecked(group.readEntry("Ignore Case", _IgnoreCase));
+    cbIgnoreCase->setChecked(group.readEntry("Ignore Case", Defaults::ignoreCase));
     optionGrid->addWidget(cbIgnoreCase, 1, 2);
     cbIgnoreCase->setWhatsThis(i18n("<p>Case insensitive filename compare.</p><p><b>Note</b>: useful when synchronizing Windows filesystems.</p>"));
 
@@ -289,37 +289,37 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     bool checked;
     QString description;
 
-    checked = group.readEntry("LeftToRight Button", _BtnLeftToRight);
+    checked = group.readEntry("LeftToRight Button", Defaults::btnLeftToRight);
     description = i18n("Show files marked to <i>Copy from left to right</i>.");
     btnLeftToRight = createButton(showOptions, "arrow-right", checked, Qt::CTRL | Qt::Key_L, description, ">");
     showOptionsLayout->addWidget(btnLeftToRight, 0, 0);
 
-    checked = group.readEntry("Equals Button", _BtnEquals);
+    checked = group.readEntry("Equals Button", Defaults::btnEquals);
     description = i18n("Show files considered to be identical.");
     btnEquals = createButton(showOptions, "equals", checked, Qt::CTRL | Qt::Key_E, description, "=");
     showOptionsLayout->addWidget(btnEquals, 0, 1);
 
-    checked = group.readEntry("Differents Button", _BtnDifferents);
+    checked = group.readEntry("Differents Button", Defaults::btnDifferents);
     description = i18n("Show excluded files.");
     btnDifferents = createButton(showOptions, "unequals", checked, Qt::CTRL | Qt::Key_D, description, "!=");
     showOptionsLayout->addWidget(btnDifferents, 0, 2);
 
-    checked = group.readEntry("RightToLeft Button", _BtnRightToLeft);
+    checked = group.readEntry("RightToLeft Button", Defaults::btnRightToLeft);
     description = i18n("Show files marked to <i>Copy from right to left</i>.");
     btnRightToLeft = createButton(showOptions, "arrow-left", checked, Qt::CTRL | Qt::Key_R, description, "<");
     showOptionsLayout->addWidget(btnRightToLeft, 0, 3);
 
-    checked = group.readEntry("Deletable Button", _BtnDeletable);
+    checked = group.readEntry("Deletable Button", Defaults::btnDeletable);
     description = i18n("Show files marked to delete.");
     btnDeletable = createButton(showOptions, "user-trash", checked, Qt::CTRL | Qt::Key_T, description);
     showOptionsLayout->addWidget(btnDeletable, 0, 4);
 
-    checked = group.readEntry("Duplicates Button", _BtnDuplicates);
+    checked = group.readEntry("Duplicates Button", Defaults::btnDuplicates);
     description = i18n("Show files that exist on both sides.");
     btnDuplicates = createButton(showOptions, "arrow-up", checked, Qt::CTRL | Qt::Key_I, description, i18n("Duplicates"), true);
     showOptionsLayout->addWidget(btnDuplicates, 0, 5);
 
-    checked = group.readEntry("Singles Button", _BtnSingles);
+    checked = group.readEntry("Singles Button", Defaults::btnSingles);
     description = i18n("Show files that exist on one side only.");
     btnSingles = createButton(showOptions, "arrow-down", checked, Qt::CTRL | Qt::Key_N, description, i18n("Singles"), true);
     showOptionsLayout->addWidget(btnSingles, 0, 6);
@@ -335,7 +335,7 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     syncList->installEventFilter(this);
 
     KConfigGroup gl(krConfig, "Look&Feel");
-    syncList->setFont(gl.readEntry("Filelist Font", _FilelistFont));
+    syncList->setFont(gl.readEntry("Filelist Font", Defaults::filelistFont()));
 
     syncList->setBackgroundRole(QPalette::Window);
     syncList->setAutoFillBackground(true);
@@ -476,7 +476,7 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
 
     btnScrollResults = new QPushButton(this);
     btnScrollResults->setCheckable(true);
-    btnScrollResults->setChecked(group.readEntry("Scroll Results", _ScrollResults));
+    btnScrollResults->setChecked(group.readEntry("Scroll Results", Defaults::scrollResults));
     btnScrollResults->hide();
     if (btnScrollResults->isChecked())
         btnScrollResults->setText(i18n("Quiet"));

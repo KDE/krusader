@@ -231,7 +231,7 @@ void FileSystem::connectJobToDestination(KJob *job, const QUrl &destination)
 bool FileSystem::showHiddenFiles()
 {
     const KConfigGroup gl(krConfig, "Look&Feel");
-    return gl.readEntry("Show Hidden", _ShowHidden);
+    return gl.readEntry("Show Hidden", Defaults::showHidden);
 }
 
 void FileSystem::addFileItem(FileItem *item)

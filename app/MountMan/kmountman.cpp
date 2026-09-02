@@ -89,7 +89,7 @@ KMountMan::KMountMan(QWidget *parent)
     nonmount_fs << "supermount";
     {
         KConfigGroup group(krConfig, "Advanced");
-        QStringList nonmount = group.readEntry("Nonmount Points", _NonMountPoints).split(',');
+        QStringList nonmount = group.readEntry("Nonmount Points", Defaults::nonMountPoints).split(',');
         nonmount_fs_mntpoint += nonmount;
         // simplify the white space
         for (auto &it : nonmount_fs_mntpoint) {
@@ -293,7 +293,7 @@ void KMountMan::toggleMount(const QString &mntPoint)
 void KMountMan::autoMount(const QString &path)
 {
     KConfigGroup group(krConfig, "Advanced");
-    if (!group.readEntry("AutoMount", _AutoMount))
+    if (!group.readEntry("AutoMount", Defaults::autoMount))
         return; // auto mount disabled
 
     if (getStatus(path) == NOT_MOUNTED)

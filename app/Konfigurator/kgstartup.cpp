@@ -55,10 +55,19 @@ KgStartup::KgStartup(bool first, QWidget *parent)
     //------------------------------------------------
     panelsGrid->addWidget(createLine(panelsGrp), 1, 0, 1, 2);
 
-    KONFIGURATOR_CHECKBOX_PARAM settings[] = {
-        //   cfg_class  cfg_name                default             text                              restart tooltip
-        {"Look&Feel", "Show splashscreen", _ShowSplashScreen, i18n("Show splashscreen"), false, i18n("Display a splashscreen when starting Krusader.")},
-        {"Look&Feel", "Single Instance Mode", _SingleInstanceMode, i18n("Single instance mode"), false, i18n("Only one Krusader instance is allowed to run.")}};
+    KONFIGURATOR_CHECKBOX_PARAM settings[] = {//   cfg_class  cfg_name                default             text                              restart tooltip
+                                              {"Look&Feel",
+                                               "Show splashscreen",
+                                               Defaults::showSplashScreen,
+                                               i18n("Show splashscreen"),
+                                               false,
+                                               i18n("Display a splashscreen when starting Krusader.")},
+                                              {"Look&Feel",
+                                               "Single Instance Mode",
+                                               Defaults::singleInstanceMode,
+                                               i18n("Single instance mode"),
+                                               false,
+                                               i18n("Only one Krusader instance is allowed to run.")}};
 
     KonfiguratorCheckBoxGroup *cbs = createCheckBoxGroup(2, 0, settings, 2 /* settings count */, panelsGrp);
     panelsGrid->addWidget(cbs, 2, 0, 1, 2);
@@ -87,7 +96,7 @@ KgStartup::KgStartup(bool first, QWidget *parent)
         // cfg_class cfg_name default text restart tooltip
         {"Startup",
          "Remember Position",
-         _RememberPos,
+         Defaults::rememberPos,
          i18n("Save last position, size and panel settings"),
          false,
          i18n("<p>At startup, the main window will resize itself to the size it was when last shutdown. "
@@ -96,11 +105,11 @@ KgStartup::KgStartup(bool first, QWidget *parent)
               "to manually set the main window's size and position at startup.</p>")},
         {"Startup",
          "Update Default Panel Settings",
-         _RememberPos,
+         Defaults::rememberPos,
          i18n("Update default panel settings"),
          true,
          i18n("When settings of a panel are changed, save them as the default for new panels of the same type.")},
-        {"Startup", "Start To Tray", _StartToTray, i18n("Start to tray"), false, i18n("Krusader starts to tray, without showing the main window")},
+        {"Startup", "Start To Tray", Defaults::startToTray, i18n("Start to tray"), false, i18n("Krusader starts to tray, without showing the main window")},
     };
 
     KonfiguratorCheckBoxGroup *uiSettingsGroup = createCheckBoxGroup(1, 0, uiSettings, 3, uiGrp);
@@ -110,15 +119,15 @@ KgStartup::KgStartup(bool first, QWidget *parent)
         //   cfg_class, cfg_name, default, text, restart, ToolTip
         {"Startup",
          "UI Save Settings",
-         _UiSave,
+         Defaults::uiSave,
          i18n("Save component settings on exit"),
          false,
          i18n("Check the state of the user interface components and restore them to their condition when last shutdown.")},
-        {"Startup", "Show FN Keys", _ShowFNkeys, i18n("Show function keys"), false, i18n("Function keys will be visible after startup.")},
-        {"Startup", "Show Cmd Line", _ShowCmdline, i18n("Show command line"), false, i18n("Command line will be visible after startup.")},
+        {"Startup", "Show FN Keys", Defaults::showFNkeys, i18n("Show function keys"), false, i18n("Function keys will be visible after startup.")},
+        {"Startup", "Show Cmd Line", Defaults::showCmdline, i18n("Show command line"), false, i18n("Command line will be visible after startup.")},
         {"Startup",
          "Show Terminal Emulator",
-         _ShowTerminalEmulator,
+         Defaults::showTerminalEmulator,
          i18n("Show embedded terminal"),
          false,
          i18n("Embedded terminal will be visible after startup.")},

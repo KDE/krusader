@@ -310,7 +310,7 @@ void KrSlots::configChanged(bool isGUIRestartNeeded)
     if (isGUIRestartNeeded) {
         krApp->setUpdatesEnabled(false);
         KConfigGroup group(krConfig, "Look&Feel");
-        FileItem::loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", _UserDefinedFolderIcons));
+        FileItem::loadUserDefinedFolderIcons(group.readEntry("Load User Defined Folder Icons", Defaults::userDefinedFolderIcons));
 
         bool leftActive = ACTIVE_PANEL->gui->isLeft();
         MAIN_VIEW->leftManager()->slotRecreatePanels();

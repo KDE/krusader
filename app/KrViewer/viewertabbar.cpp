@@ -26,7 +26,7 @@ void ViewerTabWidget::adjustViewerTabBarVisibility()
         tabBar()->show();
     } else if (count() == 1) {
         KConfigGroup group(krConfig, "General");
-        bool hideSingleTab = group.readEntry("Viewer Hide Single Tab", _ViewerHideSingleTab);
+        bool hideSingleTab = group.readEntry("Viewer Hide Single Tab", Defaults::viewerHideSingleTab);
         if (hideSingleTab)
             tabBar()->hide();
     }

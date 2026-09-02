@@ -47,7 +47,7 @@ KgUserActions::KgUserActions(bool first, QWidget *parent)
     QLabel *labelTerminal = new QLabel(i18n("Terminal for UserActions:"), terminalGroup);
     terminalGrid->addWidget(labelTerminal, 0, 0);
     KonfiguratorURLRequester *urlReqUserActions =
-        createURLRequester("UserActions", "Terminal", _UserActions_Terminal, labelTerminal, terminalGroup, false, QString(), FIRST_PAGE, false);
+        createURLRequester("UserActions", "Terminal", Defaults::userActionsTerminal, labelTerminal, terminalGroup, false, QString(), FIRST_PAGE, false);
     terminalGrid->addWidget(urlReqUserActions, 0, 1);
     labelTerminal = new QLabel(i18n("%t will be replaced by the title of the action,\n%d with the workdir."), terminalGroup);
     terminalGrid->addWidget(labelTerminal, 1, 1);
@@ -63,7 +63,7 @@ KgUserActions::KgUserActions(bool first, QWidget *parent)
     QLabel *lbel = new QLabel(i18n("Normal font:"), hboxWidget);
     hbox->addWidget(lbel);
 
-    KonfiguratorFontChooser *chser = createFontChooser("UserActions", "Normal Font", _UserActions_NormalFont, lbel, hboxWidget);
+    KonfiguratorFontChooser *chser = createFontChooser("UserActions", "Normal Font", Defaults::userActionsNormalFont(), lbel, hboxWidget);
     hbox->addWidget(chser);
 
     QWidget *spcer = createSpacer(hboxWidget);
@@ -76,7 +76,7 @@ KgUserActions::KgUserActions(bool first, QWidget *parent)
     lbel = new QLabel(i18n("Font with fixed width:"), hboxWidget);
     hbox->addWidget(lbel);
 
-    chser = createFontChooser("UserActions", "Fixed Font", _UserActions_FixedFont, lbel, hboxWidget);
+    chser = createFontChooser("UserActions", "Fixed Font", Defaults::userActionsFixedFont(), lbel, hboxWidget);
     hbox->addWidget(chser);
 
     spcer = createSpacer(hboxWidget);
@@ -85,7 +85,7 @@ KgUserActions::KgUserActions(bool first, QWidget *parent)
     outputGrid->addWidget(hboxWidget, 3, 0);
 
     KonfiguratorCheckBox *useFixed =
-        createCheckBox("UserActions", "Use Fixed Font", _UserActions_UseFixedFont, i18n("Use fixed width font as default"), outputGroup);
+        createCheckBox("UserActions", "Use Fixed Font", Defaults::userActionsUseFixedFont, i18n("Use fixed width font as default"), outputGroup);
     outputGrid->addWidget(useFixed, 4, 0);
 
     kgUserActionLayout->addWidget(outputGroup, 2, 0);

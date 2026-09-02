@@ -213,7 +213,7 @@ bool KrSearchBar::eventFilter(QObject *watched, QEvent *event)
 
     if (watched == _view->widget()) {
         KConfigGroup grpSv(krConfig, "Look&Feel");
-        const bool autoShow = grpSv.readEntry("New Style Quicksearch", _NewStyleQuicksearch);
+        const bool autoShow = grpSv.readEntry("New Style Quicksearch", Defaults::newStyleQuicksearch);
 
         if (isHidden() && !autoShow) {
             return false;
@@ -410,5 +410,5 @@ void KrSearchBar::indicateMatch(bool anyMatch)
 bool KrSearchBar::caseSensitive()
 {
     KConfigGroup grpSvr(krConfig, "Look&Feel");
-    return grpSvr.readEntry("Case Sensitive Quicksearch", _CaseSensitiveQuicksearch);
+    return grpSvr.readEntry("Case Sensitive Quicksearch", Defaults::caseSensitiveQuicksearch);
 }

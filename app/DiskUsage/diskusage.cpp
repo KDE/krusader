@@ -577,13 +577,13 @@ int DiskUsage::del(File *file, bool calcPercents, int depth)
         return 0;
 
     KConfigGroup gg(krConfig, "General");
-    bool trash = gg.readEntry("Move To Trash", _MoveToTrash);
+    bool trash = gg.readEntry("Move To Trash", Defaults::moveToTrash);
     QUrl url = QUrl::fromLocalFile(file->fullPath());
 
     if (calcPercents) {
         // now ask the user if he want to delete:
         KConfigGroup ga(krConfig, "Advanced");
-        if (ga.readEntry("Confirm Delete", _ConfirmDelete)) {
+        if (ga.readEntry("Confirm Delete", Defaults::confirmDelete)) {
             QString s;
             KGuiItem b;
             if (trash && url.isLocalFile()) {

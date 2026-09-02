@@ -155,7 +155,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     // status bar
     status = new KrSqueezedTextLabel(this);
     KConfigGroup group(krConfig, "Look&Feel");
-    status->setFont(group.readEntry("Filelist Font", _FilelistFont));
+    status->setFont(group.readEntry("Filelist Font", Defaults::filelistFont()));
     status->setAutoFillBackground(false);
     status->setText(""); // needed for initialization code!
     status->setWhatsThis(
@@ -236,7 +236,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
 
     // totals label
     totals = new KrSqueezedTextLabel(this);
-    totals->setFont(group.readEntry("Filelist Font", _FilelistFont));
+    totals->setFont(group.readEntry("Filelist Font", Defaults::filelistFont()));
     totals->setAutoFillBackground(false);
     totals->setWhatsThis(
         i18n("The totals bar shows how many files exist, "
@@ -245,7 +245,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
 
     // free space label
     freeSpace = new KrSqueezedTextLabel(this);
-    freeSpace->setFont(group.readEntry("Filelist Font", _FilelistFont));
+    freeSpace->setFont(group.readEntry("Filelist Font", Defaults::filelistFont()));
     freeSpace->setAutoFillBackground(false);
     freeSpace->setText("");
     freeSpace->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -640,12 +640,12 @@ void ListPanel::setButtons()
     historyButton->setVisible(group.readEntry("History Button Visible", true));
     bookmarksButton->setVisible(group.readEntry("Bookmarks Button Visible", true));
 
-    if (group.readEntry("Panel Toolbar visible", _PanelToolBar)) {
-        cdRootButton->setVisible(group.readEntry("Root Button Visible", _cdRoot));
-        cdHomeButton->setVisible(group.readEntry("Home Button Visible", _cdHome));
-        cdUpButton->setVisible(group.readEntry("Up Button Visible", _cdUp));
-        cdOtherButton->setVisible(group.readEntry("Equal Button Visible", _cdOther));
-        syncBrowseButton->setVisible(group.readEntry("SyncBrowse Button Visible", _syncBrowseButton));
+    if (group.readEntry("Panel Toolbar visible", Defaults::panelToolBar)) {
+        cdRootButton->setVisible(group.readEntry("Root Button Visible", Defaults::cdRoot));
+        cdHomeButton->setVisible(group.readEntry("Home Button Visible", Defaults::cdHome));
+        cdUpButton->setVisible(group.readEntry("Up Button Visible", Defaults::cdUp));
+        cdOtherButton->setVisible(group.readEntry("Equal Button Visible", Defaults::cdOther));
+        syncBrowseButton->setVisible(group.readEntry("SyncBrowse Button Visible", Defaults::syncBrowseButton));
     } else {
         cdRootButton->hide();
         cdHomeButton->hide();
@@ -871,7 +871,7 @@ void ListPanel::handleDrop(QDropEvent *event, QWidget *targetFrame)
 
     func->files()->dropFiles(destination, event, targetWidget);
 
-    if (KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", _UnselectBeforeOperation)) {
+    if (KConfigGroup(krConfig, "Look&Feel").readEntry("UnselectBeforeOperation", Defaults::unselectBeforeOperation)) {
         KrPanel *p = dragFromThisPanel ? this : otherPanel();
         p->view->saveSelection();
         p->view->unselectAll();

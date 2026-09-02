@@ -116,7 +116,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     if (!multipleSelections
         && !panel->func->browsableArchivePath(currentFile->getName()).isEmpty()
         // ...but user disabled archive browsing...
-        && (!KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", _ArchivesAsDirectories)
+        && (!KConfigGroup(krConfig, "Archives").readEntry("ArchivesAsDirectories", Defaults::archivesAsDirectories)
             // ...or the file is not a standard archive (e.g. odt, docx, etc.)...
             || !KrArcHandler::arcSupported(currentFile->getMime()))) {
         // ...it will not be browsed as a directory by default, but add an option for it
@@ -197,7 +197,7 @@ PanelContextMenu::PanelContextMenu(KrPanel *krPanel, QWidget *parent)
     }
 
     // -------- MOVE TO TRASH
-    if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", _MoveToTrash) && panel->func->files()->canMoveToTrash(fileNames)) {
+    if (KConfigGroup(krConfig, "General").readEntry("Move To Trash", Defaults::moveToTrash) && panel->func->files()->canMoveToTrash(fileNames)) {
         addAction(Icon("user-trash"), i18n("Move to Trash"))->setData(QVariant(static_cast<int>(TRASH_ID)));
     }
     // -------- DELETE
