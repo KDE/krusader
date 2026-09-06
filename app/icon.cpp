@@ -20,6 +20,7 @@
 #include <QPixmap>
 
 #include <KIconLoader>
+#include <KIconUtils>
 #include <KSharedConfig>
 #include <utility>
 
@@ -158,24 +159,35 @@ bool Icon::exists(const QString &iconName)
 
 void Icon::applyOverlays(QPixmap *pixmap, QStringList overlays)
 {
-    auto iconLoader = KIconLoader::global();
+    if (overlays.isEmpty()) {
+        return;
+    }
 
-    // Since KIconLoader loadIcon is not virtual method, we can't redefine loadIcon
-    // that is called by drawOverlays. The best we can do is to go over the overlays
-    // and ensure they exist from the icon loader point of view.
-    // If not, we replace the overlay with "emblem-unreadable" which should be available
-    // per freedesktop icon name specification:
-    // https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html
+    // Go over each overlay and ensure that it exists in the current theme; if not,
+    // replace the overlay with "emblem-unreadable", which should be available
+    // per FreeDesktop.org's icon naming specification:
+    // https://specifications.freedesktop.org/icon-naming/latest/
     QStringList fixedOverlays;
-    for (const auto &overlay : overlays) {
-        if (overlay.isEmpty() || iconLoader->hasIcon(overlay)) {
+    for (const QString &overlay : overlays) {
+        if (overlay.isEmpty() || QIcon::hasThemeIcon(overlay)) {
             fixedOverlays << overlay;
         } else {
-            fixedOverlays << "emblem-unreadable";
+            fixedOverlays << QStringLiteral("emblem-unreadable");
         }
     }
 
-    iconLoader->drawOverlays(fixedOverlays, *pixmap, KIconLoader::Desktop);
+    // Remember the original logical size and DPR (Device Pixel Ratio)
+    const QSize logicalSize = pixmap->deviceIndependentSize().toSize();
+    const qreal dpr = pixmap->devicePixelRatio();
+
+    // In order to add the overlays later, wrap the QPixmap in a temporary QIcon
+    const QIcon tmpIcon(*pixmap);
+
+    // Compose the overlays
+    const QIcon iconWithOverlays = KIconUtils::addOverlays(tmpIcon, fixedOverlays);
+
+    // Overwrite the original pixmap (preserving its logical size and its device pixel ratio)
+    *pixmap = iconWithOverlays.pixmap(logicalSize, dpr);
 }
 
 bool Icon::isLightWindowThemeActive()
