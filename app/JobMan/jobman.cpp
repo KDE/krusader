@@ -372,12 +372,12 @@ void JobMan::slotUpdateMessageBox()
 
     if (m_jobs.isEmpty()) {
         m_messageBox->setInformativeText("");
-        m_messageBox->setButtonText(QMessageBox::Abort, "Quit");
+        m_messageBox->button(QMessageBox::Abort)->setText("Quit");
         return;
     }
 
     m_messageBox->setInformativeText(i18np("There is one job operation left.", "There are %1 job operations left.", m_jobs.length()));
-    m_messageBox->setButtonText(QMessageBox::Abort, "Abort Jobs and Quit");
+    m_messageBox->button(QMessageBox::Abort)->setText("Abort Jobs and Quit");
 }
 
 // #### private
