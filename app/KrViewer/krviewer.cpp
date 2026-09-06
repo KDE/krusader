@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QFile>
+#include <QFuture>
 #include <QTimer>
 // QtGui
 #include <QKeyEvent>
@@ -280,20 +281,19 @@ void KrViewer::activateWindow(QWidget *window)
         // KWindowSystem::activateWindow() will just cause the window to blink in
         // the task bar requesting attention, but never get focus or come to the
         // foreground.
-        const int launchedSerial = KWaylandExtras::lastInputSerial(focusWindow);
-        auto conn = std::make_shared<QMetaObject::Connection>();
-        *conn = connect(KWaylandExtras::self(),
-                        &KWaylandExtras::xdgActivationTokenArrived,
-                        window,
-                        [window, launchedSerial, conn](int tokenSerial, const QString &token) {
-                            if (tokenSerial == launchedSerial) {
-                                disconnect(*conn);
-                                KWindowSystem::setCurrentXdgActivationToken(token);
-                                // activateWindow will only work if a new token from the focused window has been set otherwise it will only request attn
-                                KWindowSystem::activateWindow(window->windowHandle());
-                            }
-                        });
-        KWaylandExtras::requestXdgActivationToken(focusWindow, launchedSerial, {});
+        const quint32 launchedSerial = KWaylandExtras::lastInputSerial(focusWindow);
+        // A note for future developments: A similar approach could be seen in
+        // the `void actionActivated(int id)` function at <https://invent.kde.org/
+        // plasma/plasma-workspace/-/blob/master/applets/systemtray/
+        // statusnotifieritemsource.cpp>
+        auto tokenFuture = KWaylandExtras::xdgActivationToken(focusWindow, launchedSerial, {});
+        tokenFuture.then(window, [window](const QString &token) {
+            KWindowSystem::setCurrentXdgActivationToken(token);
+            // activateWindow() will only work if a new token from the focused window
+            // has been set; otherwise, it will only request attention (e.g. by
+            // flashing in the taskbar)
+            KWindowSystem::activateWindow(window->windowHandle());
+        });
     }
     if (KrGlobal::isX11Platform) {
         KX11Extras::forceActiveWindow(window->winId());
