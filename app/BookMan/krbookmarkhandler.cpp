@@ -367,7 +367,9 @@ void KrBookmarkHandler::importFromFile()
     QSet<KrBookmark*> seenBookmarks;
 
     QDomDocument doc("xbel");
-    if (!doc.setContent(&file, &errorMsg)) {
+    QDomDocument::ParseResult parseResult = doc.setContent(&file);
+    if (!parseResult) {
+        errorMsg = parseResult.errorMessage;
         goto BM_ERROR;
     }
     // iterate through the document: first child should be "xbel" (skip all until we find it)
