@@ -614,7 +614,7 @@ void KgPanel::setupButtonsTab()
             {"Look&Feel", "Panel Toolbar visible", _PanelToolBar, i18n("Show Panel Toolbar"), true, i18n("The panel toolbar will be visible.")},
         };
     buttonsCheckboxes = createCheckBoxGroup(1, 0, buttonsParams, 7 /*count*/, tab, PAGE_PANELTOOLBAR);
-    connect(buttonsCheckboxes->find("Panel Toolbar visible"), &KonfiguratorCheckBox::stateChanged, this, &KgPanel::slotEnablePanelToolbar);
+    connect(buttonsCheckboxes->find("Panel Toolbar visible"), &KonfiguratorCheckBox::checkStateChanged, this, &KgPanel::slotEnablePanelToolbar);
     tabLayout->addWidget(buttonsCheckboxes, 0, Qt::Alignment());
 
     QGroupBox *panelToolbarGrp = createFrame(i18n("Visible Panel Toolbar buttons"), tab);

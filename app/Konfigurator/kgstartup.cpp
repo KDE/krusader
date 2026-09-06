@@ -125,7 +125,7 @@ KgStartup::KgStartup(bool first, QWidget *parent)
     };
 
     uiCbGroup = createCheckBoxGroup(1, 0, uiCheckBoxes, 4, uiGrp);
-    connect(uiCbGroup->find("UI Save Settings"), &KonfiguratorCheckBox::stateChanged, this, &KgStartup::slotDisable);
+    connect(uiCbGroup->find("UI Save Settings"), &KonfiguratorCheckBox::checkStateChanged, this, &KgStartup::slotDisable);
 
     uiGrid->addWidget(uiCbGroup, 2, 0);
 

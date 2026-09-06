@@ -87,9 +87,9 @@ KgColors::KgColors(bool first, QWidget *parent)
 
     generals->layout()->setSpacing(5);
 
-    connect(generals->find("KDE Default"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
-    connect(generals->find("Show Current Item Always"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
-    connect(generals->find("Dim Inactive Colors"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::slotDisable);
+    connect(generals->find("KDE Default"), &KonfiguratorCheckBox::checkStateChanged, this, &KgColors::slotDisable);
+    connect(generals->find("Show Current Item Always"), &KonfiguratorCheckBox::checkStateChanged, this, &KgColors::slotDisable);
+    connect(generals->find("Dim Inactive Colors"), &KonfiguratorCheckBox::checkStateChanged, this, &KgColors::slotDisable);
 
     kgColorsLayout->addWidget(generalGrp, 0, 0, 1, 3);
     QWidget *hboxWidget = new QWidget(innerWidget);
@@ -366,7 +366,7 @@ KgColors::KgColors(bool first, QWidget *parent)
     previewGrid->addWidget(preview, 0, 0);
     hbox->addWidget(previewGrp);
 
-    connect(generals->find("Enable Alternate Background"), &KonfiguratorCheckBox::stateChanged, this, &KgColors::generatePreview);
+    connect(generals->find("Enable Alternate Background"), &KonfiguratorCheckBox::checkStateChanged, this, &KgColors::generatePreview);
     connect(colorTabWidget, &QTabWidget::currentChanged, this, &KgColors::generatePreview);
     connect(dimFactor, QOverload<int>::of(&KonfiguratorSpinBox::valueChanged), this, &KgColors::generatePreview);
 
