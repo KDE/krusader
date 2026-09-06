@@ -186,7 +186,7 @@ QLayout *KMountManGUI::createMainPage()
 
     cbShowOnlyRemovable = new QCheckBox(i18n("Show only removable devices"), this);
     cbShowOnlyRemovable->setChecked(grp.readEntry("ShowOnlyRemovable", false));
-    connect(cbShowOnlyRemovable, &QCheckBox::stateChanged, this, &KMountManGUI::updateList);
+    connect(cbShowOnlyRemovable, &QCheckBox::checkStateChanged, this, &KMountManGUI::updateList);
 
     layout->addWidget(box, 0, 0);
     layout->addWidget(cbShowOnlyRemovable, 1, 0);

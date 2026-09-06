@@ -98,7 +98,7 @@ KonfiguratorCheckBox::KonfiguratorCheckBox(QString configGroup,
     connect(ext, &KonfiguratorExtension::setDefaultsAuto, this, &KonfiguratorCheckBox::slotSetDefaults);
     connect(ext, &KonfiguratorExtension::setInitialValue, this, &KonfiguratorCheckBox::loadInitialValue);
 
-    connect(this, &KonfiguratorCheckBox::stateChanged, ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
+    connect(this, &KonfiguratorCheckBox::checkStateChanged, ext, QOverload<>::of(&KonfiguratorExtension::setChanged));
     loadInitialValue();
 }
 
