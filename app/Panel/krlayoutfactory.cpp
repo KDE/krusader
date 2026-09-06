@@ -103,8 +103,8 @@ bool KrLayoutFactory::parseContent(const QString &content, const QString &fileNa
 {
     bool success = false;
 
-    QString errorMsg;
-    if (doc.setContent(content, &errorMsg)) {
+    QDomDocument::ParseResult parseResult = doc.setContent(content);
+    if (parseResult) {
         QDomElement root = doc.documentElement();
         if (root.tagName() == "KrusaderLayout") {
             QString version = root.attribute("version");
@@ -115,7 +115,7 @@ bool KrLayoutFactory::parseContent(const QString &content, const QString &fileNa
         } else
             qWarning() << "root.tagName() != \"KrusaderLayout\"";
     } else
-        qWarning() << "error parsing" << fileName << ":" << errorMsg;
+        qWarning() << "error parsing" << fileName << ":" << parseResult.errorMessage;
 
     return success;
 }
