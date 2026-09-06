@@ -57,24 +57,25 @@ KgColors::KgColors(bool first, QWidget *parent)
         {{"Colors",
           "KDE Default",
           _KDEDefaultColors,
-          i18n("Use the default KDE colors"),
+          i18n("Use KDE Plasma's default colors"),
           false,
           "<p><img src='toolbar|kcontrol'></p>"
-              + i18n("<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> Application Appearance  -> Colors</i></p>")},
+              + i18n("<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System Settings -> Appearance & Style "
+                     "-> Colors & Themes -> Colors</i></p>")},
          {"Colors",
           "Enable Alternate Background",
           _AlternateBackground,
           i18n("Use alternate background color"),
           false,
-          i18n("<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use the <i>KDE default "
-               "colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>")},
+          i18n("<p>The <b>background color</b> and the <b>alternate background</b> color alternates line by line.</p><p>When you don't use <i>KDE Plasma's "
+               "default colors</i>, you can configure the alternate colors in the <i>colors</i> box.</p>")},
          {"Colors",
           "Show Current Item Always",
           _ShowCurrentItemAlways,
           i18n("Show current item even if not focused"),
           false,
-          i18n("<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use the <i>KDE default "
-               "colors</i>.</p>")},
+          i18n("<p>Shows the last cursor position in the non active list panel.</p><p>This option is only available when you don't use <i>KDE Plasma's "
+               "default colors</i>.</p>")},
          {"Colors",
           "Dim Inactive Colors",
           _DimInactiveColors,
