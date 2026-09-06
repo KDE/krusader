@@ -277,12 +277,19 @@ void Krusader::setTray(bool forceCreation)
     if (!sysTray && trayIsNeeded) {
         sysTray = new KStatusNotifierItem(this);
         sysTray->setIconByName(appIconName());
-        // we have our own "quit" method, re-connect
-        QAction *quitAction = sysTray->action(QStringLiteral("quit"));
-        if (quitAction) {
-            disconnect(quitAction, &QAction::triggered, nullptr, nullptr);
-            connect(quitAction, &QAction::triggered, this, &Krusader::quit);
-        }
+        connect(sysTray, &KStatusNotifierItem::quitRequested, this, [this]() {
+            // Cancel the ongoing quit operation. Therefore, qApp->quit() will not be called.
+            // - Note: This explanation could be seen on <https://invent.kde.org/
+            // frameworks/kstatusnotifieritem/-/blob/master/src/kstatusnotifieritem.cpp>:
+            // "some apps like kalarm or korgac have a hack to rewire the connection
+            // of the "quit" action to a own slot, and rely on the name-based slot to
+            // disconnect. quitRequested/abortQuit was added for this use case".
+            // - A note for future developments: `quitRequested` could be searched
+            // on <https://invent.kde.org/pim/kalarm/-/blob/master/src/traywindow.cpp>
+            sysTray->abortQuit();
+            // instead, use Krusader::quit()
+            quit();
+        });
     } else if (sysTray && !trayIsNeeded) {
         // user does not want tray anymore :(
         sysTray->deleteLater();
