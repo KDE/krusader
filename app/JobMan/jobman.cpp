@@ -226,7 +226,16 @@ bool JobMan::waitForJobs(bool waitForUserInput)
 
     m_messageBox = new QMessageBox(krMainWindow);
     m_messageBox->setWindowTitle(i18n("Warning"));
-    m_messageBox->setIconPixmap(Icon("dialog-warning").pixmap(QMessageBox::standardIcon(QMessageBox::Information).size()));
+
+    // A note for future developments: On <https://code.qt.io/cgit/qt/qtbase.git/tree/
+    // src/widgets/dialogs/qmessagebox.cpp>, inside the `QPixmap QMessageBoxPrivate::
+    // standardIcon(QMessageBox::Icon icon, QMessageBox *mb)` function, similar code
+    // could be seen: `int iconSize = style->pixelMetric(QStyle::PM_MessageBoxIconSize,
+    // nullptr, mb);` and `(iconSize, iconSize)`
+    const int iconSize = m_messageBox->style()->pixelMetric(QStyle::PM_MessageBoxIconSize,
+                                                            nullptr, m_messageBox);
+    m_messageBox->setIconPixmap(Icon("dialog-warning").pixmap(iconSize, iconSize));
+
     m_messageBox->setText(i18n("Are you sure you want to quit?"));
     m_messageBox->addButton(QMessageBox::Abort);
     m_messageBox->addButton(QMessageBox::Cancel);
