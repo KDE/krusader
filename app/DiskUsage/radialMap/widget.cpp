@@ -116,7 +116,9 @@ void RadialMap::Widget::createFromCache(const Directory *tree)
 
 void RadialMap::Widget::sendFakeMouseEvent() // slot
 {
-    QMouseEvent me(QEvent::MouseMove, mapFromGlobal(QCursor::pos()), Qt::NoButton, Qt::NoButton, Qt::NoModifier);
+    const QPoint globalPosition = QCursor::pos();
+    QMouseEvent me(QEvent::MouseMove, mapFromGlobal(globalPosition),
+                   globalPosition, Qt::NoButton, Qt::NoButton, Qt::NoModifier);
     QApplication::sendEvent(this, &me);
 }
 
