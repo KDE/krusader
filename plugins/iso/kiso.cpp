@@ -305,7 +305,20 @@ static int mycallb(struct iso_directory_record *idr, void *udata)
             if (z_size)
                 (dynamic_cast<KIsoFile *>(entry))->setZF(z_algo, z_params, z_size);
         }
-        iso->dirent->addEntry(entry);
+        // The identifier of this comment is: "addEntryV2_comment".
+        // This `addEntryV2()` function is declared with attribute ‘nodiscard’, here `(void)`
+        // is used as in:
+        //      - the `void KArchiveDirectory::addEntry(KArchiveEntry *entry)` function
+        //      at <https://invent.kde.org/frameworks/karchive/-/blob/master/src/karchive.cpp>
+        //      - the `bool K7Zip::openArchive(QIODevice::OpenMode mode)` function
+        //      at <https://invent.kde.org/frameworks/karchive/-/blob/master/src/k7zip.cpp>.
+        // The value that is returned by the current function (`mycallb()`) is not used, therefore
+        // returning an error code here is not currently useful.
+        // The implementation of `addEntryV2()` (in the
+        // `bool KArchiveDirectory::addEntryV2(KArchiveEntry *entry)` function at
+        // <https://invent.kde.org/frameworks/karchive/-/blob/master/src/karchive.cpp>) shows that
+        // error messages are logged
+        (void)iso->dirent->addEntryV2(entry);
     }
     if ((idr->flags[0] & 2) && (iso->level == 0 || !special)) {
         if (iso->level) {
@@ -344,7 +357,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor *bootdesc)
                          QString(),
                          static_cast<long long>(isonum_731(bootdesc->boot_catalog)) << static_cast<long long>(11),
                          static_cast<long long>(2048));
-    dirent->addEntry(entry);
+    (void)dirent->addEntryV2(entry); // For more information, the "addEntryV2_comment" comment can be read
     if (!ReadBootTable(&readf, isonum_731(bootdesc->boot_catalog), &boot, this)) {
         i = 1;
         be = boot.defentry;
@@ -364,7 +377,7 @@ void KIso::addBoot(struct el_torito_boot_descriptor *bootdesc)
                                  QString(),
                                  static_cast<long long>(isonum_731(be->data.d_e.start)) << static_cast<long long>(11),
                                  size << static_cast<long long>(9));
-            dirent->addEntry(entry);
+            (void)dirent->addEntryV2(entry); // For more information, the "addEntryV2_comment" comment can be read
             be = be->next;
             i++;
         }
@@ -439,7 +452,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
             path.clear();
             QTextStream(&path) << "Track " << tracks[(i << 1) + 1];
             root = new KIsoDirectory(this, path, access | S_IFDIR, buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString());
-            rootDir()->addEntry(root);
+            (void)rootDir()->addEntryV2(root); // For more information, the "addEntryV2_comment" comment can be read
         }
 
         desc = ReadISO9660(&readf, tracks[i << 1], this);
@@ -459,7 +472,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
                         path += " (" + QString::number(c_b) + ')';
 
                     dirent = new KIsoDirectory(this, path, access | S_IFDIR, buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString());
-                    root->addEntry(dirent);
+                    (void)root->addEntryV2(dirent); // For more information, the "addEntryV2_comment" comment can be read
 
                     addBoot(bootdesc);
                     c_b++;
@@ -480,7 +493,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
                         path += " (" + QString::number(c_i) + ')';
                 }
                 dirent = new KIsoDirectory(this, path, access | S_IFDIR, buf.st_mtime, buf.st_atime, buf.st_ctime, uid, gid, QString());
-                root->addEntry(dirent);
+                (void)root->addEntryV2(dirent); // For more information, the "addEntryV2_comment" comment can be read
                 level = 0;
                 mycallb(idr, this);
                 if (joliet)
