@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-20 00:49+0000\n"
+"POT-Creation-Date: 2026-09-07 00:50+0000\n"
 "PO-Revision-Date: 2026-08-13 14:19+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -910,7 +910,7 @@ msgstr "Typen om te zoeken..."
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -2902,7 +2902,7 @@ msgstr ""
 "Sommige corrupte archieven kunnen mogelijk een crash veroorzaken, daarom is "
 "testen aangeraden."
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
+#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
@@ -3587,22 +3587,12 @@ msgstr "Bestanden zullen permanent verwijderd worden."
 msgid "Terminal"
 msgstr "Terminal"
 
-#: app/Konfigurator/kggeneral.cpp:273
-#, kde-format
-msgid "External Terminal:"
-msgstr "Externe terminal:"
-
-#: app/Konfigurator/kggeneral.cpp:277
-#, kde-format
-msgid "%d will be replaced by the workdir."
-msgstr "%d zal vervangen worden door de werkmap."
-
-#: app/Konfigurator/kggeneral.cpp:285
+#: app/Konfigurator/kggeneral.cpp:278
 #, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Ingebedde terminal zendt Chdir bij wijziging van map"
 
-#: app/Konfigurator/kggeneral.cpp:287
+#: app/Konfigurator/kggeneral.cpp:280
 #, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
@@ -3611,12 +3601,12 @@ msgstr ""
 "Indien aangevinkt, wanneer het venster wijzigt (bv. bij het gebruiken van "
 "Tab), zal Krusader de huidige map wijzigen in de ingebedde terminal."
 
-#: app/Konfigurator/kggeneral.cpp:291
+#: app/Konfigurator/kggeneral.cpp:284
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr "Actief paneel volgt de werkmap van ingebedde terminal"
 
-#: app/Konfigurator/kggeneral.cpp:293
+#: app/Konfigurator/kggeneral.cpp:286
 #, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
@@ -3627,12 +3617,12 @@ msgstr ""
 "(bijvoorbeeld, bij het gebruiken van de commando's 'cd' of 'popd'), zal "
 "Krusader de huidige map wijzigen van het actieve paneel."
 
-#: app/Konfigurator/kggeneral.cpp:315
+#: app/Konfigurator/kggeneral.cpp:308
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Zoeken naar gereedschap..."
 
-#: app/Konfigurator/kggeneral.cpp:317
+#: app/Konfigurator/kggeneral.cpp:310
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3640,17 +3630,17 @@ msgstr ""
 "Vergewis u er van dat u nieuw gereedschap installeert in uw <code>$PATH</"
 "code> (bv. /usr/bin)"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "Nieuwe atomisme extensie toevoegen"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Extension:"
 msgstr "Extensie:"
 
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -5472,12 +5462,12 @@ msgstr "Krusader instellen zoals u het wenst"
 msgid "Search for files"
 msgstr "Naar bestanden zoeken"
 
-#: app/krslots.cpp:91
+#: app/krslots.cpp:90
 #, kde-format
 msgid "No selected files to send."
 msgstr "Geen geselecteerde bestanden om te zenden."
 
-#: app/krslots.cpp:100
+#: app/krslots.cpp:99
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
@@ -5486,25 +5476,25 @@ msgstr ""
 "Krusader kan geen van de ondersteunde e-mailclients vinden. Installeer deze "
 "in uw zoekpad. Tip: Krusader ondersteunt Kmail."
 
-#: app/krslots.cpp:109
+#: app/krslots.cpp:108
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "Bestand verzenden: %2"
 msgstr[1] "Bestanden verzenden: %2"
 
-#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
-#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
+#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:475
+#: app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr "Fout bij het uitvoeren van %1."
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:162
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr "Weet niet welke bestanden vergeleken moeten worden."
 
-#: app/krslots.cpp:164
+#: app/krslots.cpp:163
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5518,12 +5508,12 @@ msgstr ""
 "een bestand is in het ander paneel met dezelfde naam als het huidige bestand "
 "in het actieve paneel.</li></ul>"
 
-#: app/krslots.cpp:185
+#: app/krslots.cpp:184
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader is niet in staat om %1 te downloaden."
 
-#: app/krslots.cpp:201
+#: app/krslots.cpp:200
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
@@ -5533,7 +5523,7 @@ msgstr ""
 "Installeer deze in uw zoekpad. Tip: Krusader ondersteund Kompare, KDiff3, en "
 "Xxdiff."
 
-#: app/krslots.cpp:384
+#: app/krslots.cpp:383
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
@@ -5542,17 +5532,7 @@ msgstr ""
 "Kan het 'locate' commando niet vinden. Installeer het pakket findutils-"
 "locate van GNU of configureer de afhankelijkheden in Konfigurator."
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
-#, kde-format
-msgctxt "Arg is a string containing the bad quoting."
-msgid ""
-"Bad quoting in terminal command:\n"
-"%1"
-msgstr ""
-"Fout met aanhalingstekens in terminalcommando:\n"
-"%1"
-
-#: app/krslots.cpp:432
+#: app/krslots.cpp:417
 #, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
@@ -5561,12 +5541,12 @@ msgstr ""
 "Kan geen hulpmiddel vinden voor in bulk hernoemen.\n"
 "U kunt KRename vinden op %1"
 
-#: app/krslots.cpp:459
+#: app/krslots.cpp:444
 #, kde-format
 msgid "Error executing '%1'."
 msgstr "Fout bij het uitvoeren van '%1'."
 
-#: app/krslots.cpp:465
+#: app/krslots.cpp:450
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5577,7 +5557,7 @@ msgstr ""
 "<p>Verder is uitvoeren van UI-toepassingen als root onveilig en kan "
 "aanvallers toegang geven als root."
 
-#: app/krslots.cpp:478
+#: app/krslots.cpp:463
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
@@ -5586,47 +5566,47 @@ msgstr ""
 "Kan Krusader niet starten in root-modus, %1 niet gevonden of niet "
 "uitvoerbaar. Ga na dat kde-cli-tools zijn geïnstalleerd."
 
-#: app/krslots.cpp:504
+#: app/krslots.cpp:489
 #, kde-format
 msgid "Do not know which file to split."
 msgstr "Weet niet welk bestand gesplitst moet worden."
 
-#: app/krslots.cpp:513
+#: app/krslots.cpp:498
 #, kde-format
 msgid "You cannot split a folder."
 msgstr "U kunt geen map splitsen."
 
-#: app/krslots.cpp:536
+#: app/krslots.cpp:521
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr "Weet niet welke bestanden gecombineerd moeten worden."
 
-#: app/krslots.cpp:553
+#: app/krslots.cpp:538
 #, kde-format
 msgid "You cannot combine a folder."
 msgstr "U kunt geen map combineren."
 
-#: app/krslots.cpp:570 app/krslots.cpp:621
+#: app/krslots.cpp:555 app/krslots.cpp:606
 #, kde-format
 msgid "Not a split file: %1."
 msgstr "Geen splits-bestand: %1"
 
-#: app/krslots.cpp:581
+#: app/krslots.cpp:566
 #, kde-format
 msgid "Select only one split file."
 msgstr "Slechts één splits-bestand selecteren."
 
-#: app/krslots.cpp:628
+#: app/krslots.cpp:613
 #, kde-format
 msgid "Combining %1.* to folder:"
 msgstr "%1.* combineren naar map:"
 
-#: app/krslots.cpp:712
+#: app/krslots.cpp:697
 #, kde-format
 msgid "Open trash bin"
 msgstr "Prullenbak openen"
 
-#: app/krslots.cpp:714
+#: app/krslots.cpp:699
 #, kde-format
 msgid "Empty trash bin"
 msgstr "Prullenbak legen"
@@ -7502,10 +7482,13 @@ msgid "Delete file, folder, etc."
 msgstr "Bestand, map, enz. verwijderen"
 
 #: app/Panel/listpanelactions.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined "
+#| "in Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgid ""
-"<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
-"Konfigurator, default is <b>konsole</b>.</p></qt>"
+"<qt><p>Open terminal in current folder.</p><p>It uses the system default "
+"terminal emulator.</p></qt>"
 msgstr ""
 "<qt><p>Terminal openen in huidige map.</p><p>U kan een terminal instellen in "
 "Konfigurator, de standaard terminal is <b>konsole</b>.</p></qt>"
@@ -9628,6 +9611,16 @@ msgstr ""
 "Terminal emulator werkt niet, maakt in de plaats gebruik van de uitvoer "
 "collector."
 
+#: app/UserAction/kraction.cpp:287
+#, kde-format
+msgctxt "Arg is a string containing the bad quoting."
+msgid ""
+"Bad quoting in terminal command:\n"
+"%1"
+msgstr ""
+"Fout met aanhalingstekens in terminalcommando:\n"
+"%1"
+
 #: app/UserAction/kractionbase.cpp:47
 #, kde-format
 msgid "Confirm Execution"
@@ -9893,6 +9886,12 @@ msgstr "Krarc Paswoord Dialoog"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Voor toegang tot dit bestand is een paswoord noodzakelijk."
+
+#~ msgid "External Terminal:"
+#~ msgstr "Externe terminal:"
+
+#~ msgid "%d will be replaced by the workdir."
+#~ msgstr "%d zal vervangen worden door de werkmap."
 
 #~ msgid "Could not start %1"
 #~ msgstr "Kon %1 niet starten"

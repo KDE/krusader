@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-20 00:49+0000\n"
+"POT-Creation-Date: 2026-09-07 00:50+0000\n"
 "PO-Revision-Date: 2024-04-22 16:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -884,7 +884,7 @@ msgstr "输入搜索..."
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -2815,7 +2815,7 @@ msgstr ""
 "某些包含错误数据的压缩文件可能会引起程序崩溃。为了避免发生这种情况，可以在解"
 "压前进行测试。"
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
+#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
@@ -3474,34 +3474,24 @@ msgstr "文件将会永久的删除。"
 msgid "Terminal"
 msgstr "终端"
 
-#: app/Konfigurator/kggeneral.cpp:273
-#, kde-format
-msgid "External Terminal:"
-msgstr ""
-
-#: app/Konfigurator/kggeneral.cpp:277
-#, kde-format
-msgid "%d will be replaced by the workdir."
-msgstr ""
-
-#: app/Konfigurator/kggeneral.cpp:285
+#: app/Konfigurator/kggeneral.cpp:278
 #, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:287
+#: app/Konfigurator/kggeneral.cpp:280
 #, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
 "Krusader changes the current folder in the embedded terminal."
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:291
+#: app/Konfigurator/kggeneral.cpp:284
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:293
+#: app/Konfigurator/kggeneral.cpp:286
 #, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
@@ -3509,28 +3499,28 @@ msgid ""
 "active panel."
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:315
+#: app/Konfigurator/kggeneral.cpp:308
 #, kde-format
 msgid "Searching for tools..."
 msgstr "正在搜索工具..."
 
-#: app/Konfigurator/kggeneral.cpp:317
+#: app/Konfigurator/kggeneral.cpp:310
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Add new atomic extension"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Extension:"
 msgstr "扩展："
 
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -5266,12 +5256,12 @@ msgstr "按您喜欢的方式设置 Krusader"
 msgid "Search for files"
 msgstr "搜索文件"
 
-#: app/krslots.cpp:91
+#: app/krslots.cpp:90
 #, kde-format
 msgid "No selected files to send."
 msgstr ""
 
-#: app/krslots.cpp:100
+#: app/krslots.cpp:99
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
@@ -5280,24 +5270,24 @@ msgstr ""
 "Krusader 没有找到任何支持的邮件客户端. 请您安装一个.\n"
 "提示： Krusader 支持 kmail。"
 
-#: app/krslots.cpp:109
+#: app/krslots.cpp:108
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "正在发送文件：%2"
 
-#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
-#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
+#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:475
+#: app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr ""
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:162
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr ""
 
-#: app/krslots.cpp:164
+#: app/krslots.cpp:163
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5309,12 +5299,12 @@ msgstr ""
 "外一个.</li><li>在主面板中选择两个文件。</li><li>在主面板中选择一个也存在于非"
 "主面板中存在的文件。</li></ul>"
 
-#: app/krslots.cpp:185
+#: app/krslots.cpp:184
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader 无法下载 %1"
 
-#: app/krslots.cpp:201
+#: app/krslots.cpp:200
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
@@ -5323,7 +5313,7 @@ msgstr ""
 "Krusader 没有找到任何可用 diff 的前端。 请在您的安装一个。\n"
 "提示： Krusader 支持 Kompare, kdiff 和 xxdiff。"
 
-#: app/krslots.cpp:384
+#: app/krslots.cpp:383
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
@@ -5332,15 +5322,7 @@ msgstr ""
 "没有找到命令 'locate'. 请安装 GNU 的 findutils-locate 包 , 或者 Konfigurator "
 "设置好其路径"
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
-#, kde-format
-msgctxt "Arg is a string containing the bad quoting."
-msgid ""
-"Bad quoting in terminal command:\n"
-"%1"
-msgstr ""
-
-#: app/krslots.cpp:432
+#: app/krslots.cpp:417
 #, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
@@ -5349,12 +5331,12 @@ msgstr ""
 "没有找到批量重命名工具。\n"
 "您可以在 %1 下载到 KRename。"
 
-#: app/krslots.cpp:459
+#: app/krslots.cpp:444
 #, kde-format
 msgid "Error executing '%1'."
 msgstr ""
 
-#: app/krslots.cpp:465
+#: app/krslots.cpp:450
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5362,54 +5344,54 @@ msgid ""
 "attackers to gain root access."
 msgstr ""
 
-#: app/krslots.cpp:478
+#: app/krslots.cpp:463
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
 
-#: app/krslots.cpp:504
+#: app/krslots.cpp:489
 #, kde-format
 msgid "Do not know which file to split."
 msgstr ""
 
-#: app/krslots.cpp:513
+#: app/krslots.cpp:498
 #, kde-format
 msgid "You cannot split a folder."
 msgstr ""
 
-#: app/krslots.cpp:536
+#: app/krslots.cpp:521
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr ""
 
-#: app/krslots.cpp:553
+#: app/krslots.cpp:538
 #, kde-format
 msgid "You cannot combine a folder."
 msgstr ""
 
-#: app/krslots.cpp:570 app/krslots.cpp:621
+#: app/krslots.cpp:555 app/krslots.cpp:606
 #, kde-format
 msgid "Not a split file: %1."
 msgstr ""
 
-#: app/krslots.cpp:581
+#: app/krslots.cpp:566
 #, kde-format
 msgid "Select only one split file."
 msgstr ""
 
-#: app/krslots.cpp:628
+#: app/krslots.cpp:613
 #, kde-format
 msgid "Combining %1.* to folder:"
 msgstr ""
 
-#: app/krslots.cpp:712
+#: app/krslots.cpp:697
 #, kde-format
 msgid "Open trash bin"
 msgstr ""
 
-#: app/krslots.cpp:714
+#: app/krslots.cpp:699
 #, kde-format
 msgid "Empty trash bin"
 msgstr ""
@@ -7254,8 +7236,8 @@ msgstr ""
 #: app/Panel/listpanelactions.cpp:134
 #, kde-format
 msgid ""
-"<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
-"Konfigurator, default is <b>konsole</b>.</p></qt>"
+"<qt><p>Open terminal in current folder.</p><p>It uses the system default "
+"terminal emulator.</p></qt>"
 msgstr ""
 
 #: app/Panel/panelcontextmenu.cpp:99
@@ -9309,6 +9291,14 @@ msgstr ""
 #, kde-format
 msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
+msgstr ""
+
+#: app/UserAction/kraction.cpp:287
+#, kde-format
+msgctxt "Arg is a string containing the bad quoting."
+msgid ""
+"Bad quoting in terminal command:\n"
+"%1"
 msgstr ""
 
 #: app/UserAction/kractionbase.cpp:47

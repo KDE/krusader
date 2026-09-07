@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-20 00:49+0000\n"
+"POT-Creation-Date: 2026-09-07 00:50+0000\n"
 "PO-Revision-Date: 2014-04-24 18:43+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -926,7 +926,7 @@ msgstr "Söök ophollen"
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -2989,7 +2989,7 @@ msgstr ""
 "En poor schaadhaftige Archiven köönt to en Afstört föhren, dorüm is de Prööv "
 "anraadt."
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
+#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
@@ -3669,29 +3669,13 @@ msgstr "Dateien warrt duerhaftig wegdaan"
 msgid "Terminal"
 msgstr "Konsool"
 
-#: app/Konfigurator/kggeneral.cpp:273
-#, fuzzy, kde-format
-#| msgid "Terminal:"
-msgid "External Terminal:"
-msgstr "Konsool:"
-
-#: app/Konfigurator/kggeneral.cpp:277
-#, fuzzy, kde-format
-#| msgid ""
-#| "%t will be replaced by the title of the action,\n"
-#| "%d with the workdir."
-msgid "%d will be replaced by the workdir."
-msgstr ""
-"För %t warrt de Titel vun de Akschoon insett,\n"
-"un för %d de Arbeitorner."
-
-#: app/Konfigurator/kggeneral.cpp:285
+#: app/Konfigurator/kggeneral.cpp:278
 #, fuzzy, kde-format
 #| msgid "Terminal Emulator sends Chdir on panel change"
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Konsool kummt Paneelwessel na"
 
-#: app/Konfigurator/kggeneral.cpp:287
+#: app/Konfigurator/kggeneral.cpp:280
 #, fuzzy, kde-format
 #| msgid ""
 #| "When checked, whenever the panel is changed (for example, by pressing "
@@ -3703,12 +3687,12 @@ msgstr ""
 "Wenn anmaakt, wesselt Krusader jümmers den aktuellen Orner binnen de "
 "Konsool, wenn de Bruker dat Paneel wesselt (a.B. mit de Tab-Tast)."
 
-#: app/Konfigurator/kggeneral.cpp:291
+#: app/Konfigurator/kggeneral.cpp:284
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:293
+#: app/Konfigurator/kggeneral.cpp:286
 #, fuzzy, kde-format
 #| msgid ""
 #| "When checked, whenever the panel is changed (for example, by pressing "
@@ -3721,12 +3705,12 @@ msgstr ""
 "Wenn anmaakt, wesselt Krusader jümmers den aktuellen Orner binnen de "
 "Konsool, wenn de Bruker dat Paneel wesselt (a.B. mit de Tab-Tast)."
 
-#: app/Konfigurator/kggeneral.cpp:315
+#: app/Konfigurator/kggeneral.cpp:308
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Warktüüch warrt söcht…"
 
-#: app/Konfigurator/kggeneral.cpp:317
+#: app/Konfigurator/kggeneral.cpp:310
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3734,17 +3718,17 @@ msgstr ""
 "Beseker bitte, dat sik nieg Warktüüch över de <code>$PATH</code>-Variabel "
 "finnen laat"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "En nieg Enkel-Verwiedern"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Extension:"
 msgstr "Verwiedern: "
 
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -5603,12 +5587,12 @@ msgstr "Krusader so inrichten, as Du dat hebben magst"
 msgid "Search for files"
 msgstr "Dateien söken"
 
-#: app/krslots.cpp:91
+#: app/krslots.cpp:90
 #, kde-format
 msgid "No selected files to send."
 msgstr "Keen Dateien för't Loosstüern utsöcht"
 
-#: app/krslots.cpp:100
+#: app/krslots.cpp:99
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
@@ -5618,25 +5602,25 @@ msgstr ""
 "de sik över de PATH-Variabel finnen lett. Tipp: Krusader deit KMail "
 "ünnerstütten."
 
-#: app/krslots.cpp:109
+#: app/krslots.cpp:108
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "Datei warrt loosstüert: %2"
 msgstr[1] "Dateien warrt loosstüert: %2"
 
-#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
-#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
+#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:475
+#: app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr "Fehler bi't Utföhren vun \"%1\"."
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:162
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr "Nich kloor, wat de Dateien sünd, de Du verglieken wullt."
 
-#: app/krslots.cpp:164
+#: app/krslots.cpp:163
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5650,12 +5634,12 @@ msgstr ""
 "dat anner Paneel mit akraat den sülven Naam as de aktuelle Datei binnen dat "
 "aktive Paneel</li></ul>"
 
-#: app/krslots.cpp:185
+#: app/krslots.cpp:184
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader kann \"%1\" nich daalladen"
 
-#: app/krslots.cpp:201
+#: app/krslots.cpp:200
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
@@ -5665,7 +5649,7 @@ msgstr ""
 "Installeer bitte een, dat sik över de PATH-Variabel finnen lett. Tipp: "
 "Krusader deit Kompare, KDiff3 un Xxdiff ünnerstütten."
 
-#: app/krslots.cpp:384
+#: app/krslots.cpp:383
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
@@ -5675,17 +5659,7 @@ msgstr ""
 "\"findutils-locate\" vun GNU, oder giff den Padd binnen de Instellen as "
 "Afhangigkeit in."
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
-#, kde-format
-msgctxt "Arg is a string containing the bad quoting."
-msgid ""
-"Bad quoting in terminal command:\n"
-"%1"
-msgstr ""
-"Leeg Schuultekens binnen Konsoolbefehl:\n"
-"%1"
-
-#: app/krslots.cpp:432
+#: app/krslots.cpp:417
 #, fuzzy, kde-format
 #| msgid ""
 #| "Cannot find a batch rename tool.\n"
@@ -5697,13 +5671,13 @@ msgstr ""
 "En Stapel-Ümnöömprogramm lett sik nich finnen.\n"
 "Du kannst KRename op http://www.krename.net daalladen."
 
-#: app/krslots.cpp:459
+#: app/krslots.cpp:444
 #, fuzzy, kde-format
 #| msgid "Error executing %1."
 msgid "Error executing '%1'."
 msgstr "Fehler bi't Utföhren vun \"%1\"."
 
-#: app/krslots.cpp:465
+#: app/krslots.cpp:450
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5711,57 +5685,57 @@ msgid ""
 "attackers to gain root access."
 msgstr ""
 
-#: app/krslots.cpp:478
+#: app/krslots.cpp:463
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
 
-#: app/krslots.cpp:504
+#: app/krslots.cpp:489
 #, kde-format
 msgid "Do not know which file to split."
 msgstr "Nich kloor, wat de Datei sünd, de Du opspleten wullt."
 
-#: app/krslots.cpp:513
+#: app/krslots.cpp:498
 #, fuzzy, kde-format
 #| msgid "You cannot split a directory."
 msgid "You cannot split a folder."
 msgstr "Ornern laat sik nich opspleten."
 
-#: app/krslots.cpp:536
+#: app/krslots.cpp:521
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr "Nich kloor, wat de Dateien sünd, de Du tosamenfögen wullt."
 
-#: app/krslots.cpp:553
+#: app/krslots.cpp:538
 #, fuzzy, kde-format
 #| msgid "You cannot combine a directory."
 msgid "You cannot combine a folder."
 msgstr "Ornern laat sik nich tosamenfögen."
 
-#: app/krslots.cpp:570 app/krslots.cpp:621
+#: app/krslots.cpp:555 app/krslots.cpp:606
 #, kde-format
 msgid "Not a split file: %1."
 msgstr "\"%1\" is keen Opspleetdatei."
 
-#: app/krslots.cpp:581
+#: app/krslots.cpp:566
 #, kde-format
 msgid "Select only one split file."
 msgstr "Bitte bloots een Opspleetdatei utsöken."
 
-#: app/krslots.cpp:628
+#: app/krslots.cpp:613
 #, fuzzy, kde-format
 #| msgid "Combining %1.* to directory:"
 msgid "Combining %1.* to folder:"
 msgstr "\"%1.*\" warrt to Ornern tosamenföögt:"
 
-#: app/krslots.cpp:712
+#: app/krslots.cpp:697
 #, kde-format
 msgid "Open trash bin"
 msgstr "Affalltünn opmaken"
 
-#: app/krslots.cpp:714
+#: app/krslots.cpp:699
 #, kde-format
 msgid "Empty trash bin"
 msgstr "Affalltünn leddig maken"
@@ -7712,8 +7686,8 @@ msgstr "Datei, Orner usw. wegdoon"
 #| "<p>Open terminal in current directory.</p><p>The terminal can be defined "
 #| "in Konfigurator, default is <b>konsole</b>.</p>"
 msgid ""
-"<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
-"Konfigurator, default is <b>konsole</b>.</p></qt>"
+"<qt><p>Open terminal in current folder.</p><p>It uses the system default "
+"terminal emulator.</p></qt>"
 msgstr ""
 "<p>Konsool binnen aktuell Orner opmaken</p><p>De Konsool kannst Du binnen de "
 "Instellen fastleggen, Standard is <b>konsole</b>.</p>"
@@ -9908,6 +9882,16 @@ msgstr ""
 "Inbett Terminalemulater funkscheneert nich, ansteed warrt en Utgaavsammeln "
 "bruukt."
 
+#: app/UserAction/kraction.cpp:287
+#, kde-format
+msgctxt "Arg is a string containing the bad quoting."
+msgid ""
+"Bad quoting in terminal command:\n"
+"%1"
+msgstr ""
+"Leeg Schuultekens binnen Konsoolbefehl:\n"
+"%1"
+
 #: app/UserAction/kractionbase.cpp:47
 #, kde-format
 msgid "Confirm Execution"
@@ -10192,6 +10176,20 @@ msgstr "KrArc-Passwoortdialoog"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "För't Togriepen op de Dateien deit en Passwoort noot"
+
+#, fuzzy
+#~| msgid "Terminal:"
+#~ msgid "External Terminal:"
+#~ msgstr "Konsool:"
+
+#, fuzzy
+#~| msgid ""
+#~| "%t will be replaced by the title of the action,\n"
+#~| "%d with the workdir."
+#~ msgid "%d will be replaced by the workdir."
+#~ msgstr ""
+#~ "För %t warrt de Titel vun de Akschoon insett,\n"
+#~ "un för %d de Arbeitorner."
 
 #~ msgid "Could not start %1"
 #~ msgstr "\"%1\" lett sik nich starten."

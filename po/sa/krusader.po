@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-20 00:49+0000\n"
+"POT-Creation-Date: 2026-09-07 00:50+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -893,7 +893,7 @@ msgstr "अन्वेषणार्थं टङ्कयन्तु..."
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -2867,7 +2867,7 @@ msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
 msgstr "केचन दूषिताः अभिलेखागाराः दुर्घटनां जनयितुं शक्नुवन्ति; अतः परीक्षणं सुच्यते।"
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
+#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
@@ -3541,22 +3541,12 @@ msgstr "सञ्चिकाः स्थायिरूपेण विलो�
 msgid "Terminal"
 msgstr "टर्मिनल्"
 
-#: app/Konfigurator/kggeneral.cpp:273
-#, kde-format
-msgid "External Terminal:"
-msgstr "बाह्य टर्मिनलः :"
-
-#: app/Konfigurator/kggeneral.cpp:277
-#, kde-format
-msgid "%d will be replaced by the workdir."
-msgstr "%d इत्यस्य स्थाने workdir इत्यनेन स्थापितं भविष्यति ।"
-
-#: app/Konfigurator/kggeneral.cpp:285
+#: app/Konfigurator/kggeneral.cpp:278
 #, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "एम्बेडेड् टर्मिनल् इत्यनेन Chdir इत्यस्मै पटलपरिवर्तने प्रेष्यते"
 
-#: app/Konfigurator/kggeneral.cpp:287
+#: app/Konfigurator/kggeneral.cpp:280
 #, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
@@ -3565,12 +3555,12 @@ msgstr ""
 "यदा कदापि पटलं परिवर्तते (उदाहरणार्थं, Tab नुदन्), तदा Krusader एम्बेडेड् टर्मिनल् मध्ये "
 "वर्तमानपुटं परिवर्तयति ।"
 
-#: app/Konfigurator/kggeneral.cpp:291
+#: app/Konfigurator/kggeneral.cpp:284
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr "सक्रियः पटलः Embedded Terminal कार्यनिर्देशिकायाः अनुसरणं करोति"
 
-#: app/Konfigurator/kggeneral.cpp:293
+#: app/Konfigurator/kggeneral.cpp:286
 #, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
@@ -3580,12 +3570,12 @@ msgstr ""
 "यदा परीक्षितं भवति तदा कदापि टर्मिनल् कार्यनिर्देशिका परिवर्तिता भवति (उदाहरणार्थं "
 "'cd' अथवा 'popd' आदेशं निष्पादयित्वा), Krusader सक्रियपटलस्य वर्तमानपुटं परिवर्तयति ।"
 
-#: app/Konfigurator/kggeneral.cpp:315
+#: app/Konfigurator/kggeneral.cpp:308
 #, kde-format
 msgid "Searching for tools..."
 msgstr "साधनानि अन्वेष्य..."
 
-#: app/Konfigurator/kggeneral.cpp:317
+#: app/Konfigurator/kggeneral.cpp:310
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3593,17 +3583,17 @@ msgstr ""
 "स्वस्य <code>$PATH</code> मध्ये नूतनानि साधनानि संस्थापनं सुनिश्चितं कुर्वन्तु (उदा. /usr/"
 "bin)"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "नूतनं परमाणुविस्तारं योजयन्तु"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Extension:"
 msgstr "विस्तार:"
 
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -5394,12 +5384,12 @@ msgstr "यथा रोचते तथा क्रूसेडरं से�
 msgid "Search for files"
 msgstr "सञ्चिकाः अन्वेष्टुम्"
 
-#: app/krslots.cpp:91
+#: app/krslots.cpp:90
 #, kde-format
 msgid "No selected files to send."
 msgstr "प्रेषयितुं चयनितसञ्चिकाः नास्ति।"
 
-#: app/krslots.cpp:100
+#: app/krslots.cpp:99
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
@@ -5408,25 +5398,25 @@ msgstr ""
 "क्रुसाडरः समर्थितं मेलग्राहकं न प्राप्नोति । कृपया स्वमार्गे एकं संस्थापयन्तु। सङ्केतः: क्रुसाडरः "
 "KMail इत्यस्य समर्थनं करोति ।"
 
-#: app/krslots.cpp:109
+#: app/krslots.cpp:108
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
 msgstr[0] "सञ्चिकां प्रेषयति: %2"
 msgstr[1] "सञ्चिकाः प्रेषयति: %2"
 
-#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
-#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
+#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:475
+#: app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr "%1 निष्पादने त्रुटिः ।"
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:162
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr "न ज्ञातव्यं यत् काः सञ्चिकाः तुलनां कर्तव्याः।"
 
-#: app/krslots.cpp:164
+#: app/krslots.cpp:163
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5439,12 +5429,12 @@ msgstr ""
 "li><li> अन्यस्मिन् पटले सञ्चिका अस्ति इति सुनिश्चितं कुर्वन्तु, यस्य नाम सक्रियपटलस्य "
 "वर्तमानसञ्चिकायाः समानम् अस्ति ।</li></ul>"
 
-#: app/krslots.cpp:185
+#: app/krslots.cpp:184
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader %1 अवतरणं कर्तुं असमर्थः अस्ति"
 
-#: app/krslots.cpp:201
+#: app/krslots.cpp:200
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
@@ -5453,7 +5443,7 @@ msgstr ""
 "क्रुसाडरः समर्थितानां डिफ्-फ्रण्ट्-एण्ड्-मध्ये किमपि न प्राप्नोति । कृपया स्वमार्गे एकं "
 "संस्थापयन्तु। संकेतः - क्रुसेडरः Kompare, KDiff3 तथा Xxdiff इत्येतयोः समर्थनं करोति ।"
 
-#: app/krslots.cpp:384
+#: app/krslots.cpp:383
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
@@ -5462,17 +5452,7 @@ msgstr ""
 "'locate' इति आदेशं न प्राप्यते । कृपया GNU इत्यस्य findutils-locate संकुलं संस्थापयन्तु, "
 "अथवा तस्य आश्रयान् Konfigurator मध्ये सेट् कुर्वन्तु"
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
-#, kde-format
-msgctxt "Arg is a string containing the bad quoting."
-msgid ""
-"Bad quoting in terminal command:\n"
-"%1"
-msgstr ""
-"टर्मिनल् आदेशे दुष्टं उद्धरणम् : १.\n"
-"%1"
-
-#: app/krslots.cpp:432
+#: app/krslots.cpp:417
 #, kde-format
 msgid ""
 "Cannot find a batch rename tool.\n"
@@ -5481,12 +5461,12 @@ msgstr ""
 "बैच् नामान्तरणसाधनं न प्राप्यते ।\n"
 "%1 इत्यत्र KRename प्राप्तुं शक्नुवन्ति"
 
-#: app/krslots.cpp:459
+#: app/krslots.cpp:444
 #, kde-format
 msgid "Error executing '%1'."
 msgstr "'%1' निष्पादने त्रुटिः ।"
 
-#: app/krslots.cpp:465
+#: app/krslots.cpp:450
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5496,7 +5476,7 @@ msgstr ""
 "रूट् मोड् मध्ये अनुचितं कार्यं भवतः प्रचालनतन्त्रस्य क्षतिं कर्तुं शक्नोति ।<p> अपि च, UI "
 "अनुप्रयोगानाम् रूटरूपेण चालनं असुरक्षितं भवति, आक्रमणकारिणः रूट्-प्रवेशं प्राप्तुं शक्नुवन्ति ।"
 
-#: app/krslots.cpp:478
+#: app/krslots.cpp:463
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
@@ -5505,47 +5485,47 @@ msgstr ""
 "मूलविधिं आरभ्यतुं न शक्यते Krusader, %1 न प्राप्तम् अथवा निष्पादनीयम् । कृपया kde-cli-"
 "tools संस्थापितम् इति सत्यापयन्तु ।"
 
-#: app/krslots.cpp:504
+#: app/krslots.cpp:489
 #, kde-format
 msgid "Do not know which file to split."
 msgstr "कस्याः सञ्चिकायाः विभक्तिः कर्तव्या इति न ज्ञातव्यम् ।"
 
-#: app/krslots.cpp:513
+#: app/krslots.cpp:498
 #, kde-format
 msgid "You cannot split a folder."
 msgstr "भवन्तः पुटं विभक्तुं न शक्नुवन्ति ।"
 
-#: app/krslots.cpp:536
+#: app/krslots.cpp:521
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr "न जानाति यत् काः सञ्चिकाः संयोजितव्याः इति।"
 
-#: app/krslots.cpp:553
+#: app/krslots.cpp:538
 #, kde-format
 msgid "You cannot combine a folder."
 msgstr "भवन्तः पुटं संयोजयितुं न शक्नुवन्ति ।"
 
-#: app/krslots.cpp:570 app/krslots.cpp:621
+#: app/krslots.cpp:555 app/krslots.cpp:606
 #, kde-format
 msgid "Not a split file: %1."
 msgstr "न तु विभक्तसञ्चिका: %1."
 
-#: app/krslots.cpp:581
+#: app/krslots.cpp:566
 #, kde-format
 msgid "Select only one split file."
 msgstr "केवलम् एकां विभक्तसञ्चिकां चिनोतु ।"
 
-#: app/krslots.cpp:628
+#: app/krslots.cpp:613
 #, kde-format
 msgid "Combining %1.* to folder:"
 msgstr "%1.* पुटं प्रति संयोजयन्:"
 
-#: app/krslots.cpp:712
+#: app/krslots.cpp:697
 #, kde-format
 msgid "Open trash bin"
 msgstr "कचराकोषं उद्घाटयतु"
 
-#: app/krslots.cpp:714
+#: app/krslots.cpp:699
 #, kde-format
 msgid "Empty trash bin"
 msgstr "रिक्त कचरा कूप"
@@ -7406,10 +7386,13 @@ msgid "Delete file, folder, etc."
 msgstr "सञ्चिकां, पुटम् इत्यादीनि विलोपयन्तु।"
 
 #: app/Panel/listpanelactions.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined "
+#| "in Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgid ""
-"<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
-"Konfigurator, default is <b>konsole</b>.</p></qt>"
+"<qt><p>Open terminal in current folder.</p><p>It uses the system default "
+"terminal emulator.</p></qt>"
 msgstr ""
 "<qt><p>वर्तमानपुटे टर्मिनल् उद्घाटयन्तु।</p><p> टर्मिनल् Konfigurator मध्ये परिभाषितुं "
 "शक्यते, पूर्वनिर्धारितं <b>konsole</b> अस्ति ।</p></qt>"
@@ -9502,6 +9485,16 @@ msgid ""
 "Embedded terminal emulator does not work, using output collection instead."
 msgstr "एम्बेडेड् टर्मिनल् एमुलेटर् कार्यं न करोति, तस्य स्थाने आउटपुट् संग्रहणं उपयुज्यते ।"
 
+#: app/UserAction/kraction.cpp:287
+#, kde-format
+msgctxt "Arg is a string containing the bad quoting."
+msgid ""
+"Bad quoting in terminal command:\n"
+"%1"
+msgstr ""
+"टर्मिनल् आदेशे दुष्टं उद्धरणम् : १.\n"
+"%1"
+
 #: app/UserAction/kractionbase.cpp:47
 #, kde-format
 msgid "Confirm Execution"
@@ -9772,6 +9765,12 @@ msgstr "Krarc गुप्तशब्द संवाद"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "सञ्चिकां प्राप्तुं गुप्तशब्दस्य आवश्यकता भवति ।"
+
+#~ msgid "External Terminal:"
+#~ msgstr "बाह्य टर्मिनलः :"
+
+#~ msgid "%d will be replaced by the workdir."
+#~ msgstr "%d इत्यस्य स्थाने workdir इत्यनेन स्थापितं भविष्यति ।"
 
 #~ msgid "Could not start %1"
 #~ msgstr "%1 आरभ्यतुं न शक्तवान्"

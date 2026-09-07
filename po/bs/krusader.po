@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-20 00:49+0000\n"
+"POT-Creation-Date: 2026-09-07 00:50+0000\n"
 "PO-Revision-Date: 2014-10-20 19:23+0000\n"
 "Last-Translator: Admir Becirbasic <abecirbasi1@etf.unsa.ba>\n"
 "Language-Team: <bhld@lists.linux.org.ba>\n"
@@ -923,7 +923,7 @@ msgstr "Zaustavi pretragu"
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -2994,7 +2994,7 @@ msgid ""
 msgstr ""
 "Neke oštećene arhive mogu izazvati rušenje; stoga, testiranje se preporučuje."
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
+#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
@@ -3676,29 +3676,13 @@ msgstr "Datoteke će biti trajno obrisane."
 msgid "Terminal"
 msgstr "Terminal"
 
-#: app/Konfigurator/kggeneral.cpp:273
-#, fuzzy, kde-format
-#| msgid "Terminal:"
-msgid "External Terminal:"
-msgstr "Terminal:"
-
-#: app/Konfigurator/kggeneral.cpp:277
-#, fuzzy, kde-format
-#| msgid ""
-#| "%t will be replaced by the title of the action,\n"
-#| "%d with the workdir."
-msgid "%d will be replaced by the workdir."
-msgstr ""
-"%t ce biti zamjenjen sa nazivom akcije.\n"
-"%d sa radnim direktorijem."
-
-#: app/Konfigurator/kggeneral.cpp:285
+#: app/Konfigurator/kggeneral.cpp:278
 #, fuzzy, kde-format
 #| msgid "Terminal Emulator sends Chdir on panel change"
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Emulator terminala šalje 'chdir' pri promijeni panela"
 
-#: app/Konfigurator/kggeneral.cpp:287
+#: app/Konfigurator/kggeneral.cpp:280
 #, fuzzy, kde-format
 #| msgid ""
 #| "When checked, whenever the panel is changed (for example, by pressing "
@@ -3710,12 +3694,12 @@ msgstr ""
 "Kad je provjeren, bez obzira je li panel promjenjen (npr,pritiskom Tab-a), "
 "Krusader mijenja trenutni direktorij u terminalnom emulatoru."
 
-#: app/Konfigurator/kggeneral.cpp:291
+#: app/Konfigurator/kggeneral.cpp:284
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:293
+#: app/Konfigurator/kggeneral.cpp:286
 #, fuzzy, kde-format
 #| msgid ""
 #| "When checked, whenever the panel is changed (for example, by pressing "
@@ -3728,12 +3712,12 @@ msgstr ""
 "Kad je provjeren, bez obzira je li panel promjenjen (npr,pritiskom Tab-a), "
 "Krusader mijenja trenutni direktorij u terminalnom emulatoru."
 
-#: app/Konfigurator/kggeneral.cpp:315
+#: app/Konfigurator/kggeneral.cpp:308
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Tražim alate..."
 
-#: app/Konfigurator/kggeneral.cpp:317
+#: app/Konfigurator/kggeneral.cpp:310
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3741,17 +3725,17 @@ msgstr ""
 "Uvjerite se da instalirate nove alate u vaš <code>$PATH</code> (npr. /usr/"
 "bin)"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "Dodaj novu atomsku ekstenziju"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Extension:"
 msgstr "Ekstenzija:"
 
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -5613,12 +5597,12 @@ msgstr "Podesite Krusader kako vama odgovara"
 msgid "Search for files"
 msgstr "Pretraga za datotekama"
 
-#: app/krslots.cpp:91
+#: app/krslots.cpp:90
 #, kde-format
 msgid "No selected files to send."
 msgstr "Nema oznacenih datoteka za poslati."
 
-#: app/krslots.cpp:100
+#: app/krslots.cpp:99
 #, kde-format
 msgid ""
 "Krusader cannot find a supported mail client. Please install one to your "
@@ -5627,7 +5611,7 @@ msgstr ""
 "Krusader ne moze pronaci podrzanog mail klijenta. Molimo instalirajte jednog "
 "na vasu putanju. Natuknica: Krusader podrzava KMail."
 
-#: app/krslots.cpp:109
+#: app/krslots.cpp:108
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
@@ -5635,18 +5619,18 @@ msgstr[0] "Slanje datoteke: %2"
 msgstr[1] "Slanje datoteka: %2"
 msgstr[2] "Slanje datoteka: %2"
 
-#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
-#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
+#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:475
+#: app/Synchronizer/synchronizer.cpp:1608
 #, kde-format
 msgid "Error executing %1."
 msgstr "Greska kod izvrsavanja %1."
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:162
 #, kde-format
 msgid "Do not know which files to compare."
 msgstr "Ne zna koje datoteke da upoređuje."
 
-#: app/krslots.cpp:164
+#: app/krslots.cpp:163
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5660,12 +5644,12 @@ msgstr ""
 "postoji datoteka u drugom panelu, sa istim imenom kao trenutna datoteka u "
 "aktivnom panelu.</li></ul>"
 
-#: app/krslots.cpp:185
+#: app/krslots.cpp:184
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader ne moze skinuti %1"
 
-#: app/krslots.cpp:201
+#: app/krslots.cpp:200
 #, kde-format
 msgid ""
 "Krusader cannot find any of the supported diff-frontends. Please install one "
@@ -5675,7 +5659,7 @@ msgstr ""
 "Molim instalirajte jedan na vasu putanju. Natuknica:Krusader podrzava "
 "Kompare, KDiff3 and Xxdiff."
 
-#: app/krslots.cpp:384
+#: app/krslots.cpp:383
 #, kde-format
 msgid ""
 "Cannot find the 'locate' command. Please install the findutils-locate "
@@ -5684,17 +5668,7 @@ msgstr ""
 "Ne moze pronaci komandu za lociranje. Molim instalirajte alat za lociranje-"
 "pronalazak paketa GNU-ova, ili postavite njihove ovisnosti u Konfigurator-u"
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
-#, kde-format
-msgctxt "Arg is a string containing the bad quoting."
-msgid ""
-"Bad quoting in terminal command:\n"
-"%1"
-msgstr ""
-"Lose navođenje u komandnom terminalu:\n"
-"%1"
-
-#: app/krslots.cpp:432
+#: app/krslots.cpp:417
 #, fuzzy, kde-format
 #| msgid ""
 #| "Cannot find a batch rename tool.\n"
@@ -5706,13 +5680,13 @@ msgstr ""
 "Nemoguce pronaci alat za preimenovanje izvrsnih datoteka.\n"
 "Mozete dobiti KRename na http://www.krename.net"
 
-#: app/krslots.cpp:459
+#: app/krslots.cpp:444
 #, fuzzy, kde-format
 #| msgid "Error executing %1."
 msgid "Error executing '%1'."
 msgstr "Greska kod izvrsavanja %1."
 
-#: app/krslots.cpp:465
+#: app/krslots.cpp:450
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5720,57 +5694,57 @@ msgid ""
 "attackers to gain root access."
 msgstr ""
 
-#: app/krslots.cpp:478
+#: app/krslots.cpp:463
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
 
-#: app/krslots.cpp:504
+#: app/krslots.cpp:489
 #, kde-format
 msgid "Do not know which file to split."
 msgstr "Ne znam koju datoteku da razdijelim."
 
-#: app/krslots.cpp:513
+#: app/krslots.cpp:498
 #, fuzzy, kde-format
 #| msgid "You cannot split a directory."
 msgid "You cannot split a folder."
 msgstr "Ne mozete razdijeliti direktorij."
 
-#: app/krslots.cpp:536
+#: app/krslots.cpp:521
 #, kde-format
 msgid "Do not know which files to combine."
 msgstr "Ne znam koje datoteke da kombinujem."
 
-#: app/krslots.cpp:553
+#: app/krslots.cpp:538
 #, fuzzy, kde-format
 #| msgid "You cannot combine a directory."
 msgid "You cannot combine a folder."
 msgstr "Ne mozete kombinovati direktorije."
 
-#: app/krslots.cpp:570 app/krslots.cpp:621
+#: app/krslots.cpp:555 app/krslots.cpp:606
 #, kde-format
 msgid "Not a split file: %1."
 msgstr "Nedjeljiva datoteka: %1."
 
-#: app/krslots.cpp:581
+#: app/krslots.cpp:566
 #, kde-format
 msgid "Select only one split file."
 msgstr "Oznacite samo jedan podijeljeni fajl."
 
-#: app/krslots.cpp:628
+#: app/krslots.cpp:613
 #, fuzzy, kde-format
 #| msgid "Combining %1.* to directory:"
 msgid "Combining %1.* to folder:"
 msgstr "Spajanje %1.* u direktorijum:"
 
-#: app/krslots.cpp:712
+#: app/krslots.cpp:697
 #, kde-format
 msgid "Open trash bin"
 msgstr "Otvori kantu za otpatke"
 
-#: app/krslots.cpp:714
+#: app/krslots.cpp:699
 #, kde-format
 msgid "Empty trash bin"
 msgstr "Ocisti kantu za otpatke"
@@ -7720,8 +7694,8 @@ msgstr "Obriši datoteku, direktorijum, itd."
 #| "<p>Open terminal in current directory.</p><p>The terminal can be defined "
 #| "in Konfigurator, default is <b>konsole</b>.</p>"
 msgid ""
-"<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
-"Konfigurator, default is <b>konsole</b>.</p></qt>"
+"<qt><p>Open terminal in current folder.</p><p>It uses the system default "
+"terminal emulator.</p></qt>"
 msgstr ""
 "<p>Otvori terminal u trenutnom direktorijumu.</p><p>Možete definisati "
 "terminal u Kontrolnom centru, podrazumjevan je<b> konsole.</b></p>"
@@ -9925,6 +9899,16 @@ msgstr ""
 "Ugnježdeni emulator terminala ne radi, kao zamjenu koristim skupljanje "
 "izlaza..."
 
+#: app/UserAction/kraction.cpp:287
+#, kde-format
+msgctxt "Arg is a string containing the bad quoting."
+msgid ""
+"Bad quoting in terminal command:\n"
+"%1"
+msgstr ""
+"Lose navođenje u komandnom terminalu:\n"
+"%1"
+
 #: app/UserAction/kractionbase.cpp:47
 #, kde-format
 msgid "Confirm Execution"
@@ -10208,6 +10192,20 @@ msgstr "Krarc Dijalog Lozinki"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Pristupanje datoteci zahtjeva lozinku."
+
+#, fuzzy
+#~| msgid "Terminal:"
+#~ msgid "External Terminal:"
+#~ msgstr "Terminal:"
+
+#, fuzzy
+#~| msgid ""
+#~| "%t will be replaced by the title of the action,\n"
+#~| "%d with the workdir."
+#~ msgid "%d will be replaced by the workdir."
+#~ msgstr ""
+#~ "%t ce biti zamjenjen sa nazivom akcije.\n"
+#~ "%d sa radnim direktorijem."
 
 #~ msgid "Could not start %1"
 #~ msgstr "Ne mogu da pokrenem %1"

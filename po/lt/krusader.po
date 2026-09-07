@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-20 00:49+0000\n"
+"POT-Creation-Date: 2026-09-07 00:50+0000\n"
 "PO-Revision-Date: 2019-03-17 17:31+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -918,7 +918,7 @@ msgstr "Paieška"
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -3024,7 +3024,7 @@ msgstr ""
 "Kai kurie sugadinti archyvai gali nulaužti programą; todėl testavimas yra "
 "rekomenduojamas."
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:314
+#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
@@ -3717,24 +3717,13 @@ msgstr "Failai bus pašalinti visam laikui."
 msgid "Terminal"
 msgstr "Terminale"
 
-#: app/Konfigurator/kggeneral.cpp:273
-#, fuzzy, kde-format
-#| msgid "Terminal:"
-msgid "External Terminal:"
-msgstr "Terminalas:"
-
-#: app/Konfigurator/kggeneral.cpp:277
-#, kde-format
-msgid "%d will be replaced by the workdir."
-msgstr ""
-
-#: app/Konfigurator/kggeneral.cpp:285
+#: app/Konfigurator/kggeneral.cpp:278
 #, fuzzy, kde-format
 #| msgid "Terminal Emulator sends Chdir on panel change"
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Terminalas keičia aplanką paskui aktyvų langą"
 
-#: app/Konfigurator/kggeneral.cpp:287
+#: app/Konfigurator/kggeneral.cpp:280
 #, fuzzy, kde-format
 #| msgid ""
 #| "When checked, whenever the panel is changed (for example, by pressing "
@@ -3746,12 +3735,12 @@ msgstr ""
 "Jei ši parinktis įjungta, keičiant aktyvų langą (tarkime su klavišu TAB), "
 "terminale darbinis aplankas bus pakeistas į tą, kuris yra aktyviame lange."
 
-#: app/Konfigurator/kggeneral.cpp:291
+#: app/Konfigurator/kggeneral.cpp:284
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
 
-#: app/Konfigurator/kggeneral.cpp:293
+#: app/Konfigurator/kggeneral.cpp:286
 #, fuzzy, kde-format
 #| msgid ""
 #| "When checked, whenever the panel is changed (for example, by pressing "
@@ -3764,12 +3753,12 @@ msgstr ""
 "Jei ši parinktis įjungta, keičiant aktyvų langą (tarkime su klavišu TAB), "
 "terminale darbinis aplankas bus pakeistas į tą, kuris yra aktyviame lange."
 
-#: app/Konfigurator/kggeneral.cpp:315
+#: app/Konfigurator/kggeneral.cpp:308
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Ieškoma įrankių..."
 
-#: app/Konfigurator/kggeneral.cpp:317
+#: app/Konfigurator/kggeneral.cpp:310
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3777,17 +3766,17 @@ msgstr ""
 "Naujus įrankius įdiekite į savo programų aplanką <code>$PATH</code> (pvz. /"
 "usr/bin)"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "Įdėti naują nedalomą plėtinį"
 
-#: app/Konfigurator/kggeneral.cpp:325
+#: app/Konfigurator/kggeneral.cpp:318
 #, kde-format
 msgid "Extension:"
 msgstr "Priesaga:"
 
-#: app/Konfigurator/kggeneral.cpp:329
+#: app/Konfigurator/kggeneral.cpp:322
 #, fuzzy, kde-format
 #| msgid ""
 #| "Atomic extensions must start with '.'\n"
@@ -5694,12 +5683,12 @@ msgstr "Derinti Krusader pagal savo poreikius"
 msgid "Search for files"
 msgstr "Ieškoti failų"
 
-#: app/krslots.cpp:91
+#: app/krslots.cpp:90
 #, fuzzy, kde-format
 msgid "No selected files to send."
 msgstr "Tik pažymėtus failus"
 
-#: app/krslots.cpp:100
+#: app/krslots.cpp:99
 #, fuzzy, kde-format
 #| msgid ""
 #| "Krusader can't find a supported mail client. Please install one to your "
@@ -5711,7 +5700,7 @@ msgstr ""
 "Nepavyko rasti nei vieno pašto kliento. Prašome įdiegti kokį nors vieną. "
 "Pavyzdžiui, Kmail."
 
-#: app/krslots.cpp:109
+#: app/krslots.cpp:108
 #, kde-format
 msgid "Sending file: %2"
 msgid_plural "Sending files: %2"
@@ -5720,20 +5709,20 @@ msgstr[1] "Siunčiami failai: %2"
 msgstr[2] "Siunčiami failai: %2"
 msgstr[3] "Siunčiami failai: %2"
 
-#: app/krslots.cpp:138 app/krslots.cpp:233 app/krslots.cpp:417
-#: app/krslots.cpp:490 app/Synchronizer/synchronizer.cpp:1608
+#: app/krslots.cpp:137 app/krslots.cpp:232 app/krslots.cpp:475
+#: app/Synchronizer/synchronizer.cpp:1608
 #, fuzzy, kde-format
 #| msgid "Error executing %1!"
 msgid "Error executing %1."
 msgstr "Klaida vykdant %1!"
 
-#: app/krslots.cpp:163
+#: app/krslots.cpp:162
 #, fuzzy, kde-format
 #| msgid "Don't know which files to compare."
 msgid "Do not know which files to compare."
 msgstr "Neaišku, kuriuos failus reikia palyginti."
 
-#: app/krslots.cpp:164
+#: app/krslots.cpp:163
 #, kde-format
 msgid ""
 "To compare two files by content, you can either:<ul><li>Select one file in "
@@ -5746,12 +5735,12 @@ msgstr ""
 "failai aktyviame lange</li><li> neaktyviame lange bus failas tokiu pačiu "
 "pavadinimu, kaip ir dabartinis failas aktyviame lange.</li></ul>"
 
-#: app/krslots.cpp:185
+#: app/krslots.cpp:184
 #, kde-format
 msgid "Krusader is unable to download %1"
 msgstr "Krusader negali atsiųsti %1"
 
-#: app/krslots.cpp:201
+#: app/krslots.cpp:200
 #, fuzzy, kde-format
 #| msgid ""
 #| "Krusader can't find any of the supported diff-frontends. Please install "
@@ -5763,7 +5752,7 @@ msgstr ""
 "Nepavyko rasti nei vienos diff programos. Prašome įdiegti kokią nors vieną. "
 "Krusader dirba su šiomis programomis: Kompare, Kdiff3 ir Xxdiff."
 
-#: app/krslots.cpp:384
+#: app/krslots.cpp:383
 #, fuzzy, kde-format
 #| msgid ""
 #| "Can't find the 'locate' command. Please install the findutils-locate "
@@ -5775,15 +5764,7 @@ msgstr ""
 "Nepavyko rasti locate programos. Prašome įdiegti GNU findutils-locate "
 "paketą  arba nurodykite kelią iki šios programos Konfigūratoriuje."
 
-#: app/krslots.cpp:407 app/UserAction/kraction.cpp:287
-#, kde-format
-msgctxt "Arg is a string containing the bad quoting."
-msgid ""
-"Bad quoting in terminal command:\n"
-"%1"
-msgstr ""
-
-#: app/krslots.cpp:432
+#: app/krslots.cpp:417
 #, fuzzy, kde-format
 #| msgid ""
 #| "Can't find a batch rename tool.\n"
@@ -5795,13 +5776,13 @@ msgstr ""
 "Nepavyko rasti daugelio failų pervadinimo įrankio.\n"
 "Įdiekite Krename iš http://www.krename.net"
 
-#: app/krslots.cpp:459
+#: app/krslots.cpp:444
 #, fuzzy, kde-format
 #| msgid "Error executing %1!"
 msgid "Error executing '%1'."
 msgstr "Klaida vykdant %1!"
 
-#: app/krslots.cpp:465
+#: app/krslots.cpp:450
 #, kde-format
 msgid ""
 "Improper operations in root mode can damage your operating system. "
@@ -5809,61 +5790,61 @@ msgid ""
 "attackers to gain root access."
 msgstr ""
 
-#: app/krslots.cpp:478
+#: app/krslots.cpp:463
 #, kde-format
 msgid ""
 "Cannot start root mode Krusader, %1 not found or not executable. Please "
 "verify that kde-cli-tools are installed."
 msgstr ""
 
-#: app/krslots.cpp:504
+#: app/krslots.cpp:489
 #, fuzzy, kde-format
 #| msgid "Don't know which file to split."
 msgid "Do not know which file to split."
 msgstr "Neaišku kurį failą suskaidyti."
 
-#: app/krslots.cpp:513
+#: app/krslots.cpp:498
 #, fuzzy, kde-format
 #| msgid "You can't split a directory!"
 msgid "You cannot split a folder."
 msgstr "Aplanko suskaidyti nepavyks!"
 
-#: app/krslots.cpp:536
+#: app/krslots.cpp:521
 #, fuzzy, kde-format
 #| msgid "Don't know which files to combine."
 msgid "Do not know which files to combine."
 msgstr "Neaišku kuriuos failus sujungti."
 
-#: app/krslots.cpp:553
+#: app/krslots.cpp:538
 #, fuzzy, kde-format
 #| msgid "You can't combine a directory!"
 msgid "You cannot combine a folder."
 msgstr "Aplanko sujungti nepavyks!"
 
-#: app/krslots.cpp:570 app/krslots.cpp:621
+#: app/krslots.cpp:555 app/krslots.cpp:606
 #, fuzzy, kde-format
 #| msgid "Not a split file %1!"
 msgid "Not a split file: %1."
 msgstr "Failas %1 nėra skaidymo dalis!"
 
-#: app/krslots.cpp:581
+#: app/krslots.cpp:566
 #, fuzzy, kde-format
 #| msgid "Select only one split file!"
 msgid "Select only one split file."
 msgstr "Pažymėkite tik vieną skaidymo dalį!"
 
-#: app/krslots.cpp:628
+#: app/krslots.cpp:613
 #, fuzzy, kde-format
 #| msgid "Combining %1.* to directory:"
 msgid "Combining %1.* to folder:"
 msgstr "Sujungiamas failas %1.* į aplanką:"
 
-#: app/krslots.cpp:712
+#: app/krslots.cpp:697
 #, kde-format
 msgid "Open trash bin"
 msgstr "Atverti šiukšlinę"
 
-#: app/krslots.cpp:714
+#: app/krslots.cpp:699
 #, kde-format
 msgid "Empty trash bin"
 msgstr "Išvalyti šiukšlinę"
@@ -7845,8 +7826,8 @@ msgstr "Pašalinti failą, aplanką ir pan."
 #| "<p>Open terminal in current directory.</p><p>The terminal can be defined "
 #| "in Konfigurator, default is <b>konsole</b>.</p>"
 msgid ""
-"<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
-"Konfigurator, default is <b>konsole</b>.</p></qt>"
+"<qt><p>Open terminal in current folder.</p><p>It uses the system default "
+"terminal emulator.</p></qt>"
 msgstr ""
 "<p>Dabartiniame aplanke bus atidarytas terminalas.</p><p> Terminalo tipą "
 "galite nurodyti Konfigūratoriuje. Numatytas terminalas yra <b>konsole</b>.</"
@@ -10119,6 +10100,14 @@ msgid ""
 msgstr ""
 "Vidinis terminalas neveikia, todėl bus tiesiog pateikta pilna išvestis."
 
+#: app/UserAction/kraction.cpp:287
+#, kde-format
+msgctxt "Arg is a string containing the bad quoting."
+msgid ""
+"Bad quoting in terminal command:\n"
+"%1"
+msgstr ""
+
 #: app/UserAction/kractionbase.cpp:47
 #, fuzzy, kde-format
 #| msgid "Confirm execution"
@@ -10406,6 +10395,11 @@ msgstr "Krarc slaptažodžio dialogas"
 #| msgid "Accessing the file requires password."
 msgid "Accessing the file requires a password."
 msgstr "Prieiga prie failo reikalauja slaptažodžio."
+
+#, fuzzy
+#~| msgid "Terminal:"
+#~ msgid "External Terminal:"
+#~ msgstr "Terminalas:"
 
 #~ msgid "Could not start %1"
 #~ msgstr "Nepavyko paleisti %1"
