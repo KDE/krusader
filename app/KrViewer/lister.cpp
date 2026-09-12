@@ -71,15 +71,15 @@ ListerTextArea::ListerTextArea(Lister *lister, QWidget *parent)
     setLineWrapMode(QTextEdit::NoWrap);
 
     // zoom shortcuts
-    connect(new QShortcut(QKeySequence("Ctrl++"), this), &QShortcut::activated, this, [=]() {
+    connect(new QShortcut(QKeySequence("Ctrl++"), this), &QShortcut::activated, this, [this]() {
         zoomIn();
     });
-    connect(new QShortcut(QKeySequence("Ctrl+-"), this), &QShortcut::activated, this, [=]() {
+    connect(new QShortcut(QKeySequence("Ctrl+-"), this), &QShortcut::activated, this, [this]() {
         zoomOut();
     });
 
     // start cursor blinking
-    connect(&_blinkTimer, &QTimer::timeout, this, [=] {
+    connect(&_blinkTimer, &QTimer::timeout, this, [this] {
         if (!_cursorBlinkMutex.tryLock()) {
             return;
         }
@@ -1351,12 +1351,12 @@ bool Lister::openUrl(const QUrl &listerUrl)
 
         KIO::TransferJob *downloadJob = KIO::get(listerUrl, KIO::NoReload, KIO::HideProgressInfo);
 
-        connect(downloadJob, &KIO::TransferJob::data, this, [=](KIO::Job *, QByteArray array) {
+        connect(downloadJob, &KIO::TransferJob::data, this, [this](KIO::Job *, QByteArray array) {
             if (array.size() != 0) {
                 _tempFile->write(array);
             }
         });
-        connect(downloadJob, &KIO::TransferJob::result, this, [=](KJob *job) {
+        connect(downloadJob, &KIO::TransferJob::result, this, [this](KJob *job) {
             _tempFile->flush();
             if (job->error()) { /* any error occurred? */
                 auto *kioJob = qobject_cast<KIO::TransferJob *>(job);

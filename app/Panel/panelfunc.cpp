@@ -546,7 +546,7 @@ void ListPanelFunc::slotStatEdit(KJob *job)
             KIO::CopyJob *copyJob = KIO::copy(QUrl::fromLocalFile(tempFile->fileName()), url);
             copyJob->setUiDelegate(nullptr);
             copyJob->setDefaultPermissions(true);
-            connect(copyJob, &KIO::CopyJob::result, this, [=](KJob *finishedJob) {
+            connect(copyJob, &KIO::CopyJob::result, this, [this, url](KJob *finishedJob) {
                 slotFileCreated(finishedJob, url);
             });
             connect(copyJob, &KIO::CopyJob::result, tempFile, &QTemporaryFile::deleteLater);

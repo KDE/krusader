@@ -19,7 +19,7 @@ KrListWidget::KrListWidget(QWidget *parent)
     setStyle(style);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, &QListWidget::customContextMenuRequested, [=](const QPoint &pos) {
+    connect(this, &QListWidget::customContextMenuRequested, this, [this](const QPoint &pos) {
         QListWidgetItem *item = itemAt(pos);
         emit itemRightClicked(item, viewport()->mapToGlobal(pos));
     });

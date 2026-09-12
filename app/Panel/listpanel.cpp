@@ -141,13 +141,13 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
 
     // media button
     mediaButton = new MediaButton(this);
-    connect(mediaButton, &MediaButton::aboutToShow, this, [=]() {
+    connect(mediaButton, &MediaButton::aboutToShow, this, [this]() {
         slotFocusOnMe();
     });
-    connect(mediaButton, &MediaButton::openUrl, [=](const QUrl &_t1) {
+    connect(mediaButton, &MediaButton::openUrl, this, [this](const QUrl &_t1) {
         func->openUrl(_t1);
     });
-    connect(mediaButton, &MediaButton::newTab, this, [=](const QUrl &url) {
+    connect(mediaButton, &MediaButton::newTab, this, [this](const QUrl &url) {
         duplicateTab(url);
     });
     ADD_WIDGET(mediaButton);
@@ -174,7 +174,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
 
     // ... create the history button
     historyButton = new DirHistoryButton(func->history, this);
-    connect(historyButton, &DirHistoryButton::aboutToShow, this, [=]() {
+    connect(historyButton, &DirHistoryButton::aboutToShow, this, [this]() {
         slotFocusOnMe();
     });
     connect(historyButton, &DirHistoryButton::gotoPos, func, &ListPanelFunc::historyGotoPos);
@@ -182,7 +182,7 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
 
     // bookmarks button
     bookmarksButton = new KrBookmarkButton(this);
-    connect(bookmarksButton, &KrBookmarkButton::aboutToShow, this, [=]() {
+    connect(bookmarksButton, &KrBookmarkButton::aboutToShow, this, [this]() {
         slotFocusOnMe();
     });
     connect(bookmarksButton, &KrBookmarkButton::openUrl, this, [this](const QUrl &_t1) {
@@ -204,12 +204,12 @@ ListPanel::ListPanel(QWidget *parent, AbstractPanelManager *manager, const KConf
     urlNavigator->editor()->installEventFilter(this);
     urlNavigator->setUrlEditable(isNavigatorEditModeSet());
     urlNavigator->setShowFullPath(group.readEntry("Navigator Full Path", false));
-    connect(urlNavigator, &KUrlNavigator::returnPressed, this, [=]() {
+    connect(urlNavigator, &KUrlNavigator::returnPressed, this, [this]() {
         slotFocusOnMe();
     });
     connect(urlNavigator, &KUrlNavigator::urlChanged, this, &ListPanel::slotNavigatorUrlChanged);
     connect(urlNavigator->editor()->lineEdit(), &QLineEdit::editingFinished, this, &ListPanel::resetNavigatorMode);
-    connect(urlNavigator, &KUrlNavigator::tabRequested, this, [=](const QUrl &url) {
+    connect(urlNavigator, &KUrlNavigator::tabRequested, this, [this](const QUrl &url) {
         ListPanel::duplicateTab(url);
     });
     connect(urlNavigator, &KUrlNavigator::urlsDropped, this, QOverload<const QUrl &, QDropEvent *>::of(&ListPanel::handleDrop));
@@ -469,7 +469,7 @@ void ListPanel::createView()
     connect(view->op(), &KrViewOperator::renameItem, func, QOverload<const QString &, const QString &>::of(&ListPanelFunc::rename));
     connect(view->op(), &KrViewOperator::executed, func, &ListPanelFunc::execute);
     connect(view->op(), &KrViewOperator::goInside, func, &ListPanelFunc::goInside);
-    connect(view->op(), &KrViewOperator::needFocus, this, [=]() {
+    connect(view->op(), &KrViewOperator::needFocus, this, [this]() {
         slotFocusOnMe();
     });
     connect(view->op(), &KrViewOperator::selectionChanged, this, &ListPanel::slotUpdateTotals);
@@ -1400,14 +1400,14 @@ void ListPanel::setSidebarPosition(int pos)
 
 void ListPanel::connectQuickSizeCalculator(SizeCalculator *sizeCalculator)
 {
-    connect(sizeCalculator, &SizeCalculator::started, this, [=]() {
+    connect(sizeCalculator, &SizeCalculator::started, this, [this]() {
         quickSizeCalcProgress->reset();
         quickSizeCalcProgress->show();
         cancelQuickSizeCalcButton->show();
     });
     connect(cancelQuickSizeCalcButton, &QToolButton::clicked, sizeCalculator, &SizeCalculator::cancel);
     connect(sizeCalculator, &SizeCalculator::progressChanged, quickSizeCalcProgress, &QProgressBar::setValue);
-    connect(sizeCalculator, &SizeCalculator::finished, this, [=]() {
+    connect(sizeCalculator, &SizeCalculator::finished, this, [this]() {
         cancelQuickSizeCalcButton->hide();
         quickSizeCalcProgress->hide();
     });

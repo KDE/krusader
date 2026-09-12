@@ -69,7 +69,7 @@ PanelTabBar::PanelTabBar(QWidget *parent, TabActions *actions)
     _dragTimer = new QTimer(this);
     _dragTimer->setSingleShot(true);
     _dragTimer->setInterval(sDragEnterDelay);
-    connect(_dragTimer, &QTimer::timeout, this, [=]() {
+    connect(_dragTimer, &QTimer::timeout, this, [this]() {
         if (_dragTabIndex != -1 && _dragTabIndex != currentIndex()) {
             setCurrentIndex(_dragTabIndex);
         }

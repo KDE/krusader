@@ -69,14 +69,14 @@ KrViewer::KrViewer(QWidget *parent)
 
     connect(&manager, &KParts::PartManager::activePartChanged, this, &KrViewer::createGUI);
     connect(&tabWidget, &QTabWidget::currentChanged, this, &KrViewer::tabChanged);
-    connect(&tabWidget, &QTabWidget::tabCloseRequested, this, [=](int index) {
+    connect(&tabWidget, &QTabWidget::tabCloseRequested, this, [this](int index) {
         tabCloseRequest(index, false);
     });
 
     tabWidget.setDocumentMode(true);
     tabWidget.setMovable(true);
     if (ViewerTabBar *tabBar = tabWidget.tabBar())
-        connect(tabBar, &ViewerTabBar::closeTabSignal, this, [=](int index) {
+        connect(tabBar, &ViewerTabBar::closeTabSignal, this, [this](int index) {
             tabCloseRequest(index, false);
         });
     setCentralWidget(&tabWidget);

@@ -259,7 +259,7 @@ void PanelViewer::openFile(KFileItem fi)
             qDebug() << "openFile canceled: '" << fi.url() << "'";
         });
 
-        auto cPartCompleted = [=]() {
+        auto cPartCompleted = [this, fi]() {
             connect(cpart.data(), &KParts::ReadOnlyPart::destroyed, this, &PanelViewer::slotCPartDestroyed);
             emit openUrlFinished(this, true);
             qDebug() << "openFile completed: '" << fi.url() << "'";
