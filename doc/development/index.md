@@ -8,7 +8,7 @@ This reference will help you to get started with Krusader development.
 * [Project homepage](https://krusader.org/)
 * [Release downloads](https://download.kde.org/stable/krusader/)
 * [User mailing-list](https://groups.google.com/group/krusader-users) — for user questions, tracked by maintainers, answered by users and maintainers
-* [System & Utilities forum on kde.org](https://forum.kde.org/viewforum.php?f=225) — user questions rarely appear here, answered by forum community
+* [Get in touch](https://krusader.org/get-involved/mailing-lists/index.html) — for other questions and information
 * [Bugzilla](https://bugs.kde.org/buglist.cgi?product=krusader) — all bugs and wishes are tracked here
 * [Krusader extensions](https://store.kde.org/browse/cat/370/ord/top/) — user-contributed styles and user actions
 * [Krusader app page on kde.org](https://apps.kde.org/krusader)
