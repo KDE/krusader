@@ -32,7 +32,7 @@ ListPanelActions::ListPanelActions(QObject *parent, KrMainWindow *mainWindow)
         KrViewInstance *inst = views[i];
         QAction *action = new QAction(Icon(inst->iconName()), inst->description(), group);
         action->setCheckable(true);
-        connect(action, &QAction::triggered, this, [=] {
+        connect(action, &QAction::triggered, this, [this, inst] {
             setView(inst->id());
         });
         _mainWindow->actions()->addAction("view" + QString::number(i), action);

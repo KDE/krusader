@@ -236,13 +236,13 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     // cut/copy/paste
     QAction *cutAction = new QAction(Icon(QStringLiteral("edit-cut")), i18nc("@action:inmenu", "Cut"), this);
     cutAction->setEnabled(capabilities.supportsMoving());
-    connect(cutAction, &QAction::triggered, this, [=]() {
+    connect(cutAction, &QAction::triggered, this, [this, fileItem]() {
         copyToClipBoard(fileItem, true);
     });
     popup->addAction(cutAction);
 
     QAction *copyAction = new QAction(Icon(QStringLiteral("edit-copy")), i18nc("@action:inmenu", "Copy"), this);
-    connect(copyAction, &QAction::triggered, this, [=]() {
+    connect(copyAction, &QAction::triggered, this, [this, fileItem]() {
         copyToClipBoard(fileItem, false);
     });
     popup->addAction(copyAction);
@@ -251,7 +251,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     bool canPaste;
     const QString text = KIO::pasteActionText(mimeData, &canPaste, fileItem);
     QAction *pasteAction = new QAction(Icon(QStringLiteral("edit-paste")), text, this);
-    connect(pasteAction, &QAction::triggered, this, [=]() {
+    connect(pasteAction, &QAction::triggered, this, [this, fileItem]() {
         KIO::PasteJob *job = KIO::paste(QApplication::clipboard()->mimeData(), fileItem.url());
         KJobWidgets::setWindow(job, this);
     });
@@ -267,7 +267,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
         QAction *moveToTrashAction = new QAction(Icon(QStringLiteral("user-trash")), i18nc("@action:inmenu", "Move to Trash"), this);
         const bool enableMoveToTrash = capabilities.isLocal() && capabilities.supportsMoving();
         moveToTrashAction->setEnabled(enableMoveToTrash);
-        connect(moveToTrashAction, &QAction::triggered, this, [=]() {
+        connect(moveToTrashAction, &QAction::triggered, this, [this, fileItem]() {
             deleteFile(fileItem, true);
         });
         popup->addAction(moveToTrashAction);
@@ -276,7 +276,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     // delete
     QAction *deleteAction = new QAction(Icon(QStringLiteral("edit-delete")), i18nc("@action:inmenu", "Delete"), this);
     deleteAction->setEnabled(capabilities.supportsDeleting());
-    connect(deleteAction, &QAction::triggered, this, [=]() {
+    connect(deleteAction, &QAction::triggered, this, [this, fileItem]() {
         deleteFile(fileItem, false);
     });
     popup->addAction(deleteAction);
@@ -287,7 +287,7 @@ void KrFileTreeView::slotCustomContextMenuRequested(const QPoint &point)
     if (!fileItem.isNull()) {
         QAction *propertiesAction = new QAction(i18nc("@action:inmenu", "Properties"), this);
         propertiesAction->setIcon(Icon(QStringLiteral("document-properties")));
-        connect(propertiesAction, &QAction::triggered, this, [=]() {
+        connect(propertiesAction, &QAction::triggered, this, [this, fileItem]() {
             KPropertiesDialog *dialog = new KPropertiesDialog(fileItem.url(), this);
             dialog->setAttribute(Qt::WA_DeleteOnClose);
             dialog->show();

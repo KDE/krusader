@@ -60,7 +60,7 @@ PanelManager::PanelManager(QWidget *parent, KrMainWindow *mainWindow, bool left)
     connect(_tabbar, &PanelTabBar::tabCloseRequested, this, QOverload<int>::of(&PanelManager::slotCloseTab));
     connect(_tabbar, &PanelTabBar::closeCurrentTab, this, QOverload<>::of(&PanelManager::slotCloseTab));
     connect(_tabbar, &PanelTabBar::duplicateCurrentTab, this, &PanelManager::slotDuplicateTabLMB, Qt::QueuedConnection);
-    connect(_tabbar, &PanelTabBar::newTab, this, [=](const QUrl &url) {
+    connect(_tabbar, &PanelTabBar::newTab, this, [this](const QUrl &url) {
         slotNewTab(url);
     });
     connect(_tabbar, &PanelTabBar::draggingTab, this, &PanelManager::slotDraggingTab);
@@ -147,10 +147,10 @@ ListPanel *PanelManager::createPanel(const KConfigGroup &cfg)
 void PanelManager::connectPanel(ListPanel *p)
 {
     connect(p, &ListPanel::activate, this, &PanelManager::activate);
-    connect(p, &ListPanel::pathChanged, this, [=]() {
+    connect(p, &ListPanel::pathChanged, this, [this, p]() {
         emit pathChanged(p);
     });
-    connect(p, &ListPanel::pathChanged, this, [=]() {
+    connect(p, &ListPanel::pathChanged, this, [this, p]() {
         _tabbar->updateTab(p);
     });
 }

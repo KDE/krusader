@@ -42,7 +42,7 @@ void DiskUsageViewer::openUrl(QUrl url)
     if (diskUsage == nullptr) {
         diskUsage = new DiskUsage("DiskUsageViewer", this);
 
-        connect(diskUsage, &DiskUsage::enteringDirectory, this, [=]() {
+        connect(diskUsage, &DiskUsage::enteringDirectory, this, [this]() {
             slotUpdateStatus();
         });
         connect(diskUsage, &DiskUsage::status, this, &DiskUsageViewer::slotUpdateStatus);
