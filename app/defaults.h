@@ -231,7 +231,7 @@
 /////////////////////// [Search]
 // Saved Searches /////
 // holds an index of saved searches
-// Confirm Feed to Listbox ///// (costum-name on feed ti listbox)
+// Confirm Feed to Listbox ///// Whether to ask for a custom name when feeding items to the listbox
 #define _ConfirmFeedToListbox true
 
 /////////// here are additional variables used internally by Krusader ////////////
