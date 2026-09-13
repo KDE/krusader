@@ -255,7 +255,7 @@ void PanelViewer::openFile(KFileItem fi)
         args.setReload(true);
         cpart->setArguments(args);
 
-        connect(cpart.data(), &KParts::ReadOnlyPart::canceled, this, [=]() {
+        connect(cpart.data(), &KParts::ReadOnlyPart::canceled, this, [fi]() {
             qDebug() << "openFile canceled: '" << fi.url() << "'";
         });
 
