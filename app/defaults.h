@@ -172,7 +172,7 @@ constexpr bool userActionsUseFixedFont = false;
 /////////////////////// [Search]
 // Saved Searches /////
 // holds an index of saved searches
-// Confirm Feed to Listbox ///// (costum-name on feed ti listbox)
+// Confirm Feed to Listbox ///// Whether to ask for a custom name when feeding items to the listbox
 constexpr bool confirmFeedToListbox = true;
 
 /////////// here are additional variables used internally by Krusader ////////////
