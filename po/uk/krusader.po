@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-07 00:50+0000\n"
+"POT-Creation-Date: 2026-09-17 00:48+0000\n"
 "PO-Revision-Date: 2026-09-07 14:10+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -898,7 +898,7 @@ msgstr "Введіть текст для пошуку…"
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:322
+#: app/Konfigurator/kggeneral.cpp:323
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -1556,7 +1556,7 @@ msgid "Previous"
 msgstr "Попередн."
 
 #: app/DiskUsage/diskusage.cpp:811 app/GUI/kfnkeys.cpp:25
-#: app/Konfigurator/kgpanel.cpp:414
+#: app/Konfigurator/kgpanel.cpp:421
 #, kde-format
 msgid "View"
 msgstr "Перегляд"
@@ -2722,8 +2722,8 @@ msgstr "Створити посилання до %1"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:49
 #: app/Konfigurator/kgdependencies.cpp:41 app/Konfigurator/kggeneral.cpp:208
-#: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:63
-#: app/Konfigurator/kgpanel.cpp:419 app/Konfigurator/kgpanel.cpp:664
+#: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:70
+#: app/Konfigurator/kgpanel.cpp:426 app/Konfigurator/kgpanel.cpp:682
 #: app/Konfigurator/kgstartup.cpp:31 app/Konfigurator/konfigurator.cpp:122
 #, kde-format
 msgid "General"
@@ -2869,22 +2869,22 @@ msgstr "Навігація архівами як теками"
 msgid "Krusader will browse archives as folders."
 msgstr "Krusader виконуватиме навігацію архівами як теками."
 
-#: app/Konfigurator/kgarchives.cpp:83
+#: app/Konfigurator/kgarchives.cpp:86
 #, kde-format
 msgid "Test archive after packing"
 msgstr "Перевіряти архів після пакування"
 
-#: app/Konfigurator/kgarchives.cpp:83
+#: app/Konfigurator/kgarchives.cpp:88
 #, kde-format
 msgid "Check the archive's integrity after packing it."
 msgstr "Якщо ввімкнено, Krusader буде перевіряти архів після пакування."
 
-#: app/Konfigurator/kgarchives.cpp:87
+#: app/Konfigurator/kgarchives.cpp:92
 #, kde-format
 msgid "Test archive before unpacking"
 msgstr "Перевіряти архів перед розпакуванням"
 
-#: app/Konfigurator/kgarchives.cpp:89
+#: app/Konfigurator/kgarchives.cpp:94
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
@@ -2892,18 +2892,18 @@ msgstr ""
 "Деякі пошкоджені архіви можуть спричиняти крах, отже, рекомендується робити "
 "перевірку."
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
+#: app/Konfigurator/kgarchives.cpp:111 app/Konfigurator/kggeneral.cpp:308
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
 msgstr "Результати пошуку"
 
-#: app/Konfigurator/kgarchives.cpp:107
+#: app/Konfigurator/kgarchives.cpp:112
 #, kde-format
 msgid "Searching for packers..."
 msgstr "Пошук пакувальників…"
 
-#: app/Konfigurator/kgarchives.cpp:109
+#: app/Konfigurator/kgarchives.cpp:114
 #, kde-format
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3228,7 +3228,7 @@ msgstr "Смужка стану, текст активних:"
 msgid "Statusbar, inactive background:"
 msgstr "Смужка стану, тло неактивних:"
 
-#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
+#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:826
 #: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
@@ -3541,47 +3541,47 @@ msgstr ""
 msgid "Temp Folder:"
 msgstr "Нова тека:"
 
-#: app/Konfigurator/kggeneral.cpp:248
+#: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
 msgid "Note: you must have full permissions for the temporary folder."
 msgstr "Зауваження: Ви мусите мати повні права доступу до тимчасової теки."
 
-#: app/Konfigurator/kggeneral.cpp:255
+#: app/Konfigurator/kggeneral.cpp:256
 #, kde-format
 msgid "Delete mode"
 msgstr "Режим вилучення"
 
-#: app/Konfigurator/kggeneral.cpp:260
+#: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
 msgid "Move to trash"
 msgstr "Пересунути у смітник"
 
-#: app/Konfigurator/kggeneral.cpp:260
+#: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
 msgid "Files will be moved to trash when deleted."
 msgstr "Файли буде переміщено у смітник, а потім вилучено."
 
-#: app/Konfigurator/kggeneral.cpp:261
+#: app/Konfigurator/kggeneral.cpp:262
 #, kde-format
 msgid "Delete files"
 msgstr "Вилучити файли"
 
-#: app/Konfigurator/kggeneral.cpp:261
+#: app/Konfigurator/kggeneral.cpp:262
 #, kde-format
 msgid "Files will be permanently deleted."
 msgstr "Файли буде вилучено назавжди."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:157
+#: app/Konfigurator/kggeneral.cpp:271 app/Panel/panelcontextmenu.cpp:157
 #, kde-format
 msgid "Terminal"
 msgstr "Термінал"
 
-#: app/Konfigurator/kggeneral.cpp:278
+#: app/Konfigurator/kggeneral.cpp:279
 #, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Вбудований термінала надсилає Chdir після зміни на панелі"
 
-#: app/Konfigurator/kggeneral.cpp:280
+#: app/Konfigurator/kggeneral.cpp:281
 #, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
@@ -3590,13 +3590,13 @@ msgstr ""
 "Якщо позначено, під час зміни панелі (наприклад коли натиснуто Tab), "
 "Krusader змінить поточну теку у вбудованому терміналі."
 
-#: app/Konfigurator/kggeneral.cpp:284
+#: app/Konfigurator/kggeneral.cpp:285
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
 "Активна панель синхронізується із робочим каталогом вбудованого термінала"
 
-#: app/Konfigurator/kggeneral.cpp:286
+#: app/Konfigurator/kggeneral.cpp:287
 #, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
@@ -3607,12 +3607,12 @@ msgstr ""
 "допомогою команди «cd» або «popd»), Krusader змінить поточну теку на "
 "активній панелі."
 
-#: app/Konfigurator/kggeneral.cpp:308
+#: app/Konfigurator/kggeneral.cpp:309
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Пошук інструментів…"
 
-#: app/Konfigurator/kggeneral.cpp:310
+#: app/Konfigurator/kggeneral.cpp:311
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3620,17 +3620,17 @@ msgstr ""
 "Переконайтеся, що встановили нові інструменти до вашої теки <code>$PATH</"
 "code> (наприклад /usr/bin)"
 
-#: app/Konfigurator/kggeneral.cpp:318
+#: app/Konfigurator/kggeneral.cpp:319
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "Додати новий елементарний суфікс"
 
-#: app/Konfigurator/kggeneral.cpp:318
+#: app/Konfigurator/kggeneral.cpp:319
 #, kde-format
 msgid "Extension:"
 msgstr "Суфікс:"
 
-#: app/Konfigurator/kggeneral.cpp:322
+#: app/Konfigurator/kggeneral.cpp:323
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -3639,55 +3639,55 @@ msgstr ""
 "Елементарні суфікси мають починатися з «.» та мають містити хоча б один "
 "додатковий символ «.»."
 
-#: app/Konfigurator/kgpanel.cpp:72
+#: app/Konfigurator/kgpanel.cpp:79
 #, kde-format
 msgid "Navigator bar"
 msgstr "Смужка навігації"
 
-#: app/Konfigurator/kgpanel.cpp:77
+#: app/Konfigurator/kgpanel.cpp:84
 #, kde-format
 msgid "Edit Mode by default"
 msgstr "Типовий режим редагування"
 
-#: app/Konfigurator/kgpanel.cpp:77
+#: app/Konfigurator/kgpanel.cpp:84
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
 msgstr ""
 "Типово показувати рядок адреси на смужці навігації у режимі редагування."
 
-#: app/Konfigurator/kgpanel.cpp:78
+#: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Show full path by default"
 msgstr "Типово показувати шлях повністю"
 
-#: app/Konfigurator/kgpanel.cpp:78
+#: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
 msgstr "Завжди показувати шлях на смужці навігації повністю."
 
-#: app/Konfigurator/kgpanel.cpp:88
+#: app/Konfigurator/kgpanel.cpp:95
 #, kde-format
 msgid "Operation"
 msgstr "Дія"
 
-#: app/Konfigurator/kgpanel.cpp:96
+#: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
 msgid "Autoselect folders"
 msgstr "Автоматичне позначення тек"
 
-#: app/Konfigurator/kgpanel.cpp:98
+#: app/Konfigurator/kgpanel.cpp:105
 #, kde-format
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
 "folders."
 msgstr "Якщо теки відповідають критеріям позначення, їх також буде позначено."
 
-#: app/Konfigurator/kgpanel.cpp:102
+#: app/Konfigurator/kgpanel.cpp:109
 #, kde-format
 msgid "Rename selects extension"
 msgstr "Перейменування обирає суфікс"
 
-#: app/Konfigurator/kgpanel.cpp:104
+#: app/Konfigurator/kgpanel.cpp:111
 #, kde-format
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
@@ -3698,12 +3698,12 @@ msgstr ""
 "бажаєте перейменування у стилі Total Commander, тільки назви без суфікса, не "
 "позначайте цього пункту."
 
-#: app/Konfigurator/kgpanel.cpp:109
+#: app/Konfigurator/kgpanel.cpp:116
 #, kde-format
 msgid "Unselect files before copy/move"
 msgstr "Зняти позначення файлів до копіювання/пересування"
 
-#: app/Konfigurator/kgpanel.cpp:111
+#: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
 msgid ""
 "Unselect files, which are to be copied/moved, before the operation starts."
@@ -3711,12 +3711,12 @@ msgstr ""
 "Зняти позначення з файлів, які буде скопійовано або пересунуто до виконання "
 "дії."
 
-#: app/Konfigurator/kgpanel.cpp:115
+#: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Filter dialog remembers settings"
 msgstr "Вікно фільтрування запам’ятовує параметри"
 
-#: app/Konfigurator/kgpanel.cpp:117
+#: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid ""
 "The filter dialog is opened with the last filter settings that where applied "
@@ -3725,17 +3725,17 @@ msgstr ""
 "Діалогове вікно фільтрування відкривається з останніми параметрами "
 "фільтрування, які було застосовано до панелі."
 
-#: app/Konfigurator/kgpanel.cpp:127
+#: app/Konfigurator/kgpanel.cpp:134
 #, kde-format
 msgid "Tabs"
 msgstr "Вкладки"
 
-#: app/Konfigurator/kgpanel.cpp:135
+#: app/Konfigurator/kgpanel.cpp:142
 #, kde-format
 msgid "Use full path tab names"
 msgstr "Використовувати у вкладках назви з повним шляхом"
 
-#: app/Konfigurator/kgpanel.cpp:137
+#: app/Konfigurator/kgpanel.cpp:144
 #, kde-format
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
@@ -3744,72 +3744,72 @@ msgstr ""
 "Показувати повний шлях вкладок тек. Типово буде показано тільки кінцеву "
 "частину шляху."
 
-#: app/Konfigurator/kgpanel.cpp:138
+#: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Show close tab buttons"
 msgstr "Показувати кнопки закриття вкладок"
 
-#: app/Konfigurator/kgpanel.cpp:138
+#: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Show close tab buttons."
 msgstr "Показувати кнопки закриття вкладок."
 
-#: app/Konfigurator/kgpanel.cpp:139
+#: app/Konfigurator/kgpanel.cpp:146
 #, kde-format
 msgid "Expanding tabs"
 msgstr "Розширювані вкладки"
 
-#: app/Konfigurator/kgpanel.cpp:139
+#: app/Konfigurator/kgpanel.cpp:146
 #, kde-format
 msgid "Expanding tabs."
 msgstr "Розширювані вкладки."
 
-#: app/Konfigurator/kgpanel.cpp:140
+#: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "Show new tab button"
 msgstr "Показувати кнопку «Нова вкладка»"
 
-#: app/Konfigurator/kgpanel.cpp:140
+#: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "Show new tab button."
 msgstr "Показувати кнопку «Нова вкладка»."
 
-#: app/Konfigurator/kgpanel.cpp:141
+#: app/Konfigurator/kgpanel.cpp:148
 #, kde-format
 msgid "Insert tabs after current"
 msgstr "Вставляти вкладки після поточної"
 
-#: app/Konfigurator/kgpanel.cpp:141
+#: app/Konfigurator/kgpanel.cpp:148
 #, kde-format
 msgid "Insert new tabs to the right of the current one."
 msgstr "Вставляти нові вкладки праворуч від поточної."
 
-#: app/Konfigurator/kgpanel.cpp:142
+#: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
 msgid "Show Tab Bar on single tab"
 msgstr "Показувати смужку вкладок і з одною вкладкою"
 
-#: app/Konfigurator/kgpanel.cpp:142
+#: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
 msgid "Show the tab bar with only one tab."
 msgstr "Показувати смужку вкладок навіть із однієї вкладкою."
 
-#: app/Konfigurator/kgpanel.cpp:143
+#: app/Konfigurator/kgpanel.cpp:150
 #, kde-format
 msgid "Close tab by double click"
 msgstr "Закривати вкладку подвійним клацанням"
 
-#: app/Konfigurator/kgpanel.cpp:143
+#: app/Konfigurator/kgpanel.cpp:150
 #, kde-format
 msgid "Close tab by double click."
 msgstr "Закривати вкладку подвійним клацанням."
 
-#: app/Konfigurator/kgpanel.cpp:147
+#: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
 msgid "New tab button duplicates a tab"
 msgstr "Кнопка нової вкладки дублює вкладку"
 
-#: app/Konfigurator/kgpanel.cpp:149
+#: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
 msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
@@ -3818,79 +3818,79 @@ msgstr ""
 "Якщо позначено, кнопка нової вкладки дублюватиме вкладку. Якщо не позначено, "
 "відкриватиме вкладку у домашньому каталозі."
 
-#: app/Konfigurator/kgpanel.cpp:156
+#: app/Konfigurator/kgpanel.cpp:163
 #, kde-format
 msgid "Duplicate active tab by click:"
 msgstr "Дублювання активної вкладки клацанням:"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Disabled"
 msgstr "Вимкнено"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Alt+Click"
 msgstr "Alt+клацання"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Ctrl+Click"
 msgstr "Ctrl+клацання"
 
-#: app/Konfigurator/kgpanel.cpp:170
+#: app/Konfigurator/kgpanel.cpp:177
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
 msgstr "Дублювати активну вкладку клацанням Ctrl/Alt+ліва кнопка миші"
 
-#: app/Konfigurator/kgpanel.cpp:180
+#: app/Konfigurator/kgpanel.cpp:187
 #, kde-format
 msgid "Tab Bar position:"
 msgstr "Розташування вкладок:"
 
-#: app/Konfigurator/kgpanel.cpp:183
+#: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
 msgid "Top"
 msgstr "Вгорі"
 
-#: app/Konfigurator/kgpanel.cpp:183
+#: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
 msgid "Bottom"
 msgstr "Внизу"
 
-#: app/Konfigurator/kgpanel.cpp:195
+#: app/Konfigurator/kgpanel.cpp:202
 #, kde-format
 msgid "Search bar"
 msgstr "Панель пошуку"
 
-#: app/Konfigurator/kgpanel.cpp:203
+#: app/Konfigurator/kgpanel.cpp:210
 #, kde-format
 msgid "Start by typing"
 msgstr "Розпочинати після введення"
 
-#: app/Konfigurator/kgpanel.cpp:205
+#: app/Konfigurator/kgpanel.cpp:212
 #, kde-format
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 "Відкривати панель пошуку і розпочинати пошук, щойно буде введено якісь "
 "символи на панелі."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:213 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "З врахуванням регістру"
 
-#: app/Konfigurator/kgpanel.cpp:206
+#: app/Konfigurator/kgpanel.cpp:213
 #, kde-format
 msgid "Search must match case."
 msgstr "Шукати із врахуванням регістру символів."
 
-#: app/Konfigurator/kgpanel.cpp:210
+#: app/Konfigurator/kgpanel.cpp:217
 #, kde-format
 msgid "Up/Down cancels search"
 msgstr "Стрілки вгору/вниз скасовують пошук"
 
-#: app/Konfigurator/kgpanel.cpp:212
+#: app/Konfigurator/kgpanel.cpp:219
 #, kde-format
 msgid ""
 "Pressing the Up/Down buttons closes the search bar (only in search mode)."
@@ -3898,12 +3898,12 @@ msgstr ""
 "Натискання кнопок зі стрілками вгору/вниз закриває панель пошуку (лише у "
 "режимі пошуку)."
 
-#: app/Konfigurator/kgpanel.cpp:216
+#: app/Konfigurator/kgpanel.cpp:223
 #, kde-format
 msgid "Folder navigation with Right Arrow"
 msgstr "Навігація теками за стрілкою праворуч"
 
-#: app/Konfigurator/kgpanel.cpp:218
+#: app/Konfigurator/kgpanel.cpp:225
 #, kde-format
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
@@ -3912,58 +3912,58 @@ msgstr ""
 "Натискання клавіші зі стрілкою праворуч відкриває теку, якщо не буде "
 "виявлено спроби редагувати критерій пошуку."
 
-#: app/Konfigurator/kgpanel.cpp:227
+#: app/Konfigurator/kgpanel.cpp:234
 #, kde-format
 msgid "Position:"
 msgstr "Розташування:"
 
-#: app/Konfigurator/kgpanel.cpp:237
+#: app/Konfigurator/kgpanel.cpp:244
 #, kde-format
 msgid "Default mode:"
 msgstr "Типовий режим:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:246 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
 msgstr "Пошук"
 
-#: app/Konfigurator/kgpanel.cpp:240 app/Panel/krsearchbar.cpp:42
+#: app/Konfigurator/kgpanel.cpp:247 app/Panel/krsearchbar.cpp:42
 #, kde-format
 msgid "Select"
 msgstr "Позначення"
 
-#: app/Konfigurator/kgpanel.cpp:241 app/Panel/krsearchbar.cpp:42
+#: app/Konfigurator/kgpanel.cpp:248 app/Panel/krsearchbar.cpp:42
 #, kde-format
 msgid "Filter"
 msgstr "Фільтрування"
 
-#: app/Konfigurator/kgpanel.cpp:251
+#: app/Konfigurator/kgpanel.cpp:258
 #, kde-format
 msgid "Set the default mode on first usage"
 msgstr "Встановити типовий режим при першому використанні"
 
-#: app/Konfigurator/kgpanel.cpp:262
+#: app/Konfigurator/kgpanel.cpp:269
 #, kde-format
 msgid "Bookmark Search"
 msgstr "Пошук у закладках"
 
-#: app/Konfigurator/kgpanel.cpp:266
+#: app/Konfigurator/kgpanel.cpp:273
 #, kde-format
 msgid "Always show search bar"
 msgstr "Завжди показувати смужку пошуку"
 
-#: app/Konfigurator/kgpanel.cpp:266
+#: app/Konfigurator/kgpanel.cpp:273
 #, kde-format
 msgid "Make bookmark search bar always visible"
 msgstr "Показувати смужку пошуку у закладках завжди."
 
-#: app/Konfigurator/kgpanel.cpp:270
+#: app/Konfigurator/kgpanel.cpp:277
 #, kde-format
 msgid "Search in special items"
 msgstr "Шукати у спеціальних записах"
 
-#: app/Konfigurator/kgpanel.cpp:272
+#: app/Konfigurator/kgpanel.cpp:279
 #, kde-format
 msgid ""
 "Bookmark search is also applied to special items in bookmark menu like "
@@ -3972,148 +3972,148 @@ msgstr ""
 "Пошук у закладках буде стосуватися спеціальних пунктів у меню закладок, "
 "зокрема пунктів «Смітник», «Популярні адреси», «Повернутися назад» тощо."
 
-#: app/Konfigurator/kgpanel.cpp:281
+#: app/Konfigurator/kgpanel.cpp:288
 #, kde-format
 msgid "Status/Totalsbar"
 msgstr "Смужка стану/резюме"
 
-#: app/Konfigurator/kgpanel.cpp:285
+#: app/Konfigurator/kgpanel.cpp:292
 #, kde-format
 msgid "Show size in bytes too"
 msgstr "Показувати розмір у байтах"
 
-#: app/Konfigurator/kgpanel.cpp:286
+#: app/Konfigurator/kgpanel.cpp:293
 #, kde-format
 msgid "Show space information"
 msgstr "Показувати дані щодо об’єму"
 
-#: app/Konfigurator/kgpanel.cpp:286
+#: app/Konfigurator/kgpanel.cpp:293
 #, kde-format
 msgid "Show free/total space on the device"
 msgstr "Показувати дані щодо вільного місця та загального об’єму на пристрої"
 
-#: app/Konfigurator/kgpanel.cpp:304
+#: app/Konfigurator/kgpanel.cpp:311
 #, kde-format
 msgid "Layout"
 msgstr "Компонування"
 
-#: app/Konfigurator/kgpanel.cpp:313
+#: app/Konfigurator/kgpanel.cpp:320
 #, kde-format
 msgid "Layout:"
 msgstr "Компонування:"
 
-#: app/Konfigurator/kgpanel.cpp:325
+#: app/Konfigurator/kgpanel.cpp:332
 #, kde-format
 msgid "Frame Color:"
 msgstr "Колір рамки:"
 
-#: app/Konfigurator/kgpanel.cpp:328
+#: app/Konfigurator/kgpanel.cpp:335
 #, kde-format
 msgctxt "Frame color"
 msgid "Defined by Layout"
 msgstr "Визначається компонуванням"
 
-#: app/Konfigurator/kgpanel.cpp:329
+#: app/Konfigurator/kgpanel.cpp:336
 #, kde-format
 msgctxt "Frame color"
 msgid "None"
 msgstr "Немає"
 
-#: app/Konfigurator/kgpanel.cpp:330
+#: app/Konfigurator/kgpanel.cpp:337
 #, kde-format
 msgctxt "Frame color"
 msgid "Statusbar"
 msgstr "Смужка стану"
 
-#: app/Konfigurator/kgpanel.cpp:334
+#: app/Konfigurator/kgpanel.cpp:341
 #, kde-format
 msgid "Frame Shape:"
 msgstr "Форма рамки:"
 
-#: app/Konfigurator/kgpanel.cpp:338
+#: app/Konfigurator/kgpanel.cpp:345
 #, kde-format
 msgctxt "Frame shape"
 msgid "Defined by Layout"
 msgstr "Визначається компонуванням"
 
-#: app/Konfigurator/kgpanel.cpp:339
+#: app/Konfigurator/kgpanel.cpp:346
 #, kde-format
 msgctxt "Frame shape"
 msgid "None"
 msgstr "Немає"
 
-#: app/Konfigurator/kgpanel.cpp:340
+#: app/Konfigurator/kgpanel.cpp:347
 #, kde-format
 msgctxt "Frame shape"
 msgid "Box"
 msgstr "Блок"
 
-#: app/Konfigurator/kgpanel.cpp:341
+#: app/Konfigurator/kgpanel.cpp:348
 #, kde-format
 msgctxt "Frame shape"
 msgid "Panel"
 msgstr "Панель"
 
-#: app/Konfigurator/kgpanel.cpp:346
+#: app/Konfigurator/kgpanel.cpp:353
 #, kde-format
 msgid "Frame Shadow:"
 msgstr "Тінь рамки:"
 
-#: app/Konfigurator/kgpanel.cpp:350
+#: app/Konfigurator/kgpanel.cpp:357
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
 msgstr "Визначається компонуванням"
 
-#: app/Konfigurator/kgpanel.cpp:351
+#: app/Konfigurator/kgpanel.cpp:358
 #, kde-format
 msgctxt "Frame shadow"
 msgid "None"
 msgstr "Немає"
 
-#: app/Konfigurator/kgpanel.cpp:352
+#: app/Konfigurator/kgpanel.cpp:359
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Raised"
 msgstr "Піднята"
 
-#: app/Konfigurator/kgpanel.cpp:353
+#: app/Konfigurator/kgpanel.cpp:360
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Sunken"
 msgstr "Опущена"
 
-#: app/Konfigurator/kgpanel.cpp:366
+#: app/Konfigurator/kgpanel.cpp:373
 #, kde-format
 msgid "Default icon size:"
 msgstr "Типовий розмір піктограм:"
 
-#: app/Konfigurator/kgpanel.cpp:395
+#: app/Konfigurator/kgpanel.cpp:402
 #, kde-format
 msgid "Use icons in the filenames"
 msgstr "Використовувати піктограми в назвах файлів"
 
-#: app/Konfigurator/kgpanel.cpp:395
+#: app/Konfigurator/kgpanel.cpp:402
 #, kde-format
 msgid "Show the icons for filenames and folders."
 msgstr "Показувати піктограми для назв файлів та тек."
 
-#: app/Konfigurator/kgpanel.cpp:396
+#: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews by default"
 msgstr "Типово показувати мініатюри"
 
-#: app/Konfigurator/kgpanel.cpp:396
+#: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews of files and folders."
 msgstr "Показувати мініатюри вмісту файлів та тек."
 
-#: app/Konfigurator/kgpanel.cpp:431
+#: app/Konfigurator/kgpanel.cpp:438
 #, kde-format
 msgid "View font:"
 msgstr "Шрифт панелі:"
 
-#: app/Konfigurator/kgpanel.cpp:441
+#: app/Konfigurator/kgpanel.cpp:449
 #, kde-format
 msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
@@ -4122,37 +4122,37 @@ msgstr ""
 "Проміжок часу, протягом якого буде показано панель підказки для запису "
 "файла, у мілісекундах. Встановіть від’ємне значення, щоб вимкнути підказки."
 
-#: app/Konfigurator/kgpanel.cpp:443
+#: app/Konfigurator/kgpanel.cpp:451
 #, kde-format
 msgid "Tooltip delay (msec):"
 msgstr "Затримка підказки (у мс):"
 
-#: app/Konfigurator/kgpanel.cpp:461
+#: app/Konfigurator/kgpanel.cpp:469
 #, kde-format
 msgid "Use human-readable file size"
 msgstr "Легкі для читання розміри файлів"
 
-#: app/Konfigurator/kgpanel.cpp:463
+#: app/Konfigurator/kgpanel.cpp:471
 #, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Розміри файлів показуються Б, КБ, МБ та ГБ, а не тільки в байтах."
 
-#: app/Konfigurator/kgpanel.cpp:464
+#: app/Konfigurator/kgpanel.cpp:472
 #, kde-format
 msgid "Show hidden files"
 msgstr "Показувати приховані файли"
 
-#: app/Konfigurator/kgpanel.cpp:464
+#: app/Konfigurator/kgpanel.cpp:472
 #, kde-format
 msgid "Display files beginning with a dot."
 msgstr "Показувати файли, що починаються з крапки."
 
-#: app/Konfigurator/kgpanel.cpp:468
+#: app/Konfigurator/kgpanel.cpp:476
 #, kde-format
 msgid "Numeric Permissions"
 msgstr "Числова форма дозволів"
 
-#: app/Konfigurator/kgpanel.cpp:470
+#: app/Konfigurator/kgpanel.cpp:478
 #, kde-format
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
@@ -4161,64 +4161,64 @@ msgstr ""
 "Показувати вісімкові цифри (0755) замість стандартної форми запису (rwxr-xr-"
 "x) у стовпці дозволів."
 
-#: app/Konfigurator/kgpanel.cpp:474
+#: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
 msgid "Load the user defined folder icons"
 msgstr "Завантажити вказані користувачем піктограми тек"
 
-#: app/Konfigurator/kgpanel.cpp:476
+#: app/Konfigurator/kgpanel.cpp:484
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
 "Завантажити вказані користувачем піктограми тек (може сповільнити роботу)."
 
-#: app/Konfigurator/kgpanel.cpp:480
+#: app/Konfigurator/kgpanel.cpp:488
 #, kde-format
 msgid "Always show current item"
 msgstr "Завжди показувати поточний запис"
 
-#: app/Konfigurator/kgpanel.cpp:482
+#: app/Konfigurator/kgpanel.cpp:490
 #, kde-format
 msgid "Show current item border decoration in inactive panel."
 msgstr "Показувати рамку поточного запису на неактивній панелі."
 
-#: app/Konfigurator/kgpanel.cpp:496
+#: app/Konfigurator/kgpanel.cpp:504
 #, kde-format
 msgid "Sort method:"
 msgstr "Метод впорядкування:"
 
-#: app/Konfigurator/kgpanel.cpp:499
+#: app/Konfigurator/kgpanel.cpp:508
 #, kde-format
 msgid "Alphabetical"
 msgstr "За абеткою"
 
-#: app/Konfigurator/kgpanel.cpp:500
+#: app/Konfigurator/kgpanel.cpp:509
 #, kde-format
 msgid "Alphabetical and numbers"
 msgstr "За абеткою і порядком чисел"
 
-#: app/Konfigurator/kgpanel.cpp:501
+#: app/Konfigurator/kgpanel.cpp:510
 #, kde-format
 msgid "Character code"
 msgstr "За кодом символів"
 
-#: app/Konfigurator/kgpanel.cpp:502
+#: app/Konfigurator/kgpanel.cpp:511
 #, kde-format
 msgid "Character code and numbers"
 msgstr "За кодом символів і порядком чисел"
 
-#: app/Konfigurator/kgpanel.cpp:503
+#: app/Konfigurator/kgpanel.cpp:512
 #, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
 msgstr "Krusader"
 
-#: app/Konfigurator/kgpanel.cpp:518
+#: app/Konfigurator/kgpanel.cpp:536
 #, kde-format
 msgid "Case sensitive sorting"
 msgstr "Впорядкування з урахуванням регістру"
 
-#: app/Konfigurator/kgpanel.cpp:520
+#: app/Konfigurator/kgpanel.cpp:538
 #, kde-format
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
@@ -4227,27 +4227,27 @@ msgstr ""
 "Всі файли, назви яких починаються з великої літери будуть показані перед "
 "файлами з малих літер (типово для UNIX)."
 
-#: app/Konfigurator/kgpanel.cpp:521
+#: app/Konfigurator/kgpanel.cpp:539
 #, kde-format
 msgid "Show folders first"
 msgstr "Показувати теки першими"
 
-#: app/Konfigurator/kgpanel.cpp:525
+#: app/Konfigurator/kgpanel.cpp:543
 #, kde-format
 msgid "Always sort dirs by name"
 msgstr "Завжди сортувати каталоги за назвою"
 
-#: app/Konfigurator/kgpanel.cpp:527
+#: app/Konfigurator/kgpanel.cpp:545
 #, kde-format
 msgid "Folders are sorted by name, regardless of the sort column."
 msgstr "Теки сортуватимуться за назвою, незалежно від стовпчика сортування."
 
-#: app/Konfigurator/kgpanel.cpp:531
+#: app/Konfigurator/kgpanel.cpp:549
 #, kde-format
 msgid "Locale aware sorting"
 msgstr "Впорядкування з врахуванням локалі"
 
-#: app/Konfigurator/kgpanel.cpp:533
+#: app/Konfigurator/kgpanel.cpp:551
 #, kde-format
 msgid ""
 "The sorting is performed in a locale- and also platform-dependent manner. "
@@ -4256,142 +4256,142 @@ msgstr ""
 "Впорядкування виконується з врахуванням локалі та особливостей платформи. "
 "Таке впорядкування може бути дуже повільним."
 
-#: app/Konfigurator/kgpanel.cpp:545
+#: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
 msgid "View modes"
 msgstr "Режими перегляду"
 
-#: app/Konfigurator/kgpanel.cpp:552
+#: app/Konfigurator/kgpanel.cpp:570
 #, kde-format
 msgid "Default view mode:"
 msgstr "Типовий режим перегляду:"
 
-#: app/Konfigurator/kgpanel.cpp:599
+#: app/Konfigurator/kgpanel.cpp:617
 #, kde-format
 msgid "Buttons"
 msgstr "Кнопки"
 
-#: app/Konfigurator/kgpanel.cpp:608
+#: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
 msgid "Toolbar buttons have icons"
 msgstr "Піктограми на кнопках панелі інструментів"
 
-#: app/Konfigurator/kgpanel.cpp:609
+#: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "Show Media Button"
 msgstr "Показувати кнопку носіїв"
 
-#: app/Konfigurator/kgpanel.cpp:609
+#: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "The media button will be visible."
 msgstr "Зробити видимою кнопку носіїв даних."
 
-#: app/Konfigurator/kgpanel.cpp:610
+#: app/Konfigurator/kgpanel.cpp:628
 #, kde-format
 msgid "Show Back Button"
 msgstr "Показувати кнопку «Назад»"
 
-#: app/Konfigurator/kgpanel.cpp:611
+#: app/Konfigurator/kgpanel.cpp:629
 #, kde-format
 msgid "Show Forward Button"
 msgstr "Показувати кнопку «Вперед»"
 
-#: app/Konfigurator/kgpanel.cpp:612
+#: app/Konfigurator/kgpanel.cpp:630
 #, kde-format
 msgid "Show History Button"
 msgstr "Показувати кнопку журналу"
 
-#: app/Konfigurator/kgpanel.cpp:612
+#: app/Konfigurator/kgpanel.cpp:630
 #, kde-format
 msgid "The history button will be visible."
 msgstr "Зробити видимою кнопку журналу тек."
 
-#: app/Konfigurator/kgpanel.cpp:613
+#: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "Show Bookmarks Button"
 msgstr "Показувати кнопку закладок"
 
-#: app/Konfigurator/kgpanel.cpp:613
+#: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "The bookmarks button will be visible."
 msgstr "Зробити видимою кнопку закладок."
 
-#: app/Konfigurator/kgpanel.cpp:614
+#: app/Konfigurator/kgpanel.cpp:632
 #, kde-format
 msgid "Show Panel Toolbar"
 msgstr "Показувати пенал панелі"
 
-#: app/Konfigurator/kgpanel.cpp:614
+#: app/Konfigurator/kgpanel.cpp:632
 #, kde-format
 msgid "The panel toolbar will be visible."
 msgstr "Панель інструментів буде видимою."
 
-#: app/Konfigurator/kgpanel.cpp:620
+#: app/Konfigurator/kgpanel.cpp:638
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
 msgstr "Видимі кнопки пенала панелі"
 
-#: app/Konfigurator/kgpanel.cpp:624
+#: app/Konfigurator/kgpanel.cpp:642
 #, kde-format
 msgid "Equal button (=)"
 msgstr "Кнопка дорівнює (=)"
 
-#: app/Konfigurator/kgpanel.cpp:624
+#: app/Konfigurator/kgpanel.cpp:642
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
 msgstr "Змінює теку на панелі на теку іншої панелі."
 
-#: app/Konfigurator/kgpanel.cpp:625
+#: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Up button (..)"
 msgstr "Кнопка вверх (..)"
 
-#: app/Konfigurator/kgpanel.cpp:625
+#: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Changes the panel folder to the parent folder."
 msgstr "Змінює теку на панелі на батьківську теку."
 
-#: app/Konfigurator/kgpanel.cpp:626
+#: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
 msgid "Home button (~)"
 msgstr "Кнопка домівки (~)"
 
-#: app/Konfigurator/kgpanel.cpp:626
+#: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
 msgid "Changes the panel folder to the home folder."
 msgstr "Змінює теку на панелі на домашню теку."
 
-#: app/Konfigurator/kgpanel.cpp:627
+#: app/Konfigurator/kgpanel.cpp:645
 #, kde-format
 msgid "Root button (/)"
 msgstr "Кнопка кореневого каталогу (/)"
 
-#: app/Konfigurator/kgpanel.cpp:627
+#: app/Konfigurator/kgpanel.cpp:645
 #, kde-format
 msgid "Changes the panel folder to the root folder."
 msgstr "Змінює теку на панелі на кореневу."
 
-#: app/Konfigurator/kgpanel.cpp:631
+#: app/Konfigurator/kgpanel.cpp:649
 #, kde-format
 msgid "Toggle-button for sync-browsing"
 msgstr "Кнопка перемикання синхронізованої навігації"
 
-#: app/Konfigurator/kgpanel.cpp:633
+#: app/Konfigurator/kgpanel.cpp:651
 #, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
 msgstr "Кожна зміна теки на цій панелі також виконується на іншій панелі."
 
-#: app/Konfigurator/kgpanel.cpp:658
+#: app/Konfigurator/kgpanel.cpp:676
 #, kde-format
 msgid "Selection Mode"
 msgstr "Режим вибору"
 
-#: app/Konfigurator/kgpanel.cpp:671
+#: app/Konfigurator/kgpanel.cpp:689
 #, kde-format
 msgid "Krusader Mode"
 msgstr "Режим Krusader"
 
-#: app/Konfigurator/kgpanel.cpp:673
+#: app/Konfigurator/kgpanel.cpp:691
 #, kde-format
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
@@ -4402,12 +4402,12 @@ msgstr ""
 "натисніть клавішу Ctrl й клацніть лівою кнопкою мишки. Контекстне меню "
 "викликається клацанням правою кнопкою мишки."
 
-#: app/Konfigurator/kgpanel.cpp:675
+#: app/Konfigurator/kgpanel.cpp:693
 #, kde-format
 msgid "Konqueror Mode"
 msgstr "Режим Konqueror"
 
-#: app/Konfigurator/kgpanel.cpp:677
+#: app/Konfigurator/kgpanel.cpp:695
 #, kde-format
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
@@ -4418,12 +4418,12 @@ msgstr ""
 "декілька файлів. Контекстне меню викликається швидким клацанням правою "
 "кнопкою мишки."
 
-#: app/Konfigurator/kgpanel.cpp:679
+#: app/Konfigurator/kgpanel.cpp:697
 #, kde-format
 msgid "Total-Commander Mode"
 msgstr "Режим Total-Commander"
 
-#: app/Konfigurator/kgpanel.cpp:681
+#: app/Konfigurator/kgpanel.cpp:699
 #, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -4435,12 +4435,12 @@ msgstr ""
 "поточний вибір. Права кнопка мишки вибирає декілька файлів, а контекстне "
 "меню викликається, коли натиснути і тримати праву кнопку мишки."
 
-#: app/Konfigurator/kgpanel.cpp:683
+#: app/Konfigurator/kgpanel.cpp:701
 #, kde-format
 msgid "Ergonomic Mode"
 msgstr "Ергономічний режим"
 
-#: app/Konfigurator/kgpanel.cpp:685
+#: app/Konfigurator/kgpanel.cpp:703
 #, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -4451,27 +4451,27 @@ msgstr ""
 "поточний вибір. Права кнопка мишки викликає контекстне меню. Вибирати файли "
 "можна за допомогою лівої кнопки миші і клавіші Ctrl."
 
-#: app/Konfigurator/kgpanel.cpp:687
+#: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
 msgid "Custom Selection Mode"
 msgstr "Нетиповий режим вибору"
 
-#: app/Konfigurator/kgpanel.cpp:687
+#: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
 msgid "Design your own selection mode."
 msgstr "Створіть свій власний режим вибору."
 
-#: app/Konfigurator/kgpanel.cpp:698
+#: app/Konfigurator/kgpanel.cpp:716
 #, kde-format
 msgid "Details"
 msgstr "Подробиці"
 
-#: app/Konfigurator/kgpanel.cpp:705
+#: app/Konfigurator/kgpanel.cpp:723
 #, kde-format
 msgid "Double-click selects (classic)"
 msgstr "Подвійне клацання вибирає (класичне)"
 
-#: app/Konfigurator/kgpanel.cpp:707
+#: app/Konfigurator/kgpanel.cpp:725
 #, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
@@ -4480,12 +4480,12 @@ msgstr ""
 "Одинарне клацання на позначці файла буде вибирати й фокусувати, а подвійне "
 "клацання відкриває файл або входить до теки."
 
-#: app/Konfigurator/kgpanel.cpp:708
+#: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
 msgid "Obey global selection policy"
 msgstr "Підкорятись загальним правилам позначення"
 
-#: app/Konfigurator/kgpanel.cpp:708
+#: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
 msgid ""
 "<p>Use global setting:</p><p><i>Plasma System Settings -> Input Devices -> "
@@ -4494,34 +4494,34 @@ msgstr ""
 "<p>Використовувати загальні параметри Плазми:</p><p><i>Системні параметри "
 "KDE -> Пристрої введення -> Мишка</i></p>"
 
-#: app/Konfigurator/kgpanel.cpp:721
+#: app/Konfigurator/kgpanel.cpp:739
 #, kde-format
 msgid "Based on KDE's selection mode"
 msgstr "Режим вибору KDE"
 
-#: app/Konfigurator/kgpanel.cpp:723
+#: app/Konfigurator/kgpanel.cpp:741
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
 msgstr "Увімкнення цього параметра увімкне режим заснований на стилі KDE."
 
-#: app/Konfigurator/kgpanel.cpp:727
+#: app/Konfigurator/kgpanel.cpp:745
 #, kde-format
 msgid "Left mouse button selects"
 msgstr "Ліва кнопка мишки вибирає"
 
-#: app/Konfigurator/kgpanel.cpp:729
+#: app/Konfigurator/kgpanel.cpp:747
 #, kde-format
 msgid "If checked, left clicking an item will select it."
 msgstr ""
 "Якщо позначено цей пункт, клацання лівою кнопкою мишки на пункті вибирає "
 "його."
 
-#: app/Konfigurator/kgpanel.cpp:733
+#: app/Konfigurator/kgpanel.cpp:751
 #, kde-format
 msgid "Left mouse button preserves selection"
 msgstr "Ліва кнопка мишки зберігає вибір"
 
-#: app/Konfigurator/kgpanel.cpp:735
+#: app/Konfigurator/kgpanel.cpp:753
 #, kde-format
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
@@ -4530,12 +4530,12 @@ msgstr ""
 "Якщо позначено цей пункт, клацання лівою кнопкою мишки на пункті вибирає "
 "його, але не скасовує вибору інших вже вибраних елементів."
 
-#: app/Konfigurator/kgpanel.cpp:739
+#: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr "Shift/Ctrl-ліва кнопка мишки вибирає"
 
-#: app/Konfigurator/kgpanel.cpp:741
+#: app/Konfigurator/kgpanel.cpp:759
 #, kde-format
 msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
@@ -4545,24 +4545,24 @@ msgstr ""
 "мишки на пункті вибирає його.\n"
 "Зауваження: не має сенсу, якщо позначено «Ліва кнопка мишки вибирає»."
 
-#: app/Konfigurator/kgpanel.cpp:745
+#: app/Konfigurator/kgpanel.cpp:763
 #, kde-format
 msgid "Right mouse button selects"
 msgstr "Права кнопка мишки вибирає"
 
-#: app/Konfigurator/kgpanel.cpp:747
+#: app/Konfigurator/kgpanel.cpp:765
 #, kde-format
 msgid "If checked, right clicking an item will select it."
 msgstr ""
 "Якщо позначено цей пункт, клацання правою кнопкою мишки на пункті вибирає "
 "його."
 
-#: app/Konfigurator/kgpanel.cpp:751
+#: app/Konfigurator/kgpanel.cpp:769
 #, kde-format
 msgid "Right mouse button preserves selection"
 msgstr "Права кнопка мишки зберігає вибір"
 
-#: app/Konfigurator/kgpanel.cpp:753
+#: app/Konfigurator/kgpanel.cpp:771
 #, kde-format
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
@@ -4571,12 +4571,12 @@ msgstr ""
 "Якщо позначено цей пункт, клацання правою кнопкою мишки на пункті вибирає "
 "його, але не скасовує відміняє вибору інших вже вибраних елементів."
 
-#: app/Konfigurator/kgpanel.cpp:757
+#: app/Konfigurator/kgpanel.cpp:775
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr "Shift/Ctrl-права кнопка мишки вибирає"
 
-#: app/Konfigurator/kgpanel.cpp:759
+#: app/Konfigurator/kgpanel.cpp:777
 #, kde-format
 msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
@@ -4586,12 +4586,12 @@ msgstr ""
 "мишки на пункті вибирає його.\n"
 "Зауваження: не має сенсу, якщо увімкнено «Права кнопка мишки вибирає»."
 
-#: app/Konfigurator/kgpanel.cpp:763
+#: app/Konfigurator/kgpanel.cpp:781
 #, kde-format
 msgid "Spacebar moves down"
 msgstr "Пробіл пересуває вниз"
 
-#: app/Konfigurator/kgpanel.cpp:765
+#: app/Konfigurator/kgpanel.cpp:783
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
@@ -4602,12 +4602,12 @@ msgstr ""
 "елемент й пересувати курсор вниз.\n"
 "Інакше, буде вибрано поточний елемент, але просування за списком не буде."
 
-#: app/Konfigurator/kgpanel.cpp:770
+#: app/Konfigurator/kgpanel.cpp:788
 #, kde-format
 msgid "Spacebar calculates disk space"
 msgstr "Пробіл підраховує місце на диску"
 
-#: app/Konfigurator/kgpanel.cpp:772
+#: app/Konfigurator/kgpanel.cpp:790
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
@@ -4618,12 +4618,12 @@ msgstr ""
 "— це тека, буде (за винятком позначення теки)\n"
 "підраховувати місце, зайняте текою (рекурсивно)."
 
-#: app/Konfigurator/kgpanel.cpp:777
+#: app/Konfigurator/kgpanel.cpp:795
 #, kde-format
 msgid "Insert moves down"
 msgstr "Insert пересуває вниз"
 
-#: app/Konfigurator/kgpanel.cpp:779
+#: app/Konfigurator/kgpanel.cpp:797
 #, kde-format
 msgid ""
 "If checked, pressing Insert will select the current item, and move down to "
@@ -4634,12 +4634,12 @@ msgstr ""
 "пересуватись вниз до іншого елемента.\n"
 "Інакше, поточний елемент залишиться незмінним."
 
-#: app/Konfigurator/kgpanel.cpp:783
+#: app/Konfigurator/kgpanel.cpp:801
 #, kde-format
 msgid "Right clicking pops context menu immediately"
 msgstr "Клацання правою кнопкою мишки негайно викликає контекстне меню"
 
-#: app/Konfigurator/kgpanel.cpp:785
+#: app/Konfigurator/kgpanel.cpp:803
 #, kde-format
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
@@ -4650,12 +4650,12 @@ msgstr ""
 "негайного показу контекстного меню.\n"
 "Інакше, користувач мусить натиснути і потримати праву кнопку мишки 500 мс."
 
-#: app/Konfigurator/kgpanel.cpp:790
+#: app/Konfigurator/kgpanel.cpp:808
 #, kde-format
 msgid "A plain mouse button resets selection"
 msgstr "Клацання кнопкою скидає позначення"
 
-#: app/Konfigurator/kgpanel.cpp:792
+#: app/Konfigurator/kgpanel.cpp:810
 #, kde-format
 msgid ""
 "Reset selection on a mouse click without modifiers (i.e. Shift or Ctrl).\n"
@@ -4667,65 +4667,65 @@ msgstr ""
 "Позначення за допомогою Shift/Ctrl для кнопки миші має бути увімкнено, щоб "
 "цей параметр спрацював."
 
-#: app/Konfigurator/kgpanel.cpp:828
+#: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
 msgid "Media Menu"
 msgstr "Меню дисків"
 
-#: app/Konfigurator/kgpanel.cpp:836
+#: app/Konfigurator/kgpanel.cpp:854
 #, kde-format
 msgid "Show Mount Path"
 msgstr "Показувати шлях монтування"
 
-#: app/Konfigurator/kgpanel.cpp:837
+#: app/Konfigurator/kgpanel.cpp:855
 #, kde-format
 msgid "Show File System Type"
 msgstr "Показувати тип файлової системи"
 
-#: app/Konfigurator/kgpanel.cpp:838
+#: app/Konfigurator/kgpanel.cpp:856
 #, kde-format
 msgid "Hide SquashFS entries"
 msgstr "Приховати записи SquashFS"
 
-#: app/Konfigurator/kgpanel.cpp:839
+#: app/Konfigurator/kgpanel.cpp:857
 #, kde-format
 msgid "Hide unknown File System entries"
 msgstr "Приховувати записи невідомих файлових систем"
 
-#: app/Konfigurator/kgpanel.cpp:846
+#: app/Konfigurator/kgpanel.cpp:864
 #, kde-format
 msgid "Show Size:"
 msgstr "Показ розміру:"
 
-#: app/Konfigurator/kgpanel.cpp:849
+#: app/Konfigurator/kgpanel.cpp:867
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
 msgstr "Завжди"
 
-#: app/Konfigurator/kgpanel.cpp:850
+#: app/Konfigurator/kgpanel.cpp:868
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
 msgstr "Якщо пристрій не має мітки"
 
-#: app/Konfigurator/kgpanel.cpp:851
+#: app/Konfigurator/kgpanel.cpp:869
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
 msgstr "Ніколи"
 
-#: app/Konfigurator/kgpanel.cpp:883
+#: app/Konfigurator/kgpanel.cpp:901
 #, kde-format
 msgid "Hide following mountpoints:"
 msgstr "Приховати такі точки монтування:"
 
-#: app/Konfigurator/kgpanel.cpp:912
+#: app/Konfigurator/kgpanel.cpp:930
 #, kde-format
 msgid "Add new hidden mount point"
 msgstr "Додати нову приховану точку монтування"
 
-#: app/Konfigurator/kgpanel.cpp:912
+#: app/Konfigurator/kgpanel.cpp:930
 #, kde-format
 msgid "Mount point:"
 msgstr "Точка монтування:"
@@ -4793,32 +4793,32 @@ msgstr "Стартовий профіль:"
 msgid "<Last session>"
 msgstr "<Попередній сеанс>"
 
-#: app/Konfigurator/kgstartup.cpp:60
+#: app/Konfigurator/kgstartup.cpp:62
 #, kde-format
 msgid "Show splashscreen"
 msgstr "Показувати вікно вітання"
 
-#: app/Konfigurator/kgstartup.cpp:60
+#: app/Konfigurator/kgstartup.cpp:64
 #, kde-format
 msgid "Display a splashscreen when starting Krusader."
 msgstr "Показувати вікно вітання під час запуску krusader."
 
-#: app/Konfigurator/kgstartup.cpp:61
+#: app/Konfigurator/kgstartup.cpp:68
 #, kde-format
 msgid "Single instance mode"
 msgstr "Режим запуску однієї копії"
 
-#: app/Konfigurator/kgstartup.cpp:61
+#: app/Konfigurator/kgstartup.cpp:70
 #, kde-format
 msgid "Only one Krusader instance is allowed to run."
 msgstr "Буде дозволено запуск тільки однієї копії Krusader."
 
-#: app/Konfigurator/kgstartup.cpp:67
+#: app/Konfigurator/kgstartup.cpp:76
 #, kde-format
 msgid "Fallback Icon Theme:"
 msgstr "Резервна тема піктограм:"
 
-#: app/Konfigurator/kgstartup.cpp:69
+#: app/Konfigurator/kgstartup.cpp:78
 #, kde-format
 msgid ""
 "Whenever icon is not found in system icon theme, this theme will be used as "
@@ -4830,19 +4830,19 @@ msgstr ""
 "темі, буде використано піктограму з Breeze або Oxygen, якщо якусь із цих тем "
 "встановлено."
 
-#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
+#: app/Konfigurator/kgstartup.cpp:92 app/useraction_examples.xml:59
 #: app/useraction_examples.xml:68 app/useraction_examples.xml:77
 #: app/useraction_examples.xml:86
 #, kde-format
 msgid "User Interface"
 msgstr "Інтерфейс користувача"
 
-#: app/Konfigurator/kgstartup.cpp:91
+#: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
 msgid "Save last position, size and panel settings"
 msgstr "Зберегти останню позицію і розмір та параметри панелі"
 
-#: app/Konfigurator/kgstartup.cpp:93
+#: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
@@ -4857,12 +4857,12 @@ msgstr ""
 "вимкнено, можете скористатись меню <i>Вікно -> Зберегти позицію</i>,щоб "
 "вручну вказати розмір та позицію програми Krusader під час запуску.</p>"
 
-#: app/Konfigurator/kgstartup.cpp:100
+#: app/Konfigurator/kgstartup.cpp:109
 #, kde-format
 msgid "Update default panel settings"
 msgstr "Оновлювати типові параметри панелі"
 
-#: app/Konfigurator/kgstartup.cpp:102
+#: app/Konfigurator/kgstartup.cpp:111
 #, kde-format
 msgid ""
 "When settings of a panel are changed, save them as the default for new "
@@ -4871,22 +4871,22 @@ msgstr ""
 "Після внесення змін до параметрів панелі зберігати нові параметри як типові "
 "для нових панелей відповідного типу."
 
-#: app/Konfigurator/kgstartup.cpp:103
+#: app/Konfigurator/kgstartup.cpp:112
 #, kde-format
 msgid "Start to tray"
 msgstr "Запуск у лотку"
 
-#: app/Konfigurator/kgstartup.cpp:103
+#: app/Konfigurator/kgstartup.cpp:112
 #, kde-format
 msgid "Krusader starts to tray, without showing the main window"
 msgstr "Krusader запускається до лотка, без показу головного вікна"
 
-#: app/Konfigurator/kgstartup.cpp:114
+#: app/Konfigurator/kgstartup.cpp:123
 #, kde-format
 msgid "Save component settings on exit"
 msgstr "Зберегти параметри компонента при виході"
 
-#: app/Konfigurator/kgstartup.cpp:116
+#: app/Konfigurator/kgstartup.cpp:125
 #, kde-format
 msgid ""
 "Check the state of the user interface components and restore them to their "
@@ -4895,32 +4895,32 @@ msgstr ""
 "Krusader перевіряє стан компонентів інтерфейсу користувача і відновлює їх до "
 "стану, у якому вони були перед останнім закриттям."
 
-#: app/Konfigurator/kgstartup.cpp:117
+#: app/Konfigurator/kgstartup.cpp:126
 #, kde-format
 msgid "Show function keys"
 msgstr "Показати кнопки функцій"
 
-#: app/Konfigurator/kgstartup.cpp:117
+#: app/Konfigurator/kgstartup.cpp:126
 #, kde-format
 msgid "Function keys will be visible after startup."
 msgstr "Клавіші функцій будуть видимі після запуску."
 
-#: app/Konfigurator/kgstartup.cpp:118
+#: app/Konfigurator/kgstartup.cpp:127
 #, kde-format
 msgid "Show command line"
 msgstr "Показати командний рядок"
 
-#: app/Konfigurator/kgstartup.cpp:118
+#: app/Konfigurator/kgstartup.cpp:127
 #, kde-format
 msgid "Command line will be visible after startup."
 msgstr "Командний рядок буде видимий після запуску."
 
-#: app/Konfigurator/kgstartup.cpp:122
+#: app/Konfigurator/kgstartup.cpp:131
 #, kde-format
 msgid "Show embedded terminal"
 msgstr "Показати вбудований термінал"
 
-#: app/Konfigurator/kgstartup.cpp:124
+#: app/Konfigurator/kgstartup.cpp:133
 #, kde-format
 msgid "Embedded terminal will be visible after startup."
 msgstr "Вбудований термінал буде видимим після запуску."
@@ -5609,7 +5609,7 @@ msgstr "Спорожнити смітник"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Смужка стану показуватиме основну інформацію про файл під курсором."
 
-#: app/krusader.cpp:303
+#: app/krusader.cpp:306
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5621,7 +5621,7 @@ msgstr ""
 "запущено Конфігуратор, за допомогою якого ви можете налаштувати Krusader "
 "відповідно до ваших потреб.</p></qt>"
 
-#: app/krusader.cpp:334
+#: app/krusader.cpp:337
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Зробити головне вікно верхнім"
@@ -6101,13 +6101,13 @@ msgid "Here you can name the file collection:"
 msgstr "Тут можна назвати збірку файлів:"
 
 #: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
-#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:488
+#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:487
 #, kde-format
 msgid "Stop"
 msgstr "Зупинити"
 
 #: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:271
-#: app/Synchronizer/synchronizergui.cpp:494
+#: app/Synchronizer/synchronizergui.cpp:493
 #, kde-format
 msgid "Feed to listbox"
 msgstr "Подача у список"
@@ -7153,7 +7153,7 @@ msgstr ""
 msgid "Close the Sidebar"
 msgstr "Закрити бічну панель"
 
-#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:977
+#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:976
 #, kde-format
 msgid "Warning: The left and the right side are showing the same folder."
 msgstr "Попередження: на лівій і правій панелях показано ту саму теку!"
@@ -7857,22 +7857,22 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 з %2, %3 з %4"
 
-#: app/Panel/PanelView/krview.cpp:1133
+#: app/Panel/PanelView/krview.cpp:1132
 #, kde-format
 msgid "Apply filter to folder&s"
 msgstr "Застосувати фільтр до &тек"
 
-#: app/Panel/PanelView/krview.cpp:1138
+#: app/Panel/PanelView/krview.cpp:1137
 #, kde-format
 msgid "Filter Files"
 msgstr "Фільтрування файлів"
 
-#: app/Panel/PanelView/krview.cpp:1163
+#: app/Panel/PanelView/krview.cpp:1162
 #, kde-format
 msgid "Apply &selection to folders"
 msgstr "Застосовувати &позначення до тек"
 
-#: app/Panel/PanelView/krview.cpp:1164
+#: app/Panel/PanelView/krview.cpp:1163
 #, kde-format
 msgid "Select Files"
 msgstr "Вибір файлів"
@@ -7908,7 +7908,7 @@ msgid "%1 (Link)"
 msgstr "%1 (посилання)"
 
 #: app/Panel/PanelView/listmodel.cpp:135
-#: app/Synchronizer/synchronizergui.cpp:1616
+#: app/Synchronizer/synchronizergui.cpp:1636
 #, kde-format
 msgctxt ""
 "Show the string 'DIR' instead of file size in detailed view (for folders)"
@@ -8231,7 +8231,7 @@ msgstr ""
 "Записати текст пошуку до буфера обміну даними, коли знайдений файл буде "
 "відкрито."
 
-#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:507
+#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:506
 #, kde-format
 msgid "Close"
 msgstr "Закрити"
@@ -8652,7 +8652,7 @@ msgid "Feeding the URLs to KGet"
 msgstr "Передавання адрес до Kget"
 
 #: app/Synchronizer/synchronizergui.cpp:141
-#: app/Synchronizer/synchronizergui.cpp:1336
+#: app/Synchronizer/synchronizergui.cpp:1356
 #, kde-format
 msgid "Krusader::Synchronize Folders"
 msgstr "Krusader::Синхронізатор тек"
@@ -8835,243 +8835,243 @@ msgstr "Дата"
 msgid "<=>"
 msgstr "<=>"
 
-#: app/Synchronizer/synchronizergui.cpp:382
+#: app/Synchronizer/synchronizergui.cpp:381
 #, kde-format
 msgid "&Synchronizer"
 msgstr "&Синхронізатор"
 
-#: app/Synchronizer/synchronizergui.cpp:393
+#: app/Synchronizer/synchronizergui.cpp:392
 #, kde-format
 msgid "&Options"
 msgstr "&Параметри"
 
-#: app/Synchronizer/synchronizergui.cpp:400
+#: app/Synchronizer/synchronizergui.cpp:399
 #, kde-format
 msgid "Parallel threads:"
 msgstr "Паралельних ниток:"
 
-#: app/Synchronizer/synchronizergui.cpp:410
+#: app/Synchronizer/synchronizergui.cpp:409
 #, kde-format
 msgid "Equality threshold:"
 msgstr "Поріг еквівалентності:"
 
-#: app/Synchronizer/synchronizergui.cpp:418
-#: app/Synchronizer/synchronizergui.cpp:433
+#: app/Synchronizer/synchronizergui.cpp:417
+#: app/Synchronizer/synchronizergui.cpp:432
 #, kde-format
 msgid "sec"
 msgstr "сек."
 
-#: app/Synchronizer/synchronizergui.cpp:419
-#: app/Synchronizer/synchronizergui.cpp:434
+#: app/Synchronizer/synchronizergui.cpp:418
+#: app/Synchronizer/synchronizergui.cpp:433
 #, kde-format
 msgid "min"
 msgstr "хв."
 
-#: app/Synchronizer/synchronizergui.cpp:420
-#: app/Synchronizer/synchronizergui.cpp:435
+#: app/Synchronizer/synchronizergui.cpp:419
+#: app/Synchronizer/synchronizergui.cpp:434
 #, kde-format
 msgid "hour"
 msgstr "годин"
 
-#: app/Synchronizer/synchronizergui.cpp:421
-#: app/Synchronizer/synchronizergui.cpp:436
+#: app/Synchronizer/synchronizergui.cpp:420
+#: app/Synchronizer/synchronizergui.cpp:435
 #, kde-format
 msgid "day"
 msgstr "днів"
 
-#: app/Synchronizer/synchronizergui.cpp:424
+#: app/Synchronizer/synchronizergui.cpp:423
 #, kde-format
 msgid "Time shift (right-left):"
 msgstr "Часовий зсув (права-ліва):"
 
-#: app/Synchronizer/synchronizergui.cpp:443
+#: app/Synchronizer/synchronizergui.cpp:442
 #, kde-format
 msgid "Ignore hidden files"
 msgstr "Ігнорувати приховані файли"
 
-#: app/Synchronizer/synchronizergui.cpp:456
+#: app/Synchronizer/synchronizergui.cpp:455
 #, kde-format
 msgid "Profile manager (Ctrl+P)."
 msgstr "Керування профілями (Ctrl+P)."
 
-#: app/Synchronizer/synchronizergui.cpp:462
+#: app/Synchronizer/synchronizergui.cpp:461
 #, kde-format
 msgid "Swap sides (Ctrl+S)."
 msgstr "Поміняти місцями (Ctrl+S)"
 
-#: app/Synchronizer/synchronizergui.cpp:472
+#: app/Synchronizer/synchronizergui.cpp:471
 #, kde-format
 msgid "Compare"
 msgstr "Порівняти"
 
-#: app/Synchronizer/synchronizergui.cpp:482
-#: app/Synchronizer/synchronizergui.cpp:1512
+#: app/Synchronizer/synchronizergui.cpp:481
+#: app/Synchronizer/synchronizergui.cpp:1532
 #, kde-format
 msgid "Quiet"
 msgstr "Тихо"
 
-#: app/Synchronizer/synchronizergui.cpp:484
-#: app/Synchronizer/synchronizergui.cpp:1514
+#: app/Synchronizer/synchronizergui.cpp:483
+#: app/Synchronizer/synchronizergui.cpp:1534
 #, kde-format
 msgid "Scroll Results"
 msgstr "Гортати результати"
 
-#: app/Synchronizer/synchronizergui.cpp:501
+#: app/Synchronizer/synchronizergui.cpp:500
 #, kde-format
 msgid "Synchronize"
 msgstr "Синхронізувати"
 
-#: app/Synchronizer/synchronizergui.cpp:617
+#: app/Synchronizer/synchronizergui.cpp:616
 #, kde-format
 msgid "Selected files from targ&et folder:"
 msgstr "Позначені файли у теці призна&чення:"
 
-#: app/Synchronizer/synchronizergui.cpp:618
+#: app/Synchronizer/synchronizergui.cpp:617
 #, kde-format
 msgid "Selected files from sou&rce folder:"
 msgstr "Позначені файли у теці д&жерела:"
 
-#: app/Synchronizer/synchronizergui.cpp:620
+#: app/Synchronizer/synchronizergui.cpp:619
 #, kde-format
 msgid "Selected files from &left folder:"
 msgstr "Позначені файли у &лівій теці:"
 
-#: app/Synchronizer/synchronizergui.cpp:621
+#: app/Synchronizer/synchronizergui.cpp:620
 #, kde-format
 msgid "Selected files from &right folder:"
 msgstr "Позначені файли у &правій теці:"
 
-#: app/Synchronizer/synchronizergui.cpp:623
+#: app/Synchronizer/synchronizergui.cpp:622
 #, kde-format
 msgid "Targ&et folder:"
 msgstr "Тека п&ризначення:"
 
-#: app/Synchronizer/synchronizergui.cpp:624
+#: app/Synchronizer/synchronizergui.cpp:623
 #, kde-format
 msgid "Sou&rce folder:"
 msgstr "Тека д&жерела:"
 
-#: app/Synchronizer/synchronizergui.cpp:626
+#: app/Synchronizer/synchronizergui.cpp:625
 #, kde-format
 msgid "&Left folder:"
 msgstr "&Ліва тека:"
 
-#: app/Synchronizer/synchronizergui.cpp:627
+#: app/Synchronizer/synchronizergui.cpp:626
 #, kde-format
 msgid "&Right folder:"
 msgstr "&Права тека:"
 
-#: app/Synchronizer/synchronizergui.cpp:660
+#: app/Synchronizer/synchronizergui.cpp:659
 #, kde-format
 msgid "URL must be the descendant of either the left or the right base URL."
 msgstr "Адреса має походити з лівої або з правої базової адреси."
 
-#: app/Synchronizer/synchronizergui.cpp:718
+#: app/Synchronizer/synchronizergui.cpp:717
 #, kde-format
 msgid "Synchronize Folders"
 msgstr "Синхронізація тек"
 
-#: app/Synchronizer/synchronizergui.cpp:720
+#: app/Synchronizer/synchronizergui.cpp:719
 #, kde-format
 msgid "E&xclude"
 msgstr "Вик&лючити"
 
-#: app/Synchronizer/synchronizergui.cpp:722
+#: app/Synchronizer/synchronizergui.cpp:721
 #, kde-format
 msgid "Restore ori&ginal operation"
 msgstr "Відновити перві&сну операцію"
 
-#: app/Synchronizer/synchronizergui.cpp:724
+#: app/Synchronizer/synchronizergui.cpp:723
 #, kde-format
 msgid "Re&verse direction"
 msgstr "&Зміна напрямку"
 
-#: app/Synchronizer/synchronizergui.cpp:726
+#: app/Synchronizer/synchronizergui.cpp:725
 #, kde-format
 msgid "Copy from &right to left"
 msgstr "Копіювати з &правого боку на лівий"
 
-#: app/Synchronizer/synchronizergui.cpp:728
+#: app/Synchronizer/synchronizergui.cpp:727
 #, kde-format
 msgid "Copy from &left to right"
 msgstr "Копіювати з &лівого боку на правий"
 
-#: app/Synchronizer/synchronizergui.cpp:730
+#: app/Synchronizer/synchronizergui.cpp:729
 #, kde-format
 msgid "&Delete (left single)"
 msgstr "&Вилучити (залишити одинарним)"
 
-#: app/Synchronizer/synchronizergui.cpp:735
+#: app/Synchronizer/synchronizergui.cpp:734
 #, kde-format
 msgid "V&iew left file"
 msgstr "Пе&реглянути лівий файл"
 
-#: app/Synchronizer/synchronizergui.cpp:738
+#: app/Synchronizer/synchronizergui.cpp:737
 #, kde-format
 msgid "Vi&ew right file"
 msgstr "Пере&глянути правий файл"
 
-#: app/Synchronizer/synchronizergui.cpp:741
+#: app/Synchronizer/synchronizergui.cpp:740
 #, kde-format
 msgid "&Compare Files"
 msgstr "&Порівняти файли"
 
-#: app/Synchronizer/synchronizergui.cpp:747
+#: app/Synchronizer/synchronizergui.cpp:746
 #, kde-format
 msgid "C&opy selected to clipboard (left)"
 msgstr "К&опіювати позначене до буфера (ліва)"
 
-#: app/Synchronizer/synchronizergui.cpp:749
+#: app/Synchronizer/synchronizergui.cpp:748
 #, kde-format
 msgid "Co&py selected to clipboard (right)"
 msgstr "Ко&піювати позначене до буфера (права)"
 
-#: app/Synchronizer/synchronizergui.cpp:754
+#: app/Synchronizer/synchronizergui.cpp:753
 #, kde-format
 msgid "&Select items"
 msgstr "&Вибрати елементи"
 
-#: app/Synchronizer/synchronizergui.cpp:756
+#: app/Synchronizer/synchronizergui.cpp:755
 #, kde-format
 msgid "Deselec&t items"
 msgstr "Скасува&ти вибір елементів"
 
-#: app/Synchronizer/synchronizergui.cpp:758
+#: app/Synchronizer/synchronizergui.cpp:757
 #, kde-format
 msgid "I&nvert selection"
 msgstr "Ін&вертувати вибір"
 
-#: app/Synchronizer/synchronizergui.cpp:768
+#: app/Synchronizer/synchronizergui.cpp:767
 #, kde-format
 msgid "Synchronize with &KGet"
 msgstr "Синхронізувати за допомогою &KGet"
 
-#: app/Synchronizer/synchronizergui.cpp:842
+#: app/Synchronizer/synchronizergui.cpp:841
 #, kde-format
 msgid "Select items"
 msgstr "Вибрати елементи"
 
-#: app/Synchronizer/synchronizergui.cpp:842
+#: app/Synchronizer/synchronizergui.cpp:841
 #, kde-format
 msgid "Deselect items"
 msgstr "Скасувати вибір елементів"
 
-#: app/Synchronizer/synchronizergui.cpp:966
+#: app/Synchronizer/synchronizergui.cpp:965
 #, kde-format
 msgid "The target folder must not be empty."
 msgstr "Тека призначення має бути непорожньою."
 
-#: app/Synchronizer/synchronizergui.cpp:971
+#: app/Synchronizer/synchronizergui.cpp:970
 #, kde-format
 msgid "The source folder must not be empty."
 msgstr "Тека джерела має бути непорожньою."
 
-#: app/Synchronizer/synchronizergui.cpp:1239
+#: app/Synchronizer/synchronizergui.cpp:1259
 #, kde-format
 msgid "Synchronizer has nothing to do."
 msgstr "Синхронізатору не має що робити."
 
-#: app/Synchronizer/synchronizergui.cpp:1335
+#: app/Synchronizer/synchronizergui.cpp:1355
 #, kde-format
 msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-07 00:50+0000\n"
+"POT-Creation-Date: 2026-09-17 00:48+0000\n"
 "PO-Revision-Date: 2026-09-08 17:48+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -929,7 +929,7 @@ msgstr "Tapez pour rechercher…"
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:322
+#: app/Konfigurator/kggeneral.cpp:323
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -1597,7 +1597,7 @@ msgid "Previous"
 msgstr "Précédent"
 
 #: app/DiskUsage/diskusage.cpp:811 app/GUI/kfnkeys.cpp:25
-#: app/Konfigurator/kgpanel.cpp:414
+#: app/Konfigurator/kgpanel.cpp:421
 #, kde-format
 msgid "View"
 msgstr "Vue"
@@ -2760,8 +2760,8 @@ msgstr "Lier à %1"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:49
 #: app/Konfigurator/kgdependencies.cpp:41 app/Konfigurator/kggeneral.cpp:208
-#: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:63
-#: app/Konfigurator/kgpanel.cpp:419 app/Konfigurator/kgpanel.cpp:664
+#: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:70
+#: app/Konfigurator/kgpanel.cpp:426 app/Konfigurator/kgpanel.cpp:682
 #: app/Konfigurator/kgstartup.cpp:31 app/Konfigurator/konfigurator.cpp:122
 #, kde-format
 msgid "General"
@@ -2907,22 +2907,22 @@ msgstr "Naviguer dans les archives comme avec des dossiers"
 msgid "Krusader will browse archives as folders."
 msgstr "Krusader va naviguer dans les archives comme dans les dossiers."
 
-#: app/Konfigurator/kgarchives.cpp:83
+#: app/Konfigurator/kgarchives.cpp:86
 #, kde-format
 msgid "Test archive after packing"
 msgstr "Tester l'archive après la mise en paquet."
 
-#: app/Konfigurator/kgarchives.cpp:83
+#: app/Konfigurator/kgarchives.cpp:88
 #, kde-format
 msgid "Check the archive's integrity after packing it."
 msgstr "Vérifie l'intégrité de l'archive après la mise en paquet."
 
-#: app/Konfigurator/kgarchives.cpp:87
+#: app/Konfigurator/kgarchives.cpp:92
 #, kde-format
 msgid "Test archive before unpacking"
 msgstr "Tester l'archive avant de la dépaqueter"
 
-#: app/Konfigurator/kgarchives.cpp:89
+#: app/Konfigurator/kgarchives.cpp:94
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
@@ -2930,18 +2930,18 @@ msgstr ""
 "Des archives corrompues peuvent causer une panne. Par conséquent, un test "
 "est suggéré."
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
+#: app/Konfigurator/kgarchives.cpp:111 app/Konfigurator/kggeneral.cpp:308
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
 msgstr "Résultats de la recherche"
 
-#: app/Konfigurator/kgarchives.cpp:107
+#: app/Konfigurator/kgarchives.cpp:112
 #, kde-format
 msgid "Searching for packers..."
 msgstr "Recherche des outils de mise en paquet..."
 
-#: app/Konfigurator/kgarchives.cpp:109
+#: app/Konfigurator/kgarchives.cpp:114
 #, kde-format
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3268,7 +3268,7 @@ msgstr "Barre d'état, couleur de premier plan inactif :"
 msgid "Statusbar, inactive background:"
 msgstr "Barre d'état, couleur de fond inactif :"
 
-#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
+#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:826
 #: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
@@ -3585,49 +3585,49 @@ msgstr ""
 msgid "Temp Folder:"
 msgstr "Dossier temporaire :"
 
-#: app/Konfigurator/kggeneral.cpp:248
+#: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
 msgid "Note: you must have full permissions for the temporary folder."
 msgstr ""
 "Remarque : vous devez disposer des droits d'accès complets sur le dossier "
 "temporaire."
 
-#: app/Konfigurator/kggeneral.cpp:255
+#: app/Konfigurator/kggeneral.cpp:256
 #, kde-format
 msgid "Delete mode"
 msgstr "Supprimer un mode"
 
-#: app/Konfigurator/kggeneral.cpp:260
+#: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
 msgid "Move to trash"
 msgstr "Mettre à la corbeille"
 
-#: app/Konfigurator/kggeneral.cpp:260
+#: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
 msgid "Files will be moved to trash when deleted."
 msgstr "Les fichiers seront mis à la corbeille au moment de la suppression."
 
-#: app/Konfigurator/kggeneral.cpp:261
+#: app/Konfigurator/kggeneral.cpp:262
 #, kde-format
 msgid "Delete files"
 msgstr "Supprimer des fichiers"
 
-#: app/Konfigurator/kggeneral.cpp:261
+#: app/Konfigurator/kggeneral.cpp:262
 #, kde-format
 msgid "Files will be permanently deleted."
 msgstr "Les fichiers seront supprimés définitivement."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:157
+#: app/Konfigurator/kggeneral.cpp:271 app/Panel/panelcontextmenu.cpp:157
 #, kde-format
 msgid "Terminal"
 msgstr "Terminal"
 
-#: app/Konfigurator/kggeneral.cpp:278
+#: app/Konfigurator/kggeneral.cpp:279
 #, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Le terminal intégré envoie « Chdir » en cas de changement de panneau"
 
-#: app/Konfigurator/kggeneral.cpp:280
+#: app/Konfigurator/kggeneral.cpp:281
 #, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
@@ -3637,13 +3637,13 @@ msgstr ""
 "exemple, en appuyant sur la touche Tab), Krusader change le dossier actuel "
 "dans le terminal intégré."
 
-#: app/Konfigurator/kggeneral.cpp:284
+#: app/Konfigurator/kggeneral.cpp:285
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr ""
 "Le panneau actif prend en compte le dossier de travail du terminal intégré."
 
-#: app/Konfigurator/kggeneral.cpp:286
+#: app/Konfigurator/kggeneral.cpp:287
 #, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
@@ -3654,12 +3654,12 @@ msgstr ""
 "terminal est modifié (par exemple, en exécutant les commandes « cd » ou "
 "« popd »), Krusader modifiera le dossier courant du panneau actif."
 
-#: app/Konfigurator/kggeneral.cpp:308
+#: app/Konfigurator/kggeneral.cpp:309
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Recherche d'outils..."
 
-#: app/Konfigurator/kggeneral.cpp:310
+#: app/Konfigurator/kggeneral.cpp:311
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3667,17 +3667,17 @@ msgstr ""
 "Veillez à installer les nouveaux outils dans votre <code>$PATH</code> "
 "(ex. : /usr/bin)"
 
-#: app/Konfigurator/kggeneral.cpp:318
+#: app/Konfigurator/kggeneral.cpp:319
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "Ajouter une nouvelle extension atomique"
 
-#: app/Konfigurator/kggeneral.cpp:318
+#: app/Konfigurator/kggeneral.cpp:319
 #, kde-format
 msgid "Extension:"
 msgstr "Extension :"
 
-#: app/Konfigurator/kggeneral.cpp:322
+#: app/Konfigurator/kggeneral.cpp:323
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -3686,45 +3686,45 @@ msgstr ""
 "Les extensions atomiques doivent commencer par « . » et contenir au moins un "
 "caractère « . » de plus."
 
-#: app/Konfigurator/kgpanel.cpp:72
+#: app/Konfigurator/kgpanel.cpp:79
 #, kde-format
 msgid "Navigator bar"
 msgstr "Barre de navigation"
 
-#: app/Konfigurator/kgpanel.cpp:77
+#: app/Konfigurator/kgpanel.cpp:84
 #, kde-format
 msgid "Edit Mode by default"
 msgstr "Mode édition par défaut"
 
-#: app/Konfigurator/kgpanel.cpp:77
+#: app/Konfigurator/kgpanel.cpp:84
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
 msgstr ""
 "Afficher l'emplacement modifiable dans la barre de navigation par défaut"
 
-#: app/Konfigurator/kgpanel.cpp:78
+#: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Show full path by default"
 msgstr "Afficher l'emplacement complet par défaut"
 
-#: app/Konfigurator/kgpanel.cpp:78
+#: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
 msgstr ""
 "Toujours afficher l'emplacement complet dans la barre de navigation par "
 "défaut."
 
-#: app/Konfigurator/kgpanel.cpp:88
+#: app/Konfigurator/kgpanel.cpp:95
 #, kde-format
 msgid "Operation"
 msgstr "Opération"
 
-#: app/Konfigurator/kgpanel.cpp:96
+#: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
 msgid "Autoselect folders"
 msgstr "Sélectionner automatiquement des dossiers"
 
-#: app/Konfigurator/kgpanel.cpp:98
+#: app/Konfigurator/kgpanel.cpp:105
 #, kde-format
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
@@ -3733,12 +3733,12 @@ msgstr ""
 "En cas de concordance des critères de sélection, non seulement les fichiers "
 "seront sélectionnés, mais aussi les dossiers."
 
-#: app/Konfigurator/kgpanel.cpp:102
+#: app/Konfigurator/kgpanel.cpp:109
 #, kde-format
 msgid "Rename selects extension"
 msgstr "Renommer les extensions sélectionnées"
 
-#: app/Konfigurator/kgpanel.cpp:104
+#: app/Konfigurator/kgpanel.cpp:111
 #, kde-format
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
@@ -3749,12 +3749,12 @@ msgstr ""
 "vous voulez un renommage dans le style de Total-Commander, simplement du nom "
 "sans extension, décochez cette option."
 
-#: app/Konfigurator/kgpanel.cpp:109
+#: app/Konfigurator/kgpanel.cpp:116
 #, kde-format
 msgid "Unselect files before copy/move"
 msgstr "Désélectionner des fichiers avant de copier / déplacer"
 
-#: app/Konfigurator/kgpanel.cpp:111
+#: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
 msgid ""
 "Unselect files, which are to be copied/moved, before the operation starts."
@@ -3762,12 +3762,12 @@ msgstr ""
 "Désélectionner les fichiers à copier / déplacer, avant le début de "
 "l'opération."
 
-#: app/Konfigurator/kgpanel.cpp:115
+#: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Filter dialog remembers settings"
 msgstr "La boite de dialogue « Filtre » mémorise les paramètres"
 
-#: app/Konfigurator/kgpanel.cpp:117
+#: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid ""
 "The filter dialog is opened with the last filter settings that where applied "
@@ -3776,17 +3776,17 @@ msgstr ""
 "La boite de dialogue « Filtre » est ouverte avec les derniers paramètres de "
 "filtre appliqués au panneau."
 
-#: app/Konfigurator/kgpanel.cpp:127
+#: app/Konfigurator/kgpanel.cpp:134
 #, kde-format
 msgid "Tabs"
 msgstr "Onglets"
 
-#: app/Konfigurator/kgpanel.cpp:135
+#: app/Konfigurator/kgpanel.cpp:142
 #, kde-format
 msgid "Use full path tab names"
 msgstr "Utiliser le nom des onglets dans l'emplacement complet"
 
-#: app/Konfigurator/kgpanel.cpp:137
+#: app/Konfigurator/kgpanel.cpp:144
 #, kde-format
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
@@ -3795,72 +3795,72 @@ msgstr ""
 "Affiche l'emplacement complet dans les onglets de dossiers. Par défaut, "
 "seule la dernière partie de l'emplacement est affichée."
 
-#: app/Konfigurator/kgpanel.cpp:138
+#: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Show close tab buttons"
 msgstr "Afficher les boutons de fermeture d'onglets"
 
-#: app/Konfigurator/kgpanel.cpp:138
+#: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Show close tab buttons."
 msgstr "Afficher les boutons de fermeture d'onglets."
 
-#: app/Konfigurator/kgpanel.cpp:139
+#: app/Konfigurator/kgpanel.cpp:146
 #, kde-format
 msgid "Expanding tabs"
 msgstr "Développement des onglets"
 
-#: app/Konfigurator/kgpanel.cpp:139
+#: app/Konfigurator/kgpanel.cpp:146
 #, kde-format
 msgid "Expanding tabs."
 msgstr "Développement des onglets."
 
-#: app/Konfigurator/kgpanel.cpp:140
+#: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "Show new tab button"
 msgstr "Afficher le bouton « Nouvel onglet »"
 
-#: app/Konfigurator/kgpanel.cpp:140
+#: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "Show new tab button."
 msgstr "Afficher le bouton « Nouvel onglet »."
 
-#: app/Konfigurator/kgpanel.cpp:141
+#: app/Konfigurator/kgpanel.cpp:148
 #, kde-format
 msgid "Insert tabs after current"
 msgstr "Insérer des onglets après l'onglet actuel"
 
-#: app/Konfigurator/kgpanel.cpp:141
+#: app/Konfigurator/kgpanel.cpp:148
 #, kde-format
 msgid "Insert new tabs to the right of the current one."
 msgstr "Insérer de nouveaux onglets à la droite de l'onglet courant."
 
-#: app/Konfigurator/kgpanel.cpp:142
+#: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
 msgid "Show Tab Bar on single tab"
 msgstr "Afficher la barre d'onglets pour un seul onglet"
 
-#: app/Konfigurator/kgpanel.cpp:142
+#: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
 msgid "Show the tab bar with only one tab."
 msgstr "Afficher la barre d'onglets pour un seul onglet."
 
-#: app/Konfigurator/kgpanel.cpp:143
+#: app/Konfigurator/kgpanel.cpp:150
 #, kde-format
 msgid "Close tab by double click"
 msgstr "Fermer un onglet par un double clic"
 
-#: app/Konfigurator/kgpanel.cpp:143
+#: app/Konfigurator/kgpanel.cpp:150
 #, kde-format
 msgid "Close tab by double click."
 msgstr "Fermer un onglet par un double clic."
 
-#: app/Konfigurator/kgpanel.cpp:147
+#: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
 msgid "New tab button duplicates a tab"
 msgstr "Un nouveau bouton permet la duplication d'un onglet."
 
-#: app/Konfigurator/kgpanel.cpp:149
+#: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
 msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
@@ -3870,81 +3870,81 @@ msgstr ""
 "duplication d'un onglet, sinon, elle ouvre un onglet avec votre dossier "
 "d'accueil."
 
-#: app/Konfigurator/kgpanel.cpp:156
+#: app/Konfigurator/kgpanel.cpp:163
 #, kde-format
 msgid "Duplicate active tab by click:"
 msgstr "Dupliquer l'onglet actif par un clic :"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Alt+Click"
 msgstr "Touche « ALT » + Clic"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Ctrl+Click"
 msgstr "Touche « CTRL » + Clic"
 
-#: app/Konfigurator/kgpanel.cpp:170
+#: app/Konfigurator/kgpanel.cpp:177
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
 msgstr ""
 "Dupliquer l'onglet actif par un clic du bouton gauche de la souris avec une "
 "touche « CTRL » ou « ALT »"
 
-#: app/Konfigurator/kgpanel.cpp:180
+#: app/Konfigurator/kgpanel.cpp:187
 #, kde-format
 msgid "Tab Bar position:"
 msgstr "Position de la barre de recherche :"
 
-#: app/Konfigurator/kgpanel.cpp:183
+#: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
 msgid "Top"
 msgstr "Haut"
 
-#: app/Konfigurator/kgpanel.cpp:183
+#: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
 msgid "Bottom"
 msgstr "Bas"
 
-#: app/Konfigurator/kgpanel.cpp:195
+#: app/Konfigurator/kgpanel.cpp:202
 #, kde-format
 msgid "Search bar"
 msgstr "Barre de recherche"
 
-#: app/Konfigurator/kgpanel.cpp:203
+#: app/Konfigurator/kgpanel.cpp:210
 #, kde-format
 msgid "Start by typing"
 msgstr "Commencer en saisissant"
 
-#: app/Konfigurator/kgpanel.cpp:205
+#: app/Konfigurator/kgpanel.cpp:212
 #, kde-format
 msgid "Open search bar and start searching by typing in panel."
 msgstr ""
 "Ouvres une barre de recherche et commence à rechercher durant la saisie dans "
 "le panneau."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:213 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Respecter la casse"
 
-#: app/Konfigurator/kgpanel.cpp:206
+#: app/Konfigurator/kgpanel.cpp:213
 #, kde-format
 msgid "Search must match case."
 msgstr "La recherche doit respecter la casse."
 
-#: app/Konfigurator/kgpanel.cpp:210
+#: app/Konfigurator/kgpanel.cpp:217
 #, kde-format
 msgid "Up/Down cancels search"
 msgstr "Les boutons Haut / Bas annulent la recherche"
 
-#: app/Konfigurator/kgpanel.cpp:212
+#: app/Konfigurator/kgpanel.cpp:219
 #, kde-format
 msgid ""
 "Pressing the Up/Down buttons closes the search bar (only in search mode)."
@@ -3952,12 +3952,12 @@ msgstr ""
 "Cliquer sur les boutons Haut / Bas ferme la barre de recherche (uniquement "
 "en mode recherche)."
 
-#: app/Konfigurator/kgpanel.cpp:216
+#: app/Konfigurator/kgpanel.cpp:223
 #, kde-format
 msgid "Folder navigation with Right Arrow"
 msgstr "Navigation dans les fichiers avec la flèche droite"
 
-#: app/Konfigurator/kgpanel.cpp:218
+#: app/Konfigurator/kgpanel.cpp:225
 #, kde-format
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
@@ -3966,58 +3966,58 @@ msgstr ""
 "L'appui sur le bouton droit ouvre le dossier si aucune intention de "
 "modifications de recherche de texte n'est identifiée."
 
-#: app/Konfigurator/kgpanel.cpp:227
+#: app/Konfigurator/kgpanel.cpp:234
 #, kde-format
 msgid "Position:"
 msgstr "Position :"
 
-#: app/Konfigurator/kgpanel.cpp:237
+#: app/Konfigurator/kgpanel.cpp:244
 #, kde-format
 msgid "Default mode:"
 msgstr "Mode par défaut :"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:246 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
 msgstr "Rechercher"
 
-#: app/Konfigurator/kgpanel.cpp:240 app/Panel/krsearchbar.cpp:42
+#: app/Konfigurator/kgpanel.cpp:247 app/Panel/krsearchbar.cpp:42
 #, kde-format
 msgid "Select"
 msgstr "Sélectionner"
 
-#: app/Konfigurator/kgpanel.cpp:241 app/Panel/krsearchbar.cpp:42
+#: app/Konfigurator/kgpanel.cpp:248 app/Panel/krsearchbar.cpp:42
 #, kde-format
 msgid "Filter"
 msgstr "Filtrer"
 
-#: app/Konfigurator/kgpanel.cpp:251
+#: app/Konfigurator/kgpanel.cpp:258
 #, kde-format
 msgid "Set the default mode on first usage"
 msgstr "Définit le mode par défaut à la première utilisation"
 
-#: app/Konfigurator/kgpanel.cpp:262
+#: app/Konfigurator/kgpanel.cpp:269
 #, kde-format
 msgid "Bookmark Search"
 msgstr "Recherche de signets"
 
-#: app/Konfigurator/kgpanel.cpp:266
+#: app/Konfigurator/kgpanel.cpp:273
 #, kde-format
 msgid "Always show search bar"
 msgstr "Toujours afficher la barre de recherche"
 
-#: app/Konfigurator/kgpanel.cpp:266
+#: app/Konfigurator/kgpanel.cpp:273
 #, kde-format
 msgid "Make bookmark search bar always visible"
 msgstr "Toujours afficher la barre de recherche de signets."
 
-#: app/Konfigurator/kgpanel.cpp:270
+#: app/Konfigurator/kgpanel.cpp:277
 #, kde-format
 msgid "Search in special items"
 msgstr "Chercher dans les éléments spéciaux"
 
-#: app/Konfigurator/kgpanel.cpp:272
+#: app/Konfigurator/kgpanel.cpp:279
 #, kde-format
 msgid ""
 "Bookmark search is also applied to special items in bookmark menu like "
@@ -4027,148 +4027,148 @@ msgstr ""
 "menu de marque-pages, tels que la corbeille, les URL les plus fréquentes, le "
 "retour arrière, etc."
 
-#: app/Konfigurator/kgpanel.cpp:281
+#: app/Konfigurator/kgpanel.cpp:288
 #, kde-format
 msgid "Status/Totalsbar"
 msgstr "Barre d'état / de totaux"
 
-#: app/Konfigurator/kgpanel.cpp:285
+#: app/Konfigurator/kgpanel.cpp:292
 #, kde-format
 msgid "Show size in bytes too"
 msgstr "Afficher la taille en octets également"
 
-#: app/Konfigurator/kgpanel.cpp:286
+#: app/Konfigurator/kgpanel.cpp:293
 #, kde-format
 msgid "Show space information"
 msgstr "Afficher les informations à propos de l'espace"
 
-#: app/Konfigurator/kgpanel.cpp:286
+#: app/Konfigurator/kgpanel.cpp:293
 #, kde-format
 msgid "Show free/total space on the device"
 msgstr "Afficher l'espace libre / total sur le périphérique"
 
-#: app/Konfigurator/kgpanel.cpp:304
+#: app/Konfigurator/kgpanel.cpp:311
 #, kde-format
 msgid "Layout"
 msgstr "Disposition"
 
-#: app/Konfigurator/kgpanel.cpp:313
+#: app/Konfigurator/kgpanel.cpp:320
 #, kde-format
 msgid "Layout:"
 msgstr "Disposition :"
 
-#: app/Konfigurator/kgpanel.cpp:325
+#: app/Konfigurator/kgpanel.cpp:332
 #, kde-format
 msgid "Frame Color:"
 msgstr "Couleur du cadre :"
 
-#: app/Konfigurator/kgpanel.cpp:328
+#: app/Konfigurator/kgpanel.cpp:335
 #, kde-format
 msgctxt "Frame color"
 msgid "Defined by Layout"
 msgstr "Définie par la disposition"
 
-#: app/Konfigurator/kgpanel.cpp:329
+#: app/Konfigurator/kgpanel.cpp:336
 #, kde-format
 msgctxt "Frame color"
 msgid "None"
 msgstr "Aucune"
 
-#: app/Konfigurator/kgpanel.cpp:330
+#: app/Konfigurator/kgpanel.cpp:337
 #, kde-format
 msgctxt "Frame color"
 msgid "Statusbar"
 msgstr "Barre d'état"
 
-#: app/Konfigurator/kgpanel.cpp:334
+#: app/Konfigurator/kgpanel.cpp:341
 #, kde-format
 msgid "Frame Shape:"
 msgstr "Forme du cadre :"
 
-#: app/Konfigurator/kgpanel.cpp:338
+#: app/Konfigurator/kgpanel.cpp:345
 #, kde-format
 msgctxt "Frame shape"
 msgid "Defined by Layout"
 msgstr "Définie par la disposition"
 
-#: app/Konfigurator/kgpanel.cpp:339
+#: app/Konfigurator/kgpanel.cpp:346
 #, kde-format
 msgctxt "Frame shape"
 msgid "None"
 msgstr "Aucune"
 
-#: app/Konfigurator/kgpanel.cpp:340
+#: app/Konfigurator/kgpanel.cpp:347
 #, kde-format
 msgctxt "Frame shape"
 msgid "Box"
 msgstr "Boite"
 
-#: app/Konfigurator/kgpanel.cpp:341
+#: app/Konfigurator/kgpanel.cpp:348
 #, kde-format
 msgctxt "Frame shape"
 msgid "Panel"
 msgstr "Panneau"
 
-#: app/Konfigurator/kgpanel.cpp:346
+#: app/Konfigurator/kgpanel.cpp:353
 #, kde-format
 msgid "Frame Shadow:"
 msgstr "Ombre du cadre :"
 
-#: app/Konfigurator/kgpanel.cpp:350
+#: app/Konfigurator/kgpanel.cpp:357
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
 msgstr "Définie par la disposition"
 
-#: app/Konfigurator/kgpanel.cpp:351
+#: app/Konfigurator/kgpanel.cpp:358
 #, kde-format
 msgctxt "Frame shadow"
 msgid "None"
 msgstr "Aucune"
 
-#: app/Konfigurator/kgpanel.cpp:352
+#: app/Konfigurator/kgpanel.cpp:359
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Raised"
 msgstr "En relief"
 
-#: app/Konfigurator/kgpanel.cpp:353
+#: app/Konfigurator/kgpanel.cpp:360
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Sunken"
 msgstr "En creux"
 
-#: app/Konfigurator/kgpanel.cpp:366
+#: app/Konfigurator/kgpanel.cpp:373
 #, kde-format
 msgid "Default icon size:"
 msgstr "Taille des icônes des listes de fichiers :"
 
-#: app/Konfigurator/kgpanel.cpp:395
+#: app/Konfigurator/kgpanel.cpp:402
 #, kde-format
 msgid "Use icons in the filenames"
 msgstr "Utiliser des icônes dans les noms de fichiers"
 
-#: app/Konfigurator/kgpanel.cpp:395
+#: app/Konfigurator/kgpanel.cpp:402
 #, kde-format
 msgid "Show the icons for filenames and folders."
 msgstr "Afficher les icônes des noms de fichiers et de dossiers."
 
-#: app/Konfigurator/kgpanel.cpp:396
+#: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews by default"
 msgstr "Afficher les aperçus par défaut"
 
-#: app/Konfigurator/kgpanel.cpp:396
+#: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews of files and folders."
 msgstr "Afficher les aperçus des fichiers et des dossiers."
 
-#: app/Konfigurator/kgpanel.cpp:431
+#: app/Konfigurator/kgpanel.cpp:438
 #, kde-format
 msgid "View font:"
 msgstr "Police d'affichage :"
 
-#: app/Konfigurator/kgpanel.cpp:441
+#: app/Konfigurator/kgpanel.cpp:449
 #, kde-format
 msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
@@ -4178,39 +4178,39 @@ msgstr ""
 "infobulle pour un élément de fichier. La saisie d'une valeur négative "
 "désactivera les infobulles."
 
-#: app/Konfigurator/kgpanel.cpp:443
+#: app/Konfigurator/kgpanel.cpp:451
 #, kde-format
 msgid "Tooltip delay (msec):"
 msgstr "Durée pour l'infobulle (msec) : "
 
-#: app/Konfigurator/kgpanel.cpp:461
+#: app/Konfigurator/kgpanel.cpp:469
 #, kde-format
 msgid "Use human-readable file size"
 msgstr "Utiliser une taille de fichier facilement lisible"
 
-#: app/Konfigurator/kgpanel.cpp:463
+#: app/Konfigurator/kgpanel.cpp:471
 #, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr ""
 "La taille des fichiers est affichée en octets, Ko, Mo et Go, non simplement "
 "en octets."
 
-#: app/Konfigurator/kgpanel.cpp:464
+#: app/Konfigurator/kgpanel.cpp:472
 #, kde-format
 msgid "Show hidden files"
 msgstr "Afficher les fichiers cachés"
 
-#: app/Konfigurator/kgpanel.cpp:464
+#: app/Konfigurator/kgpanel.cpp:472
 #, kde-format
 msgid "Display files beginning with a dot."
 msgstr "Afficher les fichiers commençant par un point."
 
-#: app/Konfigurator/kgpanel.cpp:468
+#: app/Konfigurator/kgpanel.cpp:476
 #, kde-format
 msgid "Numeric Permissions"
 msgstr "Droits d'accès numériques"
 
-#: app/Konfigurator/kgpanel.cpp:470
+#: app/Konfigurator/kgpanel.cpp:478
 #, kde-format
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
@@ -4219,67 +4219,67 @@ msgstr ""
 "Afficher les nombres octaux (0755) au lieu des droits d'accès standard (rwxr-"
 "xr-x) dans la colonne des droits d'accès."
 
-#: app/Konfigurator/kgpanel.cpp:474
+#: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
 msgid "Load the user defined folder icons"
 msgstr "Charger les icônes de dossiers définies par l'utilisateur"
 
-#: app/Konfigurator/kgpanel.cpp:476
+#: app/Konfigurator/kgpanel.cpp:484
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
 "Charger les icônes de dossiers définies par l'utilisateur (peut causer une "
 "baisse des performances)."
 
-#: app/Konfigurator/kgpanel.cpp:480
+#: app/Konfigurator/kgpanel.cpp:488
 #, kde-format
 msgid "Always show current item"
 msgstr "Toujours afficher l'élément actuel"
 
-#: app/Konfigurator/kgpanel.cpp:482
+#: app/Konfigurator/kgpanel.cpp:490
 #, kde-format
 msgid "Show current item border decoration in inactive panel."
 msgstr ""
 "Afficher la décoration de bordure de l'élément actuel dans le panneau "
 "inactif."
 
-#: app/Konfigurator/kgpanel.cpp:496
+#: app/Konfigurator/kgpanel.cpp:504
 #, kde-format
 msgid "Sort method:"
 msgstr "Méthode de tri :"
 
-#: app/Konfigurator/kgpanel.cpp:499
+#: app/Konfigurator/kgpanel.cpp:508
 #, kde-format
 msgid "Alphabetical"
 msgstr "Alphabétique"
 
-#: app/Konfigurator/kgpanel.cpp:500
+#: app/Konfigurator/kgpanel.cpp:509
 #, kde-format
 msgid "Alphabetical and numbers"
 msgstr "Alphabétique et nombres"
 
-#: app/Konfigurator/kgpanel.cpp:501
+#: app/Konfigurator/kgpanel.cpp:510
 #, kde-format
 msgid "Character code"
 msgstr "Code de caractères"
 
-#: app/Konfigurator/kgpanel.cpp:502
+#: app/Konfigurator/kgpanel.cpp:511
 #, kde-format
 msgid "Character code and numbers"
 msgstr "Code de caractères et nombres"
 
-#: app/Konfigurator/kgpanel.cpp:503
+#: app/Konfigurator/kgpanel.cpp:512
 #, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
 msgstr "Krusader"
 
-#: app/Konfigurator/kgpanel.cpp:518
+#: app/Konfigurator/kgpanel.cpp:536
 #, kde-format
 msgid "Case sensitive sorting"
 msgstr "Tri sensible à la casse"
 
-#: app/Konfigurator/kgpanel.cpp:520
+#: app/Konfigurator/kgpanel.cpp:538
 #, kde-format
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
@@ -4288,27 +4288,27 @@ msgstr ""
 "Tous les fichiers commençant par une capitale apparaissent avant ceux qui "
 "débutent par une minuscule (comportement par défaut sur UNIX)."
 
-#: app/Konfigurator/kgpanel.cpp:521
+#: app/Konfigurator/kgpanel.cpp:539
 #, kde-format
 msgid "Show folders first"
 msgstr "Afficher les dossiers d'abord"
 
-#: app/Konfigurator/kgpanel.cpp:525
+#: app/Konfigurator/kgpanel.cpp:543
 #, kde-format
 msgid "Always sort dirs by name"
 msgstr "Toujours trier les dossiers par nom"
 
-#: app/Konfigurator/kgpanel.cpp:527
+#: app/Konfigurator/kgpanel.cpp:545
 #, kde-format
 msgid "Folders are sorted by name, regardless of the sort column."
 msgstr "Les dossiers sont triés par nom, indépendamment de la colonne de tri."
 
-#: app/Konfigurator/kgpanel.cpp:531
+#: app/Konfigurator/kgpanel.cpp:549
 #, kde-format
 msgid "Locale aware sorting"
 msgstr "Tri tenant compte des paramètres régionaux"
 
-#: app/Konfigurator/kgpanel.cpp:533
+#: app/Konfigurator/kgpanel.cpp:551
 #, kde-format
 msgid ""
 "The sorting is performed in a locale- and also platform-dependent manner. "
@@ -4317,144 +4317,144 @@ msgstr ""
 "Le tri est effectué en fonction de la plate-forme ainsi que des paramètres "
 "régionaux. Peut être lent."
 
-#: app/Konfigurator/kgpanel.cpp:545
+#: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
 msgid "View modes"
 msgstr "Modes d'affichage"
 
-#: app/Konfigurator/kgpanel.cpp:552
+#: app/Konfigurator/kgpanel.cpp:570
 #, kde-format
 msgid "Default view mode:"
 msgstr "Mode d'affichage par défaut :"
 
-#: app/Konfigurator/kgpanel.cpp:599
+#: app/Konfigurator/kgpanel.cpp:617
 #, kde-format
 msgid "Buttons"
 msgstr "Boutons"
 
-#: app/Konfigurator/kgpanel.cpp:608
+#: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
 msgid "Toolbar buttons have icons"
 msgstr "Les boutons de la barre d'outils comportent des icônes"
 
-#: app/Konfigurator/kgpanel.cpp:609
+#: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "Show Media Button"
 msgstr "Afficher le bouton Média"
 
-#: app/Konfigurator/kgpanel.cpp:609
+#: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "The media button will be visible."
 msgstr "Le bouton Média sera visible."
 
-#: app/Konfigurator/kgpanel.cpp:610
+#: app/Konfigurator/kgpanel.cpp:628
 #, kde-format
 msgid "Show Back Button"
 msgstr "Afficher le bouton Précédent"
 
-#: app/Konfigurator/kgpanel.cpp:611
+#: app/Konfigurator/kgpanel.cpp:629
 #, kde-format
 msgid "Show Forward Button"
 msgstr "Afficher le bouton Suivant"
 
-#: app/Konfigurator/kgpanel.cpp:612
+#: app/Konfigurator/kgpanel.cpp:630
 #, kde-format
 msgid "Show History Button"
 msgstr "Afficher le bouton Historique"
 
-#: app/Konfigurator/kgpanel.cpp:612
+#: app/Konfigurator/kgpanel.cpp:630
 #, kde-format
 msgid "The history button will be visible."
 msgstr "Le bouton d'historique sera visible."
 
-#: app/Konfigurator/kgpanel.cpp:613
+#: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "Show Bookmarks Button"
 msgstr "Afficher le bouton Signets"
 
-#: app/Konfigurator/kgpanel.cpp:613
+#: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "The bookmarks button will be visible."
 msgstr "Le bouton de signets sera visible."
 
-#: app/Konfigurator/kgpanel.cpp:614
+#: app/Konfigurator/kgpanel.cpp:632
 #, kde-format
 msgid "Show Panel Toolbar"
 msgstr "Afficher la barre Panneaux"
 
-#: app/Konfigurator/kgpanel.cpp:614
+#: app/Konfigurator/kgpanel.cpp:632
 #, kde-format
 msgid "The panel toolbar will be visible."
 msgstr "La barre d'outils des panneaux sera visible."
 
-#: app/Konfigurator/kgpanel.cpp:620
+#: app/Konfigurator/kgpanel.cpp:638
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
 msgstr "Boutons de barre des panneaux visibles"
 
-#: app/Konfigurator/kgpanel.cpp:624
+#: app/Konfigurator/kgpanel.cpp:642
 #, kde-format
 msgid "Equal button (=)"
 msgstr "Bouton Égal (=)"
 
-#: app/Konfigurator/kgpanel.cpp:624
+#: app/Konfigurator/kgpanel.cpp:642
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
 msgstr "Change le dossier du panneau par le dossier de l'autre panneau."
 
-#: app/Konfigurator/kgpanel.cpp:625
+#: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Up button (..)"
 msgstr "Bouton Haut (..)"
 
-#: app/Konfigurator/kgpanel.cpp:625
+#: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Changes the panel folder to the parent folder."
 msgstr "Change le dossier du panneau par le dossier parent."
 
-#: app/Konfigurator/kgpanel.cpp:626
+#: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
 msgid "Home button (~)"
 msgstr "Bouton Dossier personnel (~)"
 
-#: app/Konfigurator/kgpanel.cpp:626
+#: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
 msgid "Changes the panel folder to the home folder."
 msgstr "Change le dossier du panneau par le dossier personnel."
 
-#: app/Konfigurator/kgpanel.cpp:627
+#: app/Konfigurator/kgpanel.cpp:645
 #, kde-format
 msgid "Root button (/)"
 msgstr "Bouton Racine (/)"
 
-#: app/Konfigurator/kgpanel.cpp:627
+#: app/Konfigurator/kgpanel.cpp:645
 #, kde-format
 msgid "Changes the panel folder to the root folder."
 msgstr "Change le dossier du panneau par le dossier racine."
 
-#: app/Konfigurator/kgpanel.cpp:631
+#: app/Konfigurator/kgpanel.cpp:649
 #, kde-format
 msgid "Toggle-button for sync-browsing"
 msgstr "(Dés)Activer le bouton de navigation synchronisée"
 
-#: app/Konfigurator/kgpanel.cpp:633
+#: app/Konfigurator/kgpanel.cpp:651
 #, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
 msgstr ""
 "Chaque modification de dossier dans le panneau est également effectuée dans "
 "l'autre panneau."
 
-#: app/Konfigurator/kgpanel.cpp:658
+#: app/Konfigurator/kgpanel.cpp:676
 #, kde-format
 msgid "Selection Mode"
 msgstr "Mode de sélection"
 
-#: app/Konfigurator/kgpanel.cpp:671
+#: app/Konfigurator/kgpanel.cpp:689
 #, kde-format
 msgid "Krusader Mode"
 msgstr "Mode Krusader"
 
-#: app/Konfigurator/kgpanel.cpp:673
+#: app/Konfigurator/kgpanel.cpp:691
 #, kde-format
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
@@ -4466,12 +4466,12 @@ msgstr ""
 "gauche de la souris. Le menu du clic-droit est exécuté en cliquant "
 "brièvement sur le bouton droit de la souris."
 
-#: app/Konfigurator/kgpanel.cpp:675
+#: app/Konfigurator/kgpanel.cpp:693
 #, kde-format
 msgid "Konqueror Mode"
 msgstr "Mode Konqueror"
 
-#: app/Konfigurator/kgpanel.cpp:677
+#: app/Konfigurator/kgpanel.cpp:695
 #, kde-format
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
@@ -4482,12 +4482,12 @@ msgstr ""
 "cliquer et sélectionner des fichiers multiples. Le menu du clic-droit est "
 "exécuté en cliquant brièvement sur le bouton droit de la souris."
 
-#: app/Konfigurator/kgpanel.cpp:679
+#: app/Konfigurator/kgpanel.cpp:697
 #, kde-format
 msgid "Total-Commander Mode"
 msgstr "Mode Total Commander"
 
-#: app/Konfigurator/kgpanel.cpp:681
+#: app/Konfigurator/kgpanel.cpp:699
 #, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -4500,12 +4500,12 @@ msgstr ""
 "multiples et le menu du clic-droit est exécuté en appuyant sur le bouton "
 "droit de la souris et en le maintenant enfoncé."
 
-#: app/Konfigurator/kgpanel.cpp:683
+#: app/Konfigurator/kgpanel.cpp:701
 #, kde-format
 msgid "Ergonomic Mode"
 msgstr "Mode ergonomique"
 
-#: app/Konfigurator/kgpanel.cpp:685
+#: app/Konfigurator/kgpanel.cpp:703
 #, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -4516,27 +4516,27 @@ msgstr ""
 "affecter la sélection en cours. Le bouton droit exécute le menu contextuel. "
 "Vous pouvez sélectionner avec la touche Ctrl et le bouton gauche."
 
-#: app/Konfigurator/kgpanel.cpp:687
+#: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
 msgid "Custom Selection Mode"
 msgstr "Mode de sélection personnalisé"
 
-#: app/Konfigurator/kgpanel.cpp:687
+#: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
 msgid "Design your own selection mode."
 msgstr "Concevez votre propre mode de sélection."
 
-#: app/Konfigurator/kgpanel.cpp:698
+#: app/Konfigurator/kgpanel.cpp:716
 #, kde-format
 msgid "Details"
 msgstr "Détails"
 
-#: app/Konfigurator/kgpanel.cpp:705
+#: app/Konfigurator/kgpanel.cpp:723
 #, kde-format
 msgid "Double-click selects (classic)"
 msgstr "Le double-clic sélectionne (normal)"
 
-#: app/Konfigurator/kgpanel.cpp:707
+#: app/Konfigurator/kgpanel.cpp:725
 #, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
@@ -4545,12 +4545,12 @@ msgstr ""
 "Un seul clic sur un fichier sélectionne et donne le focus, alors qu'un "
 "double-clic ouvre le fichier ou entre dans le dossier."
 
-#: app/Konfigurator/kgpanel.cpp:708
+#: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
 msgid "Obey global selection policy"
 msgstr "Obéir à la politique de sélection globale"
 
-#: app/Konfigurator/kgpanel.cpp:708
+#: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
 msgid ""
 "<p>Use global setting:</p><p><i>Plasma System Settings -> Input Devices -> "
@@ -4559,34 +4559,34 @@ msgstr ""
 "<p>Utiliser la configuration globale :</p><p><i>Configuration du système "
 "Plasma / Périphériques d'entrée / Souris</i></p>"
 
-#: app/Konfigurator/kgpanel.cpp:721
+#: app/Konfigurator/kgpanel.cpp:739
 #, kde-format
 msgid "Based on KDE's selection mode"
 msgstr "En fonction du mode de sélection de KDE"
 
-#: app/Konfigurator/kgpanel.cpp:723
+#: app/Konfigurator/kgpanel.cpp:741
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
 msgstr ""
 "Si cette case est cochée, utilisez un mode reposant sur le style de KDE."
 
-#: app/Konfigurator/kgpanel.cpp:727
+#: app/Konfigurator/kgpanel.cpp:745
 #, kde-format
 msgid "Left mouse button selects"
 msgstr "Le bouton gauche de la souris sélectionne"
 
-#: app/Konfigurator/kgpanel.cpp:729
+#: app/Konfigurator/kgpanel.cpp:747
 #, kde-format
 msgid "If checked, left clicking an item will select it."
 msgstr ""
 "Si cette case est cochée, un clic-gauche sur un élément le sélectionne."
 
-#: app/Konfigurator/kgpanel.cpp:733
+#: app/Konfigurator/kgpanel.cpp:751
 #, kde-format
 msgid "Left mouse button preserves selection"
 msgstr "Le bouton gauche de la souris préserve la sélection"
 
-#: app/Konfigurator/kgpanel.cpp:735
+#: app/Konfigurator/kgpanel.cpp:753
 #, kde-format
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
@@ -4595,12 +4595,12 @@ msgstr ""
 "Si cette case est cochée, un clic-gauche sur un élément le sélectionne mais "
 "ne désélectionne pas d'autres éléments déjà sélectionnés."
 
-#: app/Konfigurator/kgpanel.cpp:739
+#: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr "La combinaison Maj+Ctrl+bouton gauche de la souris sélectionne"
 
-#: app/Konfigurator/kgpanel.cpp:741
+#: app/Konfigurator/kgpanel.cpp:759
 #, kde-format
 msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
@@ -4611,22 +4611,22 @@ msgstr ""
 "Remarque : cette combinaison n'a aucune signification si la fonction "
 "« Sélection par le bouton gauche » est cochée."
 
-#: app/Konfigurator/kgpanel.cpp:745
+#: app/Konfigurator/kgpanel.cpp:763
 #, kde-format
 msgid "Right mouse button selects"
 msgstr "Sélection par le bouton droit de la souris"
 
-#: app/Konfigurator/kgpanel.cpp:747
+#: app/Konfigurator/kgpanel.cpp:765
 #, kde-format
 msgid "If checked, right clicking an item will select it."
 msgstr "Si cette case est cochée, un clic-droit sur un élément le sélectionne."
 
-#: app/Konfigurator/kgpanel.cpp:751
+#: app/Konfigurator/kgpanel.cpp:769
 #, kde-format
 msgid "Right mouse button preserves selection"
 msgstr "Le bouton droit de la souris préserve la sélection"
 
-#: app/Konfigurator/kgpanel.cpp:753
+#: app/Konfigurator/kgpanel.cpp:771
 #, kde-format
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
@@ -4635,12 +4635,12 @@ msgstr ""
 "Si cette case est cochée, un clic-droit sur un élément le sélectionne mais "
 "ne désélectionne pas d'autres éléments déjà sélectionnés."
 
-#: app/Konfigurator/kgpanel.cpp:757
+#: app/Konfigurator/kgpanel.cpp:775
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr "La combinaison Maj+Ctrl+bouton droit de la souris sélectionne"
 
-#: app/Konfigurator/kgpanel.cpp:759
+#: app/Konfigurator/kgpanel.cpp:777
 #, kde-format
 msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
@@ -4651,12 +4651,12 @@ msgstr ""
 "Remarque : cette combinaison n'a aucune signification si la fonction "
 "« Sélection par le bouton droit » est cochée."
 
-#: app/Konfigurator/kgpanel.cpp:763
+#: app/Konfigurator/kgpanel.cpp:781
 #, kde-format
 msgid "Spacebar moves down"
 msgstr "La barre d'espacement déplace vers le bas"
 
-#: app/Konfigurator/kgpanel.cpp:765
+#: app/Konfigurator/kgpanel.cpp:783
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
@@ -4667,12 +4667,12 @@ msgstr ""
 "l'élément actuel et le déplace vers le bas.\n"
 "Sinon, l'élément actuel est sélectionné mais reste l'élément en cours."
 
-#: app/Konfigurator/kgpanel.cpp:770
+#: app/Konfigurator/kgpanel.cpp:788
 #, kde-format
 msgid "Spacebar calculates disk space"
 msgstr "La barre d'espacement calcule l'utilisation de l'espace disque"
 
-#: app/Konfigurator/kgpanel.cpp:772
+#: app/Konfigurator/kgpanel.cpp:790
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
@@ -4683,12 +4683,12 @@ msgstr ""
 "l'élément actuel est un dossier (sauf depuis la sélection du dossier)\n"
 "calculera l'espace disque occupé par ce dossier (récursivement)."
 
-#: app/Konfigurator/kgpanel.cpp:777
+#: app/Konfigurator/kgpanel.cpp:795
 #, kde-format
 msgid "Insert moves down"
 msgstr "La touche « Ins » déplace vers le bas"
 
-#: app/Konfigurator/kgpanel.cpp:779
+#: app/Konfigurator/kgpanel.cpp:797
 #, kde-format
 msgid ""
 "If checked, pressing Insert will select the current item, and move down to "
@@ -4699,12 +4699,12 @@ msgstr ""
 "l'élément actuel et descend vers l'élément suivant. \n"
 "Sinon, l'élément actuel n'est pas modifié."
 
-#: app/Konfigurator/kgpanel.cpp:783
+#: app/Konfigurator/kgpanel.cpp:801
 #, kde-format
 msgid "Right clicking pops context menu immediately"
 msgstr "Un clic-droit fait apparaitre le menu contextuel immédiatement"
 
-#: app/Konfigurator/kgpanel.cpp:785
+#: app/Konfigurator/kgpanel.cpp:803
 #, kde-format
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
@@ -4716,12 +4716,12 @@ msgstr ""
 "Sinon, l'utilisateur doit cliquer et maintenir enfoncé le bouton droit de la "
 "souris pendant 0,5 ms."
 
-#: app/Konfigurator/kgpanel.cpp:790
+#: app/Konfigurator/kgpanel.cpp:808
 #, kde-format
 msgid "A plain mouse button resets selection"
 msgstr "Le bouton standard de la souris ré-initialise la sélection."
 
-#: app/Konfigurator/kgpanel.cpp:792
+#: app/Konfigurator/kgpanel.cpp:810
 #, kde-format
 msgid ""
 "Reset selection on a mouse click without modifiers (i.e. Shift or Ctrl).\n"
@@ -4733,65 +4733,65 @@ msgstr ""
 "La sélection avec « Maj » ou « CTRL » pour le bouton de la souris doit être "
 "activée pour que ce paramétrage fonctionne."
 
-#: app/Konfigurator/kgpanel.cpp:828
+#: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
 msgid "Media Menu"
 msgstr "Menu Multimédia"
 
-#: app/Konfigurator/kgpanel.cpp:836
+#: app/Konfigurator/kgpanel.cpp:854
 #, kde-format
 msgid "Show Mount Path"
 msgstr "Afficher l'emplacement de montage"
 
-#: app/Konfigurator/kgpanel.cpp:837
+#: app/Konfigurator/kgpanel.cpp:855
 #, kde-format
 msgid "Show File System Type"
 msgstr "Afficher le type de système de fichiers"
 
-#: app/Konfigurator/kgpanel.cpp:838
+#: app/Konfigurator/kgpanel.cpp:856
 #, kde-format
 msgid "Hide SquashFS entries"
 msgstr "Cacher les entrées « SquashFS »"
 
-#: app/Konfigurator/kgpanel.cpp:839
+#: app/Konfigurator/kgpanel.cpp:857
 #, kde-format
 msgid "Hide unknown File System entries"
 msgstr "Masquer les entrées des systèmes de fichiers inconnus"
 
-#: app/Konfigurator/kgpanel.cpp:846
+#: app/Konfigurator/kgpanel.cpp:864
 #, kde-format
 msgid "Show Size:"
 msgstr "Afficher la taille :"
 
-#: app/Konfigurator/kgpanel.cpp:849
+#: app/Konfigurator/kgpanel.cpp:867
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
 msgstr "Toujours"
 
-#: app/Konfigurator/kgpanel.cpp:850
+#: app/Konfigurator/kgpanel.cpp:868
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
 msgstr "Lorsque le périphérique ne comporte pas d'étiquette"
 
-#: app/Konfigurator/kgpanel.cpp:851
+#: app/Konfigurator/kgpanel.cpp:869
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
 msgstr "Jamais"
 
-#: app/Konfigurator/kgpanel.cpp:883
+#: app/Konfigurator/kgpanel.cpp:901
 #, kde-format
 msgid "Hide following mountpoints:"
 msgstr "Cacher les points de montage suivants :"
 
-#: app/Konfigurator/kgpanel.cpp:912
+#: app/Konfigurator/kgpanel.cpp:930
 #, kde-format
 msgid "Add new hidden mount point"
 msgstr "Ajouter un nouveau point de montage caché"
 
-#: app/Konfigurator/kgpanel.cpp:912
+#: app/Konfigurator/kgpanel.cpp:930
 #, kde-format
 msgid "Mount point:"
 msgstr "Point de montage :"
@@ -4860,32 +4860,32 @@ msgstr "Profil de démarrage :"
 msgid "<Last session>"
 msgstr "<Dernière session>"
 
-#: app/Konfigurator/kgstartup.cpp:60
+#: app/Konfigurator/kgstartup.cpp:62
 #, kde-format
 msgid "Show splashscreen"
 msgstr "Afficher l'écran de démarrage"
 
-#: app/Konfigurator/kgstartup.cpp:60
+#: app/Konfigurator/kgstartup.cpp:64
 #, kde-format
 msgid "Display a splashscreen when starting Krusader."
 msgstr "Affiche un écran d'accueil au lancement de Krusader."
 
-#: app/Konfigurator/kgstartup.cpp:61
+#: app/Konfigurator/kgstartup.cpp:68
 #, kde-format
 msgid "Single instance mode"
 msgstr "Mode de fonctionnement à une seule instance"
 
-#: app/Konfigurator/kgstartup.cpp:61
+#: app/Konfigurator/kgstartup.cpp:70
 #, kde-format
 msgid "Only one Krusader instance is allowed to run."
 msgstr "Une seule instance de Krusader est autorisé à s'exécuter."
 
-#: app/Konfigurator/kgstartup.cpp:67
+#: app/Konfigurator/kgstartup.cpp:76
 #, kde-format
 msgid "Fallback Icon Theme:"
 msgstr "Thème d'icônes de secours :"
 
-#: app/Konfigurator/kgstartup.cpp:69
+#: app/Konfigurator/kgstartup.cpp:78
 #, kde-format
 msgid ""
 "Whenever icon is not found in system icon theme, this theme will be used as "
@@ -4897,20 +4897,20 @@ msgstr ""
 "l'icône, les thèmes « Breeze » ou « Oxygen »seront utilisés si aucun de ceux-"
 "ci ne sont présents."
 
-#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
+#: app/Konfigurator/kgstartup.cpp:92 app/useraction_examples.xml:59
 #: app/useraction_examples.xml:68 app/useraction_examples.xml:77
 #: app/useraction_examples.xml:86
 #, kde-format
 msgid "User Interface"
 msgstr "Interface utilisateur"
 
-#: app/Konfigurator/kgstartup.cpp:91
+#: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
 msgid "Save last position, size and panel settings"
 msgstr ""
 "Enregistrer les derniers paramètres de position, de taille et de panneau"
 
-#: app/Konfigurator/kgstartup.cpp:93
+#: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
@@ -4927,12 +4927,12 @@ msgstr ""
 "i> pour définir manuellement la taille et la position de la fenêtre "
 "principale au démarrage.</p>"
 
-#: app/Konfigurator/kgstartup.cpp:100
+#: app/Konfigurator/kgstartup.cpp:109
 #, kde-format
 msgid "Update default panel settings"
 msgstr "Mettre à jour les paramètres par défaut du panneau"
 
-#: app/Konfigurator/kgstartup.cpp:102
+#: app/Konfigurator/kgstartup.cpp:111
 #, kde-format
 msgid ""
 "When settings of a panel are changed, save them as the default for new "
@@ -4941,24 +4941,24 @@ msgstr ""
 "Lorsque vous modifiez les réglages d'un panneau, enregistrez-les comme "
 "paramètres par défaut pour les nouveaux panneaux du même type."
 
-#: app/Konfigurator/kgstartup.cpp:103
+#: app/Konfigurator/kgstartup.cpp:112
 #, kde-format
 msgid "Start to tray"
 msgstr "Démarrer minimisé dans la boite à miniatures"
 
-#: app/Konfigurator/kgstartup.cpp:103
+#: app/Konfigurator/kgstartup.cpp:112
 #, kde-format
 msgid "Krusader starts to tray, without showing the main window"
 msgstr ""
 "Krusader démarre dans la boite à miniatures, sans afficher la fenêtre "
 "principale"
 
-#: app/Konfigurator/kgstartup.cpp:114
+#: app/Konfigurator/kgstartup.cpp:123
 #, kde-format
 msgid "Save component settings on exit"
 msgstr "Enregistrer la configuration du composant à la fermeture"
 
-#: app/Konfigurator/kgstartup.cpp:116
+#: app/Konfigurator/kgstartup.cpp:125
 #, kde-format
 msgid ""
 "Check the state of the user interface components and restore them to their "
@@ -4967,32 +4967,32 @@ msgstr ""
 "Vérifie l'état des composants de l'interface utilisateur et les restaure "
 "dans l'état où ils étaient lors de la dernière fermeture."
 
-#: app/Konfigurator/kgstartup.cpp:117
+#: app/Konfigurator/kgstartup.cpp:126
 #, kde-format
 msgid "Show function keys"
 msgstr "Afficher les touches de fonction"
 
-#: app/Konfigurator/kgstartup.cpp:117
+#: app/Konfigurator/kgstartup.cpp:126
 #, kde-format
 msgid "Function keys will be visible after startup."
 msgstr "Les touches de fonctions seront visibles après redémarrage."
 
-#: app/Konfigurator/kgstartup.cpp:118
+#: app/Konfigurator/kgstartup.cpp:127
 #, kde-format
 msgid "Show command line"
 msgstr "Afficher la ligne de commande"
 
-#: app/Konfigurator/kgstartup.cpp:118
+#: app/Konfigurator/kgstartup.cpp:127
 #, kde-format
 msgid "Command line will be visible after startup."
 msgstr "La ligne de commande sera visible après redémarrage."
 
-#: app/Konfigurator/kgstartup.cpp:122
+#: app/Konfigurator/kgstartup.cpp:131
 #, kde-format
 msgid "Show embedded terminal"
 msgstr "Afficher le terminal intégré"
 
-#: app/Konfigurator/kgstartup.cpp:124
+#: app/Konfigurator/kgstartup.cpp:133
 #, kde-format
 msgid "Embedded terminal will be visible after startup."
 msgstr "Le terminal intégré sera visible après redémarrage."
@@ -5688,7 +5688,7 @@ msgstr ""
 "La barre d'état affiche des informations de base sur le fichier situé sous "
 "le pointeur de la souris."
 
-#: app/krusader.cpp:303
+#: app/krusader.cpp:306
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5700,7 +5700,7 @@ msgstr ""
 "applications externes. Puis Konfigurator sera lancé, où vous pourrez "
 "personnaliser Krusader selon vos besoins.</p></qt>"
 
-#: app/krusader.cpp:334
+#: app/krusader.cpp:337
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Placer la fenêtre principale au premier plan"
@@ -6184,13 +6184,13 @@ msgid "Here you can name the file collection:"
 msgstr "Vous pouvez ici donner un nom à la collection de fichiers :"
 
 #: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
-#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:488
+#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:487
 #, kde-format
 msgid "Stop"
 msgstr "Arrêter"
 
 #: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:271
-#: app/Synchronizer/synchronizergui.cpp:494
+#: app/Synchronizer/synchronizergui.cpp:493
 #, kde-format
 msgid "Feed to listbox"
 msgstr "Transmettre à la zone de liste déroulante"
@@ -7235,7 +7235,7 @@ msgstr ""
 msgid "Close the Sidebar"
 msgstr "Fermer la barre latérale"
 
-#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:977
+#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:976
 #, kde-format
 msgid "Warning: The left and the right side are showing the same folder."
 msgstr ""
@@ -7923,22 +7923,22 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 sur %2, %3 sur %4"
 
-#: app/Panel/PanelView/krview.cpp:1133
+#: app/Panel/PanelView/krview.cpp:1132
 #, kde-format
 msgid "Apply filter to folder&s"
 msgstr "Applique&r le filtre aux dossiers"
 
-#: app/Panel/PanelView/krview.cpp:1138
+#: app/Panel/PanelView/krview.cpp:1137
 #, kde-format
 msgid "Filter Files"
 msgstr "Filtrer des fichiers"
 
-#: app/Panel/PanelView/krview.cpp:1163
+#: app/Panel/PanelView/krview.cpp:1162
 #, kde-format
 msgid "Apply &selection to folders"
 msgstr "Appliquer la &sélection aux dossiers"
 
-#: app/Panel/PanelView/krview.cpp:1164
+#: app/Panel/PanelView/krview.cpp:1163
 #, kde-format
 msgid "Select Files"
 msgstr " Sélectionner des fichiers"
@@ -7974,7 +7974,7 @@ msgid "%1 (Link)"
 msgstr "%1 (Lien)"
 
 #: app/Panel/PanelView/listmodel.cpp:135
-#: app/Synchronizer/synchronizergui.cpp:1616
+#: app/Synchronizer/synchronizergui.cpp:1636
 #, kde-format
 msgctxt ""
 "Show the string 'DIR' instead of file size in detailed view (for folders)"
@@ -8301,7 +8301,7 @@ msgstr ""
 "Placer le texte recherché dans le presse-papiers lorsqu'un fichier trouvé "
 "est ouvert."
 
-#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:507
+#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:506
 #, kde-format
 msgid "Close"
 msgstr "Fermer"
@@ -8715,7 +8715,7 @@ msgid "Feeding the URLs to KGet"
 msgstr "Transmission des URL vers KGet"
 
 #: app/Synchronizer/synchronizergui.cpp:141
-#: app/Synchronizer/synchronizergui.cpp:1336
+#: app/Synchronizer/synchronizergui.cpp:1356
 #, kde-format
 msgid "Krusader::Synchronize Folders"
 msgstr "Krusader::Synchroniser les dossiers"
@@ -8899,245 +8899,245 @@ msgstr "Date"
 msgid "<=>"
 msgstr "<=>"
 
-#: app/Synchronizer/synchronizergui.cpp:382
+#: app/Synchronizer/synchronizergui.cpp:381
 #, kde-format
 msgid "&Synchronizer"
 msgstr "&Synchroniseur"
 
-#: app/Synchronizer/synchronizergui.cpp:393
+#: app/Synchronizer/synchronizergui.cpp:392
 #, kde-format
 msgid "&Options"
 msgstr "&Options"
 
-#: app/Synchronizer/synchronizergui.cpp:400
+#: app/Synchronizer/synchronizergui.cpp:399
 #, kde-format
 msgid "Parallel threads:"
 msgstr "Fils d'exécution parallèles :"
 
-#: app/Synchronizer/synchronizergui.cpp:410
+#: app/Synchronizer/synchronizergui.cpp:409
 #, kde-format
 msgid "Equality threshold:"
 msgstr "Seuil d'égalité :"
 
-#: app/Synchronizer/synchronizergui.cpp:418
-#: app/Synchronizer/synchronizergui.cpp:433
+#: app/Synchronizer/synchronizergui.cpp:417
+#: app/Synchronizer/synchronizergui.cpp:432
 #, kde-format
 msgid "sec"
 msgstr "sec"
 
-#: app/Synchronizer/synchronizergui.cpp:419
-#: app/Synchronizer/synchronizergui.cpp:434
+#: app/Synchronizer/synchronizergui.cpp:418
+#: app/Synchronizer/synchronizergui.cpp:433
 #, kde-format
 msgid "min"
 msgstr "min"
 
-#: app/Synchronizer/synchronizergui.cpp:420
-#: app/Synchronizer/synchronizergui.cpp:435
+#: app/Synchronizer/synchronizergui.cpp:419
+#: app/Synchronizer/synchronizergui.cpp:434
 #, kde-format
 msgid "hour"
 msgstr "heure"
 
-#: app/Synchronizer/synchronizergui.cpp:421
-#: app/Synchronizer/synchronizergui.cpp:436
+#: app/Synchronizer/synchronizergui.cpp:420
+#: app/Synchronizer/synchronizergui.cpp:435
 #, kde-format
 msgid "day"
 msgstr "jour"
 
-#: app/Synchronizer/synchronizergui.cpp:424
+#: app/Synchronizer/synchronizergui.cpp:423
 #, kde-format
 msgid "Time shift (right-left):"
 msgstr "Décalage horaire (droite-gauche) :"
 
-#: app/Synchronizer/synchronizergui.cpp:443
+#: app/Synchronizer/synchronizergui.cpp:442
 #, kde-format
 msgid "Ignore hidden files"
 msgstr "Ignorer les fichiers cachés"
 
-#: app/Synchronizer/synchronizergui.cpp:456
+#: app/Synchronizer/synchronizergui.cpp:455
 #, kde-format
 msgid "Profile manager (Ctrl+P)."
 msgstr "Gestionnaire de profils (CTRL+P)."
 
-#: app/Synchronizer/synchronizergui.cpp:462
+#: app/Synchronizer/synchronizergui.cpp:461
 #, kde-format
 msgid "Swap sides (Ctrl+S)."
 msgstr "Permute les côtés (CTRL+S)."
 
-#: app/Synchronizer/synchronizergui.cpp:472
+#: app/Synchronizer/synchronizergui.cpp:471
 #, kde-format
 msgid "Compare"
 msgstr "Comparer"
 
-#: app/Synchronizer/synchronizergui.cpp:482
-#: app/Synchronizer/synchronizergui.cpp:1512
+#: app/Synchronizer/synchronizergui.cpp:481
+#: app/Synchronizer/synchronizergui.cpp:1532
 #, kde-format
 msgid "Quiet"
 msgstr "Silencieusement"
 
-#: app/Synchronizer/synchronizergui.cpp:484
-#: app/Synchronizer/synchronizergui.cpp:1514
+#: app/Synchronizer/synchronizergui.cpp:483
+#: app/Synchronizer/synchronizergui.cpp:1534
 #, kde-format
 msgid "Scroll Results"
 msgstr "Faire défiler les résultats"
 
-#: app/Synchronizer/synchronizergui.cpp:501
+#: app/Synchronizer/synchronizergui.cpp:500
 #, kde-format
 msgid "Synchronize"
 msgstr "Synchroniser"
 
-#: app/Synchronizer/synchronizergui.cpp:617
+#: app/Synchronizer/synchronizergui.cpp:616
 #, kde-format
 msgid "Selected files from targ&et folder:"
 msgstr "Les fichiers sélectionnés depuis le dossier cibl&e :"
 
-#: app/Synchronizer/synchronizergui.cpp:618
+#: app/Synchronizer/synchronizergui.cpp:617
 #, kde-format
 msgid "Selected files from sou&rce folder:"
 msgstr "Les fichiers sélectionnés depuis le dossier sou&rce :"
 
-#: app/Synchronizer/synchronizergui.cpp:620
+#: app/Synchronizer/synchronizergui.cpp:619
 #, kde-format
 msgid "Selected files from &left folder:"
 msgstr "Les fichiers sé&lectionnés depuis le dossier de gauche :"
 
-#: app/Synchronizer/synchronizergui.cpp:621
+#: app/Synchronizer/synchronizergui.cpp:620
 #, kde-format
 msgid "Selected files from &right folder:"
 msgstr "Les fichiers sélectionnés depuis le dossier de d&roite :"
 
-#: app/Synchronizer/synchronizergui.cpp:623
+#: app/Synchronizer/synchronizergui.cpp:622
 #, kde-format
 msgid "Targ&et folder:"
 msgstr "Dossier cibl&e :"
 
-#: app/Synchronizer/synchronizergui.cpp:624
+#: app/Synchronizer/synchronizergui.cpp:623
 #, kde-format
 msgid "Sou&rce folder:"
 msgstr "Dossier sou&rce :"
 
-#: app/Synchronizer/synchronizergui.cpp:626
+#: app/Synchronizer/synchronizergui.cpp:625
 #, kde-format
 msgid "&Left folder:"
 msgstr "Dossier de &gauche :"
 
-#: app/Synchronizer/synchronizergui.cpp:627
+#: app/Synchronizer/synchronizergui.cpp:626
 #, kde-format
 msgid "&Right folder:"
 msgstr "&Dossier de droite :"
 
-#: app/Synchronizer/synchronizergui.cpp:660
+#: app/Synchronizer/synchronizergui.cpp:659
 #, kde-format
 msgid "URL must be the descendant of either the left or the right base URL."
 msgstr ""
 "L'URL doit être le descendant soit de l'URL de base de gauche, soit de l'URL "
 "de droite."
 
-#: app/Synchronizer/synchronizergui.cpp:718
+#: app/Synchronizer/synchronizergui.cpp:717
 #, kde-format
 msgid "Synchronize Folders"
 msgstr "Synchroniser les dossiers"
 
-#: app/Synchronizer/synchronizergui.cpp:720
+#: app/Synchronizer/synchronizergui.cpp:719
 #, kde-format
 msgid "E&xclude"
 msgstr "E&xclure"
 
-#: app/Synchronizer/synchronizergui.cpp:722
+#: app/Synchronizer/synchronizergui.cpp:721
 #, kde-format
 msgid "Restore ori&ginal operation"
 msgstr "Restaurer l'opération ori&ginale"
 
-#: app/Synchronizer/synchronizergui.cpp:724
+#: app/Synchronizer/synchronizergui.cpp:723
 #, kde-format
 msgid "Re&verse direction"
 msgstr "In&verser la direction"
 
-#: app/Synchronizer/synchronizergui.cpp:726
+#: app/Synchronizer/synchronizergui.cpp:725
 #, kde-format
 msgid "Copy from &right to left"
 msgstr "Copier de la d&roite vers la gauche"
 
-#: app/Synchronizer/synchronizergui.cpp:728
+#: app/Synchronizer/synchronizergui.cpp:727
 #, kde-format
 msgid "Copy from &left to right"
 msgstr "Copier de la g&auche vers la droite"
 
-#: app/Synchronizer/synchronizergui.cpp:730
+#: app/Synchronizer/synchronizergui.cpp:729
 #, kde-format
 msgid "&Delete (left single)"
 msgstr "&Supprimer (gauche unique)"
 
-#: app/Synchronizer/synchronizergui.cpp:735
+#: app/Synchronizer/synchronizergui.cpp:734
 #, kde-format
 msgid "V&iew left file"
 msgstr "Voir le f&ichier de gauche"
 
-#: app/Synchronizer/synchronizergui.cpp:738
+#: app/Synchronizer/synchronizergui.cpp:737
 #, kde-format
 msgid "Vi&ew right file"
 msgstr "Voir le fichi&er de droite"
 
-#: app/Synchronizer/synchronizergui.cpp:741
+#: app/Synchronizer/synchronizergui.cpp:740
 #, kde-format
 msgid "&Compare Files"
 msgstr "&Comparer des fichiers"
 
-#: app/Synchronizer/synchronizergui.cpp:747
+#: app/Synchronizer/synchronizergui.cpp:746
 #, kde-format
 msgid "C&opy selected to clipboard (left)"
 msgstr "C&opier la sélection dans le presse-papiers (gauche)"
 
-#: app/Synchronizer/synchronizergui.cpp:749
+#: app/Synchronizer/synchronizergui.cpp:748
 #, kde-format
 msgid "Co&py selected to clipboard (right)"
 msgstr "Co&pier la sélection dans le presse-papiers (droite)"
 
-#: app/Synchronizer/synchronizergui.cpp:754
+#: app/Synchronizer/synchronizergui.cpp:753
 #, kde-format
 msgid "&Select items"
 msgstr "&Sélectionner des éléments"
 
-#: app/Synchronizer/synchronizergui.cpp:756
+#: app/Synchronizer/synchronizergui.cpp:755
 #, kde-format
 msgid "Deselec&t items"
 msgstr "Désélec&tionner des éléments"
 
-#: app/Synchronizer/synchronizergui.cpp:758
+#: app/Synchronizer/synchronizergui.cpp:757
 #, kde-format
 msgid "I&nvert selection"
 msgstr "I&nverser la sélection"
 
-#: app/Synchronizer/synchronizergui.cpp:768
+#: app/Synchronizer/synchronizergui.cpp:767
 #, kde-format
 msgid "Synchronize with &KGet"
 msgstr "Synchroniser avec &KGet"
 
-#: app/Synchronizer/synchronizergui.cpp:842
+#: app/Synchronizer/synchronizergui.cpp:841
 #, kde-format
 msgid "Select items"
 msgstr "Sélectionner des éléments"
 
-#: app/Synchronizer/synchronizergui.cpp:842
+#: app/Synchronizer/synchronizergui.cpp:841
 #, kde-format
 msgid "Deselect items"
 msgstr "Désélectionner des éléments"
 
-#: app/Synchronizer/synchronizergui.cpp:966
+#: app/Synchronizer/synchronizergui.cpp:965
 #, kde-format
 msgid "The target folder must not be empty."
 msgstr "Le dossier cible ne doit pas être vide."
 
-#: app/Synchronizer/synchronizergui.cpp:971
+#: app/Synchronizer/synchronizergui.cpp:970
 #, kde-format
 msgid "The source folder must not be empty."
 msgstr "Le dossier source ne doit pas être vide."
 
-#: app/Synchronizer/synchronizergui.cpp:1239
+#: app/Synchronizer/synchronizergui.cpp:1259
 #, kde-format
 msgid "Synchronizer has nothing to do."
 msgstr "Le synchroniseur n'a rien à faire."
 
-#: app/Synchronizer/synchronizergui.cpp:1335
+#: app/Synchronizer/synchronizergui.cpp:1355
 #, kde-format
 msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-07 00:50+0000\n"
+"POT-Creation-Date: 2026-09-17 00:48+0000\n"
 "PO-Revision-Date: 2026-09-14 20:10+0200\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -897,7 +897,7 @@ msgstr "Písať na hľadanie..."
 
 #: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
 #: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
-#: app/Konfigurator/kggeneral.cpp:322
+#: app/Konfigurator/kggeneral.cpp:323
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
 msgid "Error"
@@ -1553,7 +1553,7 @@ msgid "Previous"
 msgstr "Predošlý"
 
 #: app/DiskUsage/diskusage.cpp:811 app/GUI/kfnkeys.cpp:25
-#: app/Konfigurator/kgpanel.cpp:414
+#: app/Konfigurator/kgpanel.cpp:421
 #, kde-format
 msgid "View"
 msgstr "Zobrazenie"
@@ -2712,8 +2712,8 @@ msgstr "Odkaz na %1"
 
 #: app/Konfigurator/kgadvanced.cpp:29 app/Konfigurator/kgcolors.cpp:49
 #: app/Konfigurator/kgdependencies.cpp:41 app/Konfigurator/kggeneral.cpp:208
-#: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:63
-#: app/Konfigurator/kgpanel.cpp:419 app/Konfigurator/kgpanel.cpp:664
+#: app/Konfigurator/kggeneral.cpp:215 app/Konfigurator/kgpanel.cpp:70
+#: app/Konfigurator/kgpanel.cpp:426 app/Konfigurator/kgpanel.cpp:682
 #: app/Konfigurator/kgstartup.cpp:31 app/Konfigurator/konfigurator.cpp:122
 #, kde-format
 msgid "General"
@@ -2856,22 +2856,22 @@ msgstr "Prehliadať archívy ako priečinky"
 msgid "Krusader will browse archives as folders."
 msgstr "Krusader bude prehliadať archívy ako priečinky."
 
-#: app/Konfigurator/kgarchives.cpp:83
+#: app/Konfigurator/kgarchives.cpp:86
 #, kde-format
 msgid "Test archive after packing"
 msgstr "Testovať archív po komprimácii"
 
-#: app/Konfigurator/kgarchives.cpp:83
+#: app/Konfigurator/kgarchives.cpp:88
 #, kde-format
 msgid "Check the archive's integrity after packing it."
 msgstr "Po komprimácií sa skontroluje integrita archívu."
 
-#: app/Konfigurator/kgarchives.cpp:87
+#: app/Konfigurator/kgarchives.cpp:92
 #, kde-format
 msgid "Test archive before unpacking"
 msgstr "Testovať archív pred rozbalením"
 
-#: app/Konfigurator/kgarchives.cpp:89
+#: app/Konfigurator/kgarchives.cpp:94
 #, kde-format
 msgid ""
 "Some corrupted archives might cause a crash; therefore, testing is suggested."
@@ -2879,18 +2879,18 @@ msgstr ""
 "Niektoré poškodené archívy môžu spôsobiť pád a preto je testovanie "
 "odporúčané."
 
-#: app/Konfigurator/kgarchives.cpp:106 app/Konfigurator/kggeneral.cpp:307
+#: app/Konfigurator/kgarchives.cpp:111 app/Konfigurator/kggeneral.cpp:308
 #: app/Search/krsearchdialog.cpp:617
 #, kde-format
 msgid "Search results"
 msgstr "Výsledok hľadania"
 
-#: app/Konfigurator/kgarchives.cpp:107
+#: app/Konfigurator/kgarchives.cpp:112
 #, kde-format
 msgid "Searching for packers..."
 msgstr "Hľadanie archivačných nástrojov..."
 
-#: app/Konfigurator/kgarchives.cpp:109
+#: app/Konfigurator/kgarchives.cpp:114
 #, kde-format
 msgid ""
 "Make sure to install new packers in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3214,7 +3214,7 @@ msgstr "Stavový riadok, neaktívne popredie:"
 msgid "Statusbar, inactive background:"
 msgstr "Stavový riadok, neaktívne pozadie:"
 
-#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:808
+#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:826
 #: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
@@ -3522,47 +3522,47 @@ msgstr ""
 msgid "Temp Folder:"
 msgstr "Dočasný priečinok:"
 
-#: app/Konfigurator/kggeneral.cpp:248
+#: app/Konfigurator/kggeneral.cpp:249
 #, kde-format
 msgid "Note: you must have full permissions for the temporary folder."
 msgstr "Poznámka: musíte mať úplné práva k dočasnému adresáru."
 
-#: app/Konfigurator/kggeneral.cpp:255
+#: app/Konfigurator/kggeneral.cpp:256
 #, kde-format
 msgid "Delete mode"
 msgstr "Mazací režim"
 
-#: app/Konfigurator/kggeneral.cpp:260
+#: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
 msgid "Move to trash"
 msgstr "Presunúť do koša"
 
-#: app/Konfigurator/kggeneral.cpp:260
+#: app/Konfigurator/kggeneral.cpp:261
 #, kde-format
 msgid "Files will be moved to trash when deleted."
 msgstr "Pri zmazaní budú súbory presunuté do koša."
 
-#: app/Konfigurator/kggeneral.cpp:261
+#: app/Konfigurator/kggeneral.cpp:262
 #, kde-format
 msgid "Delete files"
 msgstr "Odstrániť súbory"
 
-#: app/Konfigurator/kggeneral.cpp:261
+#: app/Konfigurator/kggeneral.cpp:262
 #, kde-format
 msgid "Files will be permanently deleted."
 msgstr "Súbory budú permanentne zmazané."
 
-#: app/Konfigurator/kggeneral.cpp:270 app/Panel/panelcontextmenu.cpp:157
+#: app/Konfigurator/kggeneral.cpp:271 app/Panel/panelcontextmenu.cpp:157
 #, kde-format
 msgid "Terminal"
 msgstr "Terminál"
 
-#: app/Konfigurator/kggeneral.cpp:278
+#: app/Konfigurator/kggeneral.cpp:279
 #, kde-format
 msgid "Embedded Terminal sends Chdir on panel change"
 msgstr "Pri zmene panela sa vykoná zmena priečinku v zabudovanom termináli"
 
-#: app/Konfigurator/kggeneral.cpp:280
+#: app/Konfigurator/kggeneral.cpp:281
 #, kde-format
 msgid ""
 "When checked, whenever the panel is changed (for example, by pressing Tab), "
@@ -3571,12 +3571,12 @@ msgstr ""
 "Pokiaľ je zaškrtnuté, vždy keď sa zmení panel (napríklad stlačením "
 "tabulátora), Krusader zmení aktuálny priečinok v zabudovanom terminále."
 
-#: app/Konfigurator/kggeneral.cpp:284
+#: app/Konfigurator/kggeneral.cpp:285
 #, kde-format
 msgid "Active panel follows Embedded Terminal working directory"
 msgstr "Aktívny panel nasleduje pracovný adresár zabudovaného terminálu"
 
-#: app/Konfigurator/kggeneral.cpp:286
+#: app/Konfigurator/kggeneral.cpp:287
 #, kde-format
 msgid ""
 "When checked, whenever terminal working directory is changed (for example, "
@@ -3587,12 +3587,12 @@ msgstr ""
 "(napríklad vykonaním príkazu 'cd' alebo 'popd'), Krusader zmení aktuálny "
 "priečinok aktívneho panela."
 
-#: app/Konfigurator/kggeneral.cpp:308
+#: app/Konfigurator/kggeneral.cpp:309
 #, kde-format
 msgid "Searching for tools..."
 msgstr "Hľadanie nástrojov..."
 
-#: app/Konfigurator/kggeneral.cpp:310
+#: app/Konfigurator/kggeneral.cpp:311
 #, kde-format
 msgid ""
 "Make sure to install new tools in your <code>$PATH</code> (e.g. /usr/bin)"
@@ -3600,17 +3600,17 @@ msgstr ""
 "Uistite sa, že nové nástroje sa nainštalujú do cesty v <code>$PATH</code> "
 "(napr. /usr/bin)"
 
-#: app/Konfigurator/kggeneral.cpp:318
+#: app/Konfigurator/kggeneral.cpp:319
 #, kde-format
 msgid "Add new atomic extension"
 msgstr "Pridá novú nedelenú príponu"
 
-#: app/Konfigurator/kggeneral.cpp:318
+#: app/Konfigurator/kggeneral.cpp:319
 #, kde-format
 msgid "Extension:"
 msgstr "Prípona:"
 
-#: app/Konfigurator/kggeneral.cpp:322
+#: app/Konfigurator/kggeneral.cpp:323
 #, kde-format
 msgid ""
 "Atomic extensions must start with '.' and must contain at least one more '.' "
@@ -3619,42 +3619,42 @@ msgstr ""
 "Nedelené prípony musia zažínať s '.' a musia obsahovať aspoň jeden ďalší "
 "znak '.'"
 
-#: app/Konfigurator/kgpanel.cpp:72
+#: app/Konfigurator/kgpanel.cpp:79
 #, kde-format
 msgid "Navigator bar"
 msgstr "Navigačný pás"
 
-#: app/Konfigurator/kgpanel.cpp:77
+#: app/Konfigurator/kgpanel.cpp:84
 #, kde-format
 msgid "Edit Mode by default"
 msgstr "Editačný režim predvolene"
 
-#: app/Konfigurator/kgpanel.cpp:77
+#: app/Konfigurator/kgpanel.cpp:84
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
 msgstr "Predvolene zobraziť editovateľnú cestu v navigačnom páse"
 
-#: app/Konfigurator/kgpanel.cpp:78
+#: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Show full path by default"
 msgstr "Štandardne ukázať celú cestu"
 
-#: app/Konfigurator/kgpanel.cpp:78
+#: app/Konfigurator/kgpanel.cpp:85
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
 msgstr "Predvolene vždy zobraziť plnú cestu v navigačnom páse."
 
-#: app/Konfigurator/kgpanel.cpp:88
+#: app/Konfigurator/kgpanel.cpp:95
 #, kde-format
 msgid "Operation"
 msgstr "Operácia"
 
-#: app/Konfigurator/kgpanel.cpp:96
+#: app/Konfigurator/kgpanel.cpp:103
 #, kde-format
 msgid "Autoselect folders"
 msgstr "Automatické označenie priečinkov"
 
-#: app/Konfigurator/kgpanel.cpp:98
+#: app/Konfigurator/kgpanel.cpp:105
 #, kde-format
 msgid ""
 "When matching the select criteria, not only files will be selected, but also "
@@ -3663,12 +3663,12 @@ msgstr ""
 "Pokiaľ budú splnené podmienky výberu, budú označené nielen súbory, ale aj "
 "priečinky."
 
-#: app/Konfigurator/kgpanel.cpp:102
+#: app/Konfigurator/kgpanel.cpp:109
 #, kde-format
 msgid "Rename selects extension"
 msgstr "Premenovať označenú príponu"
 
-#: app/Konfigurator/kgpanel.cpp:104
+#: app/Konfigurator/kgpanel.cpp:111
 #, kde-format
 msgid ""
 "When renaming a file, the whole text is selected. If you want Total-"
@@ -3678,24 +3678,24 @@ msgstr ""
 "Pokiaľ zaškrtnuté, pri premenovaní súboru je označený celý text.\n"
 "Inak je označený len názov bez prípony ako v programe Total-Commander. "
 
-#: app/Konfigurator/kgpanel.cpp:109
+#: app/Konfigurator/kgpanel.cpp:116
 #, kde-format
 msgid "Unselect files before copy/move"
 msgstr "Pred kopírovaním/presunom odznačte súbory"
 
-#: app/Konfigurator/kgpanel.cpp:111
+#: app/Konfigurator/kgpanel.cpp:118
 #, kde-format
 msgid ""
 "Unselect files, which are to be copied/moved, before the operation starts."
 msgstr ""
 "Odznačiť súbory, ktoré sa budú kopírovať/presúvať, pred začatím operácie."
 
-#: app/Konfigurator/kgpanel.cpp:115
+#: app/Konfigurator/kgpanel.cpp:122
 #, kde-format
 msgid "Filter dialog remembers settings"
 msgstr "Zapamätať si nastavenia dialógu filtra"
 
-#: app/Konfigurator/kgpanel.cpp:117
+#: app/Konfigurator/kgpanel.cpp:124
 #, kde-format
 msgid ""
 "The filter dialog is opened with the last filter settings that where applied "
@@ -3704,17 +3704,17 @@ msgstr ""
 "Dialóg filtra sa otvorí s posledným nastavením filtra, ktoré bolo použité na "
 "panel."
 
-#: app/Konfigurator/kgpanel.cpp:127
+#: app/Konfigurator/kgpanel.cpp:134
 #, kde-format
 msgid "Tabs"
 msgstr "Karty"
 
-#: app/Konfigurator/kgpanel.cpp:135
+#: app/Konfigurator/kgpanel.cpp:142
 #, kde-format
 msgid "Use full path tab names"
 msgstr "Používať úplné cesty v názvoch kariet"
 
-#: app/Konfigurator/kgpanel.cpp:137
+#: app/Konfigurator/kgpanel.cpp:144
 #, kde-format
 msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
@@ -3723,72 +3723,72 @@ msgstr ""
 "Zobrazí celú cestu v záložkách kariet. Štandardne zobrazí len poslednú časť "
 "cesty."
 
-#: app/Konfigurator/kgpanel.cpp:138
+#: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Show close tab buttons"
 msgstr "Zobraziť tlačidlá na zatvorenie karty"
 
-#: app/Konfigurator/kgpanel.cpp:138
+#: app/Konfigurator/kgpanel.cpp:145
 #, kde-format
 msgid "Show close tab buttons."
 msgstr "Zobraziť tlačidlá na zatvorenie karty."
 
-#: app/Konfigurator/kgpanel.cpp:139
+#: app/Konfigurator/kgpanel.cpp:146
 #, kde-format
 msgid "Expanding tabs"
 msgstr "Rozširujúce sa karty"
 
-#: app/Konfigurator/kgpanel.cpp:139
+#: app/Konfigurator/kgpanel.cpp:146
 #, kde-format
 msgid "Expanding tabs."
 msgstr "Rozširujúce sa karty."
 
-#: app/Konfigurator/kgpanel.cpp:140
+#: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "Show new tab button"
 msgstr "Zobraziť tlačidlo novej karty"
 
-#: app/Konfigurator/kgpanel.cpp:140
+#: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
 msgid "Show new tab button."
 msgstr "Zobraziť tlačidlo novej karty."
 
-#: app/Konfigurator/kgpanel.cpp:141
+#: app/Konfigurator/kgpanel.cpp:148
 #, kde-format
 msgid "Insert tabs after current"
 msgstr "Vložiť karty za aktuálnu"
 
-#: app/Konfigurator/kgpanel.cpp:141
+#: app/Konfigurator/kgpanel.cpp:148
 #, kde-format
 msgid "Insert new tabs to the right of the current one."
 msgstr "Vložiť nové karty napravo od súčasnej karty."
 
-#: app/Konfigurator/kgpanel.cpp:142
+#: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
 msgid "Show Tab Bar on single tab"
 msgstr "Zobraziť panel kariet pri jednej karte"
 
-#: app/Konfigurator/kgpanel.cpp:142
+#: app/Konfigurator/kgpanel.cpp:149
 #, kde-format
 msgid "Show the tab bar with only one tab."
 msgstr "Zobraziť panel kariet pri iba jednej karte"
 
-#: app/Konfigurator/kgpanel.cpp:143
+#: app/Konfigurator/kgpanel.cpp:150
 #, kde-format
 msgid "Close tab by double click"
 msgstr "Zatvorenie karty dvojitým kliknutím"
 
-#: app/Konfigurator/kgpanel.cpp:143
+#: app/Konfigurator/kgpanel.cpp:150
 #, kde-format
 msgid "Close tab by double click."
 msgstr "Zatvorenie karty dvojitým kliknutím."
 
-#: app/Konfigurator/kgpanel.cpp:147
+#: app/Konfigurator/kgpanel.cpp:154
 #, kde-format
 msgid "New tab button duplicates a tab"
 msgstr "Tlačidlo Nová karta duplikuje kartu"
 
-#: app/Konfigurator/kgpanel.cpp:149
+#: app/Konfigurator/kgpanel.cpp:156
 #, kde-format
 msgid ""
 "If checked, new tab button duplicates a tab, otherwise it opens a tab in "
@@ -3797,88 +3797,88 @@ msgstr ""
 "Ak je zaškrtnuté, tlačidlo novej karty duplikuje kartu, inak otvorí kartu v "
 "domovskom adresári."
 
-#: app/Konfigurator/kgpanel.cpp:156
+#: app/Konfigurator/kgpanel.cpp:163
 #, kde-format
 msgid "Duplicate active tab by click:"
 msgstr "Duplikovať aktívnu kartu kliknutím:"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Disabled"
 msgstr "Zakázané"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Alt+Click"
 msgstr "Alt+Kliknutie"
 
-#: app/Konfigurator/kgpanel.cpp:159
+#: app/Konfigurator/kgpanel.cpp:166
 #, kde-format
 msgid "Ctrl+Click"
 msgstr "Ctrl+Kliknutie"
 
-#: app/Konfigurator/kgpanel.cpp:170
+#: app/Konfigurator/kgpanel.cpp:177
 #, kde-format
 msgid "Duplicate active tab by clicking Ctrl/Alt+LMB"
 msgstr "Duplikovať aktívnu kartu kliknutím Ctrl/Alt+ľavé tlačidlo myši"
 
-#: app/Konfigurator/kgpanel.cpp:180
+#: app/Konfigurator/kgpanel.cpp:187
 #, kde-format
 msgid "Tab Bar position:"
 msgstr "Poloha panela kariet:"
 
-#: app/Konfigurator/kgpanel.cpp:183
+#: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
 msgid "Top"
 msgstr "Vrch"
 
-#: app/Konfigurator/kgpanel.cpp:183
+#: app/Konfigurator/kgpanel.cpp:190
 #, kde-format
 msgid "Bottom"
 msgstr "Spodok"
 
-#: app/Konfigurator/kgpanel.cpp:195
+#: app/Konfigurator/kgpanel.cpp:202
 #, kde-format
 msgid "Search bar"
 msgstr "Pás hľadania"
 
-#: app/Konfigurator/kgpanel.cpp:203
+#: app/Konfigurator/kgpanel.cpp:210
 #, kde-format
 msgid "Start by typing"
 msgstr "Začnite písaním"
 
-#: app/Konfigurator/kgpanel.cpp:205
+#: app/Konfigurator/kgpanel.cpp:212
 #, kde-format
 msgid "Open search bar and start searching by typing in panel."
 msgstr "Otvoriť panel hľadania spustiť hľadanie písaním v paneli."
 
-#: app/Konfigurator/kgpanel.cpp:206 app/KrViewer/lister.cpp:1299
+#: app/Konfigurator/kgpanel.cpp:213 app/KrViewer/lister.cpp:1299
 #, kde-format
 msgid "Case sensitive"
 msgstr "Rozlišovať veľkosť písmen"
 
-#: app/Konfigurator/kgpanel.cpp:206
+#: app/Konfigurator/kgpanel.cpp:213
 #, kde-format
 msgid "Search must match case."
 msgstr "Hľadanie je citlivé na veľkosť písmen."
 
-#: app/Konfigurator/kgpanel.cpp:210
+#: app/Konfigurator/kgpanel.cpp:217
 #, kde-format
 msgid "Up/Down cancels search"
 msgstr "Hore/Dolu zruší rýchle hľadanie"
 
-#: app/Konfigurator/kgpanel.cpp:212
+#: app/Konfigurator/kgpanel.cpp:219
 #, kde-format
 msgid ""
 "Pressing the Up/Down buttons closes the search bar (only in search mode)."
 msgstr "Stlačením Hore/Dolu zrušíte rýchle hľadanie (iba v režime hľadania)."
 
-#: app/Konfigurator/kgpanel.cpp:216
+#: app/Konfigurator/kgpanel.cpp:223
 #, kde-format
 msgid "Folder navigation with Right Arrow"
 msgstr "Navigovanie priečinkami šípkou doprava"
 
-#: app/Konfigurator/kgpanel.cpp:218
+#: app/Konfigurator/kgpanel.cpp:225
 #, kde-format
 msgid ""
 "Pressing the Right button enters folder if no search text editing intention "
@@ -3887,58 +3887,58 @@ msgstr ""
 "Stlačenie Pravého tlačidla otvorí priečinok pokiaľ nie je zachytený zámer "
 "zmeniť vyhľadávaný text."
 
-#: app/Konfigurator/kgpanel.cpp:227
+#: app/Konfigurator/kgpanel.cpp:234
 #, kde-format
 msgid "Position:"
 msgstr "Pozícia:"
 
-#: app/Konfigurator/kgpanel.cpp:237
+#: app/Konfigurator/kgpanel.cpp:244
 #, kde-format
 msgid "Default mode:"
 msgstr "Predvolený režim:"
 
-#: app/Konfigurator/kgpanel.cpp:239 app/KrViewer/lister.cpp:1215
+#: app/Konfigurator/kgpanel.cpp:246 app/KrViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:165
 #, kde-format
 msgid "Search"
 msgstr "Hľadať"
 
-#: app/Konfigurator/kgpanel.cpp:240 app/Panel/krsearchbar.cpp:42
+#: app/Konfigurator/kgpanel.cpp:247 app/Panel/krsearchbar.cpp:42
 #, kde-format
 msgid "Select"
 msgstr "Vybrať"
 
-#: app/Konfigurator/kgpanel.cpp:241 app/Panel/krsearchbar.cpp:42
+#: app/Konfigurator/kgpanel.cpp:248 app/Panel/krsearchbar.cpp:42
 #, kde-format
 msgid "Filter"
 msgstr "Filter"
 
-#: app/Konfigurator/kgpanel.cpp:251
+#: app/Konfigurator/kgpanel.cpp:258
 #, kde-format
 msgid "Set the default mode on first usage"
 msgstr "Nastaviť predvolený režim pri prvom použití"
 
-#: app/Konfigurator/kgpanel.cpp:262
+#: app/Konfigurator/kgpanel.cpp:269
 #, kde-format
 msgid "Bookmark Search"
 msgstr "Vyhľadať Záložky"
 
-#: app/Konfigurator/kgpanel.cpp:266
+#: app/Konfigurator/kgpanel.cpp:273
 #, kde-format
 msgid "Always show search bar"
 msgstr "Vždy zobrazovať panel vyhľadávania"
 
-#: app/Konfigurator/kgpanel.cpp:266
+#: app/Konfigurator/kgpanel.cpp:273
 #, kde-format
 msgid "Make bookmark search bar always visible"
 msgstr "Panel vyhľadávania záložiek vždy viditeľný"
 
-#: app/Konfigurator/kgpanel.cpp:270
+#: app/Konfigurator/kgpanel.cpp:277
 #, kde-format
 msgid "Search in special items"
 msgstr "Hľadať v špeciálnych položkách"
 
-#: app/Konfigurator/kgpanel.cpp:272
+#: app/Konfigurator/kgpanel.cpp:279
 #, kde-format
 msgid ""
 "Bookmark search is also applied to special items in bookmark menu like "
@@ -3947,148 +3947,148 @@ msgstr ""
 "Vyhľadávanie záložiek sa tiež vzťahuje na špeciálne položky v ponuke "
 "záložiek ako je Kôš, Obľúbené adresy, Skočiť späť, atď."
 
-#: app/Konfigurator/kgpanel.cpp:281
+#: app/Konfigurator/kgpanel.cpp:288
 #, kde-format
 msgid "Status/Totalsbar"
 msgstr "Stav/Celkovo"
 
-#: app/Konfigurator/kgpanel.cpp:285
+#: app/Konfigurator/kgpanel.cpp:292
 #, kde-format
 msgid "Show size in bytes too"
 msgstr "Ukázať veľkosť aj v bajtoch"
 
-#: app/Konfigurator/kgpanel.cpp:286
+#: app/Konfigurator/kgpanel.cpp:293
 #, kde-format
 msgid "Show space information"
 msgstr "Ukázať informácie o voľnom mieste"
 
-#: app/Konfigurator/kgpanel.cpp:286
+#: app/Konfigurator/kgpanel.cpp:293
 #, kde-format
 msgid "Show free/total space on the device"
 msgstr "Ukázať voľné/celkové miesto na zariadení"
 
-#: app/Konfigurator/kgpanel.cpp:304
+#: app/Konfigurator/kgpanel.cpp:311
 #, kde-format
 msgid "Layout"
 msgstr "Vzhľad"
 
-#: app/Konfigurator/kgpanel.cpp:313
+#: app/Konfigurator/kgpanel.cpp:320
 #, kde-format
 msgid "Layout:"
 msgstr "Vzhľad:"
 
-#: app/Konfigurator/kgpanel.cpp:325
+#: app/Konfigurator/kgpanel.cpp:332
 #, kde-format
 msgid "Frame Color:"
 msgstr "Farba rámu:"
 
-#: app/Konfigurator/kgpanel.cpp:328
+#: app/Konfigurator/kgpanel.cpp:335
 #, kde-format
 msgctxt "Frame color"
 msgid "Defined by Layout"
 msgstr "Definované vzhľadom"
 
-#: app/Konfigurator/kgpanel.cpp:329
+#: app/Konfigurator/kgpanel.cpp:336
 #, kde-format
 msgctxt "Frame color"
 msgid "None"
 msgstr "Žiadne"
 
-#: app/Konfigurator/kgpanel.cpp:330
+#: app/Konfigurator/kgpanel.cpp:337
 #, kde-format
 msgctxt "Frame color"
 msgid "Statusbar"
 msgstr "Stavový riadok"
 
-#: app/Konfigurator/kgpanel.cpp:334
+#: app/Konfigurator/kgpanel.cpp:341
 #, kde-format
 msgid "Frame Shape:"
 msgstr "Tvar rámu:"
 
-#: app/Konfigurator/kgpanel.cpp:338
+#: app/Konfigurator/kgpanel.cpp:345
 #, kde-format
 msgctxt "Frame shape"
 msgid "Defined by Layout"
 msgstr "Definované vzhľadom"
 
-#: app/Konfigurator/kgpanel.cpp:339
+#: app/Konfigurator/kgpanel.cpp:346
 #, kde-format
 msgctxt "Frame shape"
 msgid "None"
 msgstr "Žiadne"
 
-#: app/Konfigurator/kgpanel.cpp:340
+#: app/Konfigurator/kgpanel.cpp:347
 #, kde-format
 msgctxt "Frame shape"
 msgid "Box"
 msgstr "Obdĺžnik"
 
-#: app/Konfigurator/kgpanel.cpp:341
+#: app/Konfigurator/kgpanel.cpp:348
 #, kde-format
 msgctxt "Frame shape"
 msgid "Panel"
 msgstr "Panel"
 
-#: app/Konfigurator/kgpanel.cpp:346
+#: app/Konfigurator/kgpanel.cpp:353
 #, kde-format
 msgid "Frame Shadow:"
 msgstr "Tieň rámu:"
 
-#: app/Konfigurator/kgpanel.cpp:350
+#: app/Konfigurator/kgpanel.cpp:357
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Defined by Layout"
 msgstr "Definované vzhľadom"
 
-#: app/Konfigurator/kgpanel.cpp:351
+#: app/Konfigurator/kgpanel.cpp:358
 #, kde-format
 msgctxt "Frame shadow"
 msgid "None"
 msgstr "Žiadne"
 
-#: app/Konfigurator/kgpanel.cpp:352
+#: app/Konfigurator/kgpanel.cpp:359
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Raised"
 msgstr "Zvýraznený"
 
-#: app/Konfigurator/kgpanel.cpp:353
+#: app/Konfigurator/kgpanel.cpp:360
 #, kde-format
 msgctxt "Frame shadow"
 msgid "Sunken"
 msgstr "Prepadnutý"
 
-#: app/Konfigurator/kgpanel.cpp:366
+#: app/Konfigurator/kgpanel.cpp:373
 #, kde-format
 msgid "Default icon size:"
 msgstr "Štandardná veľkosť ikon:"
 
-#: app/Konfigurator/kgpanel.cpp:395
+#: app/Konfigurator/kgpanel.cpp:402
 #, kde-format
 msgid "Use icons in the filenames"
 msgstr "Zobraziť ikony v názvoch súborov"
 
-#: app/Konfigurator/kgpanel.cpp:395
+#: app/Konfigurator/kgpanel.cpp:402
 #, kde-format
 msgid "Show the icons for filenames and folders."
 msgstr "Zobraziť ikony pri názvoch súboroch a adresárov."
 
-#: app/Konfigurator/kgpanel.cpp:396
+#: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews by default"
 msgstr "Štandardne ukázať náhľady"
 
-#: app/Konfigurator/kgpanel.cpp:396
+#: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews of files and folders."
 msgstr "Zobraziť náhľady súborov a priečinkov."
 
-#: app/Konfigurator/kgpanel.cpp:431
+#: app/Konfigurator/kgpanel.cpp:438
 #, kde-format
 msgid "View font:"
 msgstr "Písmo prehliadača:"
 
-#: app/Konfigurator/kgpanel.cpp:441
+#: app/Konfigurator/kgpanel.cpp:449
 #, kde-format
 msgid ""
 "The duration after a tooltip is shown for a file item, in milliseconds. Set "
@@ -4097,37 +4097,37 @@ msgstr ""
 "Trvanie po tom ako popisok je zobrazený pre položku súboru, v milisekundách. "
 "Nastavte negatívnu hodnotu na zakázanie nástrojových typov."
 
-#: app/Konfigurator/kgpanel.cpp:443
+#: app/Konfigurator/kgpanel.cpp:451
 #, kde-format
 msgid "Tooltip delay (msec):"
 msgstr "Odozva nástrojového tipu (msec):"
 
-#: app/Konfigurator/kgpanel.cpp:461
+#: app/Konfigurator/kgpanel.cpp:469
 #, kde-format
 msgid "Use human-readable file size"
 msgstr "Používať veľkosť súborov čitateľnú pre ľudí"
 
-#: app/Konfigurator/kgpanel.cpp:463
+#: app/Konfigurator/kgpanel.cpp:471
 #, kde-format
 msgid "File sizes are displayed in B, KB, MB and GB, not just in bytes."
 msgstr "Veľkosti súborov sa zobrazujú v B, KB, MB, a GB, nie len v bajtoch."
 
-#: app/Konfigurator/kgpanel.cpp:464
+#: app/Konfigurator/kgpanel.cpp:472
 #, kde-format
 msgid "Show hidden files"
 msgstr "Ukázať skryté súbory"
 
-#: app/Konfigurator/kgpanel.cpp:464
+#: app/Konfigurator/kgpanel.cpp:472
 #, kde-format
 msgid "Display files beginning with a dot."
 msgstr "Zobraziť súbory začínajúce s bodkou."
 
-#: app/Konfigurator/kgpanel.cpp:468
+#: app/Konfigurator/kgpanel.cpp:476
 #, kde-format
 msgid "Numeric Permissions"
 msgstr "Numerické práva"
 
-#: app/Konfigurator/kgpanel.cpp:470
+#: app/Konfigurator/kgpanel.cpp:478
 #, kde-format
 msgid ""
 "Show octal numbers (0755) instead of the standard permissions (rwxr-xr-x) in "
@@ -4136,64 +4136,64 @@ msgstr ""
 "Zobraziť práva v osmičkovej sústave (0755) namiesto štandardného zobrazenia "
 "(rwxr-xr-x)  v stĺpci práva."
 
-#: app/Konfigurator/kgpanel.cpp:474
+#: app/Konfigurator/kgpanel.cpp:482
 #, kde-format
 msgid "Load the user defined folder icons"
 msgstr "Načítať používateľom definované ikonky priečinkov"
 
-#: app/Konfigurator/kgpanel.cpp:476
+#: app/Konfigurator/kgpanel.cpp:484
 #, kde-format
 msgid "Load the user defined folder icons (can cause decrease in performance)."
 msgstr ""
 "Načítať používateľom definované ikony priečinkov (môže znížiť výkonnosť)."
 
-#: app/Konfigurator/kgpanel.cpp:480
+#: app/Konfigurator/kgpanel.cpp:488
 #, kde-format
 msgid "Always show current item"
 msgstr "Vždy zobrazovať aktuálnu položku"
 
-#: app/Konfigurator/kgpanel.cpp:482
+#: app/Konfigurator/kgpanel.cpp:490
 #, kde-format
 msgid "Show current item border decoration in inactive panel."
 msgstr "Zobraziť okraj aktuálnej položiek v neaktívnom paneli."
 
-#: app/Konfigurator/kgpanel.cpp:496
+#: app/Konfigurator/kgpanel.cpp:504
 #, kde-format
 msgid "Sort method:"
 msgstr "Metóda zoradenia:"
 
-#: app/Konfigurator/kgpanel.cpp:499
+#: app/Konfigurator/kgpanel.cpp:508
 #, kde-format
 msgid "Alphabetical"
 msgstr "Alfabeticky"
 
-#: app/Konfigurator/kgpanel.cpp:500
+#: app/Konfigurator/kgpanel.cpp:509
 #, kde-format
 msgid "Alphabetical and numbers"
 msgstr "Alfabeticky a číselne"
 
-#: app/Konfigurator/kgpanel.cpp:501
+#: app/Konfigurator/kgpanel.cpp:510
 #, kde-format
 msgid "Character code"
 msgstr "Podľa kódov znakov"
 
-#: app/Konfigurator/kgpanel.cpp:502
+#: app/Konfigurator/kgpanel.cpp:511
 #, kde-format
 msgid "Character code and numbers"
 msgstr "Podľa kódov znakov a číselne"
 
-#: app/Konfigurator/kgpanel.cpp:503
+#: app/Konfigurator/kgpanel.cpp:512
 #, kde-format
 msgctxt "Krusader sort"
 msgid "Krusader"
 msgstr "Krusader"
 
-#: app/Konfigurator/kgpanel.cpp:518
+#: app/Konfigurator/kgpanel.cpp:536
 #, kde-format
 msgid "Case sensitive sorting"
 msgstr "Zoradenie citlivé na veľkosť písmen"
 
-#: app/Konfigurator/kgpanel.cpp:520
+#: app/Konfigurator/kgpanel.cpp:538
 #, kde-format
 msgid ""
 "All files beginning with capital letters appear before files beginning with "
@@ -4202,27 +4202,27 @@ msgstr ""
 "Všetky súbory začínajúce veľkými písmenami budú zaradené pred súbory, ktoré "
 "začínajú s malými (UNIX štandard)."
 
-#: app/Konfigurator/kgpanel.cpp:521
+#: app/Konfigurator/kgpanel.cpp:539
 #, kde-format
 msgid "Show folders first"
 msgstr "Zobrazovať najskôr priečinky"
 
-#: app/Konfigurator/kgpanel.cpp:525
+#: app/Konfigurator/kgpanel.cpp:543
 #, kde-format
 msgid "Always sort dirs by name"
 msgstr "Vždy zoradiť priečinky podľa názvu"
 
-#: app/Konfigurator/kgpanel.cpp:527
+#: app/Konfigurator/kgpanel.cpp:545
 #, kde-format
 msgid "Folders are sorted by name, regardless of the sort column."
 msgstr "Priečinky sú zoradené podľa mena, bez ohľadu na triedenie stĺpcov."
 
-#: app/Konfigurator/kgpanel.cpp:531
+#: app/Konfigurator/kgpanel.cpp:549
 #, kde-format
 msgid "Locale aware sorting"
 msgstr "Lokalizované zoradenie"
 
-#: app/Konfigurator/kgpanel.cpp:533
+#: app/Konfigurator/kgpanel.cpp:551
 #, kde-format
 msgid ""
 "The sorting is performed in a locale- and also platform-dependent manner. "
@@ -4230,142 +4230,142 @@ msgid ""
 msgstr ""
 "Radenie je závislé na regionálnom nastavení a platforme. Môže byť pomalé."
 
-#: app/Konfigurator/kgpanel.cpp:545
+#: app/Konfigurator/kgpanel.cpp:563
 #, kde-format
 msgid "View modes"
 msgstr "Zobrazovacie režimy"
 
-#: app/Konfigurator/kgpanel.cpp:552
+#: app/Konfigurator/kgpanel.cpp:570
 #, kde-format
 msgid "Default view mode:"
 msgstr "Štandardný zobrazovací režim:"
 
-#: app/Konfigurator/kgpanel.cpp:599
+#: app/Konfigurator/kgpanel.cpp:617
 #, kde-format
 msgid "Buttons"
 msgstr "Tlačidlá"
 
-#: app/Konfigurator/kgpanel.cpp:608
+#: app/Konfigurator/kgpanel.cpp:626
 #, kde-format
 msgid "Toolbar buttons have icons"
 msgstr "Tlačidlá lišty majú ikony"
 
-#: app/Konfigurator/kgpanel.cpp:609
+#: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "Show Media Button"
 msgstr "Ukázať tlačidlo Médiá"
 
-#: app/Konfigurator/kgpanel.cpp:609
+#: app/Konfigurator/kgpanel.cpp:627
 #, kde-format
 msgid "The media button will be visible."
 msgstr "Tlačidlo médií bude viditeľné."
 
-#: app/Konfigurator/kgpanel.cpp:610
+#: app/Konfigurator/kgpanel.cpp:628
 #, kde-format
 msgid "Show Back Button"
 msgstr "Ukázať tlačidlo Späť"
 
-#: app/Konfigurator/kgpanel.cpp:611
+#: app/Konfigurator/kgpanel.cpp:629
 #, kde-format
 msgid "Show Forward Button"
 msgstr "Ukázať tlačidlo Vpred"
 
-#: app/Konfigurator/kgpanel.cpp:612
+#: app/Konfigurator/kgpanel.cpp:630
 #, kde-format
 msgid "Show History Button"
 msgstr "Ukázať tlačidlo histórie"
 
-#: app/Konfigurator/kgpanel.cpp:612
+#: app/Konfigurator/kgpanel.cpp:630
 #, kde-format
 msgid "The history button will be visible."
 msgstr "Tlačidlo História bude viditeľné."
 
-#: app/Konfigurator/kgpanel.cpp:613
+#: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "Show Bookmarks Button"
 msgstr "Ukázať tlačidlo Záložky"
 
-#: app/Konfigurator/kgpanel.cpp:613
+#: app/Konfigurator/kgpanel.cpp:631
 #, kde-format
 msgid "The bookmarks button will be visible."
 msgstr "Tlačidlo obľúbených bude viditeľné."
 
-#: app/Konfigurator/kgpanel.cpp:614
+#: app/Konfigurator/kgpanel.cpp:632
 #, kde-format
 msgid "Show Panel Toolbar"
 msgstr "Zobraziť panel nástrojovej lišty"
 
-#: app/Konfigurator/kgpanel.cpp:614
+#: app/Konfigurator/kgpanel.cpp:632
 #, kde-format
 msgid "The panel toolbar will be visible."
 msgstr "Nástrojová lišta bude viditeľná."
 
-#: app/Konfigurator/kgpanel.cpp:620
+#: app/Konfigurator/kgpanel.cpp:638
 #, kde-format
 msgid "Visible Panel Toolbar buttons"
 msgstr "Zobrazenie tlačidiel na paneli nástrojov"
 
-#: app/Konfigurator/kgpanel.cpp:624
+#: app/Konfigurator/kgpanel.cpp:642
 #, kde-format
 msgid "Equal button (=)"
 msgstr "Zobraziť tlačítko rovná sa (=)"
 
-#: app/Konfigurator/kgpanel.cpp:624
+#: app/Konfigurator/kgpanel.cpp:642
 #, kde-format
 msgid "Changes the panel folder to the other panel folder."
 msgstr "Zmení priečinok panelu na rovnaký priečinok ako je v inom paneli."
 
-#: app/Konfigurator/kgpanel.cpp:625
+#: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Up button (..)"
 msgstr "Zobraziť tlačítko 'o úroveň vyššie' (..)"
 
-#: app/Konfigurator/kgpanel.cpp:625
+#: app/Konfigurator/kgpanel.cpp:643
 #, kde-format
 msgid "Changes the panel folder to the parent folder."
 msgstr "Zmení priečinok panelu na rodičovský priečinok."
 
-#: app/Konfigurator/kgpanel.cpp:626
+#: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
 msgid "Home button (~)"
 msgstr "Zobraziť tlačítko domovského priečinku (~)"
 
-#: app/Konfigurator/kgpanel.cpp:626
+#: app/Konfigurator/kgpanel.cpp:644
 #, kde-format
 msgid "Changes the panel folder to the home folder."
 msgstr "Zmení priečinok panelu na domovský priečinok."
 
-#: app/Konfigurator/kgpanel.cpp:627
+#: app/Konfigurator/kgpanel.cpp:645
 #, kde-format
 msgid "Root button (/)"
 msgstr "Zobraziť tlačítko koreňového priečinku (/)"
 
-#: app/Konfigurator/kgpanel.cpp:627
+#: app/Konfigurator/kgpanel.cpp:645
 #, kde-format
 msgid "Changes the panel folder to the root folder."
 msgstr "Zmení priečinok panelu na koreňový priečinok."
 
-#: app/Konfigurator/kgpanel.cpp:631
+#: app/Konfigurator/kgpanel.cpp:649
 #, kde-format
 msgid "Toggle-button for sync-browsing"
 msgstr "Zobraziť tlačítko prepnutia synchronizovaného prehliadania"
 
-#: app/Konfigurator/kgpanel.cpp:633
+#: app/Konfigurator/kgpanel.cpp:651
 #, kde-format
 msgid "Each folder change in the panel is also performed in the other panel."
 msgstr "Každá zmena v jednom paneli sa vykoná v tiež v protiľahlom"
 
-#: app/Konfigurator/kgpanel.cpp:658
+#: app/Konfigurator/kgpanel.cpp:676
 #, kde-format
 msgid "Selection Mode"
 msgstr "Režim výberu"
 
-#: app/Konfigurator/kgpanel.cpp:671
+#: app/Konfigurator/kgpanel.cpp:689
 #, kde-format
 msgid "Krusader Mode"
 msgstr "Krusader režim"
 
-#: app/Konfigurator/kgpanel.cpp:673
+#: app/Konfigurator/kgpanel.cpp:691
 #, kde-format
 msgid ""
 "Both keys allow selecting files. To select more than one file, hold the Ctrl "
@@ -4376,12 +4376,12 @@ msgstr ""
 "držte klávesu Ctrl a kliknite ľavým tlačidlom myši. Kontextová ponuka sa "
 "vyvoláva krátkym kliknutím na pravé tlačítko myši."
 
-#: app/Konfigurator/kgpanel.cpp:675
+#: app/Konfigurator/kgpanel.cpp:693
 #, kde-format
 msgid "Konqueror Mode"
 msgstr "Konqueror režim"
 
-#: app/Konfigurator/kgpanel.cpp:677
+#: app/Konfigurator/kgpanel.cpp:695
 #, kde-format
 msgid ""
 "Pressing the left mouse button selects files - you can click and select "
@@ -4391,12 +4391,12 @@ msgstr ""
 "Stlačenie ľavého tlačidla myši označí súbor - môžete kliknúť a označiť viac "
 "súborov. Kontextová ponuka sa vyvolá krátkym kliknutím pravým tlačidlom."
 
-#: app/Konfigurator/kgpanel.cpp:679
+#: app/Konfigurator/kgpanel.cpp:697
 #, kde-format
 msgid "Total-Commander Mode"
 msgstr "Režim Total-Commanderu"
 
-#: app/Konfigurator/kgpanel.cpp:681
+#: app/Konfigurator/kgpanel.cpp:699
 #, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -4408,12 +4408,12 @@ msgstr ""
 "označovanie. Pravé tlačidlo vyberá viac súborov a kontextová ponuka sa "
 "vyvolá stlačením a držaním pravého tlačidla."
 
-#: app/Konfigurator/kgpanel.cpp:683
+#: app/Konfigurator/kgpanel.cpp:701
 #, kde-format
 msgid "Ergonomic Mode"
 msgstr "Ergonomický režim"
 
-#: app/Konfigurator/kgpanel.cpp:685
+#: app/Konfigurator/kgpanel.cpp:703
 #, kde-format
 msgid ""
 "The left mouse button does not select, but sets the current file without "
@@ -4424,27 +4424,27 @@ msgstr ""
 "označovanie. Pravé tlačidlo vyvolá kontextovú ponuku. Označovať súbory "
 "môžete pomocou klávesy Ctrl a ľavého tlačidla."
 
-#: app/Konfigurator/kgpanel.cpp:687
+#: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
 msgid "Custom Selection Mode"
 msgstr "Vlastný režim označovania"
 
-#: app/Konfigurator/kgpanel.cpp:687
+#: app/Konfigurator/kgpanel.cpp:705
 #, kde-format
 msgid "Design your own selection mode."
 msgstr "Navrhnite si vlastný režim označovania."
 
-#: app/Konfigurator/kgpanel.cpp:698
+#: app/Konfigurator/kgpanel.cpp:716
 #, kde-format
 msgid "Details"
 msgstr "Detaily"
 
-#: app/Konfigurator/kgpanel.cpp:705
+#: app/Konfigurator/kgpanel.cpp:723
 #, kde-format
 msgid "Double-click selects (classic)"
 msgstr "Výber dvojklikom (klasicky)"
 
-#: app/Konfigurator/kgpanel.cpp:707
+#: app/Konfigurator/kgpanel.cpp:725
 #, kde-format
 msgid ""
 "A single click on a file will select and focus, a double click opens the "
@@ -4453,12 +4453,12 @@ msgstr ""
 "Jednoduché kliknutie na súbor ho označí a nastaví pozíciu; dvojklik ho "
 "otvorí, alebo vstúpi do priečinku."
 
-#: app/Konfigurator/kgpanel.cpp:708
+#: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
 msgid "Obey global selection policy"
 msgstr "Podľa globálnych nastavení výberu"
 
-#: app/Konfigurator/kgpanel.cpp:708
+#: app/Konfigurator/kgpanel.cpp:726
 #, kde-format
 msgid ""
 "<p>Use global setting:</p><p><i>Plasma System Settings -> Input Devices -> "
@@ -4467,32 +4467,32 @@ msgstr ""
 "<p>Použije globálne nastavenie:</p><p><i>Systémové nastavenia Plasma -> "
 "Vstupné zariadenia -> Myš</i></p>"
 
-#: app/Konfigurator/kgpanel.cpp:721
+#: app/Konfigurator/kgpanel.cpp:739
 #, kde-format
 msgid "Based on KDE's selection mode"
 msgstr "Založený na režime výberu v KDE"
 
-#: app/Konfigurator/kgpanel.cpp:723
+#: app/Konfigurator/kgpanel.cpp:741
 #, kde-format
 msgid "If checked, use a mode based on KDE's style."
 msgstr "Pokiaľ je zaškrtnuté, použije sa režim založený na KDE štýle."
 
-#: app/Konfigurator/kgpanel.cpp:727
+#: app/Konfigurator/kgpanel.cpp:745
 #, kde-format
 msgid "Left mouse button selects"
 msgstr "Ľavé tlačidlo myši označuje"
 
-#: app/Konfigurator/kgpanel.cpp:729
+#: app/Konfigurator/kgpanel.cpp:747
 #, kde-format
 msgid "If checked, left clicking an item will select it."
 msgstr "Pokiaľ je zaškrtnuté, kliknutie ľavého tlačidla na položku ju označí."
 
-#: app/Konfigurator/kgpanel.cpp:733
+#: app/Konfigurator/kgpanel.cpp:751
 #, kde-format
 msgid "Left mouse button preserves selection"
 msgstr "Ľavé tlačidlo myši zachová označenie"
 
-#: app/Konfigurator/kgpanel.cpp:735
+#: app/Konfigurator/kgpanel.cpp:753
 #, kde-format
 msgid ""
 "If checked, left clicking an item will select it, but will not unselect "
@@ -4501,12 +4501,12 @@ msgstr ""
 "Pokiaľ je zaškrtnuté, kliknutie ľavého tlačidla na položku ju označí, ale "
 "neodznačí ostatné, už označené položky."
 
-#: app/Konfigurator/kgpanel.cpp:739
+#: app/Konfigurator/kgpanel.cpp:757
 #, kde-format
 msgid "Shift/Ctrl-Left mouse button selects"
 msgstr "Shift/Ctrl+Ľavé tlačidlo myši označí"
 
-#: app/Konfigurator/kgpanel.cpp:741
+#: app/Konfigurator/kgpanel.cpp:759
 #, kde-format
 msgid ""
 "If checked, Shift/Ctrl left clicking will select items.\n"
@@ -4515,22 +4515,22 @@ msgstr ""
 "Pokiaľ je zaškrtnuté, Shift/Ctrl a kliknutie ľavého vyberie položky.\n"
 "Pozn.: Toto nemá význam, pokiaľ je zaškrtnuté 'Ľavé tlačidlo vyberá'."
 
-#: app/Konfigurator/kgpanel.cpp:745
+#: app/Konfigurator/kgpanel.cpp:763
 #, kde-format
 msgid "Right mouse button selects"
 msgstr "Pravé tlačidlo myši označí"
 
-#: app/Konfigurator/kgpanel.cpp:747
+#: app/Konfigurator/kgpanel.cpp:765
 #, kde-format
 msgid "If checked, right clicking an item will select it."
 msgstr "Pokiaľ je zaškrtnuté, kliknutie pravého tlačidla na položku ju označí."
 
-#: app/Konfigurator/kgpanel.cpp:751
+#: app/Konfigurator/kgpanel.cpp:769
 #, kde-format
 msgid "Right mouse button preserves selection"
 msgstr "Pravé tlačidlo myši zachová označenie"
 
-#: app/Konfigurator/kgpanel.cpp:753
+#: app/Konfigurator/kgpanel.cpp:771
 #, kde-format
 msgid ""
 "If checked, right clicking an item will select it, but will not unselect "
@@ -4539,12 +4539,12 @@ msgstr ""
 "Pokiaľ je zaškrtnuté, kliknutie pravého tlačidla na položku ju označí, ale "
 "neodznačí ostatné, už označené položky."
 
-#: app/Konfigurator/kgpanel.cpp:757
+#: app/Konfigurator/kgpanel.cpp:775
 #, kde-format
 msgid "Shift/Ctrl-Right mouse button selects"
 msgstr "Shift/Ctrl+Pravé tlačidlo myši označí"
 
-#: app/Konfigurator/kgpanel.cpp:759
+#: app/Konfigurator/kgpanel.cpp:777
 #, kde-format
 msgid ""
 "If checked, Shift/Ctrl right clicking will select items.\n"
@@ -4553,12 +4553,12 @@ msgstr ""
 "Pokiaľ je zaškrtnuté, Shift/Ctrl a kliknutie pravého vyberie položky.\n"
 "Pozn.: Toto nemá význam, pokiaľ je zaškrtnuté 'Pravé tlačidlo vyberá'."
 
-#: app/Konfigurator/kgpanel.cpp:763
+#: app/Konfigurator/kgpanel.cpp:781
 #, kde-format
 msgid "Spacebar moves down"
 msgstr "Medzerník posúva dole"
 
-#: app/Konfigurator/kgpanel.cpp:765
+#: app/Konfigurator/kgpanel.cpp:783
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar will select the current item and move "
@@ -4569,12 +4569,12 @@ msgstr ""
 "presunie sa dolu.\n"
 "Inak sa vyberie aktuálna položka, ale kurzor ostane na nej."
 
-#: app/Konfigurator/kgpanel.cpp:770
+#: app/Konfigurator/kgpanel.cpp:788
 #, kde-format
 msgid "Spacebar calculates disk space"
 msgstr "Medzerník vypočíta diskový priestor"
 
-#: app/Konfigurator/kgpanel.cpp:772
+#: app/Konfigurator/kgpanel.cpp:790
 #, kde-format
 msgid ""
 "If checked, pressing the spacebar while the current item is a folder, will "
@@ -4585,12 +4585,12 @@ msgstr ""
 "(okrem označenia daného adresára) \n"
 "spočíta (rekurzívne) miesto na disku zabraté adresárom."
 
-#: app/Konfigurator/kgpanel.cpp:777
+#: app/Konfigurator/kgpanel.cpp:795
 #, kde-format
 msgid "Insert moves down"
 msgstr "Kláves Insert posúva dole"
 
-#: app/Konfigurator/kgpanel.cpp:779
+#: app/Konfigurator/kgpanel.cpp:797
 #, kde-format
 msgid ""
 "If checked, pressing Insert will select the current item, and move down to "
@@ -4601,12 +4601,12 @@ msgstr ""
 "dolu na ďalšiu položku.\n"
 "Inak sa aktuálna položka nezmení."
 
-#: app/Konfigurator/kgpanel.cpp:783
+#: app/Konfigurator/kgpanel.cpp:801
 #, kde-format
 msgid "Right clicking pops context menu immediately"
 msgstr "Pravé tlačidlo vybalí okamžite kontextovú ponuku"
 
-#: app/Konfigurator/kgpanel.cpp:785
+#: app/Konfigurator/kgpanel.cpp:803
 #, kde-format
 msgid ""
 "If checked, right clicking will result in an immediate showing of the "
@@ -4617,12 +4617,12 @@ msgstr ""
 "objaví ihneď. \n"
 "V opačnom prípade musí používateľ stlačiť a držať pravé tlačidlo 500ms."
 
-#: app/Konfigurator/kgpanel.cpp:790
+#: app/Konfigurator/kgpanel.cpp:808
 #, kde-format
 msgid "A plain mouse button resets selection"
 msgstr "Obyčajné tlačidlo myši obnovuje výber"
 
-#: app/Konfigurator/kgpanel.cpp:792
+#: app/Konfigurator/kgpanel.cpp:810
 #, kde-format
 msgid ""
 "Reset selection on a mouse click without modifiers (i.e. Shift or Ctrl).\n"
@@ -4634,65 +4634,65 @@ msgstr ""
 "Výber s klávesmi Shift/Ctrl pre tlačidlo myši musí byť povolený, aby toto "
 "nastavenie fungovalo."
 
-#: app/Konfigurator/kgpanel.cpp:828
+#: app/Konfigurator/kgpanel.cpp:846
 #, kde-format
 msgid "Media Menu"
 msgstr "Ponuka médií"
 
-#: app/Konfigurator/kgpanel.cpp:836
+#: app/Konfigurator/kgpanel.cpp:854
 #, kde-format
 msgid "Show Mount Path"
 msgstr "Zobraziť cestu pripojenia"
 
-#: app/Konfigurator/kgpanel.cpp:837
+#: app/Konfigurator/kgpanel.cpp:855
 #, kde-format
 msgid "Show File System Type"
 msgstr "Zobraziť typ súborového systému"
 
-#: app/Konfigurator/kgpanel.cpp:838
+#: app/Konfigurator/kgpanel.cpp:856
 #, kde-format
 msgid "Hide SquashFS entries"
 msgstr "Skryť položky SquashFS"
 
-#: app/Konfigurator/kgpanel.cpp:839
+#: app/Konfigurator/kgpanel.cpp:857
 #, kde-format
 msgid "Hide unknown File System entries"
 msgstr "Zobraziť typ súborového systému"
 
-#: app/Konfigurator/kgpanel.cpp:846
+#: app/Konfigurator/kgpanel.cpp:864
 #, kde-format
 msgid "Show Size:"
 msgstr "Zobraziť veľkosť:"
 
-#: app/Konfigurator/kgpanel.cpp:849
+#: app/Konfigurator/kgpanel.cpp:867
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Always"
 msgstr "Vždy"
 
-#: app/Konfigurator/kgpanel.cpp:850
+#: app/Konfigurator/kgpanel.cpp:868
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
 msgstr "Keď zariadenie nemá Label"
 
-#: app/Konfigurator/kgpanel.cpp:851
+#: app/Konfigurator/kgpanel.cpp:869
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "Never"
 msgstr "Nikdy"
 
-#: app/Konfigurator/kgpanel.cpp:883
+#: app/Konfigurator/kgpanel.cpp:901
 #, kde-format
 msgid "Hide following mountpoints:"
 msgstr "Skryť nasledujúce body pripojenia:"
 
-#: app/Konfigurator/kgpanel.cpp:912
+#: app/Konfigurator/kgpanel.cpp:930
 #, kde-format
 msgid "Add new hidden mount point"
 msgstr "Pridať nový skrytý prípojný bod"
 
-#: app/Konfigurator/kgpanel.cpp:912
+#: app/Konfigurator/kgpanel.cpp:930
 #, kde-format
 msgid "Mount point:"
 msgstr "Pripájací bod:"
@@ -4760,32 +4760,32 @@ msgstr "Profil pri spustení:"
 msgid "<Last session>"
 msgstr "<Posledné sedenie>"
 
-#: app/Konfigurator/kgstartup.cpp:60
+#: app/Konfigurator/kgstartup.cpp:62
 #, kde-format
 msgid "Show splashscreen"
 msgstr "Zobraziť úvodný obrázok"
 
-#: app/Konfigurator/kgstartup.cpp:60
+#: app/Konfigurator/kgstartup.cpp:64
 #, kde-format
 msgid "Display a splashscreen when starting Krusader."
 msgstr "Zobraziť úvodný obrázok pri spustení Krusaderu."
 
-#: app/Konfigurator/kgstartup.cpp:61
+#: app/Konfigurator/kgstartup.cpp:68
 #, kde-format
 msgid "Single instance mode"
 msgstr "Režim jednej inštancie"
 
-#: app/Konfigurator/kgstartup.cpp:61
+#: app/Konfigurator/kgstartup.cpp:70
 #, kde-format
 msgid "Only one Krusader instance is allowed to run."
 msgstr "Je povolené spustiť len jednu inštanciu Krusadera."
 
-#: app/Konfigurator/kgstartup.cpp:67
+#: app/Konfigurator/kgstartup.cpp:76
 #, kde-format
 msgid "Fallback Icon Theme:"
 msgstr "Záložná téma ikon:"
 
-#: app/Konfigurator/kgstartup.cpp:69
+#: app/Konfigurator/kgstartup.cpp:78
 #, kde-format
 msgid ""
 "Whenever icon is not found in system icon theme, this theme will be used as "
@@ -4796,19 +4796,19 @@ msgstr ""
 "záloha. Ak záložná téma neobsahuje túto ikonu, téma Vánok alebo Kyslík bude "
 "použitá ak je dostupná."
 
-#: app/Konfigurator/kgstartup.cpp:83 app/useraction_examples.xml:59
+#: app/Konfigurator/kgstartup.cpp:92 app/useraction_examples.xml:59
 #: app/useraction_examples.xml:68 app/useraction_examples.xml:77
 #: app/useraction_examples.xml:86
 #, kde-format
 msgid "User Interface"
 msgstr "Používateľské rozhranie"
 
-#: app/Konfigurator/kgstartup.cpp:91
+#: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
 msgid "Save last position, size and panel settings"
 msgstr "Uložiť poslednú pozíciu, veľkosť na nastavenia panelu"
 
-#: app/Konfigurator/kgstartup.cpp:93
+#: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
 msgid ""
 "<p>At startup, the main window will resize itself to the size it was when "
@@ -4823,12 +4823,12 @@ msgstr ""
 "voľba vypnutá, môžete použiť ponuku <i>Nastavenie -> Uložiť pozíciu</i>, čím "
 "ručne nastavíte veľkosť a polohu pri spustení.</p>"
 
-#: app/Konfigurator/kgstartup.cpp:100
+#: app/Konfigurator/kgstartup.cpp:109
 #, kde-format
 msgid "Update default panel settings"
 msgstr "Aktualizovať štandardné nastavenia panelu"
 
-#: app/Konfigurator/kgstartup.cpp:102
+#: app/Konfigurator/kgstartup.cpp:111
 #, kde-format
 msgid ""
 "When settings of a panel are changed, save them as the default for new "
@@ -4837,24 +4837,24 @@ msgstr ""
 "Keď sa zmenia nastavenia panela, uložte ich ako predvolené pre nové panely "
 "rovnakého typu."
 
-#: app/Konfigurator/kgstartup.cpp:103
+#: app/Konfigurator/kgstartup.cpp:112
 #, kde-format
 msgid "Start to tray"
 msgstr "Štartovať v systémovej časti panela"
 
-#: app/Konfigurator/kgstartup.cpp:103
+#: app/Konfigurator/kgstartup.cpp:112
 #, kde-format
 msgid "Krusader starts to tray, without showing the main window"
 msgstr ""
 "Krusader naštartuje do systémovej časti panela (pokiaľ je nastavené "
 "minimalizovať do systémovej časti panela), bez zobrazenia hlavného okna"
 
-#: app/Konfigurator/kgstartup.cpp:114
+#: app/Konfigurator/kgstartup.cpp:123
 #, kde-format
 msgid "Save component settings on exit"
 msgstr "Uložiť nastavenie pri ukončení"
 
-#: app/Konfigurator/kgstartup.cpp:116
+#: app/Konfigurator/kgstartup.cpp:125
 #, kde-format
 msgid ""
 "Check the state of the user interface components and restore them to their "
@@ -4863,32 +4863,32 @@ msgstr ""
 "Skontroluje stav súčastí používateľského rozhrania a obnoví ich do podmienok "
 "pri poslednom vypnutí."
 
-#: app/Konfigurator/kgstartup.cpp:117
+#: app/Konfigurator/kgstartup.cpp:126
 #, kde-format
 msgid "Show function keys"
 msgstr "Zobraziť funkčné klávesy"
 
-#: app/Konfigurator/kgstartup.cpp:117
+#: app/Konfigurator/kgstartup.cpp:126
 #, kde-format
 msgid "Function keys will be visible after startup."
 msgstr "Funkčné klávesy budú viditeľné po spustení."
 
-#: app/Konfigurator/kgstartup.cpp:118
+#: app/Konfigurator/kgstartup.cpp:127
 #, kde-format
 msgid "Show command line"
 msgstr "Zobraziť príkazový riadok"
 
-#: app/Konfigurator/kgstartup.cpp:118
+#: app/Konfigurator/kgstartup.cpp:127
 #, kde-format
 msgid "Command line will be visible after startup."
 msgstr "Príkazový riadok bude viditeľný po spustení."
 
-#: app/Konfigurator/kgstartup.cpp:122
+#: app/Konfigurator/kgstartup.cpp:131
 #, kde-format
 msgid "Show embedded terminal"
 msgstr "Spustiť v zabudovanom termináli"
 
-#: app/Konfigurator/kgstartup.cpp:124
+#: app/Konfigurator/kgstartup.cpp:133
 #, kde-format
 msgid "Embedded terminal will be visible after startup."
 msgstr "Zabudovaný terminál bude viditeľný po spustení."
@@ -5575,7 +5575,7 @@ msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr ""
 "Stavový panel zobrazí základné informácie o súbore pod ukazovateľom myši."
 
-#: app/krusader.cpp:303
+#: app/krusader.cpp:306
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5587,7 +5587,7 @@ msgstr ""
 "konfigurátor, kde si môžete prispôsobiť Krusader podľa svojich potrieb.</p></"
 "qt>"
 
-#: app/krusader.cpp:334
+#: app/krusader.cpp:337
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Preniesť hlavné okno na vrch"
@@ -6064,13 +6064,13 @@ msgid "Here you can name the file collection:"
 msgstr "Tu môžete pomenovať kolekciu súborov:"
 
 #: app/Locate/locate.cpp:664 app/Locate/locate.cpp:669
-#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:488
+#: app/Search/krsearchdialog.cpp:172 app/Synchronizer/synchronizergui.cpp:487
 #, kde-format
 msgid "Stop"
 msgstr "Zastaviť"
 
 #: app/Locate/locate.cpp:673 app/Search/krsearchdialog.cpp:271
-#: app/Synchronizer/synchronizergui.cpp:494
+#: app/Synchronizer/synchronizergui.cpp:493
 #, kde-format
 msgid "Feed to listbox"
 msgstr "Vypísať do panela"
@@ -7113,7 +7113,7 @@ msgstr ""
 msgid "Close the Sidebar"
 msgstr "Zavrieť bočný panel"
 
-#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:977
+#: app/Panel/listpanel.cpp:669 app/Synchronizer/synchronizergui.cpp:976
 #, kde-format
 msgid "Warning: The left and the right side are showing the same folder."
 msgstr "Upozornenie: Ľavá a pravá strana zobrazujú rovnaký priečinok."
@@ -7806,22 +7806,22 @@ msgctxt ""
 msgid "%1 out of %2, %3 out of %4"
 msgstr "%1 z %2, %3 z %4"
 
-#: app/Panel/PanelView/krview.cpp:1133
+#: app/Panel/PanelView/krview.cpp:1132
 #, kde-format
 msgid "Apply filter to folder&s"
 msgstr "Použiť filter na priečinky"
 
-#: app/Panel/PanelView/krview.cpp:1138
+#: app/Panel/PanelView/krview.cpp:1137
 #, kde-format
 msgid "Filter Files"
 msgstr "Filter súborov"
 
-#: app/Panel/PanelView/krview.cpp:1163
+#: app/Panel/PanelView/krview.cpp:1162
 #, kde-format
 msgid "Apply &selection to folders"
 msgstr "Použiť výber na priečinky"
 
-#: app/Panel/PanelView/krview.cpp:1164
+#: app/Panel/PanelView/krview.cpp:1163
 #, kde-format
 msgid "Select Files"
 msgstr "Označiť súbory "
@@ -7857,7 +7857,7 @@ msgid "%1 (Link)"
 msgstr "%1 (Linka)"
 
 #: app/Panel/PanelView/listmodel.cpp:135
-#: app/Synchronizer/synchronizergui.cpp:1616
+#: app/Synchronizer/synchronizergui.cpp:1636
 #, kde-format
 msgctxt ""
 "Show the string 'DIR' instead of file size in detailed view (for folders)"
@@ -8178,7 +8178,7 @@ msgstr "Dotazovať do schránky"
 msgid "Place search text to clipboard when a found file is opened."
 msgstr "Umiestniť hľadaný text do schránky keď nájdený súbor je otvorený."
 
-#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:507
+#: app/Search/krsearchdialog.cpp:177 app/Synchronizer/synchronizergui.cpp:506
 #, kde-format
 msgid "Close"
 msgstr "Zavrieť"
@@ -8596,7 +8596,7 @@ msgid "Feeding the URLs to KGet"
 msgstr "Presúvanie URL do KGet"
 
 #: app/Synchronizer/synchronizergui.cpp:141
-#: app/Synchronizer/synchronizergui.cpp:1336
+#: app/Synchronizer/synchronizergui.cpp:1356
 #, kde-format
 msgid "Krusader::Synchronize Folders"
 msgstr "Krusader::Synchronizácia priečinkov"
@@ -8776,243 +8776,243 @@ msgstr "Dátum"
 msgid "<=>"
 msgstr "<=>"
 
-#: app/Synchronizer/synchronizergui.cpp:382
+#: app/Synchronizer/synchronizergui.cpp:381
 #, kde-format
 msgid "&Synchronizer"
 msgstr "&Synchronizácia"
 
-#: app/Synchronizer/synchronizergui.cpp:393
+#: app/Synchronizer/synchronizergui.cpp:392
 #, kde-format
 msgid "&Options"
 msgstr "&Možnosti"
 
-#: app/Synchronizer/synchronizergui.cpp:400
+#: app/Synchronizer/synchronizergui.cpp:399
 #, kde-format
 msgid "Parallel threads:"
 msgstr "Paralelné vlákna:"
 
-#: app/Synchronizer/synchronizergui.cpp:410
+#: app/Synchronizer/synchronizergui.cpp:409
 #, kde-format
 msgid "Equality threshold:"
 msgstr "Prah zhodnosti:"
 
-#: app/Synchronizer/synchronizergui.cpp:418
-#: app/Synchronizer/synchronizergui.cpp:433
+#: app/Synchronizer/synchronizergui.cpp:417
+#: app/Synchronizer/synchronizergui.cpp:432
 #, kde-format
 msgid "sec"
 msgstr "sek"
 
-#: app/Synchronizer/synchronizergui.cpp:419
-#: app/Synchronizer/synchronizergui.cpp:434
+#: app/Synchronizer/synchronizergui.cpp:418
+#: app/Synchronizer/synchronizergui.cpp:433
 #, kde-format
 msgid "min"
 msgstr "min"
 
-#: app/Synchronizer/synchronizergui.cpp:420
-#: app/Synchronizer/synchronizergui.cpp:435
+#: app/Synchronizer/synchronizergui.cpp:419
+#: app/Synchronizer/synchronizergui.cpp:434
 #, kde-format
 msgid "hour"
 msgstr "hod"
 
-#: app/Synchronizer/synchronizergui.cpp:421
-#: app/Synchronizer/synchronizergui.cpp:436
+#: app/Synchronizer/synchronizergui.cpp:420
+#: app/Synchronizer/synchronizergui.cpp:435
 #, kde-format
 msgid "day"
 msgstr "dní"
 
-#: app/Synchronizer/synchronizergui.cpp:424
+#: app/Synchronizer/synchronizergui.cpp:423
 #, kde-format
 msgid "Time shift (right-left):"
 msgstr "Posun času (pravý-ľavý):"
 
-#: app/Synchronizer/synchronizergui.cpp:443
+#: app/Synchronizer/synchronizergui.cpp:442
 #, kde-format
 msgid "Ignore hidden files"
 msgstr "Ignorovať skryté súbory"
 
-#: app/Synchronizer/synchronizergui.cpp:456
+#: app/Synchronizer/synchronizergui.cpp:455
 #, kde-format
 msgid "Profile manager (Ctrl+P)."
 msgstr "Správca profilov (Ctrl+P)."
 
-#: app/Synchronizer/synchronizergui.cpp:462
+#: app/Synchronizer/synchronizergui.cpp:461
 #, kde-format
 msgid "Swap sides (Ctrl+S)."
 msgstr "Prehodiť strany (Ctrl+S)."
 
-#: app/Synchronizer/synchronizergui.cpp:472
+#: app/Synchronizer/synchronizergui.cpp:471
 #, kde-format
 msgid "Compare"
 msgstr "Porovnať"
 
-#: app/Synchronizer/synchronizergui.cpp:482
-#: app/Synchronizer/synchronizergui.cpp:1512
+#: app/Synchronizer/synchronizergui.cpp:481
+#: app/Synchronizer/synchronizergui.cpp:1532
 #, kde-format
 msgid "Quiet"
 msgstr "Potichu"
 
-#: app/Synchronizer/synchronizergui.cpp:484
-#: app/Synchronizer/synchronizergui.cpp:1514
+#: app/Synchronizer/synchronizergui.cpp:483
+#: app/Synchronizer/synchronizergui.cpp:1534
 #, kde-format
 msgid "Scroll Results"
 msgstr "Posúvať výsledky"
 
-#: app/Synchronizer/synchronizergui.cpp:501
+#: app/Synchronizer/synchronizergui.cpp:500
 #, kde-format
 msgid "Synchronize"
 msgstr "Synchronizovať"
 
-#: app/Synchronizer/synchronizergui.cpp:617
+#: app/Synchronizer/synchronizergui.cpp:616
 #, kde-format
 msgid "Selected files from targ&et folder:"
 msgstr "Označené súbory z cieľového priečinku:"
 
-#: app/Synchronizer/synchronizergui.cpp:618
+#: app/Synchronizer/synchronizergui.cpp:617
 #, kde-format
 msgid "Selected files from sou&rce folder:"
 msgstr "Označené súbory zo zdrojového priečinku:"
 
-#: app/Synchronizer/synchronizergui.cpp:620
+#: app/Synchronizer/synchronizergui.cpp:619
 #, kde-format
 msgid "Selected files from &left folder:"
 msgstr "Označené súbory z ľavého priečinku:"
 
-#: app/Synchronizer/synchronizergui.cpp:621
+#: app/Synchronizer/synchronizergui.cpp:620
 #, kde-format
 msgid "Selected files from &right folder:"
 msgstr "Označené súbory z pravého priečinku:"
 
-#: app/Synchronizer/synchronizergui.cpp:623
+#: app/Synchronizer/synchronizergui.cpp:622
 #, kde-format
 msgid "Targ&et folder:"
 msgstr "Cieľový priečinok:"
 
-#: app/Synchronizer/synchronizergui.cpp:624
+#: app/Synchronizer/synchronizergui.cpp:623
 #, kde-format
 msgid "Sou&rce folder:"
 msgstr "Zdrojový priečinok:"
 
-#: app/Synchronizer/synchronizergui.cpp:626
+#: app/Synchronizer/synchronizergui.cpp:625
 #, kde-format
 msgid "&Left folder:"
 msgstr "Ľa&vý priečinok:"
 
-#: app/Synchronizer/synchronizergui.cpp:627
+#: app/Synchronizer/synchronizergui.cpp:626
 #, kde-format
 msgid "&Right folder:"
 msgstr "&Pravý priečinok:"
 
-#: app/Synchronizer/synchronizergui.cpp:660
+#: app/Synchronizer/synchronizergui.cpp:659
 #, kde-format
 msgid "URL must be the descendant of either the left or the right base URL."
 msgstr "URL musí byť potomok buď ľavého alebo pravého základného URL."
 
-#: app/Synchronizer/synchronizergui.cpp:718
+#: app/Synchronizer/synchronizergui.cpp:717
 #, kde-format
 msgid "Synchronize Folders"
 msgstr "Synchronizovať priečinky"
 
-#: app/Synchronizer/synchronizergui.cpp:720
+#: app/Synchronizer/synchronizergui.cpp:719
 #, kde-format
 msgid "E&xclude"
 msgstr "V&ylúčiť"
 
-#: app/Synchronizer/synchronizergui.cpp:722
+#: app/Synchronizer/synchronizergui.cpp:721
 #, kde-format
 msgid "Restore ori&ginal operation"
 msgstr "Obnoviť pôv&odnú operáciu"
 
-#: app/Synchronizer/synchronizergui.cpp:724
+#: app/Synchronizer/synchronizergui.cpp:723
 #, kde-format
 msgid "Re&verse direction"
 msgstr "Opačné po&radie"
 
-#: app/Synchronizer/synchronizergui.cpp:726
+#: app/Synchronizer/synchronizergui.cpp:725
 #, kde-format
 msgid "Copy from &right to left"
 msgstr "Kopírovať sp&rava doľava"
 
-#: app/Synchronizer/synchronizergui.cpp:728
+#: app/Synchronizer/synchronizergui.cpp:727
 #, kde-format
 msgid "Copy from &left to right"
 msgstr "Kopírovať zľa&va doprava"
 
-#: app/Synchronizer/synchronizergui.cpp:730
+#: app/Synchronizer/synchronizergui.cpp:729
 #, kde-format
 msgid "&Delete (left single)"
 msgstr "Zmazať (nechať samotné)"
 
-#: app/Synchronizer/synchronizergui.cpp:735
+#: app/Synchronizer/synchronizergui.cpp:734
 #, kde-format
 msgid "V&iew left file"
 msgstr "Zobraziť ľ&avý súbor"
 
-#: app/Synchronizer/synchronizergui.cpp:738
+#: app/Synchronizer/synchronizergui.cpp:737
 #, kde-format
 msgid "Vi&ew right file"
 msgstr "Zobraziť &pravý súbor"
 
-#: app/Synchronizer/synchronizergui.cpp:741
+#: app/Synchronizer/synchronizergui.cpp:740
 #, kde-format
 msgid "&Compare Files"
 msgstr "&Porovnať súbory"
 
-#: app/Synchronizer/synchronizergui.cpp:747
+#: app/Synchronizer/synchronizergui.cpp:746
 #, kde-format
 msgid "C&opy selected to clipboard (left)"
 msgstr "Skopírovať označené do schránky (vľavo)"
 
-#: app/Synchronizer/synchronizergui.cpp:749
+#: app/Synchronizer/synchronizergui.cpp:748
 #, kde-format
 msgid "Co&py selected to clipboard (right)"
 msgstr "Skopírovať označené do schránky (vpravo)"
 
-#: app/Synchronizer/synchronizergui.cpp:754
+#: app/Synchronizer/synchronizergui.cpp:753
 #, kde-format
 msgid "&Select items"
 msgstr "O&značiť položky"
 
-#: app/Synchronizer/synchronizergui.cpp:756
+#: app/Synchronizer/synchronizergui.cpp:755
 #, kde-format
 msgid "Deselec&t items"
 msgstr "O&dznačiť položky"
 
-#: app/Synchronizer/synchronizergui.cpp:758
+#: app/Synchronizer/synchronizergui.cpp:757
 #, kde-format
 msgid "I&nvert selection"
 msgstr "&Obrátiť výber"
 
-#: app/Synchronizer/synchronizergui.cpp:768
+#: app/Synchronizer/synchronizergui.cpp:767
 #, kde-format
 msgid "Synchronize with &KGet"
 msgstr "Synchronizovať s &KGet"
 
-#: app/Synchronizer/synchronizergui.cpp:842
+#: app/Synchronizer/synchronizergui.cpp:841
 #, kde-format
 msgid "Select items"
 msgstr "Zvoliť položky"
 
-#: app/Synchronizer/synchronizergui.cpp:842
+#: app/Synchronizer/synchronizergui.cpp:841
 #, kde-format
 msgid "Deselect items"
 msgstr "Odznačiť položky"
 
-#: app/Synchronizer/synchronizergui.cpp:966
+#: app/Synchronizer/synchronizergui.cpp:965
 #, kde-format
 msgid "The target folder must not be empty."
 msgstr "Cieľový priečinok nesmie byť prázdny."
 
-#: app/Synchronizer/synchronizergui.cpp:971
+#: app/Synchronizer/synchronizergui.cpp:970
 #, kde-format
 msgid "The source folder must not be empty."
 msgstr "Zdrojový priečinok nesmie byť prázdny."
 
-#: app/Synchronizer/synchronizergui.cpp:1239
+#: app/Synchronizer/synchronizergui.cpp:1259
 #, kde-format
 msgid "Synchronizer has nothing to do."
 msgstr "Nie je čo synchronizovať."
 
-#: app/Synchronizer/synchronizergui.cpp:1335
+#: app/Synchronizer/synchronizergui.cpp:1355
 #, kde-format
 msgid ""
 "The synchronizer window contains data from a previous compare. If you exit, "
