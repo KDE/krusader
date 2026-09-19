@@ -41,6 +41,14 @@ set(krusader_SRCS
 )
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-krusader_user.png")
+# Avoid a problem that is related to the size of an image. The issue happens with
+# `ecm_add_app_icon()`, which does not handle 22px icons because (according to
+# <https://api.kde.org/ecm/module/ECMAddAppIcon.html>) "The platforms currently
+# supported are Windows and macOS, on all others the call has no effect and is ignored".
+# According to <https://cmake.org/cmake/help/latest/command/list.html>: "Note that two
+# backslashes [...] are required in CMake code to get a backslash through argument parsing"
+list(FILTER ICONS_SRCS EXCLUDE REGEX "/22-apps-krusader_user\\.png$")
+
 ecm_add_app_icon(krusader_SRCS ICONS ${ICONS_SRCS})
 
 qt_add_resources(krusader_RC_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc" )
