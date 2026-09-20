@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-17 00:48+0000\n"
-"PO-Revision-Date: 2026-07-05 16:37+0200\n"
+"POT-Creation-Date: 2026-09-20 00:49+0000\n"
+"PO-Revision-Date: 2026-09-19 16:32+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 26.04.3\n"
+"X-Generator: Lokalize 26.08.1\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -722,11 +722,10 @@ msgid "Downloading remote files"
 msgstr "Lastar ned eksterne filer"
 
 #: app/Archive/abstractthreadedjob.cpp:388
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "Utfaldar: kunne ikkje opna mellombels fil (%1)"
+msgstr "Klarte ikkje opna den mellombelse fila «%1»."
 
 #: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
@@ -868,17 +867,17 @@ msgstr "Bokmerke"
 msgid "Folder name:"
 msgstr "Mappenamn:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:868
 #, kde-format
 msgid "Trash bin"
 msgstr "Papirkorg"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:876
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Virtuelt filsystem"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:872
 #, kde-format
 msgid "Local Network"
 msgstr "Lokalt nettverk"
@@ -893,8 +892,8 @@ msgstr "Bokmerke"
 msgid "Type to search..."
 msgstr "Skriv for å søkja …"
 
-#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
-#: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:390
+#: app/Konfigurator/kgcolors.cpp:674 app/Konfigurator/kgcolors.cpp:698
 #: app/Konfigurator/kggeneral.cpp:323
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
@@ -917,46 +916,46 @@ msgstr "%1 i staden for %2"
 msgid "missing tag %1"
 msgstr "manglar merkelappen %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:379
+#: app/BookMan/krbookmarkhandler.cpp:381
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "Det ser ikkje ut til at %1 er ei gyldig bokmerkefil"
 
-#: app/BookMan/krbookmarkhandler.cpp:388
+#: app/BookMan/krbookmarkhandler.cpp:390
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Feil ved lesing frå bokmerkefil: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/BookMan/krbookmarkhandler.cpp:514 app/BookMan/krbookmarkhandler.cpp:864
 #: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "Populære adresser"
 
-#: app/BookMan/krbookmarkhandler.cpp:858
+#: app/BookMan/krbookmarkhandler.cpp:860
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Slå på spesielle bokmerke"
 
-#: app/BookMan/krbookmarkhandler.cpp:878
+#: app/BookMan/krbookmarkhandler.cpp:880
 #, kde-format
 msgid "Jump back"
 msgstr "Hopp tilbake"
 
-#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Opna"
 
-#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:931 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Opna i ny fane"
 
-#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:935 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
-#: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
+#: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:626
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
 #, kde-format
 msgid "Delete"
@@ -964,10 +963,9 @@ msgstr "Slett"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "Utfaldar: kunne ikkje opna mellombels fil (%1)"
+msgstr "Klarte ikkje opna ei mellombels fil med malen «%1»."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -1024,7 +1022,7 @@ msgid "Checksum Results"
 msgstr "Sjekksum-resultat"
 
 #: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
-#: app/Konfigurator/kgcolors.cpp:562
+#: app/Konfigurator/kgcolors.cpp:563
 #, kde-format
 msgid "File"
 msgstr "Fil"
@@ -1479,7 +1477,7 @@ msgid "Do you really want to delete this item?"
 msgstr "Er du sikker på at du vil sletta elementet?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Konfigurator/kgcolors.cpp:693 app/Panel/panelfunc.cpp:848
 #: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
@@ -2628,46 +2626,46 @@ msgstr "Kømodus for jobb"
 msgid "Run only one job in parallel"
 msgstr "Køyr berre éin jobb parallelt"
 
-#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:351
+#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:360
 #, kde-format
 msgid "Undo Last Job"
 msgstr "Angra siste jobb"
 
-#: app/JobMan/jobman.cpp:230
+#: app/JobMan/jobman.cpp:239
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "Er du sikker på at du vil avslutta?"
 
-#: app/JobMan/jobman.cpp:370
+#: app/JobMan/jobman.cpp:379
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] "Det finst éi jobbhandling att."
 msgstr[1] "Det finst %1 jobbhandlingar att."
 
-#: app/JobMan/jobman.cpp:418
+#: app/JobMan/jobman.cpp:427
 #, kde-format
 msgid "No Jobs"
 msgstr "Ingen jobbar"
 
-#: app/JobMan/jobman.cpp:420
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
 msgstr[0] "%1 jobb"
 msgstr[1] "%1 jobbar"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Clear Job List"
 msgstr "Tøm jobbliste"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Pause All Jobs"
 msgstr "Set alle jobbar på pause"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Resume Job List"
 msgstr "Hald fram jobbliste"
@@ -2900,56 +2898,70 @@ msgstr ""
 "(eks. i «/usr/bin»-mappa)."
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, kde-format
-msgid "Use the default KDE colors"
+#, fuzzy, kde-format
+#| msgid "Use the default KDE colors"
+msgid "Use KDE Plasma's default colors"
 msgstr "Bruk standard KDE-fargar"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
+#| "Application Appearance  -> Colors</i></p>"
 msgid ""
-"<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-"Application Appearance  -> Colors</i></p>"
+"<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
+"Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
 "<p>Bruk globalt KDE-oppsett for fargar.</p><p><i>Systemoppsett → Utsjånad → "
 "Fargar</i></p>"
 
-#: app/Konfigurator/kgcolors.cpp:67
+#: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
 msgid "Use alternate background color"
 msgstr "Bruk alternativ bakgrunnsfarge"
 
-#: app/Konfigurator/kgcolors.cpp:69
-#, kde-format
+#: app/Konfigurator/kgcolors.cpp:70
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
+#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
+#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
+#| "box.</p>"
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
-"alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
-"i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
+"alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
+"colors</i>, you can configure the alternate colors in the <i>colors</i> box."
+"</p>"
 msgstr ""
 "<p><b>Bakgrunnsfargen</b> og <b>alternativ bakgrunnsfarge</b> vekslar "
 "annakvar linje.</p><p>Når du ikkje brukar <i>standardfargane</i>, kan du "
 "setja opp dei alternative fargane i <i>fargar</i>-boksen.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:74
+#: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
 msgid "Show current item even if not focused"
 msgstr "Vis gjeldande element sjølv om det ikkje har fokus"
 
-#: app/Konfigurator/kgcolors.cpp:76
-#, kde-format
+#: app/Konfigurator/kgcolors.cpp:77
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Shows the last cursor position in the non active list panel.</"
+#| "p><p>This option is only available when you don't use the <i>KDE default "
+#| "colors</i>.</p>"
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
-"option is only available when you don't use the <i>KDE default colors</i>.</"
-"p>"
+"option is only available when you don't use <i>KDE Plasma's default colors</"
+"i>.</p>"
 msgstr ""
 "<p>Viser siste markørposisjon i det motsette panelet.</p><p>Dette valet er "
 "berre tilgjengeleg når du ikkje brukar <i>KDE-standardfargane</i>.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:81
+#: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
 msgid "Dim the colors of the inactive panel"
 msgstr "Svekk fargane på det motsette panelet"
 
-#: app/Konfigurator/kgcolors.cpp:83
+#: app/Konfigurator/kgcolors.cpp:84
 #, kde-format
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
@@ -2958,380 +2970,380 @@ msgstr ""
 "<p>Fargane på det motsette panelet vert berekna ut frå ein svekkingsfarge og "
 "ein svekkingsfaktor.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:100 app/Konfigurator/kgcolors.cpp:359
+#: app/Konfigurator/kgcolors.cpp:101 app/Konfigurator/kgcolors.cpp:360
 #: app/Konfigurator/konfigurator.cpp:120
 #, kde-format
 msgid "Colors"
 msgstr "Fargar"
 
-#: app/Konfigurator/kgcolors.cpp:108
+#: app/Konfigurator/kgcolors.cpp:109
 #, kde-format
 msgid "Active"
 msgstr "Gjeldande panel"
 
-#: app/Konfigurator/kgcolors.cpp:114
+#: app/Konfigurator/kgcolors.cpp:115
 #, kde-format
 msgid "Transparent"
 msgstr "Gjennomsiktig"
 
-#: app/Konfigurator/kgcolors.cpp:118 app/Konfigurator/kgcolors.cpp:160
+#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:161
 #, kde-format
 msgid "Foreground:"
 msgstr "Framgrunn:"
 
-#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:163
+#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:164
 #, kde-format
 msgid "Folder foreground:"
 msgstr "Framgrunn for mapper:"
 
-#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:120
-#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:122
-#: app/Konfigurator/kgcolors.cpp:139 app/Konfigurator/kgcolors.cpp:161
+#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:121
+#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:123
+#: app/Konfigurator/kgcolors.cpp:140 app/Konfigurator/kgcolors.cpp:162
 #, kde-format
 msgid "Same as foreground"
 msgstr "Same som framgrunn"
 
-#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:169
+#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:170
 #, kde-format
 msgid "Executable foreground:"
 msgstr "Framgrunn for køyrbare filer:"
 
-#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:175
+#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:176
 #, kde-format
 msgid "Symbolic link foreground:"
 msgstr "Framgrunn for symbolske lenkjer:"
 
-#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:181
+#: app/Konfigurator/kgcolors.cpp:123 app/Konfigurator/kgcolors.cpp:182
 #, kde-format
 msgid "Invalid symlink foreground:"
 msgstr "Framgrunn for ugyldige symbolske lenkjer:"
 
-#: app/Konfigurator/kgcolors.cpp:123 app/Konfigurator/kgcolors.cpp:186
+#: app/Konfigurator/kgcolors.cpp:124 app/Konfigurator/kgcolors.cpp:187
 #, kde-format
 msgid "Background:"
 msgstr "Bakgrunn:"
 
-#: app/Konfigurator/kgcolors.cpp:124 app/Konfigurator/kgcolors.cpp:140
-#: app/Konfigurator/kgcolors.cpp:187
+#: app/Konfigurator/kgcolors.cpp:125 app/Konfigurator/kgcolors.cpp:141
+#: app/Konfigurator/kgcolors.cpp:188
 #, kde-format
 msgid "Same as background"
 msgstr "Same som bakgrunn"
 
-#: app/Konfigurator/kgcolors.cpp:125 app/Konfigurator/kgcolors.cpp:189
+#: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:190
 #, kde-format
 msgid "Alternate background:"
 msgstr "Bakgrunn (alternativ):"
 
-#: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:195
+#: app/Konfigurator/kgcolors.cpp:127 app/Konfigurator/kgcolors.cpp:196
 #, kde-format
 msgid "Selected foreground:"
 msgstr "Framgrunn for merkte:"
 
-#: app/Konfigurator/kgcolors.cpp:127 app/Konfigurator/kgcolors.cpp:201
+#: app/Konfigurator/kgcolors.cpp:128 app/Konfigurator/kgcolors.cpp:202
 #, kde-format
 msgid "Selected background:"
 msgstr "Bakgrunn for merkte:"
 
-#: app/Konfigurator/kgcolors.cpp:128 app/Konfigurator/kgcolors.cpp:207
+#: app/Konfigurator/kgcolors.cpp:129 app/Konfigurator/kgcolors.cpp:208
 #, kde-format
 msgid "Same as alt. background"
 msgstr "Same som alternativ bakgrunn"
 
-#: app/Konfigurator/kgcolors.cpp:130 app/Konfigurator/kgcolors.cpp:210
+#: app/Konfigurator/kgcolors.cpp:131 app/Konfigurator/kgcolors.cpp:211
 #, kde-format
 msgid "Alternate selected background:"
 msgstr "Bakgrunn for merkte (alternativ):"
 
-#: app/Konfigurator/kgcolors.cpp:132 app/Konfigurator/kgcolors.cpp:208
+#: app/Konfigurator/kgcolors.cpp:133 app/Konfigurator/kgcolors.cpp:209
 #, kde-format
 msgid "Same as selected background"
 msgstr "Same som bakgrunn for merkte"
 
-#: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:215
+#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:216
 #, kde-format
 msgid "Current foreground:"
 msgstr "Framgrunn for gjeldande:"
 
-#: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:137
-#: app/Konfigurator/kgcolors.cpp:138
+#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:138
+#: app/Konfigurator/kgcolors.cpp:139
 #, kde-format
 msgid "Not used"
 msgstr "Ikkje brukt"
 
-#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:216
+#: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:217
 #, kde-format
 msgid "Same as selected foreground"
 msgstr "Same som framgrunn for merkte"
 
-#: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:220
+#: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:221
 #, kde-format
 msgid "Selected current foreground:"
 msgstr "Framgrunn for gjeldande og merkt:"
 
-#: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:226
+#: app/Konfigurator/kgcolors.cpp:139 app/Konfigurator/kgcolors.cpp:227
 #, kde-format
 msgid "Current background:"
 msgstr "Bakgrunn for gjeldande:"
 
-#: app/Konfigurator/kgcolors.cpp:139
+#: app/Konfigurator/kgcolors.cpp:140
 #, kde-format
 msgid "Rename foreground:"
 msgstr "Framgrunn for namneendring:"
 
-#: app/Konfigurator/kgcolors.cpp:140
+#: app/Konfigurator/kgcolors.cpp:141
 #, kde-format
 msgid "Rename background:"
 msgstr "Bakgrunn for namneendring:"
 
-#: app/Konfigurator/kgcolors.cpp:150
+#: app/Konfigurator/kgcolors.cpp:151
 #, kde-format
 msgid "Inactive"
 msgstr "Motsett panel"
 
-#: app/Konfigurator/kgcolors.cpp:160 app/Konfigurator/kgcolors.cpp:165
-#: app/Konfigurator/kgcolors.cpp:171 app/Konfigurator/kgcolors.cpp:177
-#: app/Konfigurator/kgcolors.cpp:183 app/Konfigurator/kgcolors.cpp:186
-#: app/Konfigurator/kgcolors.cpp:191 app/Konfigurator/kgcolors.cpp:197
-#: app/Konfigurator/kgcolors.cpp:203 app/Konfigurator/kgcolors.cpp:212
-#: app/Konfigurator/kgcolors.cpp:215 app/Konfigurator/kgcolors.cpp:222
-#: app/Konfigurator/kgcolors.cpp:228
+#: app/Konfigurator/kgcolors.cpp:161 app/Konfigurator/kgcolors.cpp:166
+#: app/Konfigurator/kgcolors.cpp:172 app/Konfigurator/kgcolors.cpp:178
+#: app/Konfigurator/kgcolors.cpp:184 app/Konfigurator/kgcolors.cpp:187
+#: app/Konfigurator/kgcolors.cpp:192 app/Konfigurator/kgcolors.cpp:198
+#: app/Konfigurator/kgcolors.cpp:204 app/Konfigurator/kgcolors.cpp:213
+#: app/Konfigurator/kgcolors.cpp:216 app/Konfigurator/kgcolors.cpp:223
+#: app/Konfigurator/kgcolors.cpp:229
 #, kde-format
 msgid "Same as active"
 msgstr "Same som gjeldande panel"
 
-#: app/Konfigurator/kgcolors.cpp:249
+#: app/Konfigurator/kgcolors.cpp:250
 #, kde-format
 msgid "Dim target color:"
 msgstr "Svakare målfarge:"
 
-#: app/Konfigurator/kgcolors.cpp:252
+#: app/Konfigurator/kgcolors.cpp:253
 #, kde-format
 msgid "Dim factor:"
 msgstr "Svekkingsfaktor:"
 
-#: app/Konfigurator/kgcolors.cpp:264 app/Konfigurator/kgcolors.cpp:265
-#: app/Konfigurator/kgcolors.cpp:317 app/Konfigurator/kgcolors.cpp:318
+#: app/Konfigurator/kgcolors.cpp:265 app/Konfigurator/kgcolors.cpp:266
+#: app/Konfigurator/kgcolors.cpp:318 app/Konfigurator/kgcolors.cpp:319
 #, kde-format
 msgid "KDE default"
 msgstr "KDE-standard"
 
-#: app/Konfigurator/kgcolors.cpp:269
+#: app/Konfigurator/kgcolors.cpp:270
 #, kde-format
 msgid "Synchronizer"
 msgstr "Synkronisering"
 
-#: app/Konfigurator/kgcolors.cpp:280
+#: app/Konfigurator/kgcolors.cpp:281
 #, kde-format
 msgid "Equals foreground:"
 msgstr "Framgrunn for like:"
 
-#: app/Konfigurator/kgcolors.cpp:281
+#: app/Konfigurator/kgcolors.cpp:282
 #, kde-format
 msgid "Equals background:"
 msgstr "Bakgrunn for like:"
 
-#: app/Konfigurator/kgcolors.cpp:282
+#: app/Konfigurator/kgcolors.cpp:283
 #, kde-format
 msgid "Differing foreground:"
 msgstr "Framgrunn for ulike:"
 
-#: app/Konfigurator/kgcolors.cpp:283
+#: app/Konfigurator/kgcolors.cpp:284
 #, kde-format
 msgid "Differing background:"
 msgstr "Bakgrunn for ulike:"
 
-#: app/Konfigurator/kgcolors.cpp:284
+#: app/Konfigurator/kgcolors.cpp:285
 #, kde-format
 msgid "Copy to left foreground:"
 msgstr "Framgrunn for «kopier til venstre»:"
 
-#: app/Konfigurator/kgcolors.cpp:285
+#: app/Konfigurator/kgcolors.cpp:286
 #, kde-format
 msgid "Copy to left background:"
 msgstr "Bakgrunn for «kopier til venstre»:"
 
-#: app/Konfigurator/kgcolors.cpp:287
+#: app/Konfigurator/kgcolors.cpp:288
 #, kde-format
 msgid "Copy to right foreground:"
 msgstr "Framgrunn for «kopier til høgre»:"
 
-#: app/Konfigurator/kgcolors.cpp:293
+#: app/Konfigurator/kgcolors.cpp:294
 #, kde-format
 msgid "Copy to right background:"
 msgstr "Bakgrunn for «kopier til høgre»:"
 
-#: app/Konfigurator/kgcolors.cpp:298
+#: app/Konfigurator/kgcolors.cpp:299
 #, kde-format
 msgid "Delete foreground:"
 msgstr "Framgrunn for «skal slettast»:"
 
-#: app/Konfigurator/kgcolors.cpp:299
+#: app/Konfigurator/kgcolors.cpp:300
 #, kde-format
 msgid "Delete background:"
 msgstr "Bakgrunn for «skal slettast»:"
 
-#: app/Konfigurator/kgcolors.cpp:305
+#: app/Konfigurator/kgcolors.cpp:306
 #, kde-format
 msgid "Other"
 msgstr "Anna"
 
-#: app/Konfigurator/kgcolors.cpp:313
+#: app/Konfigurator/kgcolors.cpp:314
 #, kde-format
 msgid "Quicksearch, match foreground:"
 msgstr "Snøggsøk, framgrunn for treff:"
 
-#: app/Konfigurator/kgcolors.cpp:314
+#: app/Konfigurator/kgcolors.cpp:315
 #, kde-format
 msgid "Quicksearch, match background:"
 msgstr "Snøggsøk, bakgrunn for treff:"
 
-#: app/Konfigurator/kgcolors.cpp:315
+#: app/Konfigurator/kgcolors.cpp:316
 #, kde-format
 msgid "Quicksearch, non-match foreground:"
 msgstr "Snøggsøk, framgrunn for ikkje-treff:"
 
-#: app/Konfigurator/kgcolors.cpp:316
+#: app/Konfigurator/kgcolors.cpp:317
 #, kde-format
 msgid "Quicksearch, non-match background:"
 msgstr "Snøggsøk, bakgrunn for ikkje-treff:"
 
-#: app/Konfigurator/kgcolors.cpp:320
+#: app/Konfigurator/kgcolors.cpp:321
 #, kde-format
 msgid "Statusbar, active foreground:"
 msgstr "Statuslinje, framgrunn for gjeldande panel:"
 
-#: app/Konfigurator/kgcolors.cpp:326
+#: app/Konfigurator/kgcolors.cpp:327
 #, kde-format
 msgid "Statusbar, active background:"
 msgstr "Statuslinje, bakgrunn for gjeldande panel:"
 
-#: app/Konfigurator/kgcolors.cpp:332
+#: app/Konfigurator/kgcolors.cpp:333
 #, kde-format
 msgid "Statusbar, inactive foreground:"
 msgstr "Statuslinje, framgrunn for motsett panel:"
 
-#: app/Konfigurator/kgcolors.cpp:338
+#: app/Konfigurator/kgcolors.cpp:339
 #, kde-format
 msgid "Statusbar, inactive background:"
 msgstr "Statuslinje, bakgrunn for motsett panel:"
 
-#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:826
+#: app/Konfigurator/kgcolors.cpp:352 app/Konfigurator/kgpanel.cpp:826
 #: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
 msgstr "Førehandsvising"
 
-#: app/Konfigurator/kgcolors.cpp:375
+#: app/Konfigurator/kgcolors.cpp:376
 #, kde-format
 msgid "Import color-scheme"
 msgstr "Importer fargeoppsett"
 
-#: app/Konfigurator/kgcolors.cpp:377
+#: app/Konfigurator/kgcolors.cpp:378
 #, kde-format
 msgid "Export color-scheme"
 msgstr "Eksporter fargeoppsett"
 
-#: app/Konfigurator/kgcolors.cpp:555
+#: app/Konfigurator/kgcolors.cpp:556
 #, kde-format
 msgid "Selected + Current"
 msgstr "Merkt + gjeldande"
 
-#: app/Konfigurator/kgcolors.cpp:556
+#: app/Konfigurator/kgcolors.cpp:557
 #, kde-format
 msgid "Selected 2"
 msgstr "Merkt 2"
 
-#: app/Konfigurator/kgcolors.cpp:557
+#: app/Konfigurator/kgcolors.cpp:558
 #, kde-format
 msgid "Selected 1"
 msgstr "Merkt 1"
 
-#: app/Konfigurator/kgcolors.cpp:558
+#: app/Konfigurator/kgcolors.cpp:559
 #, kde-format
 msgid "Current"
 msgstr "Gjeldande"
 
-#: app/Konfigurator/kgcolors.cpp:559
+#: app/Konfigurator/kgcolors.cpp:560
 #, kde-format
 msgid "Invalid symlink"
 msgstr "Ugyldig symbolsk lenkje"
 
-#: app/Konfigurator/kgcolors.cpp:560
+#: app/Konfigurator/kgcolors.cpp:561
 #, kde-format
 msgid "Symbolic link"
 msgstr "Symbolsk lenkje"
 
-#: app/Konfigurator/kgcolors.cpp:561
+#: app/Konfigurator/kgcolors.cpp:562
 #, kde-format
 msgid "Application"
 msgstr "Program"
 
-#: app/Konfigurator/kgcolors.cpp:563
+#: app/Konfigurator/kgcolors.cpp:564
 #, kde-format
 msgid "Folder"
 msgstr "Mappe"
 
-#: app/Konfigurator/kgcolors.cpp:626
+#: app/Konfigurator/kgcolors.cpp:627
 #, kde-format
 msgid "Copy to right"
 msgstr "Kopier til høgre"
 
-#: app/Konfigurator/kgcolors.cpp:627
+#: app/Konfigurator/kgcolors.cpp:628
 #, kde-format
 msgid "Copy to left"
 msgstr "Kopier til venstre"
 
-#: app/Konfigurator/kgcolors.cpp:628
+#: app/Konfigurator/kgcolors.cpp:629
 #, kde-format
 msgid "Differing"
 msgstr "Ulikt"
 
-#: app/Konfigurator/kgcolors.cpp:629
+#: app/Konfigurator/kgcolors.cpp:630
 #, kde-format
 msgid "Equals"
 msgstr "Lik"
 
-#: app/Konfigurator/kgcolors.cpp:641
+#: app/Konfigurator/kgcolors.cpp:642
 #, kde-format
 msgid "Quicksearch non-match"
 msgstr "Snøggsøk, ikkje-treff:"
 
-#: app/Konfigurator/kgcolors.cpp:642
+#: app/Konfigurator/kgcolors.cpp:643
 #, kde-format
 msgid "Quicksearch match"
 msgstr "Snøggsøk-treff"
 
-#: app/Konfigurator/kgcolors.cpp:646
+#: app/Konfigurator/kgcolors.cpp:647
 #, kde-format
 msgid "Statusbar active"
 msgstr "Statuslinje, gjeldande panel"
 
-#: app/Konfigurator/kgcolors.cpp:647
+#: app/Konfigurator/kgcolors.cpp:648
 #, kde-format
 msgid "Statusbar inactive"
 msgstr "Statuslinje, motsett panel"
 
-#: app/Konfigurator/kgcolors.cpp:667
+#: app/Konfigurator/kgcolors.cpp:668
 #, kde-format
 msgid "Select a color-scheme file"
 msgstr "Vel ei fil med fargeoppsett"
 
-#: app/Konfigurator/kgcolors.cpp:673
+#: app/Konfigurator/kgcolors.cpp:674
 #, kde-format
 msgid "Error: unable to read from file"
 msgstr "Feil: Klarte ikkje lesa frå fila"
 
-#: app/Konfigurator/kgcolors.cpp:684
+#: app/Konfigurator/kgcolors.cpp:685
 #, kde-format
 msgid "Select a color scheme file"
 msgstr "Vel ei fil med fargeoppsett"
 
-#: app/Konfigurator/kgcolors.cpp:691
+#: app/Konfigurator/kgcolors.cpp:692
 #, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
 msgstr "Fila %1 finst frå før. Vil du skriva over ho?"
 
-#: app/Konfigurator/kgcolors.cpp:697
+#: app/Konfigurator/kgcolors.cpp:698
 #, kde-format
 msgid "Error: unable to write to file"
 msgstr "Feil: Klarte ikkje skriva til fila"
@@ -5587,7 +5599,7 @@ msgstr "Tøm papirkorg"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Statuslinja vil visa enkel informasjon om fila under  musepeikaren."
 
-#: app/krusader.cpp:306
+#: app/krusader.cpp:313
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5598,7 +5610,7 @@ msgstr ""
 "programmet, vert det no sett etter eksterne program. Så vert Konfigurator "
 "starta, der du kan stilla inn Krusader slik du ønskjer.</p></qt>"
 
-#: app/krusader.cpp:337
+#: app/krusader.cpp:344
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Hev hovundvindauget"
@@ -5699,53 +5711,53 @@ msgstr "Raske handlingar på filer kan gjerast med funksjonstastar."
 msgid "Horizontal Mode"
 msgstr "Vassrett utforming"
 
-#: app/KrViewer/krviewer.cpp:97
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Generisk visar"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Tekstvisar"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Heksvisar"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Listar"
 
 # Er snakk om intern tekstredigering, ikkje eit eksternt skriveprogram.
-#: app/KrViewer/krviewer.cpp:103
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "&Tekstredigering"
 
-#: app/KrViewer/krviewer.cpp:127
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Kopla frå fane"
 
-#: app/KrViewer/krviewer.cpp:139
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Lukk fana"
 
-#: app/KrViewer/krviewer.cpp:145
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Neste fane"
 
-#: app/KrViewer/krviewer.cpp:151
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Førre fane"
 
-#: app/KrViewer/krviewer.cpp:226
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&Krusader-filvisar"
@@ -7446,16 +7458,13 @@ msgid "Delete file, folder, etc."
 msgstr "Slett fil, mappe e.l."
 
 #: app/Panel/listpanelactions.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined "
-#| "in Konfigurator, default is <b>konsole</b>.</p></qt>"
+#, kde-format
 msgid ""
 "<qt><p>Open terminal in current folder.</p><p>It uses the system default "
 "terminal emulator.</p></qt>"
 msgstr ""
-"<qt><p>Opna terminal i gjeldande mappe.</p><p>Terminal kan vera sett opp i "
-"Konfigurator. Standard er <b>konsole</b>.</p></qt>"
+"<qt><p>Opna terminalvindauge i gjeldande mappe.</p><p>Standard "
+"terminalprogram vert brukt.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:99
 #, kde-format
@@ -7619,10 +7628,9 @@ msgid "Enter the filename to edit:"
 msgstr "Skriv inn filnamnet du vil redigera:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "Mappa %1 finst ikkje."
+msgstr "Klarte ikkje oppretta fila «%1»."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9817,16 +9825,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "Mappeoversikt er ikkje støtta for %1-arkiv."
 
 #: plugins/krarc/krarc.cpp:1570
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"Sjå til at programfila %1 er rett installert på systemet."
+"«%1»\n"
+"Sjå til at programfila «%2» er rett installert på systemet."
 
 #: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format

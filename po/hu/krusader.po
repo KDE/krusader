@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-17 00:48+0000\n"
+"POT-Creation-Date: 2026-09-20 00:49+0000\n"
 "PO-Revision-Date: 2026-06-18 21:51+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -886,17 +886,17 @@ msgstr "Könyvjelzők"
 msgid "Folder name:"
 msgstr "Mappanév:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:868
 #, kde-format
 msgid "Trash bin"
 msgstr "Kuka"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:876
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Virtuális fájlrendszer"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:872
 #, kde-format
 msgid "Local Network"
 msgstr "Helyi hálózat"
@@ -911,8 +911,8 @@ msgstr "Könyvjelzőkezelő II"
 msgid "Type to search..."
 msgstr "Kezdjen el gépelni a kereséshez…"
 
-#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
-#: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:390
+#: app/Konfigurator/kgcolors.cpp:674 app/Konfigurator/kgcolors.cpp:698
 #: app/Konfigurator/kggeneral.cpp:323
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
@@ -935,46 +935,46 @@ msgstr "„%1” e helyett: „%2”"
 msgid "missing tag %1"
 msgstr "hiányzó címke: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:379
+#: app/BookMan/krbookmarkhandler.cpp:381
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 nem tűnik érvényes könyvjelzőfájlnak"
 
-#: app/BookMan/krbookmarkhandler.cpp:388
+#: app/BookMan/krbookmarkhandler.cpp:390
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Hiba történt a(z) %1 könyvjelzőfájl olvasásakor"
 
-#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/BookMan/krbookmarkhandler.cpp:514 app/BookMan/krbookmarkhandler.cpp:864
 #: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "Gyakran látogatott helyek"
 
-#: app/BookMan/krbookmarkhandler.cpp:858
+#: app/BookMan/krbookmarkhandler.cpp:860
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Speciális könyvjelzők engedélyezése"
 
-#: app/BookMan/krbookmarkhandler.cpp:878
+#: app/BookMan/krbookmarkhandler.cpp:880
 #, kde-format
 msgid "Jump back"
 msgstr "Ugrás vissza"
 
-#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Megnyitás"
 
-#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:931 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Megnyitás új lapon"
 
-#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:935 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
-#: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
+#: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:626
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
 #, kde-format
 msgid "Delete"
@@ -1045,7 +1045,7 @@ msgid "Checksum Results"
 msgstr "Ellenőrzőösszeg eredmények"
 
 #: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
-#: app/Konfigurator/kgcolors.cpp:562
+#: app/Konfigurator/kgcolors.cpp:563
 #, kde-format
 msgid "File"
 msgstr "Fájl"
@@ -1500,7 +1500,7 @@ msgid "Do you really want to delete this item?"
 msgstr "Valóban törölni szeretné ezt az elemet?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Konfigurator/kgcolors.cpp:693 app/Panel/panelfunc.cpp:848
 #: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
@@ -2649,46 +2649,46 @@ msgstr "Feladatsor módja"
 msgid "Run only one job in parallel"
 msgstr "Csak egy feladat párhuzamos futtatása"
 
-#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:351
+#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:360
 #, kde-format
 msgid "Undo Last Job"
 msgstr "Legutóbbi feladat visszavonása"
 
-#: app/JobMan/jobman.cpp:230
+#: app/JobMan/jobman.cpp:239
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "Biztosan ki szeretne lépni?"
 
-#: app/JobMan/jobman.cpp:370
+#: app/JobMan/jobman.cpp:379
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] "Egy feladatművelet van hátra."
 msgstr[1] "%1 feladatművelet van hátra."
 
-#: app/JobMan/jobman.cpp:418
+#: app/JobMan/jobman.cpp:427
 #, kde-format
 msgid "No Jobs"
 msgstr "Nincsenek feladatok"
 
-#: app/JobMan/jobman.cpp:420
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
 msgstr[0] "%1 feladat"
 msgstr[1] "%1 feladat"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Clear Job List"
 msgstr "Feladatlista törlése"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Pause All Jobs"
 msgstr "Összes feladat szüneteltetése"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Resume Job List"
 msgstr "Feladatlista folytatása"
@@ -2920,57 +2920,71 @@ msgstr ""
 "Új csomagolókat a <code>$PATH</code> útvonalra telepítsen (példa: /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, kde-format
-msgid "Use the default KDE colors"
+#, fuzzy, kde-format
+#| msgid "Use the default KDE colors"
+msgid "Use KDE Plasma's default colors"
 msgstr "Alapértelmezett KDE színek használata"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
+#| "Application Appearance  -> Colors</i></p>"
 msgid ""
-"<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-"Application Appearance  -> Colors</i></p>"
+"<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
+"Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
 "<p>A KDE globális színbeállításának használata.</p><p><i>KDE "
 "Rendszerbeállítások -> Megjelenés -> Színek</i></p>"
 
-#: app/Konfigurator/kgcolors.cpp:67
+#: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
 msgid "Use alternate background color"
 msgstr "Váltakozó háttérszínek használata"
 
-#: app/Konfigurator/kgcolors.cpp:69
-#, kde-format
+#: app/Konfigurator/kgcolors.cpp:70
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
+#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
+#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
+#| "box.</p>"
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
-"alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
-"i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
+"alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
+"colors</i>, you can configure the alternate colors in the <i>colors</i> box."
+"</p>"
 msgstr ""
 "<p>A <b>háttérszín</b> és a <b>másodlagos háttérszín</b> soronként váltják "
 "egymást.</p><p>Ha nem az <i>alapértelmezett KDE színeket</i> használja, "
 "akkor beállíthatók a másodlagos színek a <i>színbeállításoknál</i>.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:74
+#: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
 msgid "Show current item even if not focused"
 msgstr "Aktuális elem mutatása akkor is, ha nincsen fókuszban"
 
-#: app/Konfigurator/kgcolors.cpp:76
-#, kde-format
+#: app/Konfigurator/kgcolors.cpp:77
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Shows the last cursor position in the non active list panel.</"
+#| "p><p>This option is only available when you don't use the <i>KDE default "
+#| "colors</i>.</p>"
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
-"option is only available when you don't use the <i>KDE default colors</i>.</"
-"p>"
+"option is only available when you don't use <i>KDE Plasma's default colors</"
+"i>.</p>"
 msgstr ""
 "<p>A legutóbbi kurzorpozíció megjelenítése a nem aktív listapanelen.</"
 "p><p>Ez az opció csak akkor elérhető, ha nem az <i>alapértelmezett KDE "
 "színeket</i> használja.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:81
+#: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
 msgid "Dim the colors of the inactive panel"
 msgstr "Az inaktív panel színének elmosása"
 
-#: app/Konfigurator/kgcolors.cpp:83
+#: app/Konfigurator/kgcolors.cpp:84
 #, kde-format
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
@@ -2979,380 +2993,380 @@ msgstr ""
 "<p>Az inaktív panel színei egy elmosó szín és egy elmosási faktor alapján "
 "vannak kiszámítva.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:100 app/Konfigurator/kgcolors.cpp:359
+#: app/Konfigurator/kgcolors.cpp:101 app/Konfigurator/kgcolors.cpp:360
 #: app/Konfigurator/konfigurator.cpp:120
 #, kde-format
 msgid "Colors"
 msgstr "Színek"
 
-#: app/Konfigurator/kgcolors.cpp:108
+#: app/Konfigurator/kgcolors.cpp:109
 #, kde-format
 msgid "Active"
 msgstr "Aktív"
 
-#: app/Konfigurator/kgcolors.cpp:114
+#: app/Konfigurator/kgcolors.cpp:115
 #, kde-format
 msgid "Transparent"
 msgstr "Átlátszó"
 
-#: app/Konfigurator/kgcolors.cpp:118 app/Konfigurator/kgcolors.cpp:160
+#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:161
 #, kde-format
 msgid "Foreground:"
 msgstr "Alap:"
 
-#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:163
+#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:164
 #, kde-format
 msgid "Folder foreground:"
 msgstr "Mappa:"
 
-#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:120
-#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:122
-#: app/Konfigurator/kgcolors.cpp:139 app/Konfigurator/kgcolors.cpp:161
+#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:121
+#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:123
+#: app/Konfigurator/kgcolors.cpp:140 app/Konfigurator/kgcolors.cpp:162
 #, kde-format
 msgid "Same as foreground"
 msgstr "Megegyezik az alappal"
 
-#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:169
+#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:170
 #, kde-format
 msgid "Executable foreground:"
 msgstr "Futtatható:"
 
-#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:175
+#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:176
 #, kde-format
 msgid "Symbolic link foreground:"
 msgstr "Szimbolikus link:"
 
-#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:181
+#: app/Konfigurator/kgcolors.cpp:123 app/Konfigurator/kgcolors.cpp:182
 #, kde-format
 msgid "Invalid symlink foreground:"
 msgstr "Érvénytelen szimbolikus link:"
 
-#: app/Konfigurator/kgcolors.cpp:123 app/Konfigurator/kgcolors.cpp:186
+#: app/Konfigurator/kgcolors.cpp:124 app/Konfigurator/kgcolors.cpp:187
 #, kde-format
 msgid "Background:"
 msgstr "Háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:124 app/Konfigurator/kgcolors.cpp:140
-#: app/Konfigurator/kgcolors.cpp:187
+#: app/Konfigurator/kgcolors.cpp:125 app/Konfigurator/kgcolors.cpp:141
+#: app/Konfigurator/kgcolors.cpp:188
 #, kde-format
 msgid "Same as background"
 msgstr "Megegyezik a háttérrel"
 
-#: app/Konfigurator/kgcolors.cpp:125 app/Konfigurator/kgcolors.cpp:189
+#: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:190
 #, kde-format
 msgid "Alternate background:"
 msgstr "Másodlagos háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:195
+#: app/Konfigurator/kgcolors.cpp:127 app/Konfigurator/kgcolors.cpp:196
 #, kde-format
 msgid "Selected foreground:"
 msgstr "Kijelölt:"
 
-#: app/Konfigurator/kgcolors.cpp:127 app/Konfigurator/kgcolors.cpp:201
+#: app/Konfigurator/kgcolors.cpp:128 app/Konfigurator/kgcolors.cpp:202
 #, kde-format
 msgid "Selected background:"
 msgstr "Kijelölt háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:128 app/Konfigurator/kgcolors.cpp:207
+#: app/Konfigurator/kgcolors.cpp:129 app/Konfigurator/kgcolors.cpp:208
 #, kde-format
 msgid "Same as alt. background"
 msgstr "Megegyezik a másodlagos háttérrel"
 
-#: app/Konfigurator/kgcolors.cpp:130 app/Konfigurator/kgcolors.cpp:210
+#: app/Konfigurator/kgcolors.cpp:131 app/Konfigurator/kgcolors.cpp:211
 #, kde-format
 msgid "Alternate selected background:"
 msgstr "Kijelölt másodlagos háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:132 app/Konfigurator/kgcolors.cpp:208
+#: app/Konfigurator/kgcolors.cpp:133 app/Konfigurator/kgcolors.cpp:209
 #, kde-format
 msgid "Same as selected background"
 msgstr "Megegyezik a kijelölt háttérrel"
 
-#: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:215
+#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:216
 #, kde-format
 msgid "Current foreground:"
 msgstr "Aktuális:"
 
-#: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:137
-#: app/Konfigurator/kgcolors.cpp:138
+#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:138
+#: app/Konfigurator/kgcolors.cpp:139
 #, kde-format
 msgid "Not used"
 msgstr "Nem használt"
 
-#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:216
+#: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:217
 #, kde-format
 msgid "Same as selected foreground"
 msgstr "Megegyezik a kijelölttel"
 
-#: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:220
+#: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:221
 #, kde-format
 msgid "Selected current foreground:"
 msgstr "Aktuális kijelölve:"
 
-#: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:226
+#: app/Konfigurator/kgcolors.cpp:139 app/Konfigurator/kgcolors.cpp:227
 #, kde-format
 msgid "Current background:"
 msgstr "Aktuális háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:139
+#: app/Konfigurator/kgcolors.cpp:140
 #, kde-format
 msgid "Rename foreground:"
 msgstr "Átnevezés:"
 
-#: app/Konfigurator/kgcolors.cpp:140
+#: app/Konfigurator/kgcolors.cpp:141
 #, kde-format
 msgid "Rename background:"
 msgstr "Átnevezés háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:150
+#: app/Konfigurator/kgcolors.cpp:151
 #, kde-format
 msgid "Inactive"
 msgstr "Inaktív"
 
-#: app/Konfigurator/kgcolors.cpp:160 app/Konfigurator/kgcolors.cpp:165
-#: app/Konfigurator/kgcolors.cpp:171 app/Konfigurator/kgcolors.cpp:177
-#: app/Konfigurator/kgcolors.cpp:183 app/Konfigurator/kgcolors.cpp:186
-#: app/Konfigurator/kgcolors.cpp:191 app/Konfigurator/kgcolors.cpp:197
-#: app/Konfigurator/kgcolors.cpp:203 app/Konfigurator/kgcolors.cpp:212
-#: app/Konfigurator/kgcolors.cpp:215 app/Konfigurator/kgcolors.cpp:222
-#: app/Konfigurator/kgcolors.cpp:228
+#: app/Konfigurator/kgcolors.cpp:161 app/Konfigurator/kgcolors.cpp:166
+#: app/Konfigurator/kgcolors.cpp:172 app/Konfigurator/kgcolors.cpp:178
+#: app/Konfigurator/kgcolors.cpp:184 app/Konfigurator/kgcolors.cpp:187
+#: app/Konfigurator/kgcolors.cpp:192 app/Konfigurator/kgcolors.cpp:198
+#: app/Konfigurator/kgcolors.cpp:204 app/Konfigurator/kgcolors.cpp:213
+#: app/Konfigurator/kgcolors.cpp:216 app/Konfigurator/kgcolors.cpp:223
+#: app/Konfigurator/kgcolors.cpp:229
 #, kde-format
 msgid "Same as active"
 msgstr "Megegyezik az aktívval"
 
-#: app/Konfigurator/kgcolors.cpp:249
+#: app/Konfigurator/kgcolors.cpp:250
 #, kde-format
 msgid "Dim target color:"
 msgstr "Elmosó szín:"
 
-#: app/Konfigurator/kgcolors.cpp:252
+#: app/Konfigurator/kgcolors.cpp:253
 #, kde-format
 msgid "Dim factor:"
 msgstr "Elmosási faktor:"
 
-#: app/Konfigurator/kgcolors.cpp:264 app/Konfigurator/kgcolors.cpp:265
-#: app/Konfigurator/kgcolors.cpp:317 app/Konfigurator/kgcolors.cpp:318
+#: app/Konfigurator/kgcolors.cpp:265 app/Konfigurator/kgcolors.cpp:266
+#: app/Konfigurator/kgcolors.cpp:318 app/Konfigurator/kgcolors.cpp:319
 #, kde-format
 msgid "KDE default"
 msgstr "KDE alapértelmezés"
 
-#: app/Konfigurator/kgcolors.cpp:269
+#: app/Konfigurator/kgcolors.cpp:270
 #, kde-format
 msgid "Synchronizer"
 msgstr "Szinkronizáló"
 
-#: app/Konfigurator/kgcolors.cpp:280
+#: app/Konfigurator/kgcolors.cpp:281
 #, kde-format
 msgid "Equals foreground:"
 msgstr "Előtér, megegyező:"
 
-#: app/Konfigurator/kgcolors.cpp:281
+#: app/Konfigurator/kgcolors.cpp:282
 #, kde-format
 msgid "Equals background:"
 msgstr "Háttér, megegyező:"
 
-#: app/Konfigurator/kgcolors.cpp:282
+#: app/Konfigurator/kgcolors.cpp:283
 #, kde-format
 msgid "Differing foreground:"
 msgstr "Előtér, eltérő:"
 
-#: app/Konfigurator/kgcolors.cpp:283
+#: app/Konfigurator/kgcolors.cpp:284
 #, kde-format
 msgid "Differing background:"
 msgstr "Háttér, eltérő:"
 
-#: app/Konfigurator/kgcolors.cpp:284
+#: app/Konfigurator/kgcolors.cpp:285
 #, kde-format
 msgid "Copy to left foreground:"
 msgstr "Előtér, másolás balra:"
 
-#: app/Konfigurator/kgcolors.cpp:285
+#: app/Konfigurator/kgcolors.cpp:286
 #, kde-format
 msgid "Copy to left background:"
 msgstr "Háttér, másolás balra:"
 
-#: app/Konfigurator/kgcolors.cpp:287
+#: app/Konfigurator/kgcolors.cpp:288
 #, kde-format
 msgid "Copy to right foreground:"
 msgstr "Előtér, másolás jobbra:"
 
-#: app/Konfigurator/kgcolors.cpp:293
+#: app/Konfigurator/kgcolors.cpp:294
 #, kde-format
 msgid "Copy to right background:"
 msgstr "Háttér, másolás jobbra:"
 
-#: app/Konfigurator/kgcolors.cpp:298
+#: app/Konfigurator/kgcolors.cpp:299
 #, kde-format
 msgid "Delete foreground:"
 msgstr "Előtér, törlés:"
 
-#: app/Konfigurator/kgcolors.cpp:299
+#: app/Konfigurator/kgcolors.cpp:300
 #, kde-format
 msgid "Delete background:"
 msgstr "Háttér, törlés:"
 
-#: app/Konfigurator/kgcolors.cpp:305
+#: app/Konfigurator/kgcolors.cpp:306
 #, kde-format
 msgid "Other"
 msgstr "Egyéb"
 
-#: app/Konfigurator/kgcolors.cpp:313
+#: app/Konfigurator/kgcolors.cpp:314
 #, kde-format
 msgid "Quicksearch, match foreground:"
 msgstr "Gyorskeresés, előtér egyezésnél:"
 
-#: app/Konfigurator/kgcolors.cpp:314
+#: app/Konfigurator/kgcolors.cpp:315
 #, kde-format
 msgid "Quicksearch, match background:"
 msgstr "Gyorskeresés, háttér egyezése:"
 
-#: app/Konfigurator/kgcolors.cpp:315
+#: app/Konfigurator/kgcolors.cpp:316
 #, kde-format
 msgid "Quicksearch, non-match foreground:"
 msgstr "Gyorskeresés, előtér ha nincs egyezés:"
 
-#: app/Konfigurator/kgcolors.cpp:316
+#: app/Konfigurator/kgcolors.cpp:317
 #, kde-format
 msgid "Quicksearch, non-match background:"
 msgstr "Gyorskeresés, háttér ha nincs egyezés:"
 
-#: app/Konfigurator/kgcolors.cpp:320
+#: app/Konfigurator/kgcolors.cpp:321
 #, kde-format
 msgid "Statusbar, active foreground:"
 msgstr "Állapotsor, aktív előtér:"
 
-#: app/Konfigurator/kgcolors.cpp:326
+#: app/Konfigurator/kgcolors.cpp:327
 #, kde-format
 msgid "Statusbar, active background:"
 msgstr "Állapotsor, aktív háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:332
+#: app/Konfigurator/kgcolors.cpp:333
 #, kde-format
 msgid "Statusbar, inactive foreground:"
 msgstr "Állapotsor, inaktív előtér:"
 
-#: app/Konfigurator/kgcolors.cpp:338
+#: app/Konfigurator/kgcolors.cpp:339
 #, kde-format
 msgid "Statusbar, inactive background:"
 msgstr "Állapotsor, inaktív háttér:"
 
-#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:826
+#: app/Konfigurator/kgcolors.cpp:352 app/Konfigurator/kgpanel.cpp:826
 #: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
 msgstr "Előnézet"
 
-#: app/Konfigurator/kgcolors.cpp:375
+#: app/Konfigurator/kgcolors.cpp:376
 #, kde-format
 msgid "Import color-scheme"
 msgstr "Színséma importálása"
 
-#: app/Konfigurator/kgcolors.cpp:377
+#: app/Konfigurator/kgcolors.cpp:378
 #, kde-format
 msgid "Export color-scheme"
 msgstr "Színséma exportálása"
 
-#: app/Konfigurator/kgcolors.cpp:555
+#: app/Konfigurator/kgcolors.cpp:556
 #, kde-format
 msgid "Selected + Current"
 msgstr "Kiválasztott + Aktuális"
 
-#: app/Konfigurator/kgcolors.cpp:556
+#: app/Konfigurator/kgcolors.cpp:557
 #, kde-format
 msgid "Selected 2"
 msgstr "Kiválasztott 2"
 
-#: app/Konfigurator/kgcolors.cpp:557
+#: app/Konfigurator/kgcolors.cpp:558
 #, kde-format
 msgid "Selected 1"
 msgstr "Kiválasztott 1"
 
-#: app/Konfigurator/kgcolors.cpp:558
+#: app/Konfigurator/kgcolors.cpp:559
 #, kde-format
 msgid "Current"
 msgstr "Aktuális"
 
-#: app/Konfigurator/kgcolors.cpp:559
+#: app/Konfigurator/kgcolors.cpp:560
 #, kde-format
 msgid "Invalid symlink"
 msgstr "Érvénytelen szimbolikus link"
 
-#: app/Konfigurator/kgcolors.cpp:560
+#: app/Konfigurator/kgcolors.cpp:561
 #, kde-format
 msgid "Symbolic link"
 msgstr "Szimbolikus link"
 
-#: app/Konfigurator/kgcolors.cpp:561
+#: app/Konfigurator/kgcolors.cpp:562
 #, kde-format
 msgid "Application"
 msgstr "Alkalmazás"
 
-#: app/Konfigurator/kgcolors.cpp:563
+#: app/Konfigurator/kgcolors.cpp:564
 #, kde-format
 msgid "Folder"
 msgstr "Mappa"
 
-#: app/Konfigurator/kgcolors.cpp:626
+#: app/Konfigurator/kgcolors.cpp:627
 #, kde-format
 msgid "Copy to right"
 msgstr "Másolás jobbra"
 
-#: app/Konfigurator/kgcolors.cpp:627
+#: app/Konfigurator/kgcolors.cpp:628
 #, kde-format
 msgid "Copy to left"
 msgstr "Másolás balra"
 
-#: app/Konfigurator/kgcolors.cpp:628
+#: app/Konfigurator/kgcolors.cpp:629
 #, kde-format
 msgid "Differing"
 msgstr "Eltérő"
 
-#: app/Konfigurator/kgcolors.cpp:629
+#: app/Konfigurator/kgcolors.cpp:630
 #, kde-format
 msgid "Equals"
 msgstr "Megegyező"
 
-#: app/Konfigurator/kgcolors.cpp:641
+#: app/Konfigurator/kgcolors.cpp:642
 #, kde-format
 msgid "Quicksearch non-match"
 msgstr "Gyorskeresés, nincs egyezés"
 
-#: app/Konfigurator/kgcolors.cpp:642
+#: app/Konfigurator/kgcolors.cpp:643
 #, kde-format
 msgid "Quicksearch match"
 msgstr "Gyorskeresés egyezés"
 
-#: app/Konfigurator/kgcolors.cpp:646
+#: app/Konfigurator/kgcolors.cpp:647
 #, kde-format
 msgid "Statusbar active"
 msgstr "Aktív állapotsor"
 
-#: app/Konfigurator/kgcolors.cpp:647
+#: app/Konfigurator/kgcolors.cpp:648
 #, kde-format
 msgid "Statusbar inactive"
 msgstr "Inaktív állapotsor"
 
-#: app/Konfigurator/kgcolors.cpp:667
+#: app/Konfigurator/kgcolors.cpp:668
 #, kde-format
 msgid "Select a color-scheme file"
 msgstr "Válasszon ki egy színséma-fájlt"
 
-#: app/Konfigurator/kgcolors.cpp:673
+#: app/Konfigurator/kgcolors.cpp:674
 #, kde-format
 msgid "Error: unable to read from file"
 msgstr "Hiba: nem lehet olvasni a fájlból"
 
-#: app/Konfigurator/kgcolors.cpp:684
+#: app/Konfigurator/kgcolors.cpp:685
 #, kde-format
 msgid "Select a color scheme file"
 msgstr "Válasszon ki egy színséma-fájlt"
 
-#: app/Konfigurator/kgcolors.cpp:691
+#: app/Konfigurator/kgcolors.cpp:692
 #, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
 msgstr "„%1” nevű fájl már létezik. Felül szeretné írni?"
 
-#: app/Konfigurator/kgcolors.cpp:697
+#: app/Konfigurator/kgcolors.cpp:698
 #, kde-format
 msgid "Error: unable to write to file"
 msgstr "Hiba: nem lehet írni a fájlba"
@@ -5622,7 +5636,7 @@ msgstr "Kuka ürítése"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Az állapotsor alapvető információkat ad az egérmutató alatti fájlról."
 
-#: app/krusader.cpp:306
+#: app/krusader.cpp:313
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5634,7 +5648,7 @@ msgstr ""
 "követően elindul a Konfigurátor, ahol igény szerint módosíthatja a Krusader "
 "beállításait.</p></qt>"
 
-#: app/krusader.cpp:337
+#: app/krusader.cpp:344
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "A főablak felülre hozása"
@@ -5734,52 +5748,52 @@ msgstr "A funkciógombok gyors műveletvégzést tesznek lehetővé a fájlokon.
 msgid "Horizontal Mode"
 msgstr "Vízszintes mód"
 
-#: app/KrViewer/krviewer.cpp:97
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "Általános me&gjelenítő"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "Szövegmegjelení&tő"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Hexadecimális megjelenítő"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Nézőke"
 
-#: app/KrViewer/krviewer.cpp:103
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "Szöv&egszerkesztő"
 
-#: app/KrViewer/krviewer.cpp:127
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "Lap le&választása"
 
-#: app/KrViewer/krviewer.cpp:139
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "Aktuális lap &bezárása"
 
-#: app/KrViewer/krviewer.cpp:145
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Következő lap"
 
-#: app/KrViewer/krviewer.cpp:151
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "E&lőző lap"
 
-#: app/KrViewer/krviewer.cpp:226
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrNézegető"

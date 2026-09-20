@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-17 00:48+0000\n"
+"POT-Creation-Date: 2026-09-20 00:49+0000\n"
 "PO-Revision-Date: 2024-12-20 16:53+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -867,17 +867,17 @@ msgstr "Legosignoj"
 msgid "Folder name:"
 msgstr "Dosieruja nomo:"
 
-#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:866
+#: app/BookMan/krbookmark.cpp:23 app/BookMan/krbookmarkhandler.cpp:868
 #, kde-format
 msgid "Trash bin"
 msgstr "Rubujo"
 
-#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:874
+#: app/BookMan/krbookmark.cpp:24 app/BookMan/krbookmarkhandler.cpp:876
 #, kde-format
 msgid "Virtual Filesystem"
 msgstr "Virtuala Dosiersistemo"
 
-#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:870
+#: app/BookMan/krbookmark.cpp:25 app/BookMan/krbookmarkhandler.cpp:872
 #, kde-format
 msgid "Local Network"
 msgstr "Loka reto"
@@ -892,8 +892,8 @@ msgstr "BookMan II"
 msgid "Type to search..."
 msgstr "Tajpu por serĉi..."
 
-#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:388
-#: app/Konfigurator/kgcolors.cpp:673 app/Konfigurator/kgcolors.cpp:697
+#: app/BookMan/krbookmarkhandler.cpp:248 app/BookMan/krbookmarkhandler.cpp:390
+#: app/Konfigurator/kgcolors.cpp:674 app/Konfigurator/kgcolors.cpp:698
 #: app/Konfigurator/kggeneral.cpp:323
 #: app/Synchronizer/synchronizerdirlist.cpp:117
 #, kde-format
@@ -916,46 +916,46 @@ msgstr "%1 anstataŭ %2"
 msgid "missing tag %1"
 msgstr "mankas etikedo %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:379
+#: app/BookMan/krbookmarkhandler.cpp:381
 #, kde-format
 msgid "%1 does not seem to be a valid bookmarks file"
 msgstr "%1 ŝajnas ne esti valida dosiero de legosignoj"
 
-#: app/BookMan/krbookmarkhandler.cpp:388
+#: app/BookMan/krbookmarkhandler.cpp:390
 #, kde-format
 msgid "Error reading bookmarks file: %1"
 msgstr "Eraro legante legosigndosieron: %1"
 
-#: app/BookMan/krbookmarkhandler.cpp:512 app/BookMan/krbookmarkhandler.cpp:862
+#: app/BookMan/krbookmarkhandler.cpp:514 app/BookMan/krbookmarkhandler.cpp:864
 #: app/Dialogs/popularurls.cpp:283
 #, kde-format
 msgid "Popular URLs"
 msgstr "Popularaj URL-oj"
 
-#: app/BookMan/krbookmarkhandler.cpp:858
+#: app/BookMan/krbookmarkhandler.cpp:860
 #, kde-format
 msgid "Enable special bookmarks"
 msgstr "Ebligi specialajn legosignojn"
 
-#: app/BookMan/krbookmarkhandler.cpp:878
+#: app/BookMan/krbookmarkhandler.cpp:880
 #, kde-format
 msgid "Jump back"
 msgstr "Salti reen"
 
-#: app/BookMan/krbookmarkhandler.cpp:927 app/GUI/mediabutton.cpp:331
+#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:331
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
 msgid "Open"
 msgstr "Malfermi"
 
-#: app/BookMan/krbookmarkhandler.cpp:929 app/GUI/mediabutton.cpp:333
+#: app/BookMan/krbookmarkhandler.cpp:931 app/GUI/mediabutton.cpp:333
 #, kde-format
 msgid "Open in a new tab"
 msgstr "Malfermi en nova langeto"
 
-#: app/BookMan/krbookmarkhandler.cpp:933 app/Dialogs/krmaskchoice.cpp:84
+#: app/BookMan/krbookmarkhandler.cpp:935 app/Dialogs/krmaskchoice.cpp:84
 #: app/Dialogs/kurllistrequester.cpp:127 app/DiskUsage/diskusage.cpp:750
-#: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:625
+#: app/GUI/kfnkeys.cpp:28 app/Konfigurator/kgcolors.cpp:626
 #: app/Panel/listpanelactions.cpp:73 app/Panel/panelcontextmenu.cpp:204
 #, kde-format
 msgid "Delete"
@@ -1024,7 +1024,7 @@ msgid "Checksum Results"
 msgstr "Kontrolsumo Rezultoj"
 
 #: app/Dialogs/checksumdlg.cpp:302 app/Dialogs/checksumdlg.cpp:502
-#: app/Konfigurator/kgcolors.cpp:562
+#: app/Konfigurator/kgcolors.cpp:563
 #, kde-format
 msgid "File"
 msgstr "Dosiero"
@@ -1475,7 +1475,7 @@ msgid "Do you really want to delete this item?"
 msgstr "Ĉu vi vere volas forigi ĉi tiun eron?"
 
 #: app/DiskUsage/diskusage.cpp:601 app/JobMan/jobman.cpp:228
-#: app/Konfigurator/kgcolors.cpp:692 app/Panel/panelfunc.cpp:848
+#: app/Konfigurator/kgcolors.cpp:693 app/Panel/panelfunc.cpp:848
 #: app/Panel/panelfunc.cpp:925
 #, kde-format
 msgid "Warning"
@@ -2623,46 +2623,46 @@ msgstr "Laborvica Reĝimo"
 msgid "Run only one job in parallel"
 msgstr "Ruligi nur unu taskon paralele"
 
-#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:351
+#: app/JobMan/jobman.cpp:210 app/JobMan/jobman.cpp:360
 #, kde-format
 msgid "Undo Last Job"
 msgstr "Malfari Lastan Taskon"
 
-#: app/JobMan/jobman.cpp:230
+#: app/JobMan/jobman.cpp:239
 #, kde-format
 msgid "Are you sure you want to quit?"
 msgstr "Ĉu vi certas, ke vi volas ĉesi?"
 
-#: app/JobMan/jobman.cpp:370
+#: app/JobMan/jobman.cpp:379
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
 msgstr[0] "Estas unu taskoperacio restanta."
 msgstr[1] "Estas %1 taskoperacioj restantaj."
 
-#: app/JobMan/jobman.cpp:418
+#: app/JobMan/jobman.cpp:427
 #, kde-format
 msgid "No Jobs"
 msgstr "Neniuj Taskoj"
 
-#: app/JobMan/jobman.cpp:420
+#: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "%1 Job"
 msgid_plural "%1 Jobs"
 msgstr[0] "%1 Tasko"
 msgstr[1] "%1 Taskoj"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Clear Job List"
 msgstr "Malplenigi Laborliston"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Pause All Jobs"
 msgstr "Paŭzi Ĉiujn Taskojn"
 
-#: app/JobMan/jobman.cpp:424
+#: app/JobMan/jobman.cpp:433
 #, kde-format
 msgid "Resume Job List"
 msgstr "Rekomenci Taskoliston"
@@ -2893,57 +2893,71 @@ msgstr ""
 "Nepre instalu novajn pakilojn en via <code>$PATH</code> (ekz. /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, kde-format
-msgid "Use the default KDE colors"
+#, fuzzy, kde-format
+#| msgid "Use the default KDE colors"
+msgid "Use KDE Plasma's default colors"
 msgstr "Uzi la defaŭltajn KDE-kolorojn"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
+#| "Application Appearance  -> Colors</i></p>"
 msgid ""
-"<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-"Application Appearance  -> Colors</i></p>"
+"<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
+"Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
 "<p>Uzi la ĉiiean koloragordon de KDE.</p><p><i>KDE-Sistema Agordoj -> "
 "Aplikaĵaspekto -> Koloroj</i></p>"
 
-#: app/Konfigurator/kgcolors.cpp:67
+#: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
 msgid "Use alternate background color"
 msgstr "Uzi alternan fonkoloron"
 
-#: app/Konfigurator/kgcolors.cpp:69
-#, kde-format
+#: app/Konfigurator/kgcolors.cpp:70
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
+#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
+#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
+#| "box.</p>"
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
-"alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
-"i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
+"alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
+"colors</i>, you can configure the alternate colors in the <i>colors</i> box."
+"</p>"
 msgstr ""
 "<p>La <b>fonkoloro</b> kaj la <b>alterna fonkoloro</b> alternas linion post "
 "linio.</p><p>Kiam vi ne uzas la <i>defaŭltajn kolorojn de KDE </i>, vi povas "
 "agordi la alternajn kolorojn en la skatolo <i>koloroj</i>.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:74
+#: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
 msgid "Show current item even if not focused"
 msgstr "Montri aktualan objekton eĉ se ne fokusita"
 
-#: app/Konfigurator/kgcolors.cpp:76
-#, kde-format
+#: app/Konfigurator/kgcolors.cpp:77
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Shows the last cursor position in the non active list panel.</"
+#| "p><p>This option is only available when you don't use the <i>KDE default "
+#| "colors</i>.</p>"
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
-"option is only available when you don't use the <i>KDE default colors</i>.</"
-"p>"
+"option is only available when you don't use <i>KDE Plasma's default colors</"
+"i>.</p>"
 msgstr ""
 "<p>Montras la lastan kursoran pozicion en la neaktiva listpanelo.</p><p>Ĉi "
 "tiu elekteblo disponeblas nur kiam vi ne uzas la <i>defaŭltajn kolorojn de "
 "KDE</i>.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:81
+#: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
 msgid "Dim the colors of the inactive panel"
 msgstr "Malpliigi la kolorojn de la neaktiva panelo"
 
-#: app/Konfigurator/kgcolors.cpp:83
+#: app/Konfigurator/kgcolors.cpp:84
 #, kde-format
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
@@ -2952,380 +2966,380 @@ msgstr ""
 "<p>La koloroj de la neaktiva panelo estas kalkulitaj per malklara koloro kaj "
 "malemfaziga faktoro.</p>"
 
-#: app/Konfigurator/kgcolors.cpp:100 app/Konfigurator/kgcolors.cpp:359
+#: app/Konfigurator/kgcolors.cpp:101 app/Konfigurator/kgcolors.cpp:360
 #: app/Konfigurator/konfigurator.cpp:120
 #, kde-format
 msgid "Colors"
 msgstr "Koloroj"
 
-#: app/Konfigurator/kgcolors.cpp:108
+#: app/Konfigurator/kgcolors.cpp:109
 #, kde-format
 msgid "Active"
 msgstr "Aktiva"
 
-#: app/Konfigurator/kgcolors.cpp:114
+#: app/Konfigurator/kgcolors.cpp:115
 #, kde-format
 msgid "Transparent"
 msgstr "Travidebla"
 
-#: app/Konfigurator/kgcolors.cpp:118 app/Konfigurator/kgcolors.cpp:160
+#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:161
 #, kde-format
 msgid "Foreground:"
 msgstr "Teksto:"
 
-#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:163
+#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:164
 #, kde-format
 msgid "Folder foreground:"
 msgstr "Dosierujo-malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:120
-#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:122
-#: app/Konfigurator/kgcolors.cpp:139 app/Konfigurator/kgcolors.cpp:161
+#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:121
+#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:123
+#: app/Konfigurator/kgcolors.cpp:140 app/Konfigurator/kgcolors.cpp:162
 #, kde-format
 msgid "Same as foreground"
 msgstr "Same kiel malfono"
 
-#: app/Konfigurator/kgcolors.cpp:120 app/Konfigurator/kgcolors.cpp:169
+#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:170
 #, kde-format
 msgid "Executable foreground:"
 msgstr "Efektivebla malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:175
+#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:176
 #, kde-format
 msgid "Symbolic link foreground:"
 msgstr "Simbola ligo-malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:122 app/Konfigurator/kgcolors.cpp:181
+#: app/Konfigurator/kgcolors.cpp:123 app/Konfigurator/kgcolors.cpp:182
 #, kde-format
 msgid "Invalid symlink foreground:"
 msgstr "Malvalida simbolligo-malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:123 app/Konfigurator/kgcolors.cpp:186
+#: app/Konfigurator/kgcolors.cpp:124 app/Konfigurator/kgcolors.cpp:187
 #, kde-format
 msgid "Background:"
 msgstr "Fono:"
 
-#: app/Konfigurator/kgcolors.cpp:124 app/Konfigurator/kgcolors.cpp:140
-#: app/Konfigurator/kgcolors.cpp:187
+#: app/Konfigurator/kgcolors.cpp:125 app/Konfigurator/kgcolors.cpp:141
+#: app/Konfigurator/kgcolors.cpp:188
 #, kde-format
 msgid "Same as background"
 msgstr "Same kiel fono"
 
-#: app/Konfigurator/kgcolors.cpp:125 app/Konfigurator/kgcolors.cpp:189
+#: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:190
 #, kde-format
 msgid "Alternate background:"
 msgstr "Alterna fono:"
 
-#: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:195
+#: app/Konfigurator/kgcolors.cpp:127 app/Konfigurator/kgcolors.cpp:196
 #, kde-format
 msgid "Selected foreground:"
 msgstr "Elektita malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:127 app/Konfigurator/kgcolors.cpp:201
+#: app/Konfigurator/kgcolors.cpp:128 app/Konfigurator/kgcolors.cpp:202
 #, kde-format
 msgid "Selected background:"
 msgstr "Elektita fono:"
 
-#: app/Konfigurator/kgcolors.cpp:128 app/Konfigurator/kgcolors.cpp:207
+#: app/Konfigurator/kgcolors.cpp:129 app/Konfigurator/kgcolors.cpp:208
 #, kde-format
 msgid "Same as alt. background"
 msgstr "Same kiel alt. fono"
 
-#: app/Konfigurator/kgcolors.cpp:130 app/Konfigurator/kgcolors.cpp:210
+#: app/Konfigurator/kgcolors.cpp:131 app/Konfigurator/kgcolors.cpp:211
 #, kde-format
 msgid "Alternate selected background:"
 msgstr "Alterna elektita fono:"
 
-#: app/Konfigurator/kgcolors.cpp:132 app/Konfigurator/kgcolors.cpp:208
+#: app/Konfigurator/kgcolors.cpp:133 app/Konfigurator/kgcolors.cpp:209
 #, kde-format
 msgid "Same as selected background"
 msgstr "Same kiel elektita fono"
 
-#: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:215
+#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:216
 #, kde-format
 msgid "Current foreground:"
 msgstr "Nuna malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:137
-#: app/Konfigurator/kgcolors.cpp:138
+#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:138
+#: app/Konfigurator/kgcolors.cpp:139
 #, kde-format
 msgid "Not used"
 msgstr "Ne uzata"
 
-#: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:216
+#: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:217
 #, kde-format
 msgid "Same as selected foreground"
 msgstr "Same kiel elektita malfono"
 
-#: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:220
+#: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:221
 #, kde-format
 msgid "Selected current foreground:"
 msgstr "Elektita nuna malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:226
+#: app/Konfigurator/kgcolors.cpp:139 app/Konfigurator/kgcolors.cpp:227
 #, kde-format
 msgid "Current background:"
 msgstr "Nuna fono:"
 
-#: app/Konfigurator/kgcolors.cpp:139
+#: app/Konfigurator/kgcolors.cpp:140
 #, kde-format
 msgid "Rename foreground:"
 msgstr "Alinomi malfonon:"
 
-#: app/Konfigurator/kgcolors.cpp:140
+#: app/Konfigurator/kgcolors.cpp:141
 #, kde-format
 msgid "Rename background:"
 msgstr "Alinomi fonon:"
 
-#: app/Konfigurator/kgcolors.cpp:150
+#: app/Konfigurator/kgcolors.cpp:151
 #, kde-format
 msgid "Inactive"
 msgstr "Neaktiva"
 
-#: app/Konfigurator/kgcolors.cpp:160 app/Konfigurator/kgcolors.cpp:165
-#: app/Konfigurator/kgcolors.cpp:171 app/Konfigurator/kgcolors.cpp:177
-#: app/Konfigurator/kgcolors.cpp:183 app/Konfigurator/kgcolors.cpp:186
-#: app/Konfigurator/kgcolors.cpp:191 app/Konfigurator/kgcolors.cpp:197
-#: app/Konfigurator/kgcolors.cpp:203 app/Konfigurator/kgcolors.cpp:212
-#: app/Konfigurator/kgcolors.cpp:215 app/Konfigurator/kgcolors.cpp:222
-#: app/Konfigurator/kgcolors.cpp:228
+#: app/Konfigurator/kgcolors.cpp:161 app/Konfigurator/kgcolors.cpp:166
+#: app/Konfigurator/kgcolors.cpp:172 app/Konfigurator/kgcolors.cpp:178
+#: app/Konfigurator/kgcolors.cpp:184 app/Konfigurator/kgcolors.cpp:187
+#: app/Konfigurator/kgcolors.cpp:192 app/Konfigurator/kgcolors.cpp:198
+#: app/Konfigurator/kgcolors.cpp:204 app/Konfigurator/kgcolors.cpp:213
+#: app/Konfigurator/kgcolors.cpp:216 app/Konfigurator/kgcolors.cpp:223
+#: app/Konfigurator/kgcolors.cpp:229
 #, kde-format
 msgid "Same as active"
 msgstr "Same kiel aktiva"
 
-#: app/Konfigurator/kgcolors.cpp:249
+#: app/Konfigurator/kgcolors.cpp:250
 #, kde-format
 msgid "Dim target color:"
 msgstr "Malklara celkoloro:"
 
-#: app/Konfigurator/kgcolors.cpp:252
+#: app/Konfigurator/kgcolors.cpp:253
 #, kde-format
 msgid "Dim factor:"
 msgstr "Malklara faktoro:"
 
-#: app/Konfigurator/kgcolors.cpp:264 app/Konfigurator/kgcolors.cpp:265
-#: app/Konfigurator/kgcolors.cpp:317 app/Konfigurator/kgcolors.cpp:318
+#: app/Konfigurator/kgcolors.cpp:265 app/Konfigurator/kgcolors.cpp:266
+#: app/Konfigurator/kgcolors.cpp:318 app/Konfigurator/kgcolors.cpp:319
 #, kde-format
 msgid "KDE default"
 msgstr "KDE defaŭlta"
 
-#: app/Konfigurator/kgcolors.cpp:269
+#: app/Konfigurator/kgcolors.cpp:270
 #, kde-format
 msgid "Synchronizer"
 msgstr "Sinkronigilo"
 
-#: app/Konfigurator/kgcolors.cpp:280
+#: app/Konfigurator/kgcolors.cpp:281
 #, kde-format
 msgid "Equals foreground:"
 msgstr "Egalas malfonon:"
 
-#: app/Konfigurator/kgcolors.cpp:281
+#: app/Konfigurator/kgcolors.cpp:282
 #, kde-format
 msgid "Equals background:"
 msgstr "Egala fono:"
 
-#: app/Konfigurator/kgcolors.cpp:282
+#: app/Konfigurator/kgcolors.cpp:283
 #, kde-format
 msgid "Differing foreground:"
 msgstr "Malsama malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:283
+#: app/Konfigurator/kgcolors.cpp:284
 #, kde-format
 msgid "Differing background:"
 msgstr "Malsama fono:"
 
-#: app/Konfigurator/kgcolors.cpp:284
+#: app/Konfigurator/kgcolors.cpp:285
 #, kde-format
 msgid "Copy to left foreground:"
 msgstr "Kopii al maldekstra malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:285
+#: app/Konfigurator/kgcolors.cpp:286
 #, kde-format
 msgid "Copy to left background:"
 msgstr "Kopii al maldekstra fono:"
 
-#: app/Konfigurator/kgcolors.cpp:287
+#: app/Konfigurator/kgcolors.cpp:288
 #, kde-format
 msgid "Copy to right foreground:"
 msgstr "Kopii al dekstra malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:293
+#: app/Konfigurator/kgcolors.cpp:294
 #, kde-format
 msgid "Copy to right background:"
 msgstr "Kopii al dekstra fono:"
 
-#: app/Konfigurator/kgcolors.cpp:298
+#: app/Konfigurator/kgcolors.cpp:299
 #, kde-format
 msgid "Delete foreground:"
 msgstr "Forigi malfonon:"
 
-#: app/Konfigurator/kgcolors.cpp:299
+#: app/Konfigurator/kgcolors.cpp:300
 #, kde-format
 msgid "Delete background:"
 msgstr "Forigi fonon:"
 
-#: app/Konfigurator/kgcolors.cpp:305
+#: app/Konfigurator/kgcolors.cpp:306
 #, kde-format
 msgid "Other"
 msgstr "Alia"
 
-#: app/Konfigurator/kgcolors.cpp:313
+#: app/Konfigurator/kgcolors.cpp:314
 #, kde-format
 msgid "Quicksearch, match foreground:"
 msgstr "Rapida serĉo, kongruas kun malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:314
+#: app/Konfigurator/kgcolors.cpp:315
 #, kde-format
 msgid "Quicksearch, match background:"
 msgstr "Rapida serĉo, kongrua fono:"
 
-#: app/Konfigurator/kgcolors.cpp:315
+#: app/Konfigurator/kgcolors.cpp:316
 #, kde-format
 msgid "Quicksearch, non-match foreground:"
 msgstr "Rapida serĉo, ne-kongrua malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:316
+#: app/Konfigurator/kgcolors.cpp:317
 #, kde-format
 msgid "Quicksearch, non-match background:"
 msgstr "Rapida serĉo, ne-kongrua fono:"
 
-#: app/Konfigurator/kgcolors.cpp:320
+#: app/Konfigurator/kgcolors.cpp:321
 #, kde-format
 msgid "Statusbar, active foreground:"
 msgstr "Statusbreto, aktiva malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:326
+#: app/Konfigurator/kgcolors.cpp:327
 #, kde-format
 msgid "Statusbar, active background:"
 msgstr "Statusbreto, aktiva fono:"
 
-#: app/Konfigurator/kgcolors.cpp:332
+#: app/Konfigurator/kgcolors.cpp:333
 #, kde-format
 msgid "Statusbar, inactive foreground:"
 msgstr "Statusbreto, neaktiva malfono:"
 
-#: app/Konfigurator/kgcolors.cpp:338
+#: app/Konfigurator/kgcolors.cpp:339
 #, kde-format
 msgid "Statusbar, inactive background:"
 msgstr "Statusbreto, neaktiva fono:"
 
-#: app/Konfigurator/kgcolors.cpp:351 app/Konfigurator/kgpanel.cpp:826
+#: app/Konfigurator/kgcolors.cpp:352 app/Konfigurator/kgpanel.cpp:826
 #: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
 msgstr "Antaŭrigardo"
 
-#: app/Konfigurator/kgcolors.cpp:375
+#: app/Konfigurator/kgcolors.cpp:376
 #, kde-format
 msgid "Import color-scheme"
 msgstr "Importi kolorskemon"
 
-#: app/Konfigurator/kgcolors.cpp:377
+#: app/Konfigurator/kgcolors.cpp:378
 #, kde-format
 msgid "Export color-scheme"
 msgstr "Eksporti kolorskemon"
 
-#: app/Konfigurator/kgcolors.cpp:555
+#: app/Konfigurator/kgcolors.cpp:556
 #, kde-format
 msgid "Selected + Current"
 msgstr "Elektita + Aktualo"
 
-#: app/Konfigurator/kgcolors.cpp:556
+#: app/Konfigurator/kgcolors.cpp:557
 #, kde-format
 msgid "Selected 2"
 msgstr "Elektita 2"
 
-#: app/Konfigurator/kgcolors.cpp:557
+#: app/Konfigurator/kgcolors.cpp:558
 #, kde-format
 msgid "Selected 1"
 msgstr "Elektita 1"
 
-#: app/Konfigurator/kgcolors.cpp:558
+#: app/Konfigurator/kgcolors.cpp:559
 #, kde-format
 msgid "Current"
 msgstr "Aktuala"
 
-#: app/Konfigurator/kgcolors.cpp:559
+#: app/Konfigurator/kgcolors.cpp:560
 #, kde-format
 msgid "Invalid symlink"
 msgstr "Nevalida simbolligo"
 
-#: app/Konfigurator/kgcolors.cpp:560
+#: app/Konfigurator/kgcolors.cpp:561
 #, kde-format
 msgid "Symbolic link"
 msgstr "Simbola ligo"
 
-#: app/Konfigurator/kgcolors.cpp:561
+#: app/Konfigurator/kgcolors.cpp:562
 #, kde-format
 msgid "Application"
 msgstr "Aplikaĵo"
 
-#: app/Konfigurator/kgcolors.cpp:563
+#: app/Konfigurator/kgcolors.cpp:564
 #, kde-format
 msgid "Folder"
 msgstr "Dosierujo"
 
-#: app/Konfigurator/kgcolors.cpp:626
+#: app/Konfigurator/kgcolors.cpp:627
 #, kde-format
 msgid "Copy to right"
 msgstr "Kopiu dekstren"
 
-#: app/Konfigurator/kgcolors.cpp:627
+#: app/Konfigurator/kgcolors.cpp:628
 #, kde-format
 msgid "Copy to left"
 msgstr "Kopii maldekstren"
 
-#: app/Konfigurator/kgcolors.cpp:628
+#: app/Konfigurator/kgcolors.cpp:629
 #, kde-format
 msgid "Differing"
 msgstr "Malsamaj"
 
-#: app/Konfigurator/kgcolors.cpp:629
+#: app/Konfigurator/kgcolors.cpp:630
 #, kde-format
 msgid "Equals"
 msgstr "estas"
 
-#: app/Konfigurator/kgcolors.cpp:641
+#: app/Konfigurator/kgcolors.cpp:642
 #, kde-format
 msgid "Quicksearch non-match"
 msgstr "Rapida serĉo ne-kongrua"
 
-#: app/Konfigurator/kgcolors.cpp:642
+#: app/Konfigurator/kgcolors.cpp:643
 #, kde-format
 msgid "Quicksearch match"
 msgstr "Rapidserĉa kongruo"
 
-#: app/Konfigurator/kgcolors.cpp:646
+#: app/Konfigurator/kgcolors.cpp:647
 #, kde-format
 msgid "Statusbar active"
 msgstr "Statusbreto aktiva"
 
-#: app/Konfigurator/kgcolors.cpp:647
+#: app/Konfigurator/kgcolors.cpp:648
 #, kde-format
 msgid "Statusbar inactive"
 msgstr "Statusbreto neaktiva"
 
-#: app/Konfigurator/kgcolors.cpp:667
+#: app/Konfigurator/kgcolors.cpp:668
 #, kde-format
 msgid "Select a color-scheme file"
 msgstr "Elekti kolorskeman dosieron"
 
-#: app/Konfigurator/kgcolors.cpp:673
+#: app/Konfigurator/kgcolors.cpp:674
 #, kde-format
 msgid "Error: unable to read from file"
 msgstr "Eraro: ne eblas legi el dosiero"
 
-#: app/Konfigurator/kgcolors.cpp:684
+#: app/Konfigurator/kgcolors.cpp:685
 #, kde-format
 msgid "Select a color scheme file"
 msgstr "Elekti kolorskeman dosieron"
 
-#: app/Konfigurator/kgcolors.cpp:691
+#: app/Konfigurator/kgcolors.cpp:692
 #, kde-format
 msgid "File %1 already exists. Are you sure you want to overwrite it?"
 msgstr "Dosiero %1 jam ekzistas. Ĉu vi certas, ke vi volas anstataŭigi ĝin?"
 
-#: app/Konfigurator/kgcolors.cpp:697
+#: app/Konfigurator/kgcolors.cpp:698
 #, kde-format
 msgid "Error: unable to write to file"
 msgstr "Eraro: ne eblas skribi al dosiero"
@@ -5572,7 +5586,7 @@ msgstr "Malplena rubujo"
 msgid "Statusbar will show basic information about file below mouse pointer."
 msgstr "Statusbreto montros bazajn informojn pri dosiero sub musmontrilo."
 
-#: app/krusader.cpp:306
+#: app/krusader.cpp:313
 #, kde-format
 msgid ""
 "<qt><b>Welcome to Krusader.</b><p>As this is your first run, your machine "
@@ -5583,7 +5597,7 @@ msgstr ""
 "maŝino nun estos kontrolita por eksteraj aplikaĵoj. Tiam la Konfiguratoro "
 "estos lanĉita kie vi povas agordi Krusader laŭ viaj bezonoj.</p></qt>"
 
-#: app/krusader.cpp:337
+#: app/krusader.cpp:344
 #, kde-format
 msgid "Bring Main Window to Top"
 msgstr "Alporti Ĉefan Fenestron al la Supro"
@@ -5683,52 +5697,52 @@ msgstr "Funkciaj klavoj permesas fari rapidajn operaciojn sur dosieroj."
 msgid "Horizontal Mode"
 msgstr "Horizontala Reĝimo"
 
-#: app/KrViewer/krviewer.cpp:97
+#: app/KrViewer/krviewer.cpp:98
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Ĝenerala Vidilo"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:99
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Teksto-Vidilo"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Heksa Vidilo"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Lister"
 msgstr "&Listilo"
 
-#: app/KrViewer/krviewer.cpp:103
+#: app/KrViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
 msgstr "Tekst-R&edaktilo"
 
-#: app/KrViewer/krviewer.cpp:127
+#: app/KrViewer/krviewer.cpp:128
 #, kde-format
 msgid "&Detach Tab"
 msgstr "Malligi lang&eton"
 
-#: app/KrViewer/krviewer.cpp:139
+#: app/KrViewer/krviewer.cpp:140
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Fermi la nunan langeton"
 
-#: app/KrViewer/krviewer.cpp:145
+#: app/KrViewer/krviewer.cpp:146
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Sekva langeto"
 
-#: app/KrViewer/krviewer.cpp:151
+#: app/KrViewer/krviewer.cpp:152
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Antaŭa langeto"
 
-#: app/KrViewer/krviewer.cpp:226
+#: app/KrViewer/krviewer.cpp:227
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
