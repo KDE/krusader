@@ -1,5 +1,4 @@
 # Spanish translations for krusader.po package.
-#
 # Copyright (C) 2003-2026 This file is copyright:
 # Copyright (C) 2004-2009, Krusader Krew
 # This file is distributed under the same license as the krusader package.
@@ -7,7 +6,6 @@
 #
 # SPDX-FileCopyrightText: 2003-2004 Rafael Munoz Rodriguez <rafaluco@netscape.net>
 # SPDX-FileCopyrightText: 2005-2006 Alejandro Araiza Alvarado <mebrelith@gmail.com>
-# SPDX-FileCopyrightText: 2005 Alex Araiza <mebrelith@gmail.com>
 # SPDX-FileCopyrightText: 2009-2015 Eloy Cuadra <ecuadra@eloihr.net>
 # SPDX-FileCopyrightText: 2010-2011 Israel Garcia Garcia <israelgarcia86@gmail.com>
 # SPDX-FileCopyrightText: 2012-2013 Ricardo Varas Santana <ricardoivaras@gmail.com>
@@ -17,15 +15,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-20 00:49+0000\n"
-"PO-Revision-Date: 2026-09-09 12:38+0100\n"
+"POT-Creation-Date: 2026-09-21 00:48+0000\n"
+"PO-Revision-Date: 2026-09-21 00:54+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 26.08.0\n"
+"X-Generator: Lokalize 26.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -2920,22 +2918,19 @@ msgstr ""
 "ejemplo, /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "Usar los colores predeterminados de KDE"
+msgstr "Usar los colores predeterminados de KDE Plasma"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>Usar la configuración global de colores de KDE.</p><p><i>Preferencias del "
-"sistema de KDE -> Apariencia de las aplicaciones -> Colores</i></p>"
+"<p>Usar la configuración global de colores de KDE Plasma.</"
+"p><p><i>Preferencias del sistema de KDE Plasma -> Aspecto y estilo -> "
+"Colores y temas -> Colores</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2943,12 +2938,7 @@ msgid "Use alternate background color"
 msgstr "Usar color alternativo de fondo"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
@@ -2956,8 +2946,9 @@ msgid ""
 "</p>"
 msgstr ""
 "<p>El <b>color de fondo</b> y el <b>color alternativo de fondo</b> se "
-"alternan línea por línea.</p><p>Cuando no use los <i>colores KDE</i>, puede "
-"definir los colores alternativos en el <i>cuadro de colores</i>.</p>"
+"alternan en cada línea.</p><p>Cuando no use los <i>colores predeterminados "
+"de KDE Plasma</i>, puede definir los colores alternativos en el <i>cuadro de "
+"colores</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2965,11 +2956,7 @@ msgid "Show current item even if not focused"
 msgstr "Mostrar el elemento actual aunque no tenga el foco"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
@@ -2977,7 +2964,7 @@ msgid ""
 msgstr ""
 "<p>Muestra la última posición del cursor en el panel de la lista inactiva.</"
 "p><p>Esta opción solo esta disponible cuando no use los <i>colores "
-"predeterminados de KDE</i>.</p>"
+"predeterminados de KDE Plasma</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
@@ -6177,10 +6164,8 @@ msgstr ""
 #, kde-format
 msgid ""
 "Feedback:\n"
-"https://forum.kde.org/viewforum.php?f=225"
+"https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
-"Comentarios y sugerencias:\n"
-"https://forum.kde.org/viewforum.php?f=225"
 
 #: app/main.cpp:130
 #, kde-format
@@ -9905,3 +9890,10 @@ msgstr "Diálogo de contraseña de Krarc"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Necesita una contraseña para acceder al archivo."
+
+#~ msgid ""
+#~ "Feedback:\n"
+#~ "https://forum.kde.org/viewforum.php?f=225"
+#~ msgstr ""
+#~ "Comentarios y sugerencias:\n"
+#~ "https://forum.kde.org/viewforum.php?f=225"
