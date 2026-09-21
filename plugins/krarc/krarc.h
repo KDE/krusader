@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
     SPDX-FileCopyrightText: Rafi Yanai <yanai@users.sf.net>
-    SPDX-FileCopyrightText: Shie Erlich <yanai@users.sf.net>
+    SPDX-FileCopyrightText: Shie Erlich <erlich@users.sf.net>
     SPDX-FileCopyrightText: Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
