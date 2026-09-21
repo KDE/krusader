@@ -1,6 +1,6 @@
 /*
-    SPDX-FileCopyrightText: 2003-2004 Max Howell <max.howell@methylblue.com>
-    SPDX-FileCopyrightText: 2004-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Max Howell <max.howell@methylblue.com>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

@@ -1,6 +1,6 @@
 /*
-    SPDX-FileCopyrightText: 2006 Václav Juza <vaclavjuza@gmail.com>
-    SPDX-FileCopyrightText: 2006-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Václav Juza <vaclavjuza@gmail.com>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

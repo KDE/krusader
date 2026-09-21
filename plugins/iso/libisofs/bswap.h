@@ -1,7 +1,7 @@
 /*
-    SPDX-FileCopyrightText: 2002 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2002 Rafi Yanai <yanai@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: Rafi Yanai <yanai@users.sourceforge.net>
 
     From the mplayer project (www.mplayerhq.hu)
 
@@ -63,7 +63,7 @@ inline static unsigned long long int ByteSwap64(unsigned long long int x)
 
 #define bswap_16(x) ((unsigned short)(((x) & 0x00ff) << 8 | ((x) & 0xff00) >> 8))
 
-/* code from bits/byteswap.h SPDX-FileCopyrightText: 1997, 1998 Free Software Foundation Inc. */
+/* code from bits/byteswap.h SPDX-FileCopyrightText: Free Software Foundation Inc. */
 #define bswap_32(x) ((((x) & 0xff000000) >> 24) | (((x) & 0x00ff0000) >> 8) | (((x) & 0x0000ff00) << 8) | (((x) & 0x000000ff) << 24))
 
 #define bswap_64(x)                                                                                                                                            \

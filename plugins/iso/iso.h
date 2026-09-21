@@ -1,8 +1,8 @@
 /*
-    SPDX-FileCopyrightText: 2000 David Faure <faure@kde.org>
-    SPDX-FileCopyrightText: 2002 Szombathelyi György <gyurco@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2003 Leo Savernik <l.savernik@aon.at>
-    SPDX-FileCopyrightText: 2004-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: David Faure <faure@kde.org>
+    SPDX-FileCopyrightText: Szombathelyi György <gyurco@users.sourceforge.net>
+    SPDX-FileCopyrightText: Leo Savernik <l.savernik@aon.at>
 
     This file is heavily based on ktar from kdelibs
 

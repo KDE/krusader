@@ -1,8 +1,8 @@
 /*
-    SPDX-FileCopyrightText: 2003 Rafi Yanai <yanai@users.sf.net>
-    SPDX-FileCopyrightText: 2003 Shie Erlich <yanai@users.sf.net>
-    SPDX-FileCopyrightText: 2004-2022 Krusader Krew <https://krusader.org>
-    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Rafi Yanai <yanai@users.sf.net>
+    SPDX-FileCopyrightText: Shie Erlich <yanai@users.sf.net>
+    SPDX-FileCopyrightText: Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

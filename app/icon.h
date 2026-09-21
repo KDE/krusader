@@ -1,6 +1,6 @@
 /*
-    SPDX-FileCopyrightText: 2018-2022 Nikita Melnichenko <nikita+kde@melnichenko.name>
-    SPDX-FileCopyrightText: 2018-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Nikita Melnichenko <nikita+kde@melnichenko.name>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

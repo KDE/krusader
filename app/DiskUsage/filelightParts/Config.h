@@ -1,6 +1,6 @@
 /*
-    SPDX-FileCopyrightText: 2004 Shie Erlich <erlich@users.sourceforge.net>
-    SPDX-FileCopyrightText: 2004-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Shie Erlich <erlich@users.sourceforge.net>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

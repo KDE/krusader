@@ -1,7 +1,7 @@
 /*
-    SPDX-FileCopyrightText: 2016 Rafi Yanai <krusader@users.sf.net>
-    SPDX-FileCopyrightText: 2016 Shie Erlich <krusader@users.sf.net>
-    SPDX-FileCopyrightText: 2016-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Rafi Yanai <krusader@users.sf.net>
+    SPDX-FileCopyrightText: Shie Erlich <krusader@users.sf.net>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

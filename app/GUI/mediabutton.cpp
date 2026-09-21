@@ -1,6 +1,6 @@
 /*
-    SPDX-FileCopyrightText: 2006 Csaba Karai <cskarai@freemail.hu>
-    SPDX-FileCopyrightText: 2006-2022 Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Krusader Krew <https://krusader.org>
+    SPDX-FileCopyrightText: Csaba Karai <cskarai@freemail.hu>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
