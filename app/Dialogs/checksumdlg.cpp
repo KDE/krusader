@@ -106,7 +106,7 @@ ChecksumProcess::ChecksumProcess(QObject *parent, const QString &path)
     setStandardErrorFile(m_tmpErrFile.fileName());
     setWorkingDirectory(path);
     connect(this, &ChecksumProcess::errorOccurred, this, &ChecksumProcess::slotError);
-    connect(this, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &ChecksumProcess::slotFinished);
+    connect(this, &QProcess::finished, this, &ChecksumProcess::slotFinished);
 }
 
 ChecksumProcess::~ChecksumProcess()

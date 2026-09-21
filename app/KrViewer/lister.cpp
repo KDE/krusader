@@ -898,7 +898,7 @@ void ListerTextArea::slotActionTriggered(int action)
                     break;
                 }
                 const qint64 backRef = std::max(from - 20, 0LL);
-                const qint64 size = from - backRef + static_cast<qint64>(encodedEnter.size());
+                const qint64 size = from - backRef + encodedEnter.size();
                 QString decoded = _lister->codec()->toUnicode(chunk.mid(static_cast<int>(backRef), static_cast<int>(size)));
                 if (decoded.endsWith(QLatin1String("\n"))) {
                     if (from < (maxSize - encodedEnter.size())) {

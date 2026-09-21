@@ -39,7 +39,7 @@ KrBookmarkButton::KrBookmarkButton(QWidget *parent)
 
 void KrBookmarkButton::populate()
 {
-    krBookMan->populate(static_cast<QMenu *>(menu()));
+    krBookMan->populate(menu());
 }
 
 void KrBookmarkButton::showMenu()

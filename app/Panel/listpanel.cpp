@@ -864,7 +864,7 @@ void ListPanel::handleDrop(QDropEvent *event, QWidget *targetFrame)
         return;
     }
 
-    QUrl destination = QUrl(virtualPath());
+    QUrl destination = virtualPath();
     destination.setPath(destination.path() + '/' + destinationDir);
 
     QWidget *targetWidget = targetFrame ? targetFrame : view->widget();

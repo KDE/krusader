@@ -173,7 +173,7 @@ void Splitter::statOutputFileResult(KJob *job)
                               i18n("File Already Exists"),
                               QUrl(),
                               writeURL,
-                              static_cast<KIO::RenameDialog_Options>(KIO::RenameDialog_MultipleItems  | KIO::RenameDialog_Overwrite | KIO::RenameDialog_NoRename));
+                              KIO::RenameDialog_MultipleItems  | KIO::RenameDialog_Overwrite | KIO::RenameDialog_NoRename);
         switch (dlg.exec()) {
         case KIO::Result_Overwrite:
             openOutputFile();
