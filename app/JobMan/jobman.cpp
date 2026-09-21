@@ -210,7 +210,7 @@ JobMan::JobMan(QObject *parent)
     m_undoAction = new QAction(Icon("edit-undo"), i18n("Undo Last Job"), krMainWindow);
     m_undoAction->setEnabled(false);
     connect(m_undoAction, &QAction::triggered, undoManager, &KIO::FileUndoManager::undo);
-    connect(undoManager, static_cast<void (KIO::FileUndoManager::*)(bool)>(&KIO::FileUndoManager::undoAvailable), m_undoAction, &QAction::setEnabled);
+    connect(undoManager, &KIO::FileUndoManager::undoAvailable, m_undoAction, &QAction::setEnabled);
     connect(undoManager, &KIO::FileUndoManager::undoTextChanged, this, &JobMan::slotUndoTextChange);
 }
 
