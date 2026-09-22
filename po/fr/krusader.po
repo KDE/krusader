@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-21 00:48+0000\n"
-"PO-Revision-Date: 2026-09-08 17:48+0200\n"
+"PO-Revision-Date: 2026-09-21 10:50+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -2950,22 +2950,19 @@ msgstr ""
 "$PATH</code> (ex. : /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "Utiliser les couleurs par défaut de KDE"
+msgstr "Utiliser les couleurs par défaut de KDE Plasma"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>Utiliser la configuration globale des couleurs de KDE.</"
-"p><p><i>Configuration du système / Apparence / Couleurs</i></p>"
+"<p>Utiliser la configuration globale des couleurs de KDE Plasma.</"
+"p><p><i>Menu de KDE Plasma : Configuration du système / Apparence et "
+"Style / Couleurs et thèmes / Couleurs</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2973,12 +2970,7 @@ msgid "Use alternate background color"
 msgstr "Utiliser une couleur de fond secondaire"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
@@ -2986,9 +2978,9 @@ msgid ""
 "</p>"
 msgstr ""
 "<p>La <b>couleur de fond</b> et la <b>couleur de fond secondaire</b> se "
-"succèdent ligne par ligne.</p><p>Quand vous n'employez pas les couleurs "
-"<i>KDE par défaut</i>, vous pouvez configurer les couleurs secondaires dans "
-"la page <i>Couleurs</i>.</p>"
+"succèdent ligne par ligne.</p><p>Quand vous n'utilisez pas les <i>couleurs "
+"par défaut de KDE Plasma</i>, vous pouvez configurer les couleurs "
+"secondaires dans la boite de dialogue <i>Couleurs</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2996,19 +2988,15 @@ msgid "Show current item even if not focused"
 msgstr "Afficher l'élément actuel même s'il n'a pas le focus"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
 "i>.</p>"
 msgstr ""
 "<p>Affiche la dernière position du curseur dans le panneau en liste non "
-"actif.</p><p>Cette option n'est disponible que quand vous n'utilisez pas les "
-"<i>couleurs KDE par défaut</i>.</p>"
+"actif.</p><p>Cette option n'est disponible que <p>quand vous n'utilisez pas "
+"les <i>couleurs par défaut de KDE Plasma</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
@@ -6242,6 +6230,8 @@ msgid ""
 "Feedback:\n"
 "https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
+"Retour d'expérience :\n"
+"https://krusader.org/get-involved/mailing-lists/index.html"
 
 #: app/main.cpp:130
 #, kde-format
