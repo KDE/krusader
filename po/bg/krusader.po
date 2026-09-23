@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-21 00:48+0000\n"
-"PO-Revision-Date: 2026-09-09 21:45+0200\n"
+"PO-Revision-Date: 2026-09-22 23:18+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 26.08.0\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2904,22 +2904,19 @@ msgstr ""
 "(напр. /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "Използване на цветовете на KDE"
+msgstr "Използване на цветовете по подразбиране на KDE Plasma"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>Използват се настройките на KDE за цветове:</p><p><i>Контролен Център -> "
-"Изглед -> Цветове</i></p>"
+"<p>Използване на глобалните настройки за цветове на KDE Plasma.</"
+"p><p><i>Системни настройки на KDE Plasma -> Външен вид и стил -> Цветове и "
+"теми -> Цветове</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2927,21 +2924,17 @@ msgid "Use alternate background color"
 msgstr "Редуващ се фонов цвят"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
 "colors</i>, you can configure the alternate colors in the <i>colors</i> box."
 "</p>"
 msgstr ""
-"<p><b>Основният</b> и <b>алтернативният</b> фонов цвят се редуват през ред.</"
-"p><p>Ако не използвате <i>цветовата палитра на KDE</i>, в <i>Цветове</i> "
-"можете да настроите тази подредба.</p>"
+"<p>Цветовете на <b>фона</b> и <b>алтернативния фон</b> се редуват ред по ред."
+"</p><p>Когато не се използват <i>стандартните цветове на KDE Plasma</i>, "
+"алтернативните цветове могат да бъдат конфигурирани в полето <i>цветове</i>."
+"</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2949,18 +2942,15 @@ msgid "Show current item even if not focused"
 msgstr "Показване на текущият обект, дори и да не е под маркера"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
 "i>.</p>"
 msgstr ""
-"<p>Показва последната позиция на курсора в неактивния панел.</p><p>Тази "
-"настройка е достъпна само ако не използвате <i>цветовете на KDE</i>.</p>"
+"<p>Показване на последната позиция на курсора в неактивния панел със списък."
+"</p><p>Тази опция е налична само при неизползване на <i>стандартните цветове "
+"на KDE Plasma</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
@@ -6134,6 +6124,8 @@ msgid ""
 "Feedback:\n"
 "https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
+"Обратна връзка:\n"
+"https://krusader.org/get-involved/mailing-lists/index.html"
 
 #: app/main.cpp:130
 #, kde-format
@@ -9837,10 +9829,3 @@ msgstr "Krarc Парола"
 #, kde-format
 msgid "Accessing the file requires a password."
 msgstr "Достъпът до файла изисква парола."
-
-#~ msgid ""
-#~ "Feedback:\n"
-#~ "https://forum.kde.org/viewforum.php?f=225"
-#~ msgstr ""
-#~ "Обратна връзка:\n"
-#~ "https://forum.kde.org/viewforum.php?f=225"
