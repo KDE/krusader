@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-21 00:48+0000\n"
-"PO-Revision-Date: 2026-02-13 21:38+0200\n"
+"PO-Revision-Date: 2026-09-23 09:12+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
@@ -746,11 +746,10 @@ msgid "Downloading remote files"
 msgstr "Загрузка файлов по сети"
 
 #: app/Archive/abstractthreadedjob.cpp:388
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "Экспандер: не удалось открыть временный файл (%1)"
+msgstr "Не удалось открыть временный файл «%1»."
 
 #: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
@@ -989,10 +988,9 @@ msgstr "Удалить"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "Экспандер: не удалось открыть временный файл (%1)"
+msgstr "Не удалось открыть временный файл с шаблоном «%1»."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -2936,22 +2934,18 @@ msgid ""
 msgstr "Установите новые архиваторы в <code>$PATH</code> (например, /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "Использовать стандартные цвета KDE"
+msgstr "Использовать стандартные цвета KDE Plasma"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>Использовать общие настройки цветов KDE.</p> <p><i>«Параметры системы "
-"KDE» -> «Внешний вид» -> «Цвета»</i></p>"
+"<p>Использовать общую настройку цветов KDE Plasma.</p><p><i>Параметры "
+"системы KDE Plasma → Внешний вид → Цвета и оформления → Цвета</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2959,12 +2953,7 @@ msgid "Use alternate background color"
 msgstr "Использовать альтернативный цвет фона"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
@@ -2972,8 +2961,8 @@ msgid ""
 "</p>"
 msgstr ""
 "<p><b>Цвет фона</b> и <b>альтернативный цвет фона</b> чередуются построчно.</"
-"p><p>Если вы не используете <i>цвета KDE по умолчанию</i>, то можно "
-"настроить чередующиеся цвета в диалоге <i>цвета</i>.</p>"
+"p><p>Если <i>стандартные цвета KDE Plasma</i> не используются, "
+"альтернативные цвета можно настроить в группе <i>Цвета</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2981,23 +2970,20 @@ msgid "Show current item even if not focused"
 msgstr "Показывать последнюю позицию курсора на неактивной панели"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
 "i>.</p>"
 msgstr ""
 "<p>Показывает последнюю позицию курсора на неактивной панели.</p><p>Этот "
-"параметр недоступен, если используются <i>стандартные цвета KDE</i>.</p>"
+"параметр недоступен, если используются <i>стандартные цвета KDE Plasma</i>.</"
+"p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
 msgid "Dim the colors of the inactive panel"
-msgstr "Приглушить цвета неактивной панели"
+msgstr "Приглушать цвета неактивной панели"
 
 #: app/Konfigurator/kgcolors.cpp:84
 #, kde-format
@@ -6183,6 +6169,8 @@ msgid ""
 "Feedback:\n"
 "https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
+"Обратная связь:\n"
+"https://krusader.org/get-involved/mailing-lists/index.html"
 
 #: app/main.cpp:130
 #, kde-format
@@ -7480,7 +7468,7 @@ msgstr "Корневая папка (/)"
 #: app/Panel/listpanelactions.cpp:123
 #, kde-format
 msgid "Rename file, folder, etc."
-msgstr "Переименовать файл, папку и так далее"
+msgstr "Переименовать файл, папку и т. д."
 
 #: app/Panel/listpanelactions.cpp:124
 #, kde-format
@@ -7514,19 +7502,16 @@ msgstr "Создать папку в текущей панели."
 #: app/Panel/listpanelactions.cpp:132
 #, kde-format
 msgid "Delete file, folder, etc."
-msgstr "Удалить файл, папку и так далее"
+msgstr "Удалить файл, папку и т. д."
 
 #: app/Panel/listpanelactions.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined "
-#| "in Konfigurator, default is <b>konsole</b>.</p></qt>"
+#, kde-format
 msgid ""
 "<qt><p>Open terminal in current folder.</p><p>It uses the system default "
 "terminal emulator.</p></qt>"
 msgstr ""
-"<qt><p>Открыть терминал в текущей папке.</p><p>Терминал может быть задан в "
-"диалоговом окне настройки, по умолчанию это <b>konsole</b>.</p></qt>"
+"<qt><p>Открыть терминал в текущей папке.</p><p>Используется системный "
+"эмулятор терминала по умолчанию.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:99
 #, kde-format
@@ -7689,10 +7674,9 @@ msgid "Enter the filename to edit:"
 msgstr "Введите имя файла для редактирования:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "Папка %1 не существует."
+msgstr "Не удалось создать файл «%1»."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9914,16 +9898,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "Вывод списка папок для архивов %1 не поддерживается."
 
 #: plugins/krarc/krarc.cpp:1570
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"Убедитесь, что исполняемый файл %1 правильно установлен в системе."
+"«%1».\n"
+"Убедитесь, что исполняемый файл «%2» правильно установлен в системе."
 
 #: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format
