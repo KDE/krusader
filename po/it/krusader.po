@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-21 00:48+0000\n"
-"PO-Revision-Date: 2026-09-10 22:29+0200\n"
+"PO-Revision-Date: 2026-09-22 11:21+0200\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.08.0\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2909,22 +2909,19 @@ msgstr ""
 "$PATH</code> (es. /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "Usa i colori predefiniti di KDE"
+msgstr "Usa i colori predefiniti di KDE Plasma"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>Usa la configurazione di colori di KDE.</p><p><i>Impostazioni di sistema -"
-"> Aspetto delle applicazioni -> Colori</i></p>"
+"<p>Usa la configurazione globale di colori di KDE Plasma.</"
+"p><p><i>Impostazioni di sistema di KDE Plasma -> Aspetto e stile -> Colori e "
+"temi -> Colori</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2932,12 +2929,7 @@ msgid "Use alternate background color"
 msgstr "Usa colore di sfondo alternato"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
@@ -2946,7 +2938,8 @@ msgid ""
 msgstr ""
 "<p>Il <b>colore di sfondo</b> e quello di <b>sfondo alternato</b> sono "
 "alternati linea per linea.</p><p>Quando non usi i <i>colori predefiniti di "
-"KDE</i>, puoi configurare i colori alternati nelle caselle <i>Colori</i>.</p>"
+"KDE Plasma</i> puoi configurare i colori alternati nelle caselle <i>Colori</"
+"i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2954,11 +2947,7 @@ msgid "Show current item even if not focused"
 msgstr "Mostra l'elemento attuale anche se non ha il fuoco"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
@@ -2966,7 +2955,7 @@ msgid ""
 msgstr ""
 "<p>Mostra l'ultima posizione del cursore nel pannello non attivo.</"
 "p><p>Questa opzione è disponibile solo quando non usi i <i>colori "
-"predefiniti di KDE</i>.</p>"
+"predefiniti di KDE Plasma</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
@@ -6166,6 +6155,8 @@ msgid ""
 "Feedback:\n"
 "https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
+"Commenti:\n"
+"https://krusader.org/get-involved/mailing-lists/index.html"
 
 #: app/main.cpp:130
 #, kde-format

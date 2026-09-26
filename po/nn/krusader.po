@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-21 00:48+0000\n"
-"PO-Revision-Date: 2026-09-19 16:32+0200\n"
+"PO-Revision-Date: 2026-09-25 17:45+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -2898,22 +2898,18 @@ msgstr ""
 "(eks. i «/usr/bin»-mappa)."
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "Bruk standard KDE-fargar"
+msgstr "Bruk standardfargane til KDE Plasma"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>Bruk globalt KDE-oppsett for fargar.</p><p><i>Systemoppsett → Utsjånad → "
-"Fargar</i></p>"
+"<p>Bruk globalt KDE Plasma-oppsett for fargar.</p><p><i>KDE Plasma "
+"systemoppsett → Utsjånad og stil → Fargar og tema → Fargar</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2921,12 +2917,7 @@ msgid "Use alternate background color"
 msgstr "Bruk alternativ bakgrunnsfarge"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
@@ -2934,8 +2925,8 @@ msgid ""
 "</p>"
 msgstr ""
 "<p><b>Bakgrunnsfargen</b> og <b>alternativ bakgrunnsfarge</b> vekslar "
-"annakvar linje.</p><p>Når du ikkje brukar <i>standardfargane</i>, kan du "
-"setja opp dei alternative fargane i <i>fargar</i>-boksen.</p>"
+"annakvar linje.</p><p>Når du ikkje brukar <i>standardfargane til KDE Plasma</"
+"i>, kan du setja opp dei alternative fargane i <i>fargar</i>-boksen.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2943,18 +2934,15 @@ msgid "Show current item even if not focused"
 msgstr "Vis gjeldande element sjølv om det ikkje har fokus"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
 "i>.</p>"
 msgstr ""
 "<p>Viser siste markørposisjon i det motsette panelet.</p><p>Dette valet er "
-"berre tilgjengeleg når du ikkje brukar <i>KDE-standardfargane</i>.</p>"
+"berre tilgjengeleg når du ikkje brukar <i>standardfargane til KDE Plasma</i>."
+"</p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
@@ -3236,12 +3224,12 @@ msgstr "Førehandsvising"
 #: app/Konfigurator/kgcolors.cpp:376
 #, kde-format
 msgid "Import color-scheme"
-msgstr "Importer fargeoppsett"
+msgstr "Importer fargetema"
 
 #: app/Konfigurator/kgcolors.cpp:378
 #, kde-format
 msgid "Export color-scheme"
-msgstr "Eksporter fargeoppsett"
+msgstr "Eksporter fargetema"
 
 #: app/Konfigurator/kgcolors.cpp:556
 #, kde-format
@@ -3326,7 +3314,7 @@ msgstr "Statuslinje, motsett panel"
 #: app/Konfigurator/kgcolors.cpp:668
 #, kde-format
 msgid "Select a color-scheme file"
-msgstr "Vel ei fil med fargeoppsett"
+msgstr "Vel ei fil med fargetema"
 
 #: app/Konfigurator/kgcolors.cpp:674
 #, kde-format
@@ -3336,7 +3324,7 @@ msgstr "Feil: Klarte ikkje lesa frå fila"
 #: app/Konfigurator/kgcolors.cpp:685
 #, kde-format
 msgid "Select a color scheme file"
-msgstr "Vel ei fil med fargeoppsett"
+msgstr "Vel ei fil med fargetema"
 
 #: app/Konfigurator/kgcolors.cpp:692
 #, kde-format
@@ -6133,6 +6121,8 @@ msgid ""
 "Feedback:\n"
 "https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
+"Tilbakemelding:\n"
+"https://krusader.org/get-involved/mailing-lists/"
 
 #: app/main.cpp:130
 #, kde-format
