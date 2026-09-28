@@ -187,7 +187,7 @@
         </question>
         <answer>
           <para
->Perquè només canviem el número de la versió just abans de fer un nou llançament. La línia «&krusader;-git» mostrarà un número de llançament antic, de manera que ignoreu el número de la versió i verifiqueu la data de la descàrrega. Simplement no hem decidit quin serà el proper número de la versió.</para>
+>Perquè només canviem el número de la versió just abans de fer un nou llançament. La línia «&krusader;-git» mostrarà un número de llançament antic, de manera que ignoreu el número de la versió i verifiqueu la data de la descàrrega. Simplement no hem decidit quin serà el número de versió següent.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
@@ -210,7 +210,7 @@
 >kill -9</command
 >. No tenim solució per a això. Aquest és un problema que no es limita als gestors de fitxers, o fins i tot al sistema operatiu &Linux;! El problema és que es «penja» durant el primer accés a la compartició morta, de manera que no hi ha forma d'evitar-ho, ni cap forma de verificar, fins i tot es congelarà l'ordre <command
 >ls</command
->. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kde-frameworks; utilitzin &Qt;-mt (la versió multi fil de les biblioteques &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
+>. Només en mirar de llegir qualsevulla cosa, serà suficient per a embussar. L'única manera d'evitar aquest problema d'arquitectura és emprant un disseny de múltiples fils. D'aquesta manera, si s'encalla, no es penjarà tot el cicle d'esdeveniments de l'aplicació, però no creiem que sigui el moment adequat per a afegir els fils, no estic segur que *tots* els sistemes &kde-frameworks; utilitzin &Qt;-mt (la versió multifil de les biblioteques &Qt;), i en qualsevol cas, en Krew del &krusader; podria no ser la persona adequada per a abordar aquest important problema. De manera que actualment això és només un error amb el qual haurem d'aprendre a conviure.</para>
           <para
 ></para>
           <!-- Empty line to make it more readable -->
