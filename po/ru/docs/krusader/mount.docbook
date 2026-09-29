@@ -1,0 +1,78 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>MountMan: работа с подключёнными файловыми системами</title>
+  <indexterm>
+    <primary
+>Подключить</primary>
+  </indexterm>
+  <para
+>MountMan — инструмент для управления подключёнными файловыми системами. После запуска он показывает список всех подключённых файловых систем. Для каждой файловой системы MountMan показывает её имя (фактически имя устройства — то есть <filename class="directory"
+>/dev/sda1</filename
+> для первого раздела на первом <hardware
+>HDD</hardware
+>), её тип (ext4, ext3, ntfs, vfat, ReiserFS…) и точку подключения в системе (папку, в которой подключена файловая система).</para>
+  <para
+>Чтобы исключить из списка несъёмные устройства, установите флажок <guilabel
+>Показывать только съёмные устройства</guilabel
+> слева от списка устройств. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>MountMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>MountMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>MountMan также показывает сведения об использовании: общий размер, свободный размер и процент свободного места. Если вместо чисел показано <guilabel
+>N/A</guilabel
+>, это обычно означает, что файловая система не подключена. Щелчок левой кнопкой мыши по файловой системе выводит в левой части окна круговую диаграмму, графически показывающую сведения об использовании файловой системы. При щелчке по неподключённой файловой системе вместо диаграммы выводится <guilabel
+>не подключена</guilabel
+>.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><keycap
+>Двойной щелчок</keycap
+> по файловой системе закроет MountMan и откроет её в активной панели &krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+><keycap
+>Щелчок правой кнопкой мыши</keycap
+> по файловой системе открывает небольшое меню со списком действий, доступных для этой файловой системы. В настоящий момент доступны только подключение, отключение и извлечение (если щёлкнуть по съёмной файловой системе, например, &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>В следующей версии &krusader; планируется расширить возможности MountMan. Появится возможность форматировать разделы, редактировать <filename
+>/etc/fstab</filename
+>, создавать новые файловые системы и многое другое… Кстати, работа над этим уже начата, см. <quote
+>Быстрый режим для MountMan</quote
+>.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>Быстрый режим MountMan</emphasis>
+  </para>
+  <para
+>Чтобы включить быстрый режим MountMan, нажмите боковую кнопку со стрелкой на кнопке MountMan на <link linkend="mainwindow"
+>основной панели инструментов</link
+>.</para>
+  <para
+>Общая идея: показывать список всех возможных точек подключения. При каждом показе меню определяется, подключена ли точка подключения, и сопоставляется нужное действие (подключение или отключение). Это обеспечивает быстрый интерфейс к MountMan. Реализация работает и в настоящее время использует KMountMan::mount и unmount. Применяются новые службы &kf5-full; для чтения fstab, что позволит удалить много кода из <quote
+>старого</quote
+> MountMan.</para>
+</sect1>

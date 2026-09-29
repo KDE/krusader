@@ -1,0 +1,70 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>Профили</title>
+  <indexterm>
+    <primary
+>Профили</primary>
+  </indexterm>
+  <para
+>Профили позволяют сохранять и восстанавливать избранные параметры. Поддержка профилей реализована в нескольких компонентах: можно создавать, например, разные профили панелей (работа, дом, удалённые подключения, и т. д.), профили поиска, профили синхронизации, и т. д.</para>
+  <sect2 id="panel_profiles">
+    <title
+>Профили панели</title>
+    <para
+>Профиль панели содержит следующее: все пути вкладок (левой или правой), текущую вкладку (левую или правую) и активную панель (левую или правую). Все эти сведения хранятся в файле <link linkend="config_files"
+>krusaderrc</link
+>. Можно использовать несколько профилей панели, например, управление файлами, управление &FTP;, домашний, рабочий, и т. д. Профиль панели можно <link linkend="c_panel_profiles"
+>сохранить и восстановить</link
+> в меню <guimenu
+>Окно</guimenu
+>. При запуске &krusader; используется <link linkend="konfig-startup"
+>профиль запуска по умолчанию</link
+>, но его можно переопределить параметром командной строки.</para>
+    <para
+>Чтобы изменить профиль панели, загрузите этот профиль, измените нужные параметры, перейдите в <menuchoice
+><guimenu
+>Окно</guimenu
+> <guimenuitem
+>Профили </guimenuitem
+></menuchoice
+> и перезапишите этот профиль.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>Цветовые профили</title>
+    <para
+>Цветовые схемы можно сохранять и восстанавливать с помощью <link linkend="konfig-color"
+>цветовых профилей</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>Профили комбинаций клавиш</title>
+    <para
+>Схемы клавиатуры можно сохранять и восстанавливать с помощью <link linkend="configure-shortcuts"
+>профилей комбинаций клавиш</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>Поиск профилей</title>
+    <para
+>Если регулярно выполняется одна и та же операция поиска, её параметры (например, включаемые файлы, исключаемые файлы, и т. д.) можно сохранить в <link linkend="krusearcher"
+>Профиле поиска</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>Профили синхронизатора</title>
+    <para
+>Если операция синхронизации выполняется регулярно, её параметры можно сохранить в <link linkend="synchronizer"
+>профиле синхронизации</link
+>.</para>
+  </sect2>
+</sect1>

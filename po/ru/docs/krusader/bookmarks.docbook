@@ -1,3 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
 <sect1 id="bookman">
   <title
 >BookMan: управление вашими закладками</title>
@@ -6,8 +12,8 @@
 >Закладки</primary>
   </indexterm>
   <para
->BookMan — это компонент &krusader; для работы с закладками для каталогов, локальных и <link linkend="remote-connections"
->удалённых адресов</link
+>BookMan — это компонент &krusader; для работы с закладками на каталоги, локальные и <link linkend="remote-connections"
+>удалённые &URL;</link
 >, который позволяет позже вернуться к ним, всего лишь нажав на кнопку. Меню Bookman состоит из четырёх частей: <itemizedlist>
     <listitem>
       <para
@@ -31,26 +37,6 @@
     <para
 >Вы можете поставить закладку в удалённой файловой системе (&FTP; или SAMBA) и позже использовать эту закладку, чтобы быстро перейти к удалённой машине. Но нельзя поставить закладку внутри архива.</para>
   </note>
-  <!-- OLD
-<screenshot>
-  <screeninfo
->Bookmark menu</screeninfo>
-  <mediaobject>
-  <imageobject
-><imagedata fileref="bookmanadd.png" format="PNG"/></imageobject>
-  <imageobject
-><imagedata fileref="bookmanadd.png" format="EPS"/></imageobject>
-  <textobject
-><phrase
->BookMan: the Bookmark menu</phrase
-></textobject>
-  <caption
-><para
->Bookmark menu</para
-></caption>
-  </mediaobject>
-</screenshot>
--->
   <figure id="screenshot-bookmanadd" float="1">
     <title
 >Меню Закладки</title>
@@ -69,77 +55,107 @@
     <title
 >Использование закладок</title>
     <para
->Обычно вы нажимаете на кнопку <guibutton
->Закладка</guibutton
->, находясь в целевом каталоге. Например, чтобы поставить закладку на <filename class="directory"
+>Обычно, находясь в нужной папке, нажимают кнопку <guibutton
+>BookMan II</guibutton
+> (крайняя справа кнопка справа от адресной строки вверху активной панели). Например, чтобы добавить в закладки <filename class="directory"
 >/usr/tmp</filename
->, перейдите в этот каталог в &krusader;, нажмите кнопку <guibutton
->Закладка</guibutton
+>, перейдите туда в &krusader;, нажмите кнопку <guibutton
+>BookMan II</guibutton
 > и выберите <guimenuitem
->Добавить закладку</guimenuitem
->. Появится окно <guilabel
->Добавление закладки</guilabel
-> со строкой адреса <filename class="directory"
+>Добавить текущую папку</guimenuitem
+>. Откроется диалоговое окно <guilabel
+>Добавить закладку</guilabel
+>, в строке &URL; которого будет указано <filename class="directory"
 >/usr/tmp</filename
 >. <guilabel
 >Имя</guilabel
-> — это название, которые вы дадите закладке (например, временный каталог). Комбинации клавиш поддерживаются путём добавления <literal
+> — название закладки (например, «временная папка»). Поддерживаются клавиши быстрого доступа: добавьте <literal
 >&amp;</literal
-> в имя закладки, например, <literal
+> в имя закладки, например <literal
 >&amp;sourceforge, &amp;home, down&amp;loads</literal
-> и так далее, так что можно быстро вызвать именованную закладку с помощью <keycombo action="simul"
+> и т. д., и закладку можно будет быстро вызвать комбинацией <keycombo action="simul"
 >&Alt; <keycap
->буква</keycap
+>foo</keycap
 ></keycombo
->. Если вы добавляете закладку, не вводя имени, то имя закладки будет таким же как у цели. <guilabel
->Путь</guilabel
-> — это куда закладка указывает. <guilabel
+>. Если не ввести имя, закладка получит имя своей цели. <guilabel
+>&URL;</guilabel
+> — адрес, на который указывает закладка. <guilabel
 >Создать в</guilabel
-> создаёт каталоги закладок, используется для организации ваших закладок.</para>
+> позволяет создавать папки для упорядочивания закладок.</para>
     <para
->Чтобы использовать ваши закладки, нажмите кнопку <guibutton
+>Чтобы использовать закладки, нажмите кнопку <guibutton
 >Закладка</guibutton
 > и выберите закладку. Также можно использовать <link linkend="key_bindings"
 >комбинации клавиш</link
 >: <keycombo action="simul"
->&Ctrl;&Shift; <keycap
->D</keycap
+>&Ctrl; <keycap
+>B</keycap
 ></keycombo
-> чтобы поставить закладку на текущем элементе, <keycombo action="simul"
+>, чтобы поставить закладку на текущем элементе, <keycombo action="simul"
 >&Alt; <keycap
->стрелка вверх/вниз</keycap
+>стрелка вправо/влево</keycap
 ></keycombo
-> чтобы <keycap
->открыть список закладов правой/левой панелей</keycap
-> и <keycombo action="simul"
+>, чтобы открыть список закладок правой/левой панели, и <keycombo action="simul"
 >&Ctrl; <keycap
 >D</keycap
 ></keycombo
-> чтобы открыть закладки активной панели. Нажатие средней кнопкой мыши на закладках открывает их в новых <link linkend="folder-tabs"
->вкладках</link
+>, чтобы открыть закладки активной панели. Из контекстного меню закладки (щелчок &RMB;) можно открыть её в новой <link linkend="folder-tabs"
+>вкладке папки</link
 >.</para>
     <para
->Перемещение в закладках: <orderedlist>
-      <listitem>
-        <para
->Начните набирать название</para>
-      </listitem>
-      <listitem>
-        <para
->например, если набрать «<literal
+>В верхней части меню <guibutton
+>BookMan II</guibutton
+> находится панель быстрого поиска.</para>
+    <note>
+      <para
+>Строка поиска всегда будет видна в меню закладок, если установить соответствующий флажок на <link linkend="konfig-panel-general"
+>странице «Панели» Настройщика</link
+>. </para>
+    </note>
+    <para
+>Ниже описаны правила работы с закладками:</para>
+    <itemizedlist>
+        <listitem>
+            <para
+>Просто наберите символы для поиска: закладки сопоставляются по началу названия</para>
+        </listitem>
+        <listitem>
+            <para
+>Если префиксу соответствует несколько закладок, они выделяются, а первая выбирается — нажмите &Enter;, чтобы активировать закладку.</para>
+        </listitem>
+        <listitem>
+            <para
+>Как только найдена одна закладка, она сразу же запускается. То есть, если набрать «<literal
 >h</literal
->», и только одна закладка начинается с «<literal
+>» и только одна закладка начинается с «<literal
 >h</literal
->», то она запустится сразу же, не нужно нажимать Enter</para>
-      </listitem>
-      <listitem>
-        <para
->Если с буквы «<literal
->h</literal
->» начинается более чем одна закладка, нужно продолжить вводить буквы до тех пор, пока не останется единственная закладка, и она запустится.</para>
-      </listitem>
-    </orderedlist
-></para>
+>», она выполняется немедленно — нажимать &Enter; не нужно</para>
+        </listitem>
+        <listitem>
+            <para
+>Ускорители работают, только если нажатие клавиши является первым</para>
+        </listitem>
+        <listitem>
+            <para
+>Поддерживается клавиша &Backspace;.</para>
+        </listitem>
+        <listitem>
+            <para
+>Поиск не учитывает регистр, если только не ввести заглавную букву. Так, при вводе <literal
+>HamBurglar</literal
+> будет найдено только <literal
+>HamBurglar</literal
+>, но не <literal
+>hamburglar</literal
+> или <literal
+>Hamburglar</literal
+>.</para>
+        </listitem>
+        <listitem>
+            <para
+>Панель поиска намеренно доступна только для чтения</para>
+        </listitem>
+    </itemizedlist>
   </sect2>
   <sect2 id="password_handling">
     <title
@@ -147,7 +163,9 @@
     <para
 >Одно из преимуществ <link linkend="bookman"
 >диспетчера закладок</link
-> в том, что пароли хранятся с использованием служб &kde;, где, к примеру, хранятся ваши пароли для &konqueror; и &kmail;. Если у вас есть бумажник, &kde; будет хранить пароли в нём. Нажав на кнопку закладок, появится окно с запросом имени пользователя и пароля. Введите их и нажмите «сохранить пароль». Пароли и имена пользователей будут надёжно сохранены бумажником &kde; (убедитесь, что он поставляется вашим дистрибутивом). Недостаток в том, что если при переустановке вы не создадите резервных копий ваших паролей из бумажника, а также файла закладок &krusader;, вы что-нибудь потеряете.</para>
+> в том, что пароли хранятся с использованием служб &plasma;, где, к примеру, хранятся ваши пароли для &konqueror; и &kmail;. Если у вас есть бумажник, &plasma; будет хранить пароли в нём. При нажатии на закладку откроется окно с запросом имени пользователя и пароля. Введите их и нажмите кнопку <guibutton
+>Сохранить пароль</guibutton
+>. Пароли и имена пользователей будут надёжно сохранены в бумажнике &plasma; (убедитесь, что он включён в вашем дистрибутиве). Недостаток в том, что если при переустановке системы вы не создадите резервных копий паролей из бумажника, а также файла закладок &krusader;, что-то будет потеряно.</para>
   </sect2>
   <sect2 id="popular-urls">
     <title
@@ -159,11 +177,11 @@
     <para
 >Подменю <guilabel
 >Часто посещаемые адреса</guilabel
-> содержит постоянно обновляемые наиболее посещаемые адреса (локальные или удалённые). Это подменю показывает первые 15 из часто посещаемых адресов, отсортированных по порядку, так что самый первый адрес просматривается наиболее часто. Это удобно в том случае, когда вам нужно просматривать адреса часто, но вы не хотите создавать <link linkend="bookman"
+> постоянно хранит наиболее посещаемые адреса (локальные или удалённые). Это подменю показывает первые 15 часто посещаемых адресов, отсортированных по рейтингу, так что первый адрес является самым популярным. Это удобно, когда нужно часто посещать адреса, но не хочется создавать <link linkend="bookman"
 >Закладки</link
->, это временный список закладок для наиболее посещаемых адресов. <guilabel
->Быстрый поиск часто посещаемых адресов</guilabel
-> — это быстрый способ просмотреть или выбрать часто посещаемые адреса: <itemizedlist>
+>; оно служит временным списком закладок для наиболее посещаемых ссылок. Быстрый поиск по списку <guilabel
+>Часто посещаемые адреса</guilabel
+> — это удобный способ просмотреть или выбрать часто посещаемые адреса: <itemizedlist>
       <listitem>
         <para
 >Откройте <guilabel
@@ -180,11 +198,7 @@
       </listitem>
       <listitem>
         <para
->Нажмите клавишу Enter (вы перейдёте к списку адресов)</para>
-      </listitem>
-      <listitem>
-        <para
->Нажмите Enter ещё раз — и панель обновится</para>
+>Нажмите &Enter; (произойдёт переход по &URL; из списка)</para>
       </listitem>
     </itemizedlist
 ></para>
@@ -199,19 +213,17 @@
       <listitem>
         <para
 ><guilabel
->Носители</guilabel
-> использует <link linkend="konfig-advanced"
->протокол носителей</link
-> &kde; <filename
->media:/</filename
-></para>
+>Корзина</guilabel
+> использует протокол &plasma; <filename
+>trash:/</filename
+>.</para>
       </listitem>
       <listitem>
         <para
 ><guilabel
 >Локальная сеть</guilabel
-> использует протокол &kde; <filename
->lan:/</filename
+> использует протокол &plasma; <filename
+>remote:/</filename
 >.</para>
       </listitem>
       <listitem>
@@ -219,15 +231,15 @@
 ><guilabel
 >Виртуальная файловая система</guilabel
 > <link linkend="vfs"
->Виртуальная файловая система (ВФС)</link
+>Виртуальная файловая система (VFS)</link
 > <filename
 >virt:/</filename
-> — это не виртуальный каталог, а контейнер для адресов из других файловых систем. Она используется, например, в модуле поиска для возможности <guilabel
->Поместить на панель</guilabel
-> и в синхронизаторе. Адресная строка будет показывать, например, <filename
->virt:/Результаты поиска 1</filename
+> — это не виртуальная папка, а контейнер для &URL; из разных файловых систем. Она используется, например, функцией <guilabel
+>Добавить в список</guilabel
+> модуля поиска и синхронизатором. Адресная строка при этом показывает, например, <filename
+>virt:/Search results 1</filename
 > или <filename
->virt:/Результаты синхронизации 1</filename
+>virt:/Synchronise results 1</filename
 >.</para>
       </listitem>
       <listitem id="jump_back">
@@ -238,13 +250,13 @@
 >&Ctrl; <keycap
 >J</keycap
 ></keycombo
-> возвращает обратно к начальному положению, когда вы создали новую вкладку в панели. Эта возможность очень удобна, если вы перешли очень глубоко в дерево каталога. Тогда вы можете вернуться в исходное положение с помощью одного действия. С помощью <guilabel
+> возвращает к исходному положению, установленному при создании новой вкладки в панели. Эта возможность очень удобна, если нужно перейти глубоко в дерево каталогов: вернуться в исходное положение можно одним действием. С помощью <guilabel
 >Установить точку возврата</guilabel
 > или комбинации <keycombo action="simul"
 > &Ctrl;&Shift; <keycap
 >J</keycap
 ></keycombo
-> можно установить текущий каталог как точку возврата.</para>
+> текущий каталог устанавливается как точка возврата.</para>
       </listitem>
     </itemizedlist
 ></para>
@@ -253,59 +265,45 @@
     <title
 >Управление закладками</title>
     <para
->Для того чтобы редактировать и организовать ваши закладки, нажмите кнопку <guibutton
+>Для того чтобы редактировать и организовать закладки, нажмите кнопку <guibutton
 >Закладка</guibutton
 > и выберите <guimenuitem
 >Управление закладками</guimenuitem
->. откроется приложение <application
+>. Откроется приложение <application
 >KEditBookmarks</application
->. В нём вы можете отредактировать, удалить и перегруппировать закладки. Программа <application
+>. В нём можно отредактировать, удалить и перегруппировать закладки. Программа <application
 >KEditBookmarks</application
-> (часть пакета kdebase) — это редактор закладок для &konqueror;, &krusader; и других программ, которые используют <ulink url="http://grail.sourceforge.net/info/xbel.html"
+> — это редактор закладок для &konqueror;, &krusader; и других приложений, использующих <ulink url="http://grail.sourceforge.net/info/xbel.html"
 >стандарт XBEL</ulink
-> для закладок. Закладки хранятся в <filename
->~/.kde/share/apps/krusader/krbookmarks.xml</filename
+> в качестве формата закладок. Закладки хранятся в <filename
+>~/.local/share/krusader/krbookmarks.xml</filename
 >.</para>
+    <note>
+        <para
+>Папка по умолчанию для файла закладок <filename
+>krusader/krbookmarks.xml</filename
+> — <filename class="directory"
+>~/.local/share</filename
+>. Нужную папку в системе можно определить с помощью команды <userinput
+>qtpaths --paths GenericDataLocation</userinput
+> в терминале. </para>
+        <para
+>Этот локальный файл существует, только если закладки &krusader; были изменены. Он будет создан после первого запуска <application
+>KEditBookmarks</application
+> из &krusader;. </para>
+        <para
+>Системные закладки по умолчанию хранятся в файле <filename
+>kfileplaces/bookmarks.xml</filename
+> в папке, определяемой с помощью команды <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. </para>
+    </note>
     <para
->Вы можете импортировать закладки из <application
->IE</application
->, <application
->Opera</application
->, <application
->Galeon</application
->, &kde;, <application
->Mozilla</application
->, &Netscape;. Программа <application
+><application
 >KEditBookmarks</application
-> проста в использовании, более подробную информацию можно найти в руководствах пользователя <application
->KEditBookmarks</application
-> и &konqueror;.</para>
-    <!-- OLD
-<screenshot>
-  <screeninfo
-><application
->KeditBookmarks</application
-> Bookmark Manager</screeninfo>
-  <mediaobject>
-  <imageobject
-><imagedata fileref="bookmanedit.png" format="PNG"/></imageobject>
-  <imageobject
-><imagedata fileref="bookmanedit.png" format="EPS"/></imageobject>
-  <textobject
-><phrase
-><application
->KeditBookmarks</application
-> edit and organize your Bookmarks</phrase
-></textobject>
-  <caption
-><para
-><application
->KeditBookmarks</application
->: Bookmark Manager.</para
-></caption>
-  </mediaobject>
-</screenshot>
--->
+> прост в использовании, однако если требуется дополнительная информация, прочитайте <ulink url="help:/keditbookmarks/index.html"
+>руководство KEditBookmarks</ulink
+>.</para>
     <figure id="screenshot-bookmanedit" float="1">
       <title
 >Диспетчер закладок <application
@@ -342,23 +340,31 @@
       </listitem>
       <listitem>
         <para
->Если нужно, создайте комбинации клавиш для закладок в разделе <guilabel
->Комбинации клавиш</guilabel
-> в <link linkend="konfig-looknfeel"
->диалоговом окне настройки Krusader</link
->.</para>
+>При необходимости создайте комбинации клавиш для закладок в окне <link linkend="key_bindings"
+>Настройка комбинаций клавиш</link
+> (<menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настройка комбинаций клавиш…</guimenuitem
+></menuchoice
+>).</para>
       </listitem>
       <listitem>
         <para
->Добавьте ваши закладки как кнопки действий на <link linkend="mainwindow"
+>Добавьте закладки как кнопки действий на <link linkend="mainwindow"
 >Основную панель инструментов</link
 > или <link linkend="actions_toolbar"
 >Панель действий</link
-> в разделе <guilabel
->Панель инструментов</guilabel
-> в <link linkend="konfig-looknfeel"
->диалоговом окне настройки Krusader</link
->.</para>
+> с помощью окна <guilabel
+>Настройка панелей инструментов…</guilabel
+> (<menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настройка панелей инструментов…</guimenuitem
+></menuchoice
+>).</para>
       </listitem>
     </itemizedlist
 ></para>

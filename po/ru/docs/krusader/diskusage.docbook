@@ -1,0 +1,151 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="diskusage">
+  <title
+>Использование диска</title>
+  <indexterm>
+    <primary
+>Использование диска</primary>
+  </indexterm>
+  <para
+>Использование диска основано на коде &filelight;. Использование диска показывает, как используется пространство диска, с помощью графического представления файловой системы. Возможны следующие представления:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Линейный вид</para>
+    </listitem>
+    <listitem>
+      <para
+>Подробный вид</para>
+    </listitem>
+    <listitem>
+      <para
+>Представление <application
+>Filelight</application
+>: в виде набора концентрических сегментированных колец</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Чтобы запустить эту функцию в отдельном окне, выберите <menuchoice
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Статистика использования диска…</guimenuitem
+> </menuchoice
+> или нажмите <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo
+>, либо откройте её в <link linkend="sidebar"
+>боковой панели</link
+>.</para>
+  <para
+>Комбинации клавиш в „Использовании диска“, меню по щелчку правой кнопкой мыши.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><keycap
+>Del</keycap
+>: удалить</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo
+>: Исключить</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Стрелка вверх</keycap
+></keycombo
+>: Переход на одну папку вверх</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: новый поиск</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+>: обновить</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>I</keycap
+></keycombo
+>: включить все</para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Стрелка вниз</keycap
+></keycombo
+>: войти</para>
+    </listitem>
+    <listitem>
+      <para
+>Меню «Вид»: <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>L</keycap
+></keycombo
+>: Линейный вид</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo
+>: Подробный вид</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: Представление Filelight</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Стрелка вправо</keycap
+></keycombo
+>: Перейти к следующему виду</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>Стрелка влево</keycap
+></keycombo
+>: Предыдущий вид</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+  </itemizedlist>
+</sect1>

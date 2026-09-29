@@ -1,0 +1,2585 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="konfigurator">
+  <title
+>Konfigurator: центр параметров &krusader;</title>
+  <indexterm>
+    <primary
+>Настроить</primary>
+    <secondary
+>Krusader</secondary>
+  </indexterm>
+  <para
+>Konfigurator — центр настройки &krusader;. При работе с &krusader; выберите <menuchoice
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить &krusader;…</guimenuitem
+> </menuchoice
+>, и запустится Konfigurator. Здесь можно изменить работу &krusader; и настроить его под свои нужды. В любой момент нажатие кнопки <guibutton
+>Применить</guibutton
+> применяет изменения, нажатие <guibutton
+>Закрыть</guibutton
+> закрывает Konfigurator, а нажатие <guibutton
+>По умолчанию</guibutton
+> восстанавливает <quote
+>заводские</quote
+> параметры &krusader;. Konfigurator разделён на страницы, каждая из которых содержит относящиеся к ней элементы. Для некоторых изменений &GUI; требуется закрыть и перезапустить &krusader;.</para>
+
+<note>
+ <para
+>Начиная с &krusader;-1.80.0 <link linkend="key_bindings"
+>Комбинации клавиш</link
+> и <link linkend="mainwindow"
+>Основная панель инструментов</link
+> — <link linkend="actions_toolbar"
+>Панель инструментов действий</link
+> получили собственные окна настройки и больше не входят в состав Konfigurator; настроить их теперь можно через <link linkend="settings-menu"
+>меню <guimenu
+>Настройка</guimenu
+></link
+>.</para>
+</note>
+
+  <sect1 id="konfig-startup">
+    <title
+>Запуск</title>
+    <figure id="screenshot-kgstartup" float="1">
+      <title
+>Настройка запуска</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="kgstartup.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>Настройка запуска</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>Начальная страница определяет внешний вид (и работу) &krusader; при запуске. Она разделена на две основные части:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Основные</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Начальный профиль</guilabel
+>: запускает выбранный <link linkend="panel_profiles"
+>профиль панели</link
+> при запуске. <guilabel
+>&lt;Последний сеанс&gt;</guilabel
+> — особый профиль панели, он сохраняется автоматически при закрытии &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Показывать заставку</guilabel
+>: при запуске &krusader; показывается заставка.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Запускать одну копию Krusader</guilabel
+>: позволяет запускать только один экземпляр &krusader;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Тема значков по умолчанию</guilabel
+>: позволяет настроить резервное оформление значков для &krusader;. Если значок отсутствует в системном оформлении значков, будет использовано это оформление. Если в резервном оформлении значка нет, применяется Breeze или Oxygen, если они доступны.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Интерфейс пользователя</guilabel>
+        </term>
+        <listitem>
+          <para
+>Определяет, какие части пользовательского интерфейса показываются после запуска. <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Восстанавливать позицию, размер и параметры панелей</guilabel
+>: при запуске &krusader; восстанавливает размер, который был при последнем закрытии. &krusader; также появляется в том же месте экрана, сохраняя порядок и выравнивание панелей. Если этот параметр не отмечен, размер и позицию &krusader; при запуске можно задать вручную с помощью пункта меню <menuchoice
+> <guimenu
+>Окно</guimenu
+> <guimenuitem
+>Сохранить позицию</guimenuitem
+> </menuchoice
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Обновлять параметры панели по умолчанию</guilabel
+>: если флажок установлен, после запуска параметры панели по умолчанию будут обновлены.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Запускать в системный лоток</guilabel
+>: если флажок установлен, &krusader; запускается в системный лоток (если задано сворачивание в лоток), не показывая главное окно.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Сохранять параметры компонентов при выходе</guilabel
+>: если флажок установлен, компоненты пользовательского интерфейса восстанавливаются в том виде, в каком они были при последнем завершении работы.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Показывать функциональные клавиши</guilabel
+>: если флажок установлен, после запуска показывается <link linkend="fnkeys"
+>панель функциональных клавиш</link
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Показывать строку состояния</guilabel
+>: если флажок установлен, после запуска показывается <link linkend="mainwindow"
+>строка состояния</link
+>. Доступно, только если снят флажок <guilabel
+>Сохранять параметры компонентов при выходе</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Показывать командную строку</guilabel
+>: если флажок установлен, <link linkend="cmdline"
+>Командная строка</link
+> показывается после запуска. Доступно, только если снят флажок <guilabel
+>Сохранять параметры компонентов при выходе</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Показывать встроенный терминал</guilabel
+>: если флажок установлен, <link linkend="termemu"
+>Эмулятор терминала</link
+> показывается после запуска. Доступно, только если флажок <guilabel
+>Сохранять параметры компонентов при выходе</guilabel
+> снят.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-panel">
+    <title
+>Панель</title>
+    <para
+>Здесь можно определить внешний вид панели — то есть выполнить тонкую настройку приложения под свои нужды. Страница разделена на шесть вкладок: <guilabel
+>Основные</guilabel
+>, <guilabel
+>Просмотр</guilabel
+>, <guilabel
+>Кнопки</guilabel
+>, <guilabel
+>Режим выделения</guilabel
+>, <guilabel
+>Список доступных носителей</guilabel
+> и <guilabel
+>Дизайн</guilabel
+>:</para>
+
+    <sect2 id="konfig-panel-general">
+      <title
+>Общие</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Панель навигации</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Использовать режим редактирования по умолчанию</guilabel
+>: если флажок установлен, в панели навигации по умолчанию показывается редактируемый путь.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Показывать полный путь по умолчанию</guilabel
+>: если флажок установлен, в панели навигации всегда показывается полный путь.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Операция</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Автоматически выделять папки</guilabel
+>: при <link linkend="edit-menu"
+>выборе группы файлов</link
+> (с помощью <guilabel
+>Выделить группу</guilabel
+> или <guilabel
+>Выделить все</guilabel
+>) &krusader; учитывает этот параметр. Если флажок установлен, папки, соответствующие критериям выбора, также выбираются. В противном случае выбираются только файлы.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Выделять расширение при переименовывании</guilabel
+>: при <link linkend="renaming"
+>переименовании файла</link
+> выделяется весь текст. Если требуется переименовывать только имя без расширения, как в <trademark class="copyright"
+>Total Commander</trademark
+>, снимите этот флажок.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Снимать выделение файлов перед копированием или перемещением</guilabel
+>: если флажок установлен, &krusader; снимает метки выделения с файлов или папок перед <link linkend="copying"
+>копированием или перемещением</link
+> их в новое место.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Запоминать установки в окне фильтра</guilabel
+>: если флажок установлен, диалоговое окно фильтра будет открыто с последними параметрами фильтра, применёнными к панели.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Вкладки</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Использовать полный путь в названиях вкладок</guilabel
+>: если флажок установлен, в <link linkend="folder-tabs"
+>вкладках папок</link
+> показывается полный путь; иначе показывается только последняя часть пути.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Расширяемые вкладки</guilabel
+>: если флажок установлен, &krusader; расширяет <link linkend="folder-tabs"
+>вкладки папок</link
+>, чтобы заполнить всю панель.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Закрывать вкладку двойным щелчком</guilabel
+>: если флажок установлен, &krusader; позволяет закрывать <link linkend="folder-tabs"
+>вкладки папок</link
+> двойным щелчком по ним.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Размещать вкладки после текущей</guilabel
+>: если флажок установлен, &krusader; вставляет новые вкладки справа от текущей, а не в конец <link linkend="folder-tabs"
+>панели вкладок</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Дублирование активной вкладки щелчком мыши</guilabel
+>: позволяет выбрать режим создания копии активной вкладки (<guimenuitem
+>Отключено</guimenuitem
+> (без привязки к щелчку), <guimenuitem
+>Alt+щелчок</guimenuitem
+> или <guimenuitem
+>Ctrl+щелчок</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Положение панели вкладок</guilabel
+>: позволяет выбрать положение <link linkend="folder-tabs"
+>панели вкладок</link
+> (<guimenuitem
+>Снизу</guimenuitem
+> или <guimenuitem
+>Сверху</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать кнопку «Закрыть вкладку»</guilabel
+>: если флажок установлен, &krusader; показывает кнопки закрытия на <link linkend="folder-tabs"
+>вкладках</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать кнопку «Новая вкладка»</guilabel
+>: если флажок установлен, &krusader; показывает кнопку создания вкладки на <link linkend="folder-tabs"
+>панели вкладок</link
+>.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Показывать панель вкладок на одной вкладке</guilabel
+>: если флажок установлен, &krusader; показывает панель вкладок, даже если на панели только одна <link linkend="folder-tabs"
+>вкладка</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Дублировать текущую вкладку при создании новой</guilabel
+>: если флажок установлен, кнопка новой вкладки создаёт копию <link linkend="folder-tabs"
+>вкладки</link
+>, иначе открывается вкладка домашней папки.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Панель поиска</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Введите текст для поиска</guilabel
+>: позволяет выбрать, использовать ли функцию <link linkend="quicksearch"
+>быстрого поиска</link
+>. Если флажок установлен, можно открыть панель поиска и начать поиск, набрав что-либо при просмотре содержимого папки в активной панели.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>С учётом регистра</guilabel
+>: при использовании функции <link linkend="quicksearch"
+>поиска</link
+> или <link linkend="quickfilter"
+>фильтрации</link
+>: если флажок установлен (по умолчанию в &UNIX;), все файлы, начинающиеся с заглавных букв, располагаются перед файлами, начинающимися со строчных букв; в противном случае все файлы, начинающиеся с указанной буквы (заглавной или строчной), показываются вместе.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Остановка поиска при нажатии клавиш «Вверх»/«Вниз»</guilabel
+>: нажатие клавиши &Up; или &Down; отменяет <link linkend="quicksearch"
+>панель поиска</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Переходить в папку с помощью стрелки вправо</guilabel
+>: если флажок установлен, нажатие клавиши &Right; открывает папку, если не предполагается редактирование текста поиска. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Положение</guilabel
+>: позволяет выбрать положение панели <link linkend="quicksearch"
+>поиска</link
+> и <link linkend="quickfilter"
+>фильтра</link
+> (<guimenuitem
+>Внизу</guimenuitem
+> или <guimenuitem
+>Вверху</guimenuitem
+>).</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Стандартный режим</guilabel
+>: позволяет выбрать режим по умолчанию для панели поиска: <link linkend="quicksearch"
+>Поиск</link
+>, <guilabel
+>Выбор</guilabel
+> или <link linkend="quickfilter"
+>Фильтр</link
+>. Режим можно изменить позже с помощью самой панели поиска.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Поиск закладок</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Всегда показывать панель поиска</guilabel
+>: если флажок установлен, <link linkend="bookman"
+>панель поиска закладок</link
+> показывается всегда.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Искать в особых элементах</guilabel
+>: если флажок установлен, <link linkend="bookman"
+>поиск по закладкам</link
+> также применяется к специальным элементам меню закладок, таким как <guimenuitem
+>Корзина</guimenuitem
+>, <guimenuitem
+>Часто посещаемые адреса</guimenuitem
+>, <guimenuitem
+>Вернуться</guimenuitem
+> и т. д.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Строка состояния/строка итогов</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Показывать также размер в байтах</guilabel
+>: если флажок установлен, &krusader; показывает размер в байтах в строке состояния или строке итогов.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать сведения о занятом пространстве</guilabel
+>: если флажок установлен, &krusader; показывает свободное/общее место на диске в строке состояния/итогов.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title
+>Вид</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Основные</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Шрифт панели</guilabel
+>: позволяет изменить шрифт, используемый в списках файлов.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Задержка отображения всплывающих подсказок (мс)</guilabel
+>: позволяет настроить задержку в миллисекундах между моментом остановки указателя мыши над элементом списка файлов и моментом показа всплывающей подсказки.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Использовать удобочитаемый размер файла</guilabel
+>: если флажок установлен, размер файла показывается в КБ, МБ и т. д., а не в байтах (по умолчанию).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Права (числовой вид)</guilabel
+>: в столбце <guilabel
+>Права</guilabel
+> показываются восьмеричные числа «<literal
+>0755</literal
+>» вместо «<literal
+>rwxr-xr-x</literal
+>».</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать скрытые файлы</guilabel
+>: если флажок установлен, &krusader; показывает <quote
+>файлы, имена которых начинаются с точки</quote
+>, в остальных случаях скрытые.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Загружать пользовательские значки для папок</guilabel
+>: если флажок установлен, &krusader; загружает заданные пользователем значки папок.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Всегда показывать текущий элемент</guilabel
+>: если флажок установлен, &krusader; показывает рамку текущего элемента в неактивной панели.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Метод сортировки</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para
+><guilabel
+>Krusader (по умолчанию)</guilabel
+>: сравнение, использовавшееся до сих пор. Использует сравнение по правилам локали (включая правила контекста). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>По алфавиту</guilabel
+>: строки сравниваются посимвольно (правила контекста локали не применяются). Буквы алфавита сравниваются по правилам локали, специальные символы — по коду символа. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>По алфавиту и числам</guilabel
+>: то же, что и выше, но если имена содержат числа, числа сравниваются численно, а не по алфавиту. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>По кодам символов</guilabel
+>: сравнение по коду символа (быстро). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>По кодам символов и числам</guilabel
+>: то же, что выше, но с числовым сравнением чисел. </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Сортировка с учётом регистра</guilabel
+>: если флажок установлен (по умолчанию в &UNIX;), все файлы, начинающиеся с заглавных букв, располагаются перед файлами, начинающимися со строчных букв; в противном случае все файлы, начинающиеся с указанной буквы (заглавной или строчной), показываются вместе.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Всегда сортировать папки по имени</guilabel
+>: сортирует папки по имени независимо от столбца сортировки.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать папки перед файлами</guilabel
+>: если флажок установлен, папки имеют приоритет в списках папок.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Сортировка с учётом текущего языка</guilabel
+>: сортирует файлы и папки в соответствии с текущими параметрами локали.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Режимы просмотра</guilabel>
+        </title>
+       <listitem>
+          <para
+><guilabel
+>Стандартный режим просмотра</guilabel
+>: позволяет изменить режим просмотра по умолчанию. Можно выбрать <guimenuitem
+>Детальный вид</guimenuitem
+> или <guimenuitem
+>Компактный вид</guimenuitem
+>. На вкладках обоих режимов просмотра можно задать следующие параметры.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Размер значков по умолчанию</guilabel
+>: позволяет изменить размер значков в списках файлов. Доступные размеры: 12x12, 16x16, 22x22, 32x32, 48x48, 64x64, 128x128 и 256x256 пикселей.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Использовать значки в именах файлов</guilabel
+>: если флажок установлен, значки показываются в именах файлов и папок.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать миниатюры по умолчанию</guilabel
+>: если флажок установлен, показывается предварительный просмотр содержимого файлов.</para>
+        </listitem>
+        <listitem>
+          <para
+>Чтобы настроить столбцы, используйте контекстное меню панели при просмотре файлов. Левая и правая панели используют собственные столбцы независимо друг от друга. Доступны следующие столбцы: <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Имя</guilabel
+>: показывает имя файла без части после последней точки, эта последняя часть показывается в столбце <guilabel
+>Расширение</guilabel
+>. Если столбец <guilabel
+>Расширение</guilabel
+> скрыт, в столбце <guilabel
+>Имя</guilabel
+> показывается полное имя файла, как, например, &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Расширение</guilabel
+>: показывает последнюю часть имени файла (часть после последней точки) в столбце <guilabel
+>Расширение</guilabel
+>, а не как полное имя файла в столбце <guilabel
+>Имя</guilabel
+>, как это делает, например, &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Тип</guilabel
+>: показывает поле типа &MIME;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Размер</guilabel
+>: показывает поле размера.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Содержимое изменено</guilabel
+>: показывает поле даты и времени изменения.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Права доступа (расширенные)</guilabel
+>: показывает полные права, например, «<literal
+>rwxr-xr-x</literal
+>» или, если на вкладке <guilabel
+>Просмотр</guilabel
+> включён параметр <guilabel
+>Права (числовой вид)</guilabel
+>, восьмеричные числа «<literal
+>0755</literal
+>».</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Права доступа</guilabel
+>: показываются только права текущего пользователя, например, <quote
+>-rw</quote
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Владелец</guilabel
+>: показывает поле владельца.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Группа</guilabel
+>: показывается поле группы.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist>
+      <tip>
+        <para
+>Снимите флажки с неиспользуемых столбцов. Это освободит больше места для используемых столбцов.</para>
+      </tip>
+    </sect2>
+    <sect2 id="konfig-panel-buttons">
+      <title
+>Кнопки</title>
+      <para
+><guilabel
+>Значки на кнопках панели инструментов</guilabel
+>: если флажок установлен, &krusader; показывает значки на кнопках панели инструментов.</para>
+      <para
+><guilabel
+>Показать кнопку «Носители»</guilabel
+>: если флажок установлен, &krusader; показывает кнопку носителя.</para>
+      <para
+><guilabel
+>Показать кнопку «Назад»</guilabel
+>: если флажок установлен, &krusader; показывает кнопку «Назад».</para>
+      <para
+><guilabel
+>Показать кнопку «Вперёд»</guilabel
+>: если флажок установлен, &krusader; показывает кнопку «Вперёд».</para>
+      <para
+><guilabel
+>Показать кнопку «Журнал»</guilabel
+>: если флажок установлен, &krusader; показывает кнопку журнала.</para>
+      <para
+><guilabel
+>Показать кнопку «Закладки»</guilabel
+>: если флажок установлен, &krusader; показывает кнопку закладок.</para>
+      <para
+><guilabel
+>Показать панель инструментов</guilabel
+>: если флажок установлен, &krusader; показывает панель инструментов панели.</para>
+      <para
+>Кнопки на <guilabel
+>панели инструментов панели</guilabel
+> можно показать или скрыть: <itemizedlist>
+        <title>
+          <guilabel
+>Видимые кнопки панели инструментов</guilabel>
+        </title>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Clear Location Toolbar</guilabel
+> button: Clears
+          the <link linkend="list_panel"
+>Location Toolbar</link
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para>
+          <guilabel
+>Кнопка «Приравнять» (=)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Перейти вверх (..)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Перейти в домашнюю папку (~)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>Кнопка «Корневая папка» (/)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Кнопка включения/выключения синхронного режима</guilabel
+>: если флажок установлен, показывает кнопку <link linkend="panel_toolbar"
+>Синхронный просмотр</link
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-selection_modes">
+      <title
+>Режим выделения</title>
+      <para
+>Здесь можно настроить режимы выделения. <itemizedlist id="selection_modes">
+        <title>
+          <guilabel
+>Основные</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Режим &krusader;</guilabel
+>: так &krusader; работал с самого начала. Обе кнопки мыши позволяют выделять файлы. Чтобы выделить несколько файлов, удерживайте клавишу &Ctrl; и щёлкните &LMB;. Меню правой кнопки мыши вызывается коротким щёлчком &RMB;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Режим &konqueror;</guilabel
+>: нажатие &LMB; выделяет файлы — можно щёлкнуть и выделить несколько файлов. Контекстное меню появляется при коротком щелчке &RMB;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Режим Total Commander</guilabel
+>: нажатие &RMB; выделяет несколько файлов, а контекстное меню появляется при <guilabel
+>нажатии и удержании</guilabel
+> &RMB;. &LMB; не выделяет, а устанавливает текущий файл, не изменяя текущее выделение.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Эргономичный режим</guilabel
+>: &LMB; не выделяет, а устанавливает текущий файл, не влияя на текущее выделение. &RMB; вызывает контекстное меню. Выделять можно клавишей &Ctrl; и левой кнопкой.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Настраиваемый режим выбора</guilabel
+>: создайте собственный стиль выделения!</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>Подробно</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>Выбор по двойному щелчку (классический стиль)</guilabel
+>: одиночный щелчок по файлу выделяет его и устанавливает фокус, двойной щелчок открывает файл или входит в папку.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Следовать глобальной политике выделения</guilabel
+>: нажатие &LMB; выделяет файлы — используется общий параметр: модуль <menuchoice
+><guimenu
+>Устройства ввода</guimenu
+> <guimenuitem
+>Мышь </guimenuitem
+></menuchoice
+> в &plasma; &systemsettings;.</para>
+        </listitem>
+        <listitem>
+          <para
+>Элементы пользовательского режима выделения: <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>На основе режима выделения &plasma;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; выделяет</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; сохраняет выделение</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; + щелчок левой кнопкой выделяет</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; выделяет</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; сохраняет выделение</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; + щелчок правой кнопкой мыши выделяет</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Клавиша «Пробел» перемещает курсор вниз</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Клавиша Insert перемещает курсор вниз</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Щелчок правой кнопкой мыши сразу открывает контекстное меню</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Сброс выделения щелчком левой кнопкой мыши</guilabel
+> — сбрасывает выделение при щелчке мышью без модификаторов (то есть &Shift; или &Ctrl;). Чтобы этот параметр работал, должно быть включено выделение с помощью &Shift;/&Ctrl; для кнопки мыши. </para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title
+>Меню носителей</title>
+      <para
+>На этой вкладке можно выбрать содержимое меню <link linkend="media_button"
+>кнопки носителя</link
+>: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Показывать точку монтирования</guilabel
+>: если флажок установлен, показывается путь подключения раздела.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать тип файловой системы</guilabel
+>: если флажок установлен, показывается тип файловой системы раздела.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Скрыть записи SquashFS</guilabel
+>: <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> создаёт множество подключённых разделов <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+>, которые почти бесполезны в <link linkend="list_panel"
+>меню носителей</link
+>, поскольку <application
+>snap</application
+> управляет ими. Скрыть подключения SquashFS можно, установив этот флажок.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Скрывать записи неизвестных файловых систем</guilabel
+>: в <link linkend="list_panel"
+>меню носителей</link
+> могут появляться неизвестные элементы файловой системы, которые там практически бесполезны. Установка этого флажка позволяет скрыть неизвестные элементы файловой системы.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Скрыть текущие точки монтирования</guilabel
+>: этот список позволяет исключать ненужные элементы из <link linkend="list_panel"
+>меню носителей</link
+>. Чтобы добавить точку подключения, которую нужно игнорировать, нажмите кнопку <guibutton
+>+</guibutton
+> над списком. Чтобы удалить добавленную точку подключения из списка, щёлкните по ней и нажмите кнопку <guibutton
+>-</guibutton
+>. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Показывать общий размер:</guilabel
+> позволяет выбрать способ представления размера в меню носителей. Может быть <guimenuitem
+>Всегда</guimenuitem
+> (по умолчанию, всегда показывать размер раздела), <guimenuitem
+>Когда у устройства отсутствует метка</guimenuitem
+> (показывать размер только для разделов без метки) или <guimenuitem
+>Никогда</guimenuitem
+> (никогда не показывать размер в меню носителей).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title
+>Дизайн</title>
+      <para
+>Можно выбрать компоновку и параметры рамки: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>Схема:</guilabel
+> позволяет задать схему. По умолчанию доступны <guimenuitem
+>По умолчанию</guimenuitem
+>, <guimenuitem
+>Компактная</guimenuitem
+> и <guimenuitem
+>Классическая</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Цвет рамки:</guilabel
+> задаёт цвет рамки. Может принимать значения <guimenuitem
+>Задано схемой</guimenuitem
+>, <guimenuitem
+>Нет</guimenuitem
+> или <guimenuitem
+>Строка состояния</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Тип рамки:</guilabel
+> определяет цвет рамки. Может принимать значения <guimenuitem
+>Задано схемой</guimenuitem
+>, <guimenuitem
+>Нет</guimenuitem
+>, <guimenuitem
+>Прямоугольник</guimenuitem
+> или <guimenuitem
+>Панель</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>Тень рамки:</guilabel
+> определяет цвет рамки. Может быть <guimenuitem
+>Задано схемой</guimenuitem
+>, <guimenuitem
+>Нет</guimenuitem
+>, <guimenuitem
+>Приподнятая</guimenuitem
+> или <guimenuitem
+>Утопленная</guimenuitem
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="konfig-color">
+    <title
+>Цвета</title>
+    <para
+>На этой странице настраиваются цвета <link linkend="list_panel"
+>панели списка</link
+> и <link linkend="synchronizer"
+>синхронизатора</link
+>. <guilabel
+>Цвета &kde; по умолчанию</guilabel
+> — это стандартная конфигурация цветов.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Основные</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Использовать цвета &kde; по умолчанию</guilabel
+>: это значение по умолчанию, используются цвета &plasma;, заданные в приложении «&systemsettings;».</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Использовать альтернативный цвет фона</guilabel
+>: если флажок установлен, <guilabel
+>Фон</guilabel
+> и <guilabel
+>Альтернативный цвет фона</guilabel
+> чередуются построчно. Если цвета &plasma; по умолчанию не используются, альтернативные цвета можно настроить в группе <guilabel
+>Цвета</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Показывать последнюю позицию курсора на неактивной панели</guilabel
+>: если флажок установлен, в неактивной панели списка показывается последняя позиция курсора. Этот параметр доступен, только если не используются цвета &plasma; по умолчанию.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Приглушать цвета неактивной панели</guilabel
+>: если флажок установлен, цвета неактивной панели приглушаются. Эти параметры можно задать на вкладке <guilabel
+>Неактивная панель</guilabel
+> раздела <guilabel
+>Цвета</guilabel
+>. Этот параметр доступен, только если не используются цвета &plasma; по умолчанию.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Цвета</guilabel>
+        </term>
+        <listitem>
+          <para
+>Настройте цвета по своему усмотрению — результат показывается в разделе <guilabel
+>Предварительный просмотр</guilabel
+>. Можно настроить следующие элементы активной и неактивной панели:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Цвет текста</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Передний план папки</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Цвет текста исполняемых файлов</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Передний план символической ссылки</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Цвет текста недействительных символических ссылок</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Фон</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Чередующийся фон</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Цвет текста выделенного элемента</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Фон выделенного</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Чередующийся фон выделения</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Цвет текста текущей панели</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Цвет текста выделенного текущего элемента</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Текущий фон</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Передний план переименования</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Фон переименования</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para
+>Можно настроить следующие элементы <link linkend="synchronizer"
+>синхронизатора</link
+>:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>Совпадает с цветом текста</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Совпадает с фоном</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Цвет текста различающихся файлов</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Фон отличающегося</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Передний план копирования влево</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Фон копирования влево</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Передний план копирования вправо</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Фон копирования влево</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Передний план удаления</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>Фон удаления</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Предварительный просмотр</guilabel>
+        </term>
+        <listitem>
+          <para
+>Здесь показывается предварительный просмотр настроенных цветов.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Цветовые схемы</guilabel>
+        </term>
+        <listitem>
+          <para
+>С помощью кнопок <guibutton
+>Импорт цветовой схемы</guibutton
+> и <guibutton
+>Экспорт цветовой схемы</guibutton
+> можно загрузить и сохранить профиль цветовой схемы. Это позволяет &krusader; использовать <trademark class="copyright"
+>Total Commander</trademark
+>, <application
+>Midnight Commander</application
+> или собственный профиль цветовой схемы. Цветовые схемы хранятся в <filename
+>/usr/share/krusader</filename
+>, а <filename
+>foo.color</filename
+> — двоичный файл, содержащий цветовую схему.</para>
+          <tip>
+            <para
+>Предоставлены файлы цветовых схем <application
+>Midnight Commander</application
+> и <trademark class="copyright"
+>Total Commander</trademark
+>. <link linkend="help_krusader"
+>Отправьте свои любимые цветовые схемы</link
+>, чтобы они стали доступны сообществу &krusader;. Спасибо!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+<sect1 id="konfig-general">
+    <title
+>Общие</title>
+    <para
+>Здесь настраиваются основные операции. Страница разделена на три вкладки: <guilabel
+>Основные</guilabel
+>, <guilabel
+>Программа просмотра/Редактирования</guilabel
+> и <guilabel
+>Единые расширения</guilabel
+>.</para>
+    <sect2 id="konfig-general-general">
+      <title
+>Общие</title>
+      <para
+>Следующие параметры определяют основные аспекты работы:</para>
+      <itemizedlist>
+	<listitem>
+	  <para
+><guilabel
+>Предупреждать при выходе</guilabel
+>: если флажок установлен, &krusader; предупреждает при каждом срабатывании действия выхода. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Свернуть в системный лоток</guilabel
+>: если флажок установлен, значок &krusader; появится в системном лотке. При сворачивании &krusader; не будет показываться на панели задач. При закрытии главного окна &krusader; также не завершится. Вместо этого выйти из &krusader; можно, выбрав пункт меню <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Выход</guimenuitem
+></menuchoice
+> или воспользовавшись контекстным меню значка в лотке. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>Использовать магию типов &MIME;</guilabel
+>: магия типов &MIME; — это механизм, позволяющий &krusader; просматривать файлы на панелях и определять их тип, даже если у файла нет распознаваемого расширения. Например, если взять файл изображения — <filename
+>image1.jpg</filename
+> — и переименовать его в <filename
+>image1</filename
+>, &krusader; всё равно определит, что это файл изображения, и будет работать с ним соответствующим образом. Однако этот режим работы медленнее (при обновлении панели или смене папок), поэтому попробуйте &krusader; с магией типов &MIME; и без неё и решите, что лучше подходит.</para>
+	 </listitem>
+	 <listitem>
+	   <para
+><guilabel
+>Папка для временных файлов</guilabel
+>: этот параметр задаёт базовую папку для временных файлов &krusader;. Сами файлы создаются в отдельных папках внутри «Папки для временных файлов», поэтому у каждого пользователя, запустившего &krusader;, будут свои вложенные папки для временных файлов внутри выбранной папки. <note
+> <para
+>Необходимо выбрать временную папку, к которой все пользователи, запускающие &krusader;, имеют полный доступ!</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para
+><guilabel
+>Режим удаления</guilabel
+> (<guilabel
+>Удаление файлов/Перемещение в корзину</guilabel
+>): при удалении файлов &krusader; либо <emphasis
+>действительно</emphasis
+> удаляет их, либо перемещает в папку корзины, тем самым делая их доступными через корзину &plasma;. </para>
+      <para
+><guilabel
+>Внешний терминал</guilabel
+>: позволяет выбрать эмулятор терминала, который будет использоваться, когда &krusader; открывает окно консоли (по <keycap
+>F9</keycap
+> или через пункт меню <menuchoice
+><guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Запустить терминал</guimenuitem
+></menuchoice
+>). </para>
+      <para
+><guilabel
+>Менять папку во встроенном терминале при смене панели</guilabel
+>: если флажок снят, при смене папки панели в эмулятор терминала не отправляется команда <command
+>cd</command
+>.</para>
+      <para
+><guilabel
+>Изменять рабочий каталог активной панели в соответствии со встроенным терминалом</guilabel
+>: если флажок снят, активная панель не изменяется при перемещении по встроенному терминалу (с помощью cd, popd и т. п.). </para>
+      <para
+><guilabel
+>Полноэкранный режим встроенного терминала</guilabel
+>: если флажок установлен, &krusader; показывает полноэкранный терминал в стиле <application
+>Midnight Commander</application
+> (терминал показывается вместо окна &krusader;). </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title
+>Программа просмотра/Редактирования</title>
+      <para
+>Здесь можно изменить параметры просмотра и редактирования: </para>
+      <itemizedlist>
+      <listitem>
+	<para
+><guilabel
+>Внутренний редактор и программа просмотра открывают каждый файл в отдельном окне</guilabel
+>: установите этот флажок, если требуется, чтобы каждый файл открывался в отдельном окне. Если флажок снят, каждый файл будет открываться на вкладке в том же окне программы просмотра или редактора. Любую вкладку в таком окне можно закрыть, помимо прочих обычных способов, щелчком по вкладке с помощью &MMB;. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>Скрывать панель вкладок, когда открыта только одна вкладка</guilabel
+>: если флажок установлен, панель вкладок просмотра/редактирования скрывается, когда открыта только одна вкладка. </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Стандартный режим программы просмотра</guilabel
+>: <itemizedlist>
+        <listitem>
+         <para
+><guilabel
+>Основной режим</guilabel
+>: используется программа просмотра, заданная в системе по умолчанию.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Текстовый режим</guilabel
+>: просмотр файла только в текстовом виде.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Режим Hex</guilabel
+>: просмотр файла только в шестнадцатеричном виде.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>Режим Lister</guilabel
+>: быстрый просмотрщик текстовых и шестнадцатеричных файлов огромного размера. Просмотрщик &krusader; никогда не загружает файл целиком в память, а лишь небольшую его часть, и использует кэширование для ускорения прокрутки. Удалённые файлы загружаются, но во время загрузки можно просмотреть уже загруженную часть. Если файл постоянно изменяется, его тоже можно просматривать — просмотрщик всегда видит его текущее состояние.</para>
+        </listitem>
+	<listitem>
+         <para
+><guilabel
+>Использовать Lister, если текстовый файл больше: 10 МБ (значение по умолчанию)</guilabel
+>: проверяет, превышает ли текстовый файл 10 МБ (значение настраивается), и если да, то вместо программы просмотра &plasma; по умолчанию используется Lister &krusader;.</para>
+	</listitem>
+	<listitem>
+         <para
+><guilabel
+>Использовать Okteta для просмотра Hex-файлов</guilabel
+>: если флажок установлен, для просмотра необработанных данных используется редактор шестнадцатеричных данных &plasma; <ulink url="https://docs.kde.org/index.php?application=okteta"
+>Okteta</ulink
+>. Чтобы воспользоваться этим параметром, сначала нужно установить пакет <application
+>Okteta</application
+>.</para>
+	</listitem>
+	</itemizedlist>
+      </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>Редактор</guilabel
+>: позволяет выбрать редактор, который будет использоваться при редактировании файла (по <keycap
+>F4</keycap
+>). По умолчанию используется встроенная программа просмотра, заданная в &plasma; по умолчанию.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title
+>Единые расширения</title>
+        <para
+><guilabel
+>Единые расширения</guilabel
+>: предопределённые атомарные расширения, например <literal role="extension"
+>.tar.gz</literal
+>, показываются в столбце <guilabel
+>Расширение</guilabel
+> <link linkend="list_panel"
+>панели списка</link
+> как единое целое.</para>
+      </sect2>
+  </sect1>
+  <sect1 id="konfig-advanced">
+    <title
+>Дополнительно</title>
+    <para
+>На этой странице рассматриваются более сложные вопросы, поэтому действия здесь следует тщательно перепроверять: изменение параметров <emphasis
+>делает &krusader; более мощным и опасным инструментом.</emphasis
+></para>
+
+    <para
+>Страница разделена на три части:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>Основные</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+	    <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Preserve attributes for local copy/move
+              (slower)</guilabel
+>: If checked,
+              &krusader; will try to preserve all
+              attributes (time, owner, group) of the local files
+              according to the source file depending on your
+              <link linkend="copying"
+>permissions</link
+>.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>Автоматическое монтирование файловых систем</guilabel
+>: при этом &krusader; пытается подключить файловую систему перед входом в неё. Например, если щёлкнуть по <filename class="directory"
+>/mnt/cdrom</filename
+> (а <filename class="directory"
+> /mnt/cdrom</filename
+> указана в <filename class="directory"
+>/etc/fstab</filename
+> как точка подключения), &krusader; проверит, подключена ли она. Если нет, он попытается подключить её и войти, чтобы можно было увидеть содержимое &CD-ROM;. Однако следует учесть, что при выходе из <filename class="directory"
+> /mnt/cdrom</filename
+> &krusader; НЕ отключает её.</para>
+            </listitem>
+            <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel
+>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the
+              <link linkend="list_panel"
+>Media button</link
+>.
+              Choose this when the media protocol is buggy (in some
+              older &kde; versions) or if you have no
+              kdebase package installed on your system.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>MountMan не будет подключать или отключать следующие точки подключения</guilabel
+>: если есть файловые системы, которые не должны случайно отключаться (или подключаться), введите список точек подключения через запятую (например, <literal
+>/, /boot, /tmp</literal
+>), и <link linkend="mount-man"
+>MountMan</link
+> не будет пытаться их подключать или отключать.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Подтверждения</guilabel>
+        </term>
+        <listitem>
+          <para
+>Если установить флажки в этом разделе, &krusader; будет запрашивать подтверждение перед выполнением конкретного действия; в противном случае следующие действия выполняются без предупреждения:</para>
+          <itemizedlist>
+            <listitem>
+              <para
+>Удаление непустых папок</para>
+            </listitem>
+            <listitem>
+              <para
+>Удаление файлов</para>
+            </listitem>
+            <listitem>
+              <para
+>Копирование файлов</para>
+            </listitem>
+            <listitem>
+              <para
+>Перемещение файлов</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>Точная настройка</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>Размер кэша значков (КБ)</guilabel
+>: &krusader; использует кэш значков, поэтому повторно загружать уже использованные значки не требуется. Разумеется, чем больше становится кэш, тем больше значков он может хранить и тем быстрее выполняются операции, однако объём занимаемой памяти &krusader; при этом увеличится.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>Аргументы для «updatedb»</guilabel
+>: задаёт дополнительные аргументы для <command
+>updatedb</command
+>; за дополнительными сведениями обратитесь к страницам руководства.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-archives">
+    <title
+>Архивы</title>
+    <para
+>На этой странице настраиваются некоторые аспекты работы с архивами в &krusader;. </para>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel
+>Протокол krarc</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Включить поддержку записи</guilabel
+>: этот параметр позволяет включить запись файлов в архив. <warning
+> <para
+>Недостаток в том, что при сбое питания во время процесса перемещённые файлы могут быть уже удалены, но ещё не упакованы в архив. Перемещение архивов внутрь себя приведёт к их удалению. </para>
+	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel
+>Обработка архивов</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>Просмотр архивов в виде папок</guilabel
+>: если флажок установлен, &krusader; обрабатывает архивы прозрачно и позволяет открывать их как папки; в противном случае &krusader; пытается запустить приложение, открывающее архивы этого типа. </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel
+>Точная настройка</guilabel>
+	  </term>
+	  <listitem>
+      <itemizedlist>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Allow moving into archives</guilabel
+>: this
+          option allows you to move files into an archive (as
+          opposed to just copying into the archive). The down side
+          is that if a power failure occurs during the process, the
+          files that were moved might already be deleted, but not
+          yet packed into the archive.
+          <note>
+            <para
+>If such a thing happens, the file(s) are NOT
+            LOST. They were actually moved into a subfolder in
+            &krusader;'s
+            <link linkend="konfig-general"
+>temp folder</link
+>.
+            You can search the folder and recover your
+            files.</para>
+          </note
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para
+><guilabel
+>Проверять архив после упаковки</guilabel
+>: этот параметр автоматически запускает проверку только что упакованного архива. Это безопаснее, но занимает больше времени.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>Проверять архивы перед распаковкой</guilabel
+>: этот параметр автоматически запускает проверку перед распаковкой. Некоторые повреждённые архивы могут вызвать аварийное завершение, поэтому лучше проверять архивы перед распаковкой.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+  </sect1>
+  <sect1 id="konfig-dependencies">
+    <title
+>Страница зависимостей</title>
+    <para
+>На этой странице настраивается полный путь к внешним приложениям. Возможна даже настройка полного пути к &krusader;!</para>
+    <para>
+      <emphasis role="bold"
+>Вкладка «Общие»</emphasis>
+    </para>
+    <para
+>Здесь можно настроить полный путь к следующим внешним приложениям:</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>приложение</entry>
+            <entry
+>Настраиваемый полный путь</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kdesu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kdesu</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kget</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kget</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mailer</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kmail</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>утилита diff</para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kompare</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <command
+>krename</command>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krename</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>krusader</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krusader</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>locate</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/locate</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/mount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>umount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/umount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>updatedb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/updatedb</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <tip>
+      <para
+>По умолчанию в качестве внешней утилиты сравнения используется &kompare;, но можно также использовать свою любимую утилиту сравнения, например <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> или <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>: достаточно указать полный путь — и можно пользоваться.</para>
+    </tip>
+    <para>
+      <emphasis role="bold"
+>Вкладка «Архиваторы»</emphasis>
+    </para>
+    <para
+>На вкладке <guilabel
+>Архиваторы</guilabel
+> показан список форматов архивов. Некоторые из них заполнены, некоторые пусты. Доступные (заполненные) поддерживаются &krusader;. Для них &krusader; обрабатывает архивы прозрачно и позволяет открывать их как папки (если в разделе <link linkend="konfig-archives"
+>Архивы</link
+> установлен флажок <guilabel
+>Просмотр архивов в виде папок</guilabel
+>); в противном случае &krusader; пытается запустить приложение, открывающее архивы этого типа. Если какой-либо элемент архива пуст, значит, &krusader; не удалось найти подходящие исполняемые файлы в настроенном пути. Поддерживаются следующие архивы: ace, arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip и 7z.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>Архиватор</entry>
+            <entry
+>Настраиваемый полный путь</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>7z</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/7z</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>arj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/arj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>bzip2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/bzip2</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cpio</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/cpio</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>dpkg</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/dpkg</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>gzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/gzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lha</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>rar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/rar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/tar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unace</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unace</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unarj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unarj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unrar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unrar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>zip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/zip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <note>
+      <para
+>&krusader; может быть несовместим с ACE, несмотря на все усилия. Unace использует закрытый исходный код и содержит дополнительные строки, из-за которых Unace попадает в бесконечный цикл, если stdin перенаправлен куда-либо ещё. Это работает так же, как «su», где пароль нельзя ввести только из stdin. &krusader; &gt;= 1-51 эмулирует среду командной строки для обеспечения взаимодействия с Unace, но замечено, что Unace меняет формат вывода от выпуска к выпуску, что делает взаимодействие почти невозможным.</para>
+    </note>
+    <para>
+      <emphasis role="bold"
+>Вкладка «Утилиты подсчёта контрольной суммы»</emphasis>
+    </para>
+    <para
+>Здесь можно настроить полный путь к следующим внешним <link linkend="checksum"
+>утилитам проверки контрольных сумм</link
+>: <informaltable
+> <tgroup cols="3"
+> <tbody>
+          <row>
+            <entry
+>Утилиты подсчёта контрольной суммы</entry>
+            <entry
+>Настраиваемый полный путь</entry>
+            <entry
+>Поддерживаемые контрольные суммы</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha224sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha224sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha224</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha384sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha384sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha384</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha512sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha512sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha512</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tigerdeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/tigerdeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>tiger</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>whirlpooldeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/whirlpooldeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>whirlpool</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cfv</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/cfv</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5, sha1, sfv, crc</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable
+></para>
+  </sect1>
+  <sect1 id="konfig-useractions">
+    <title
+>Пользовательские действия</title>
+    <para
+>Здесь можно настроить терминал для действий пользователя и шрифт для коллекции вывода. Терминал по умолчанию — <command
+>konsole --noclose -e</command
+>. Для настройки и управления действиями пользователя используется ActionMan (<link linkend="useractions"
+>Действия пользователя</link
+> &URL;).</para>
+
+  </sect1>
+  <sect1 id="konfig-protocols">
+    <title
+>Протоколы</title>
+    <para
+>На этой странице устанавливается связь между типами &MIME; и протоколами. например, протокол <quote
+>tar</quote
+> связан с типом &MIME; <quote
+>application/x-tar</quote
+>.</para>
+
+    <para
+>В разделе <guilabel
+>Ссылки</guilabel
+> показывается, например: <itemizedlist>
+      <listitem>
+        <para
+>Iso</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-iso</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>krarc</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-ace</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-arj</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-bzip2</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-cpio</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-deb</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-debian-package</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-gzip</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-jar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-lha</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rpm</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-zip</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>tar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-tar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tarz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tbz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tgz</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect1>
+</chapter>

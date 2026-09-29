@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>Сравнение</title>
+  <para
+>&krusader; содержит несколько функций сравнения: <guimenuitem
+>Сравнить по содержимому</guimenuitem
+>, <guimenuitem
+>Сравнить папки</guimenuitem
+> и функцию сравнения <link linkend="synchronizer"
+>Синхронизатор</link
+>.</para>
+  <sect2 id="compare-content">
+    <title
+>Сравнение по содержимому</title>
+    <indexterm>
+      <primary
+>Сравнить</primary>
+      <secondary
+>Содержимое</secondary>
+    </indexterm>
+    <para
+>Выберите по одному файлу в каждой панели и воспользуйтесь пунктом <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Сравнить по содержимому…</guimenuitem
+> </menuchoice
+>. &krusader; откроет внешнее графическое средство сравнения, которое <link linkend="konfig-dependencies"
+>настроено</link
+>. Поддерживаются &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> и <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>Сравнение папок</title>
+    <indexterm>
+      <primary
+>Сравнить</primary>
+      <secondary
+>Папки</secondary>
+    </indexterm>
+    <para
+>Чтобы сравнить файлы в каждой панели, выберите <menuchoice
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Сравнить папки</guimenuitem
+> </menuchoice
+>. По умолчанию в каждой панели будут выбраны более новые файлы и файлы, имеющиеся только в одной панели; это поведение можно изменить в меню <guimenuitem
+>Настройки сравнения</guimenuitem
+>. <note
+> <para
+>Файлы сравниваются не по содержимому, а только по именам и датам.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>Правка</guimenu
+> <guimenuitem
+>Настройки сравнения</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>Настраивает функцию <guimenuitem
+>Сравнить папки</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>Выделить более новые и одиночные</guimenuitem
+> (по умолчанию)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделить одиночные</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделить более новые</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделить различающиеся и одиночные</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>Выделить различающиеся</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>
