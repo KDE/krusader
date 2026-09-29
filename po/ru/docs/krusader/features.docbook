@@ -13,9 +13,9 @@
 </indexterm>
 <note>
   <para
->Здесь освещены наиболее важные возможности и улучшения. Этот список был бы слишком длинным, если включить сюда <emphasis
->всё</emphasis
->. Полное описание всех возможностей представлено в этом руководстве и файлах <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Наиболее важные возможности и улучшения освещены здесь, этот список стал бы слишком длинным, если включить <emphasis
+>все</emphasis
+> возможности и улучшения. Ещё больше возможностей вы найдёте в этом руководстве и в файлах <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 ><filename
 >ChangeLog</filename
 ></ulink
@@ -56,7 +56,7 @@
           </listitem>
           <listitem>
             <para
->Запуск сценариев и программ с учётом контекста, например, щелчок мыши/&Enter; (выполнить или открыть в приложении в соответствии с типом), <keycap
+>Запуск сценариев и программ с учётом контекста, например, щелчок мыши/Enter (выполнить или открыть в связанном приложении), <keycap
 >F3</keycap
 > (просмотр) и <keycap
 >F4</keycap
@@ -66,22 +66,22 @@
             <para
 ><link linkend="useractions"
 >Меню пользователя</link
-> — создайте своё собственное меню</para>
+> — создайте ваше собственное меню</para>
           </listitem>
           <listitem>
             <para
->История, например, <link linkend="folderhistory"
+>История, например <link linkend="folderhistory"
 >История каталогов</link
 >, <link linkend="popular-urls"
 >Часто посещаемые адреса</link
-> и так далее.</para>
+>, и т. д.</para>
           </listitem>
           <listitem>
             <para
 ><link linkend="vfs"
->Виртуальные файловые системы (ВФС)</link
->, например, для<link linkend="remote-connections"
->Удалённых соединений</link
+>Виртуальные файловые системы (VFS)</link
+>, например для <link linkend="remote-connections"
+>удалённых подключений</link
 >, <link linkend="archives"
 >архивов</link
 >, результатов поиска, синхронизатора.</para>
@@ -96,7 +96,7 @@
             <para
 ><link linkend="krusearcher"
 >Модуль расширенного поиска</link
->: поиск в архивах и содержимому поиска на удалённых файловых системах.</para>
+>: поиск в архивах и поиск содержимого в удалённых файловых системах.</para>
           </listitem>
           <listitem>
             <para
@@ -116,7 +116,7 @@
             <para
 ><link linkend="remote-connections"
 >Удалённые соединения</link
->: &FTP;/SAMBA с поддержкой SFTP/SCP через протоколы</para>
+>: &FTP;/SAMBA с поддержкой SFTP/SCP через KIO Slaves</para>
           </listitem>
           <listitem>
             <para
@@ -158,15 +158,15 @@
 >Возможности &krusader;</title>
           <listitem>
             <para
->Работа с архивами: обзор, распаковка, упаковка, проверка. Поддерживаемые <link linkend="archives"
+>Работа с архивами: просмотр, распаковка, упаковка, тестирование. Поддерживаются <link linkend="archives"
 >архивы</link
 >: ace, arj, bzip2, deb, gzip, iso, lha, rar, rpm, tar, zip и 7-zip.</para>
           </listitem>
           <listitem>
             <para
 ><link linkend="checksum"
->Создание и проверка контрольных сумм</link
-> — функция, поддерживающая md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv и crc.</para>
+>Проверка и создание контрольной суммы</link
+>, поддерживаются md5, sha1, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv и crc.</para>
           </listitem>
           <listitem>
             <para
@@ -186,7 +186,7 @@
             <para
 ><link linkend="compare-content"
 >Сравнение файлов по содержимому</link
-> через внешние программы наподобие &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
+> через внешние программы, например &kompare;, <ulink url="https://www.kde.org/applications/development/kdiff3/"
 ><application
 >KDiff3</application
 ></ulink
@@ -200,7 +200,7 @@
             <para
 ><link linkend="multi_rename"
 >Переименование</link
-> файлов и папок с помощью <ulink url="https://www.kde.org/applications/utilities/krename/"
+> файлов и каталогов через <ulink url="https://www.kde.org/applications/utilities/krename/"
 ><application
 >KRename</application
 ></ulink
@@ -208,9 +208,9 @@
           </listitem>
           <listitem>
             <para
->Полная поддержка перетаскивания: перетаскивайте данные из &konqueror; в файл <literal role="extension"
+>Полноценная поддержка перетаскивания: перетаскивайте из &konqueror; в файл <literal role="extension"
 >.tar.gz</literal
->, из панели &krusader; в корзину, на рабочий стол или в  &konqueror;</para>
+>, из панели &krusader; в корзину, на рабочий стол или в &konqueror;</para>
           </listitem>
           <listitem>
             <para
@@ -222,23 +222,23 @@
             <para
 ><keycap
 >F9</keycap
-> открывает <link linkend="tools-menu"
->окно терминала</link
+> откроет <link linkend="tools-menu"
+>Окно терминала</link
 > в текущем каталоге.</para>
           </listitem>
           <listitem>
             <para
 >Лёгкая правка <link linkend="file-menu"
 >прав доступа к файлам</link
->, владение ими и <link linkend="konfig-panel-view"
->Права (числовой вид)</link
+> и владельца файла, и <link linkend="konfig-panel-view"
+>цифровых прав</link
 >.</para>
           </listitem>
           <listitem>
             <para
 ><link linkend="krusearcher"
->Фильтры выделения</link
->, используемые в, например, синхронизаторе и KruSearcher.</para>
+>Фильтры выбора</link
+>, используемые, например, в синхронизаторе и KruSearcher.</para>
           </listitem>
           <listitem>
             <para>
@@ -248,13 +248,13 @@
           </listitem>
           <listitem>
             <para
-><link linkend="konfig-general"
->Поддержка типов &MIME;</link
+>Поддержка <link linkend="konfig-general"
+>типов MIME</link
 >.</para>
           </listitem>
           <listitem>
             <para
-><link linkend="folder_tabs"
+><link linkend="folder-tabs"
 >Панели с поддержкой вкладок</link
 > и <link linkend="krviewer"
 >Редактор/Просмотрщик с поддержкой вкладок</link
@@ -263,7 +263,7 @@
           <listitem>
             <para
 ><link linkend="quicksearch"
->Быстрый поиск, выделение и фильтрация</link
+>Быстрый поиск, выбор и фильтрация</link
 ></para>
           </listitem>
           <listitem>
@@ -329,7 +329,7 @@
           <listitem>
             <para
 ><link linkend="panel_profiles"
->Профили панелей</link
+>Профили панели</link
 ></para>
           </listitem>
           <listitem>
@@ -341,14 +341,14 @@
           <listitem>
             <para
 ><link linkend="selection_modes"
->Режимы выделения</link
+>Режимы выделения мышью</link
 ></para>
           </listitem>
           <listitem>
             <para
 >И множество других функций <link linkend="konfig-startup"
 >настраиваются</link
-> по желанию пользователя.</para>
+> по вашим нуждам.</para>
           </listitem>
         </itemizedlist>
       </para>
@@ -377,7 +377,7 @@
 ></para>
         </listitem>
       </itemizedlist
->Скачивайте и загружайте любимые расширения для &krusader; на <ulink url="https://store.kde.org/"
+>Загружайте и выгружайте ваши любимые расширения для &krusader; на <ulink url="https://store.kde.org/"
 >store.kde.org</ulink
 >. </para>
     </listitem>
@@ -386,7 +386,9 @@
 <para>
   <itemizedlist>
     <title
->Новые возможности в версии &krusader;-1.80.0 «Final 3rd Stone»</title>
+>Новые возможности в версии &krusader;-1.80.0 <quote
+>Final 3rd Stone</quote
+></title>
     <listitem>
       <para
 >Усовершенствование работы с архивами <itemizedlist>
@@ -402,7 +404,7 @@
           <para
 ><link linkend="archives"
 >Поддержка 7-zip</link
-> через внешние приложения <application
+>, через внешние приложения <application
 >7z</application
 > и <application
 >7za</application
@@ -411,8 +413,10 @@
         <listitem>
           <para
 ><link linkend="archives"
->Автоопределение</link
->, позволит открывать «скрытые архивы» (например, документы <trademark class="registered"
+>Поддержка автоопределения</link
+>, позволяет открывать <quote
+>скрытые архивы</quote
+> (например, документы <trademark class="registered"
 >OpenOffice</trademark
 >).</para>
         </listitem>
@@ -432,7 +436,7 @@
     <listitem>
       <para
 >Множество улучшений в системе <link linkend="useractions"
->действий</link
+>действий пользователя</link
 >.</para>
     </listitem>
     <listitem>
@@ -465,11 +469,11 @@
     </listitem>
     <listitem>
       <para
->Настраиваемые  <link linkend="list_panel"
+>Настраиваемые <link linkend="list_panel"
 >единые расширения</link
->. Расширения типа <literal role="extension"
+>, так что расширения типа <literal role="extension"
 >.tar.gz</literal
-> будут отображаться как единое целое в <guilabel
+> показываются как единое целое в <guilabel
 >столбце «расширение»</guilabel
 >. </para>
     </listitem>
@@ -493,14 +497,14 @@
       <para
 >Улучшения в <link linkend="synchronizer"
 >синхронизаторе</link
-> и параллельные потоки для медленных серверов &FTP;.</para>
+> и параллельные потоки для медленных FTP-серверов.</para>
     </listitem>
     <listitem>
       <para
 ><link linkend="konfig-startup"
 >Одиночный режим</link
 >, <link linkend="konfig-startup"
->запуск в системном лотке</link
+>запускать в системном лотке</link
 ></para>
     </listitem>
     <listitem>
@@ -517,7 +521,7 @@
     </listitem>
     <listitem>
       <para
->Результаты поиска, функции Locate, синхронизатора: поддержка перетаскивания элементов и копирования в буфер (<keycombo action="simul"
+>Результаты поиска, Locate и синхронизатора: поддержка перетаскивания элементов и копирования в буфер (<keycombo action="simul"
 >&Ctrl;<keycap
 >C</keycap
 ></keycombo
@@ -533,10 +537,12 @@
 <para>
   <itemizedlist>
     <title
->Новые возможности в версии &krusader;-1.90.0 «Power Stone»</title>
+>Новые возможности в версии &krusader;-1.90.0 <quote
+>Power Stone</quote
+></title>
     <listitem>
       <para
->Последняя версия для &kde; 3.x с большой коллекцией действий. </para>
+>Последняя версия для &kde; 3.x с большой коллекцией пользовательских действий. </para>
     </listitem>
   </itemizedlist>
 </para>
@@ -544,25 +550,27 @@
 <para>
   <itemizedlist>
     <title
->Новые возможности в версии &krusader;-2.0.0 «Mars Pathfinder»</title>
+>Новые возможности в выпуске &krusader;-2.0.0 <quote
+>Mars Pathfinder</quote
+></title>
     <listitem>
       <para
->Первый выпуск &kde; 4.x </para>
+>Первая версия для серии &kde; 4.x </para>
     </listitem>
     <listitem>
       <para
->&krusader; работает и в &Windows; (но пока он не такой полезный и полнофункциональный как на &Linux;) </para>
+>&krusader; работает в &Windows;! (но пока он не такой полезный и мощный, как под &Linux;) </para>
     </listitem>
     <listitem>
       <para
 ><link linkend="queue"
->Диспетчер очереди.</link>
+>Диспетчер очереди!</link>
       </para>
     </listitem>
     <listitem>
       <para
 ><link linkend="konfig-panel"
->Пять методов в панели.</link>
+>Пять методов в панели!</link>
       </para>
     </listitem>
   </itemizedlist>
@@ -571,26 +579,28 @@
 <para>
   <itemizedlist>
     <title
->Новые возможности в версии &krusader;-2.1.0-beta1 «Rusty Clutch»</title>
+>Новые возможности в версии &krusader;-2.1.0-beta1 <quote
+>Rusty Clutch</quote
+></title>
     <listitem>
       <para
 >Быстрый текстовый/шестнадцатеричный просмотрщик для файлов больших размеров. </para>
     </listitem>
     <listitem>
       <para
->Заблокированные закладки. </para>
+>Блокировка закладок. </para>
     </listitem>
     <listitem>
       <para
->Очередь упаковки/распаковки. </para>
+>Очередь упаковки / распаковки. </para>
     </listitem>
     <listitem>
       <para
->Улучшенная интеграция с корзиной. </para>
+>Лучшая интеграция с корзиной. </para>
     </listitem>
     <listitem>
       <para
->Панель быстрого поиска, выбора и фильтрации поддерживает регулярные выражения при поиске файлов. </para>
+>Панель быстрого поиска, выделения и фильтрации поддерживает регулярные выражения для сопоставления файлов. </para>
     </listitem>
   </itemizedlist>
 </para>
@@ -598,21 +608,23 @@
 <para>
   <itemizedlist>
     <title
->Новые возможности в версии &krusader;-2.5.0 «Clear Skies»</title>
+>Новые возможности в версии &krusader;-2.5.0 <quote
+>Clear Skies</quote
+></title>
     <listitem>
       <para
->Портировано на  &kf5-full;. </para>
+>Портирование на &kf5-full;. </para>
     </listitem>
     <listitem>
         <para
 >Новая панель <link linkend="quickfilter"
->быстрой фильтрации</link
-> с тремя различными режимами работы: выделение, поиск и фильтрация. </para>
+>Быстрый фильтр</link
+> с тремя режимами работы: выделение, поиск и фильтрация. </para>
     </listitem>
     <listitem>
         <para
->Обновлённый диспетчер очереди и новая <link linkend="job_toolbar"
->панель заданий</link
+>Переработанный диспетчер очереди (JobMan) и новая <link linkend="job_toolbar"
+>панель инструментов заданий</link
 >. </para>
     </listitem>
   </itemizedlist>
@@ -621,7 +633,9 @@
 <para>
   <itemizedlist>
     <title
->Новые возможности выпуска &krusader;-2.7.0 «Peace of Mind»</title>
+>Новые возможности в версии &krusader;-2.7.0 <quote
+>Peace of Mind</quote
+></title>
     <listitem>
       <para
 >Быстрый поиск в меню закладок. </para>
@@ -629,18 +643,73 @@
     <listitem>
       <para
 ><link linkend="folder-tabs"
->Фиксированные вкладки</link
+>Закреплённые вкладки</link
 >. </para>
     </listitem>
     <listitem>
       <para
->Всплывающая подсказка с информацией при наведении курсора мыши на имя файла. </para>
+>Всплывающая подсказка с информацией о файле при наведении указателя на имя файла. </para>
     </listitem>
     <listitem>
       <para
->Расширенные возможности для панели дерева на <link linkend="sidebar"
+>Расширенные параметры для панели дерева в <link linkend="sidebar"
 >боковой панели</link
 >. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>Новые возможности в версии &krusader;-2.8.0 <quote
+>A New Day</quote
+></title>
+    <listitem>
+      <para
+>Создание копии вкладки двойным щелчком. </para>
+    </listitem>
+    <listitem>
+      <para
+>Закрытие вкладок с помощью &Ctrl;+&LMB; или &Alt;+&LMB; (настраивается). </para>
+    </listitem>
+    <listitem>
+      <para
+>Отмена закрытия вкладок во время работы приложения. </para>
+    </listitem>
+    <listitem>
+      <para
+>Вкладки с динамически изменяемым размером. </para>
+    </listitem>
+    <listitem>
+      <para
+>Параметры настройки положения новой вкладки, видимости кнопок вкладок и поведения кнопки создания новой вкладки. </para>
+    </listitem>
+    <listitem>
+      <para
+>История и подсказки в диалоге создания каталога. </para>
+    </listitem>
+    <listitem>
+      <para
+>Перебор вариантов выделения — полное имя, имя файла и расширение — с помощью комбинации клавиш переименования (<keycap
+>F2</keycap
+> по умолчанию). </para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> удаляет ненужные записи из истории в различных диалогах. </para>
+    </listitem>
+    <listitem>
+      <para
+>Улучшена синхронизация между панелью и встроенным терминалом. </para>
+    </listitem>
+    <listitem>
+      <para
+>Улучшенная настройка цветов. </para>
     </listitem>
   </itemizedlist>
 </para>
@@ -648,15 +717,17 @@
 <para
 ><note
 ><para
->При использовании разрабатываемой или &git;-версии &krusader; возможно, что информации о последних новых функциях ещё нет в руководстве. Чтобы получить больше информации о новых функциях, обратитесь к файлу <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>Если вы используете разрабатываемую версию или версию из &git;, то возможно, что новые возможности ещё не появились в <quote
+>Руководстве &krusader;</quote
+>. Прочтите список изменений по адресу <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
 >Changelog</ulink
-> или просмотрите исходный код &krusader;.  Краткое описание представлено в файле <ulink url="https://commits.kde.org/krusader?path=NEWS"
+> или в исходных текстах &krusader;, чтобы узнать больше о новых возможностях. Краткое описание можно найти по адресу <ulink url="https://commits.kde.org/krusader?path=NEWS"
 >NEWS</ulink
-> или исходном коде &krusader;. <link linkend="faqg_wish"
+> или в исходных текстах &krusader;. <link linkend="faqg_wish"
 >Отзывы пользователей</link
 > и <link linkend="faqg_bug_report"
->отчёты об ошибках</link
-> всегда приветствуются. </para
+>сообщения об ошибках</link
+> всегда приветствуются! </para
 ></note
 ></para>
 </chapter>

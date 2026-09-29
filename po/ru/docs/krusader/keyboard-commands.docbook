@@ -1,0 +1,2364 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="keyboard-commands">
+  <title
+>Команды клавиатуры</title>
+  <indexterm>
+    <primary
+>Команды</primary>
+    <secondary
+>Клавиатура</secondary>
+  </indexterm>
+  <sect1 id="keyboard-usage">
+    <title
+>Использование клавиатуры</title>
+    <para
+>В этой главе описывается, как эффективно использовать клавиатуру, так как большинство операций быстрее выполняется с клавиатуры, чем с помощью мыши. Изучение <link linkend="key_bindings"
+>комбинаций клавиш</link
+> потребует времени, но их освоение позволяет сэкономить немало времени. Учтите, что &krusader; позволяет использовать <link linkend="configure-shortcuts"
+>профили комбинаций клавиш</link
+> для быстрого переключения на другие наборы комбинаций клавиш, например, от других файловых менеджеров, а также создавать собственные комбинации клавиш.</para>
+    <para
+>После запуска &krusader; можно приступать к работе с клавиатурой. Нажмите <keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+>, чтобы перейти к <link linkend="list_panel"
+>панели адреса</link
+>, где можно ввести нужную папку. После нажатия <keycombo action="simul"
+>&Ctrl;&Down;</keycombo
+> открывается <link linkend="termemu"
+>эмулятор терминала</link
+>, в котором можно ввести любую команду, если <link linkend="konfig-startup"
+>терминал показан</link
+>. Нажмите <keycombo action="simul"
+>&Ctrl;&Up;</keycombo
+>, чтобы вернуться к активной панели. Чтобы перейти к файлу или папке, имя которых начинается с <literal
+>f</literal
+>, просто нажмите <keycap
+>f</keycap
+> на клавиатуре и воспользуйтесь <link linkend="quicksearch"
+>строкой поиска</link
+>. Нажмите &Enter;, чтобы выполнить файл или открыть папку, находящуюся в фокусе. Помните о функциональных клавишах: <keycap
+>F3</keycap
+> — просмотр, <keycap
+>F4</keycap
+> — правка, <keycap
+>F5</keycap
+> — копирование, <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>U</keycap
+></keycombo
+> — распаковка, и т. д.</para>
+    <para
+>Кроме того, можно выполнять несколько операций с <link linkend="folder-tabs"
+>вкладками папок</link
+>, в том числе несколько операций <link linkend="edit-menu"
+>выделения</link
+>. А в конце можно закрыть &krusader; клавишей <keycap
+>F10</keycap
+>.</para>
+  </sect1>
+  <sect1 id="key_bindings">
+    <title
+>Комбинации клавиш</title>
+    <indexterm>
+      <primary
+>Комбинации клавиш</primary>
+    </indexterm>
+    <indexterm>
+      <primary
+>Команды</primary>
+      <secondary
+>Клавиатура</secondary>
+    </indexterm>
+    <para
+>Большинство привязок клавиш (комбинаций клавиш) можно настроить в меню <menuchoice
+> <guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настройка комбинаций клавиш…</guimenuitem
+> </menuchoice
+>, если вместо заданных по умолчанию требуются другие. Можно также назначить привязки клавиш дополнительным действиям (тем, для которых привязка клавиш по умолчанию не задана). Следует учесть, что некоторые привязки клавиш не относятся к &krusader; (например, привязки &plasma;). Привязки клавиш, используемые &krusader; по умолчанию, перечислены ниже.</para>
+
+    <!-- FN keys -->
+    <para>
+      <emphasis role="bold"
+>Функциональные клавиши (FN)</emphasis>
+    </para>
+    <para
+>Здесь приведены комбинации клавиш <link linkend="fnkeys"
+>панели функциональных клавиш</link
+>. Начиная с версии 1.51 эти комбинации клавиш настраиваются.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F1</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Помощь</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F2</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Переименование файлов</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F3</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Просмотр файлов.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F4</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Редактирование файлов</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F5</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Копировать файлы.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F6</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Переместить файлы</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F7</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Создать новую папку.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F8</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Удаление файлов (или перемещение в корзину)</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F9</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="tools-menu"
+>Терминал</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F10</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Выйти из &krusader;</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- SHIFT keys -->
+    <para>
+      <emphasis role="bold"
+>Клавиши &Shift;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="help-menu"
+>Что это?</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="multi_rename"
+>Групповое переименование (<application
+>Krename</application
+>).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>Введите URL для просмотра.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Редактировать новый файл</link>
+              </para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Копировать через очередь.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F6</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>Перемещение с помощью очереди.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Просмотр всех файлов.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Пользовательский просмотр файлов.</link>
+              </para>
+            </entry>
+          </row>
+          <!-- This keybinding is disabled in the "viewactions.cpp" source file
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Shift;<keycap
+>F11</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="view-menu"
+>Executables</link
+></para
+></entry
+></row>
+-->
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Переключиться на левую вкладку папки.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Переключиться на вкладку правой панели.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- ALT keys -->
+    <para>
+      <emphasis role="bold"
+>Клавиши &Alt;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Выделение всего.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Отменить выбор.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Инвертировать выделение.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>Показ и скрытие скрытых (точечных) файлов.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="mount-man"
+>Менеджер монтирования.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>`</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="useractions"
+>Меню пользователя</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Home;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Перейти в домашнюю папку.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>Свойства.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Закладки левой панели.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Закладки правой панели.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="sidebar"
+>Боковая панель</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Стандартные комбинации клавиш (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- ALT+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>Клавиши &Alt;+&Shift;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Компактный вид</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="compare-dir"
+>Сравнение папок</link
+></para>
+            </entry>
+          </row
+>		  
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Подробный вид</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="test-archive"
+>Проверить архив.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Запустить &krusader; в <link linkend="root-mode"
+>режиме root</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="panel_profiles"
+>Профили панели</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+          <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panel_toolbar"
+>Синхронизация панелей, также известная как <quote
+>кнопка «Равно» (=)</quote
+>.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="pack-archive"
+>Упаковка файлов.</link>
+              </para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Управление очередью</para>
+            </entry>
+          </row
+>		  
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="diskusage"
+>Использование диска</link
+>.</para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="unpacking-archives"
+>Распаковка файлов.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+
+    <!-- CTRL -->
+    <para>
+      <emphasis role="bold"
+>Клавиши &Ctrl;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Добавить закладку для текущего элемента.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="bookman"
+>Открытие закладок</link
+> в активной панели.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Редактирование файла с правами root (действие пользователя по умолчанию).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открытие <link linkend="quicksearch"
+>панели быстрого поиска</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>H</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="folderhistory"
+>Открытие списка истории</link
+> в активной панели.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>I</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открытие <link linkend="quickfilter"
+>панели быстрого фильтра</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="jump_back"
+>Возврат</link
+>, аналогичный <trademark class="registered"
+>Safari</trademark
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Перейдите на <link linkend="list_panel"
+>панель адреса</link
+> (исходная), как в <trademark class="registered"
+>Firefox</trademark
+> и &konqueror;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Открыть список носителей</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открытие диалогового окна <link linkend="tools-menu"
+>«Новое сетевое подключение»</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открытие этой папки в панели с помощью диалогового окна выбора папки.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="splitter"
+>Разделение файла.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Выйти из &krusader;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Перезагрузка (обновление) панели.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo
+>&Ctrl; <keycap
+>S</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krusearcher"
+>Поиск.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Смена панелей (без смены всех вкладок папок)</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Закрытие текущей вкладки.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="synchronizer"
+>Синхронизация папок</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>Часто посещаемые адреса.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Выделение группы.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>Отменить выбор группы.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Открытие списка истории командной строки.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="cmdline"
+>Переход из активной панели в командную строку/эмулятор терминала</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>Переход из командной строки/эмулятора терминала в активную панель.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход из активной панели на <link linkend="list_panel"
+>панель адреса</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Home;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход в домашнюю папку.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> или <keycombo
+> &Right; </keycombo
+></para>
+            </entry>
+            <entry>
+              <para
+>Установите фокус на файл или папку на левой панели, нажмите <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> — и правая <link linkend="panels"
+>панель</link
+> изменится: <itemizedlist
+> <listitem
+> <para
+>на файле: правая панель получает тот же путь, что и левая <link linkend="panels"
+>панель</link
+>.</para
+> </listitem
+> <listitem
+> <para
+>на папке: правая панель обновляется содержимым папки.</para
+> </listitem
+> </itemizedlist
+>Для правой панели: нажмите <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> — и левая панель изменится.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Backspace;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход в корневую папку.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход на одну папку вверх.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход к папке из другой панели.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Return</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+	      <para
+>При открытом <link linkend="media_button"
+>меню носителей</link
+> подключает или отключает выделенное устройство.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>Клавиши &Ctrl;+&Shift;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="remote-connections"
+>Отключение удалённого подключения.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="jump_back"
+>Установка точки возврата.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Графический интерфейс пользователя <link linkend="locate"
+>Locate</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Перемещение текущей <link linkend="folder-tabs"
+>вкладки</link
+> на другую сторону окна.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открытие <link linkend="quickselect"
+>панели быстрого выбора</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>Смена сторон (также со сменой всех вкладок папок)</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Открытие списка носителей левой панели</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>Открыть список носителей правой панели.</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открытие <link linkend="cmdline"
+>эмулятора терминала</link
+> независимо от того, показана ли командная строка.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Закрытие <link linkend="cmdline"
+>эмулятора терминала</link
+> независимо от того, показывается командная строка или нет.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Перемещение текущей вкладки влево.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Перемещение текущей вкладки вправо.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+ALT -->
+    <para>
+      <emphasis role="bold"
+>Клавиши &Ctrl;+&Alt;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Показ/скрытие <link linkend="cmdline"
+>встроенного терминала</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Подключение (действие пользователя по умолчанию).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Новая вкладка.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переключение <link linkend="list_panel"
+>панели списка</link
+> между горизонтальным и вертикальным режимами.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Создать новую символическую ссылку.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Список истории левой панели.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>Список истории правой панели.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Выравнивание размера панелей (действие пользователя по умолчанию).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>Создать копию вкладки.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открыть текущую папку в <link linkend="folder-tabs"
+>новой вкладке.</link
+></para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- GENERAL CTRL -->
+    <para>
+      <emphasis role="bold"
+>Общие клавиши &Ctrl;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>A</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Выделение всего.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Перемещение в нижнюю часть текущей папки.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Стандартные комбинации клавиш (&plasma;).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Стандартные комбинации клавиш (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS -->
+    <para>
+      <emphasis role="bold"
+>Другие клавиши</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>foo</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="quicksearch"
+>Быстрый поиск</link
+>, быстрый выбор или <link linkend="quickfilter"
+>быстрый фильтр</link
+>. О настройке режима по умолчанию см. <link linkend="konfig-panel-general"
+>эту страницу параметров</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Tab;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>Переключение между панелями</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Enter;</para>
+            </entry>
+            <entry>
+              <para
+><link linkend="executing_files"
+>Для файла:</link
+> открыть/выполнить этот файл</para>
+              <para
+><link linkend="browsing-archives"
+>Для архива:</link
+> открыть архив как папку.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Esc;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="moving-around"
+>Снимает фокус ввода с панели меню, если она в фокусе.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Удалить</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Удаление (или перемещение в корзину)</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>Альтернативное удаление.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>Пробел </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="selecting-files"
+>На файле:</link
+> переключение выделения файла на одну позицию вниз без изменения выделения других файлов и папок.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Backspace;</para>
+            </entry>
+            <entry>
+              <para
+>Переход на одну папку вверх.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Ins; </para>
+            </entry>
+            <entry>
+              <para
+>Выполняет то же, что и клавиша &Space;, <link linkend="selecting-files"
+>и переходит на одну позицию вниз для переключения следующего файла.</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>Меню</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Меню правой кнопки мыши</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Home; </para>
+            </entry>
+            <entry>
+              <para
+>Перемещение курсора в начало списка.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&End; </para>
+            </entry>
+            <entry>
+              <para
+>Переход курсора к последнему файлу в списке.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- COMMANDLINE -->
+    <para id="cmdline_keybindings">
+      <emphasis role="bold"
+>Командная строка</emphasis>
+    </para>
+    <para
+>Комбинации клавиш для <link linkend="cmdline"
+>командной строки</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para
+>Стрелка &Up; и стрелка &Down;</para>
+            </entry>
+            <entry>
+              <para
+>Прокрутка ранее введённых команд.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Открытие списка истории командной строки.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход из командной строки в активную панель.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход из активной панели в командную строку.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Вставка имени текущего файла или папки без пути в текущую позицию командной строки.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Вставка текущего файла или папки с полным путём в текущую позицию командной строки.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- TERMINAL EMULATOR -->
+    <para id="termemu_keybindings">
+      <emphasis role="bold"
+>Эмулятор терминала</emphasis>
+    </para>
+    <para
+>Комбинации клавиш <link linkend="termemu"
+>эмулятора терминала</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переключение <link linkend="termemu"
+>эмулятора терминала</link
+> между обычным и полноэкранным режимами.</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Вставка из буфера обмена.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход из эмулятора терминала в активную панель, если командная строка скрыта.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Переход из активной панели в эмулятор терминала, если командная строка скрыта.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>Up/Down arrow</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Постоянная установка и снятие фокуса с эмулятора терминала независимо от того, показана ли командная строка. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; &Ins;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Вставка из буфера обмена.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- SYNCHRONIZER -->
+    <para id="synchronizer_keybindings">
+      <emphasis role="bold"
+>Синхронизатор</emphasis>
+    </para>
+    <para
+>Комбинации клавиш для <link linkend="synchronizer"
+>синхронизатора</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Обратное направление</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Исключение</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Восстановление исходной задачи</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Копировать влево</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Копирование вправо</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Пометка для удаления</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- DEFAULT USERACTIONS -->
+    <para>
+      <emphasis role="bold"
+>Действия пользователя по умолчанию</emphasis>
+    </para>
+    <para
+>Комбинации клавиш по умолчанию для <link linkend="useractions"
+>действий пользователя</link
+>, которые предоставляет &krusader;.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Редактирование файла с правами root.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Копирование текущего элемента в буфер обмена.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Подключение новой файловой системы</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Выравнивание размера панелей.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>A</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Добавить в очередь в &amarok;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>1</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Сортировка по имени</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>2</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Сортировка по расширению.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>3</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Сортировка активной панели по размеру.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>4</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>Сортировка по дате изменения</para>
+            </entry>
+          </row>
+	            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="useractions-menu"
+>Резервное копирование текущего файла (действие пользователя по умолчанию).</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS URLs -->
+    <itemizedlist>
+      <title
+>Прочие комбинации клавиш</title>
+      <listitem>
+        <para>
+          <link linkend="selecting-files"
+>Выбор файлов</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="krviewer"
+>KrViewer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="diskusage"
+>Использование диска</link
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Графический интерфейс к <link linkend="locate"
+>Locate</link
+></para>
+      </listitem>
+      <listitem>
+        <para
+>Модуль <menuchoice
+><guimenu
+>Общий вид и поведение</guimenu
+><guisubmenu
+>Комбинации клавиш и жесты</guisubmenu
+></menuchoice
+> в &plasma; &systemsettings;.</para>
+      </listitem>
+      <listitem>
+        <para
+>Настраиваемые комбинации клавиш для <link linkend="useractions"
+>действий пользователя</link
+></para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+</chapter>

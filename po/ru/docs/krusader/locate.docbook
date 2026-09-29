@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>Графический интерфейс Locate</title>
+  <indexterm>
+    <primary
+>Найти</primary>
+  </indexterm>
+  <para
+>&krusader; предоставляет &GUI; для команды <command
+>locate</command
+> (findutils). Locate используется для быстрого поиска файлов не в папке, а в базе данных. Пакет содержит, среди прочих файлов, <command
+>locate</command
+> и <command
+>updatedb</command
+>. <command
+>updatedb</command
+> проходит по локальной файловой системе и сохраняет записи о файлах в базе данных. <command
+>cron</command
+> часто вызывает <command
+>updatedb</command
+> каждую ночь (настраивается с помощью <application
+>KCron</application
+>). Чтобы запустить эту функцию, выберите <menuchoice
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Поиск с использованием Locate…</guimenuitem
+> </menuchoice
+> или нажмите <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+>. В <link linkend="konfig-advanced"
+>Konfigurator</link
+> можно задать дополнительные аргументы для <command
+>updatedb</command
+>.</para>
+  <para
+>Параметры флажков <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>Показывать только существующие файлы</guilabel
+>: если база данных содержит записи, которых больше не существует (удалённые или перемещённые после последнего запуска <command
+>updatedb</command
+>), <command
+>locate</command
+> не выводит их в список. Перед выводом списка в окне результатов проверяется существование каждого файла (медленно).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>С учётом регистра</guilabel
+>: если снять флажок, поиск будет выполняться без учёта регистра.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Кнопки действий <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>Locate</guibutton
+>: выполняет <command
+>locate <replaceable
+>foo foo</replaceable
+></command
+> и помещает вывод в окно результатов.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Остановить</guibutton
+>: останавливает процесс поиска.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>UpdateDB</guibutton
+>: запускает <command
+>updatedb</command
+> для обновления базы данных locate после ввода пароля root.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>Закрыть</guibutton
+>: закрывает окно locate.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>Окно результатов <itemizedlist>
+    <listitem>
+      <para
+>Двойной щелчок по элементу: переход в его папку, элемент становится видимым, а диалоговое окно поиска закрывается.</para>
+    </listitem>
+    <listitem>
+      <para
+>Щелчок правой кнопкой: редактирование, просмотр и поиск в меню. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: показывает текущий элемент.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: изменение текущего элемента.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: находит файлы в окне результатов.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: показывает следующий результат поиска.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: показывает предыдущий результат поиска.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>Окно результатов поддерживает перетаскивание элементов в другие окна и копирование в буфер обмена (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

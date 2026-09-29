@@ -1,0 +1,703 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>Действия пользователя</title>
+  <indexterm>
+    <primary
+>Действия пользователя</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>ActionMan позволяет создавать, настраивать действия пользователя и управлять ими. Некоторые общие параметры настраиваются с помощью <link linkend="konfig-useractions"
+>Konfigurator</link
+>. С помощью действий пользователя можно выполнять операции над файлами на панели или обращаться к внутренним функциям &krusader; с параметрами напрямую, используя заполнители. Действия без проблем встраиваются в систему действий &plasma;, то есть стандартные диалоговые окна настройки панели инструментов и комбинаций клавиш также будут показывать действия пользователя. Действия пользователя хранятся в <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> или <filename
+>krusader/useraction.xml</filename
+> в папке, которую можно определить с помощью команды <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. В документации приведено несколько <link linkend="useraction-xml"
+>примеров</link
+>. С помощью ActionMan действия пользователя можно изменять, добавлять, импортировать и экспортировать. Действия пользователя по умолчанию хранятся в <filename
+> /usr/share/krusader/useraction-examples.xml</filename
+>. Действия пользователя могут появляться почти везде, где можно разместить <quote
+>обычные</quote
+> KActions. Действия можно разместить даже в строке меню, но для этого нужно изменить файл <filename
+>krusaderui.rc</filename
+>. Несколько примеров:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>Меню «Пользовательские действия»</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>Меню пользователя</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>Панель действий</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Меню правой кнопки мыши</para>
+    </listitem>
+    <listitem>
+      <para
+>и т. д.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Инструмент «Действия пользователя» в &krusader; очень мощный и настраиваемый, если имеется опыт написания действий пользователя.</para>
+  <tip>
+    <para
+>По умолчанию доступно несколько действий пользователя. <link linkend="help_krusader"
+>Загрузите свои избранные действия пользователя</link
+>, чтобы они стали доступны сообществу &krusader;. Спасибо!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>ActionMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>ActionMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>По сути, действия пользователя — это способ вызова внешних программ с переменными параметрами. Например, можно создать действие пользователя со следующей командой <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+>, чтобы поставить в очередь все выбранные элементы активной панели в текущий экземпляр xmms. Кроме того, имеется ограниченный доступ к внутренним функциям &krusader;, требующим параметров. Например, <command
+>%aPanelSize("80")%</command
+> задаёт ширину активной панели в 80 % от главного окна &krusader;. Поскольку параметр заполнителя может содержать другие заполнители, возможны лишь немногие сценарии. </para>
+  <para>
+    <emphasis role="bold"
+>Управление действиями пользователя</emphasis>
+  </para>
+  <para
+>Откройте Konfigurator и выберите <menuchoice
+><guimenu
+>Пользовательские действия</guimenu
+> <guimenuitem
+>Запустить менеджер действий</guimenuitem
+></menuchoice
+>, в котором можно добавлять, изменять, удалять, импортировать и экспортировать действия пользователя.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Добавить действие</guimenuitem
+>: при добавлении нового действия открывается пустая форма ввода, в которой можно задать все нужные свойства. Действие будет добавлено сразу после нажатия кнопки <guimenuitem
+>Применить</guimenuitem
+>. После этого его название показывается в списке слева.</para>
+    </listitem>
+    <listitem>
+      <para
+>Чтобы изменить действие пользователя, выберите его в списке слева. Затем выберите его, если требуется изменить свойства. Изменения вступят в силу только после нажатия кнопки <guimenuitem
+>Применить</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Удаление действия пользователя</guimenuitem
+>: выберите действие пользователя в левой части и нажмите кнопку <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Импорт действия пользователя</guimenuitem
+>: При импорте действий они автоматически добавляются в список. Если возникают конфликты имён (имена должны быть уникальны, поскольку служат идентификаторами в системе действий &plasma;), будет предложено их устранить. Для этого в списке слева показываются только действия, у которых есть конфликты. Теперь им можно дать новые имена или удалить их.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Экспортировать действие</guimenuitem
+>: при экспорте действия пользователя необходимо указать имя файла для его сохранения. Если файл не существует, он будет создан. Если файл уже содержит действия пользователя, экспортируемое действие будет добавлено в него.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Все заданные действия теперь показываются в меню пользователя и в диалоговых окнах &plasma; для изменения комбинаций клавиш и управления панелью инструментов. Кроме того, все действия, доступные для текущего элемента, также появятся в контекстном меню.</para>
+  <para>
+    <emphasis role="bold"
+>Основные свойства</emphasis>
+  </para>
+  <para
+><guimenuitem
+>Идентификатор</guimenuitem
+>, <guimenuitem
+>Название</guimenuitem
+> и <guimenuitem
+>Командная строка</guimenuitem
+> обязательны всегда, остальные свойства — необязательны.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>Идентификатор</guimenuitem
+>: уникальное имя действия пользователя, используемое для его идентификации в системе действий &plasma;.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Кнопка со значком</guimenuitem
+>: значок для действия пользователя.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Категория</guimenuitem
+>: категории используются для лучшего обзора. Они показываются как пункты подменю в меню <guimenuitem
+>Действия</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Заголовок</guimenuitem
+>: заголовок, показываемый в меню и диалоговых окнах.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Всплывающая подсказка</guimenuitem
+>: всплывающая подсказка для действия пользователя, например, показывается на панели инструментов при наведении указателя мыши.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Описание</guimenuitem
+>: описание того, что делает действие пользователя. Оно также показывается как <guimenuitem
+>Что это?</guimenuitem
+>, если щёлкнуть по действию пользователя, удерживая <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Команда</guimenuitem
+>: команда, которая будет выполнена. Добавить заполнитель можно с помощью &GUI;, нажав кнопку <guibutton
+>Добавить</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Рабочая папка</guimenuitem
+>: рабочая папка для команды, которая будет выполнена.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Режим выполнения</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Обычный</guimenuitem
+>: обычный режим выполнения.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Запустить в терминале</guimenuitem
+>: запускает команду в терминале.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Запустить во встроенном эмуляторе терминала</guimenuitem
+>: выполняет команду во встроенном терминале.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Перехватывать вывод</guimenuitem
+>: собирает вывод выполняемой программы в окне &GUI;.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>Выделять стандартный вывод для ошибок</guimenuitem
+>: при использовании параметра <quote
+>Перехватывать вывод</quote
+> стандартный вывод и стандартный поток ошибок собираются раздельно.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Применять команду</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>Только локальные файлы (без &URL;)</guimenuitem
+>: указывает заполнителю, что нужно возвращать локальные адреса.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>&URL; (удалённые и локальные)</guimenuitem
+>: сообщает заполнителю, что нужно вернуть &URL;.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>Комбинация клавиш по умолчанию</guimenuitem
+>: задаёт комбинацию клавиш по умолчанию для действия пользователя.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>Включено</guimenuitem
+>: если флажок установлен, действие пользователя показывается в <link linkend="useractions"
+>меню действий пользователя</link
+>, иначе действие пользователя будет скрыто.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>Синтаксис командной строки</emphasis>
+  </para>
+  <para
+>По сути, всё, что введено в командной строке, будет выполнено (если ввести <quote
+>ls -l</quote
+>, выполнится <quote
+>ls -l</quote
+>). Имеется возможность получить от &krusader; строку символов, представляющую текущее состояние панели. Это делается с помощью заполнителей. Заполнитель начинается со знака процента ('%'), за которым следует индикатор панели ('a' — активная, 'o' — другая, 'l' — левая, 'r' — правая панель. Если заполнителю не требуется панель для работы, это указывается знаком подчёркивания ('_')). Затем идёт имя заполнителя (см. список ниже), которое может содержать параметры, заключённые в кавычки. И наконец, снова знак процента.</para>
+  <para
+>Это звучит очень сложно, поэтому приведём пример: '%aList("Selected")%' заменяется списком всех выбранных элементов активной панели. Так, команда 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' запустит xmms со списком всех файлов .mp3 в текущей панели, разделённых одним пробелом.</para>
+  <para
+>В настоящее время реализованы следующие заполнители:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+> — заменяется путём панели</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необязательный): автоматическое экранирование пробелов. По умолчанию: да.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+> — заменяется количеством &lt;первого параметра&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: какие элементы; либо <quote
+>Все</quote
+>, <quote
+>Выбранные</quote
+>, <quote
+>Файлы</quote
+> или <quote
+>Папки</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> — заменяется маской фильтра панели</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+> — заменяется на текущий элемент</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необязательный): пропускать текущий путь. По умолчанию: нет.</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): автоматическое экранирование пробелов. По умолчанию: да.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+> — заменяется списком всех &lt;первого параметра&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: какие элементы; либо <quote
+>Все</quote
+>, <quote
+>Выбранные</quote
+>, <quote
+>Файлы</quote
+> или <quote
+>Папки</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): разделитель между элементами. По умолчанию: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): пропускать текущий путь. По умолчанию: нет.</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): маска фильтра (для всех, кроме <quote
+>Выбранные</quote
+>). По умолчанию: *</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): автоматическое экранирование пробелов. По умолчанию: да.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+>: управляет выделением на панели</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: маска фильтра</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): способ изменения; <quote
+>Установить</quote
+>, <quote
+>Добавить</quote
+> или <quote
+>Удалить</quote
+>. По умолчанию: <quote
+>Установить</quote
+>.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+> — изменяет путь панели на &lt;первый параметр&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: относительный или абсолютный путь либо &URL;.</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): открывает расположение в новой вкладке. По умолчанию: нет</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> — запрашивает у пользователя текст и заменяется ответом</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: вопрос</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): ответ по умолчанию</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): заголовок окна вопроса</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+> — управляет буфером обмена</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: текст, который должен попасть в буфер обмена (здесь имеет смысл использовать <quote
+>%aCurrent%</quote
+>)</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр (необязательный): добавлять текст к текущему содержимому буфера обмена с этим разделителем</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+>: копирует файл, полезно для быстрого создания локальных резервных копий</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: что копировать</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: место копирования</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> — открывает Синхронизатор с заданным профилем</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: профиль для синхронизатора</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+> — открывает окно поиска с заданным профилем</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: профиль для модуля поиска</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+> — загружает заданный профиль панели</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: профиль панели</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+> — разбивает командную строку на список. Эти команды выполняются одна за другой.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: элемент списка (все, все файлы, все папки, все выбранные).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+> — перемещает из источника в место назначения.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: источник</para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: назначение</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+> — изменяет соотношение размеров двух панелей.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необязательный): целое число, например, 80 — активная панель занимает 80 % ширины &krusader; (высоты в вертикальном режиме); если параметр не указан, подразумевается 50 %.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> — отменяет выполнение.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр (необязательный): строка для вопроса об отмене.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> — заменяется на путь и имя временного файла, содержащего список элементов</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: путь/имя файла</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> — задаёт сортировку по столбцу определённой панели.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: столбец: либо <quote
+>Имя</quote
+>, <quote
+>Расширение</quote
+>, <quote
+>Тип</quote
+>, <quote
+>Размер</quote
+>, <quote
+>Изменён</quote
+>, <quote
+>Права</quote
+>, <quote
+>rwx</quote
+>, <quote
+>Владелец</quote
+> или <quote
+>Группа</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: последовательность сортировки: либо <quote
+>Переключение</quote
+>, <quote
+>По возрастанию</quote
+>, <quote
+>По убыванию</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>View</userinput
+> — задаёт режим просмотра.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>Параметр: режим просмотра: либо <quote
+>обычный</quote
+>, <quote
+>текст</quote
+>, <quote
+>шестнадцатеричный</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>Параметр: режим окна: либо <quote
+>вкладка</quote
+>, <quote
+>окно</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>Предусмотрено вспомогательное средство на основе &GUI; для добавления заполнителей. Пробелы в заполнителях Path, Current и List по умолчанию экранируются автоматически. Следует знать ещё об одной важной особенности: все заполнители, взаимодействующие с внутренними функциями &krusader;, вызываются во время раскрытия (то есть непосредственно при замене заполнителей). Внешние программы вызываются во время выполнения (то есть после замены всех заполнителей).</para>
+  <para>
+    <emphasis role="bold"
+>Дополнительные свойства</emphasis>
+  </para>
+  <para
+>Здесь можно настроить, где команда должна показываться (в контекстном меню). Кроме того, можно изменить выполняемую команду и задать отдельное её подтверждение. Также можно указать пользователя, от имени которого должна выполняться команда.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Задаёт, применимо ли действие к протоколу, пути, типу &MIME; или имени файла.</para>
+    </listitem>
+    <listitem>
+      <para
+>Настройка командной строки перед выполнением.</para>
+    </listitem>
+    <listitem>
+      <para
+>Задать другого пользователя для выполнения (не действует во внутренних функциях &krusader;)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>
