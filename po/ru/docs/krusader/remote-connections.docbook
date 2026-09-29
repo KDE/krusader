@@ -1,0 +1,354 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="remote-connections">
+  <title
+>Удалённые подключения</title>
+  <indexterm>
+    <primary
+>Удалённые подключения</primary>
+  </indexterm>
+  <para
+>Удалённые подключения легко устанавливаются вводом &URL; в <link linkend="list_panel"
+>панели адреса</link
+>; фактически это KIO-модули. Учтите, что панель &krusader; поддерживает не все KIO-модули, например, <command
+>http://</command
+> не будет работать в панели, но будет работать в <link linkend="krviewer"
+>программе просмотра</link
+>. Несколько примеров:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>public.ftpserver.org/folder/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>пользователь@узел/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>username:password@sftp.foo.org/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>username@my.server.org:21/folder/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>пользователь:пароль@сервер/ресурс</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>имя_пользователя@имя_пользователя_прокси:пароль@пароль_прокси@имя_узла/папка</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;host&gt;:&lt;port&gt;&lt;url-path&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.server.com/путь/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Эти &URL; можно добавить в закладки, однако следует прочитать раздел <link linkend="bookman"
+>Bookman</link
+> о <emphasis
+>безопасном сохранении паролей</emphasis
+>. Для подключения к нескольким расположениям добавьте эти &URL; в закладки и открывайте их по одному или все сразу с помощью <link linkend="panel_profiles"
+>профилей панели</link
+>. Чтобы переключаться между расположениями, откройте для каждого <link linkend="folder-tabs"
+>вкладку папки</link
+>.</para>
+  <para
+>Существует три способа установить удалённое подключение:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>Введите &URL; в <link linkend="list_panel"
+>панели адреса</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>Чтобы открыть диалоговое окно с запросом параметров удалённого узла, выберите <menuchoice
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Новое сетевое соединение</guimenuitem
+> </menuchoice
+>. Это окно удобно тем, кто не привык вводить удалённые &URL; в панели адреса. Если оставить поля пароля и имени пользователя пустыми, вход будет выполнен как анонимный. Примечание: планируется переписать это диалоговое окно.</para>
+    </listitem>
+    <listitem>
+      <para
+>Папку на удалённом узле можно добавить в закладки и возвращаться к ней с помощью кнопки закладок в верхнем углу панели — так же, как в веб-браузере.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>После входа на удалённый сервер его можно просматривать так же, как локальный жёсткий диск, за следующими исключениями:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>На удалённых серверах выполнение файлов невозможно.</para>
+    </listitem>
+    <listitem>
+      <para
+>Права доступа не всегда удаётся вычислить на удалённых серверах (зависит от сервера и способа доступа), поэтому в столбцах прав доступа для некоторых файлов может показываться <guilabel
+>?</guilabel
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Сведения об использовании дискового пространства недоступны для большинства удалённых файловых систем.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>Чтобы изменить кодировку удалённого узла, выберите <menuchoice
+> <guimenu
+>Вид</guimenu
+> <guimenuitem
+>Выбрать кодировку</guimenuitem
+> </menuchoice
+> .</para>
+  <para
+>Текущее активное удалённое подключение можно закрыть двумя способами:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>Вручную: добавьте кнопку отключения на <link linkend="mainwindow"
+>основную панель инструментов</link
+> и нажмите её.</para>
+    </listitem>
+    <listitem>
+      <para
+>Автоматически: измените &URL; в <link linkend="list_panel"
+>панели адреса</link
+>.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>&krusader; — файловый менеджер, поддерживающий удалённые подключения через KIO-модули, но если требуются ещё более широкие возможности удалённых подключений, например, расширенный клиент &FTP;, рекомендуется использовать, например, <ulink url="https://lftp.yar.ru/"
+>LFTP</ulink
+> или <ulink url="https://filezilla-project.org/"
+><application
+>FileZilla</application
+></ulink
+>.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>Подключения к локальной сети по протоколу fish:/ (Zeroconf)</title>
+  <indexterm>
+    <primary
+>Удалённые подключения к локальной сети (zeroconf)</primary>
+  </indexterm>
+
+<para
+>Автор этого раздела — Andrew Svet (z-vet). Отзывы об этой главе приветствуются. Спасибо!</para>
+
+ <note>
+   <para
+>Это работает в системе &Debian;, поэтому будет работать в &Debian; и производных от неё системах (&kubuntu;, и т. д.), хотя должно работать и в других системах Linux. Предполагается, что <link linkend="gloss-ssh"
+>SSH</link
+> установлен, настроен и работает на каждой машине локальной сети, к которой или с которой выполняется подключение. В Интернете есть множество очень хороших руководств по <link linkend="gloss-ssh"
+>SSH</link
+>, например, на <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+>, или просто найдите их в Google. В этой главе используется стандартный порт <link linkend="gloss-ssh"
+>SSH</link
+> (22). Не забудьте изменить его, если используется другой. Все изменения, редактирование и т. д. должны выполняться от имени root. </para>
+ </note>
+
+<para
+>Начнём с установки всех необходимых пакетов: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> Всё установлено, теперь перейдём к настройке. Сначала нужно, чтобы службы объявлялись в локальной сети. Именно поэтому установлен avahi-daemon: он представляет машину в локальной сети и позволяет другим приложениям публиковать предоставляемые ими службы. Вместе с avahi-daemon поставляется пример файла настройки <filename
+>ssh.service</filename
+>, находящийся в <filename class="directory"
+>/usr/share/doc/avahi-daemon/examples</filename
+>. Чтобы служба объявлялась в локальной сети, скопируйте этот файл в папку <filename class="directory"
+>/etc/avahi/services</filename
+>: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> Теперь нужно, чтобы объявлялся и протокол fish:/, поэтому файл ssh.service используется как шаблон для fish.service: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> Этот файл — всего лишь копия ssh.service. Отредактируйте файл <filename
+>fish.service</filename
+> и замените <quote
+>Remote Terminal on %h</quote
+> на <quote
+>Fish to %h</quote
+>, а <quote
+>_ssh._tcp</quote
+> на <quote
+>_fish._tcp</quote
+>. Вот как он выглядит после правки: <programlisting>
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*-->
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
+
+&lt;service-group
+> 
+
+  &lt;name replace-wildcards="yes"
+>FISH to %h&lt;/name
+> 
+
+  &lt;service>
+    &lt;type
+>_fish._tcp&lt;/type>
+    &lt;port
+>22&lt;/port>
+  &lt;/service
+> 
+
+&lt;/service-group>
+</programlisting
+> Сохраните изменённый файл. Теперь нужно создать новый файл <filename
+>_fish._tcp</filename
+>, открыть текстовый редактор и добавить следующие строки: <programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting
+> И сохранить файл <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+> Проделайте то же самое на каждой машине в локальной сети, затем перезапустите avahi-daemon: <screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> Затем откройте &krusader; и введите в location-toolbar-lnk: <filename
+>zeroconf:/</filename
+>, чтобы открыть подключение <link linkend="gloss-zeroconf"
+>zeroconf</link
+>. Войдите в папку <guilabel
+>Fish Protocol</guilabel
+>. Внутри находятся ссылки на каждую машину, объявившую <filename
+>fish:/</filename
+> в локальной сети; location-toolbar-lnk: будет указывать на <filename
+>zeroconf:/_fish._tcp</filename
+> Двойной щелчок по любой из этих машин вызовет запрос пароля с требованием ввести парольную фразу ключа ssh (если пароль был задан). Введите парольную фразу. Поздравляем: подключение к удалённой машине с помощью &krusader; установлено! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>Создание и проверка контрольных сумм</title>
+  <indexterm>
+    <primary
+>Контрольная сумма</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Создать контрольную сумму…</guimenuitem
+> </menuchoice
+>: &krusader; проверяет, какие средства доступны в системе, и если они поддерживают рекурсивную обработку (если выбраны папки), можно создать контрольную сумму, выбрав её тип из списка (<guilabel
+>md5</guilabel
+>, <guilabel
+>sha</guilabel
+>, и т. д.). Затем контрольную сумму можно сохранить в файл, обычно с именем <filename
+>checksum.md5</filename
+> или <filename
+>checksum.sha1</filename
+>.</para>
+  <para
+><menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Проверить контрольную сумму…</guimenuitem
+> </menuchoice
+>: &krusader; проверяет наличие инструмента, поддерживающего нужный тип контрольной суммы (из указанного файла контрольных сумм), и показывает файлы, не прошедшие проверку контрольной суммы (если такие есть).</para>
+  <para
+>Система абстрагируется от различий между механизмами контрольных сумм и утилитами для их вычисления. В настоящее время поддерживаются следующие контрольные суммы: md5, sha1, sha256, sha224, sha256, sha384, sha512, tiger, whirlpool, cfv и crc. Перед использованием этой функции проверьте <link linkend="konfig-dependencies"
+>параметры утилит контрольных сумм</link
+>.</para>
+</sect1>

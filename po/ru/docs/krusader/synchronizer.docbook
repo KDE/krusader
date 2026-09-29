@@ -1,0 +1,840 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>Синхронизатор</title>
+  <indexterm>
+    <primary
+>Синхронизатор</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>Введение</title>
+  <para
+>Эта функция сравнивает две папки со всеми вложенными папками и показывает различия между ними. После выбора некоторых параметров и функции <guilabel
+>Сравнить</guilabel
+> можно синхронизировать файлы и папки. Одна из панелей может быть сервером &FTP;. Следует помнить о параметре <guilabel
+>Сравнивать по содержимому</guilabel
+>, если размеры файлов совпадают. Чтобы запустить эту функцию, выберите <menuchoice
+> <guimenu
+>Сервис</guimenu
+> <guimenuitem
+>Синхронизировать папки</guimenuitem
+> </menuchoice
+> или нажмите <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+>. <link linkend="konfig-color"
+>Цвета</link
+> можно настроить. У синхронизатора есть собственные <link linkend="synchronizer_keybindings"
+>комбинации клавиш</link
+>. </para>
+  <note>
+    <para
+>Для локальных файлов: синхронизатор изменяет информацию о дате на исходные даты.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>Синхронизатор</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>Синхронизатор</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>Процедура:</title>
+    <listitem>
+      <para
+>Укажите папки <guilabel
+>Папка слева</guilabel
+> и <guilabel
+>Папка справа</guilabel
+>, которые требуется сравнить.</para>
+    </listitem>
+    <listitem>
+      <para
+>Настройте необязательные <guilabel
+>Фильтр файлов</guilabel
+>, <guilabel
+>Общие фильтры</guilabel
+> и <guilabel
+>Дополнительные фильтры</guilabel
+>. В <guilabel
+>Общих фильтрах</guilabel
+> есть параметр <guilabel
+>Не искать в</guilabel
+>, позволяющий исключить папки из сравнения.</para>
+    </listitem>
+    <listitem>
+      <para
+>Установите <link linkend="synccomp_checkb_options"
+>параметры флажков</link
+>: <guilabel
+>Все вложенные папки рекурсивно</guilabel
+>, <guilabel
+>Переходить по символическим ссылкам</guilabel
+>, <guilabel
+>Сравнивать по содержимому</guilabel
+>, <guilabel
+>Игнорировать дату</guilabel
+>, <guilabel
+>Асимметричный режим</guilabel
+> и <guilabel
+>Без учёта регистра</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>Чтобы сравнить папки, нажмите кнопку <guibutton
+>Сравнить</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>С помощью <link linkend="synccomp_show_options"
+>Показать параметры</link
+> можно включать и исключать отдельные типы файлов. Файлы, отсутствующие в списке, синхронизация не затрагивает.</para>
+    </listitem>
+    <listitem>
+      <para
+>При необходимости операции <guilabel
+>Задача</guilabel
+>, определённые компаратором, можно изменить с помощью <link linkend="synccomp_right-click"
+>меню, вызываемого правой кнопкой мыши</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>Если результаты сравнения, полученные с помощью кнопки <guibutton
+>Сравнить</guibutton
+>, вас устраивают, нажмите кнопку <guibutton
+>Синхронизировать</guibutton
+>, чтобы открыть диалоговое окно синхронизации.</para>
+    </listitem>
+    <listitem>
+      <para
+>Выбрав параметры <link linkend="synchronizer"
+>Синхронизатора</link
+>, нажмите кнопку <guibutton
+>Запустить</guibutton
+>, чтобы начать процесс синхронизации.</para>
+    </listitem>
+  </orderedlist
+>Ниже приведено подробное описание всех функций и кнопок.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>Сравнение</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>Элементы панели</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Папка слева</guilabel
+>: базовая папка левой стороны.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Папка справа</guilabel
+>: базовая папка правой стороны.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Фильтр файлов</guilabel
+>: фильтрует имена файлов при синхронизации. Например, <literal role="extension"
+>*.png</literal
+> выбирает только файлы, имена которых заканчиваются на <literal role="extension"
+>.png</literal
+>. Папки показываются, если имя папки заканчивается на <literal role="extension"
+>.png</literal
+> или если папка содержит файлы, имена которых заканчиваются на <literal role="extension"
+>.png</literal
+>. Пример включения и исключения нескольких шаблонов: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> включает <literal role="extension"
+>*.cpp *.h</literal
+> и исключает <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Общие фильтры</guilabel
+>: поиск по имени и содержащемуся тексту</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Дополнительные фильтры</guilabel
+>: размер, дата, владелец</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>Критерии фильтрации имён файлов</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Можно использовать маски. Несколько шаблонов разделяются пробелом (это логическое ИЛИ), а для исключения шаблонов из поиска используется символ вертикальной черты. Если шаблон заканчивается косой чертой (*шаблон*/), это означает, что он относится к рекурсивному поиску папок.</para>
+          </listitem>
+          <listitem>
+            <para
+>Шаблон — означает поиск тех файлов и папок, имя которых соответствует шаблону; рекурсивный поиск выполняется по всем вложенным папкам независимо от значения шаблона.</para>
+          </listitem>
+          <listitem>
+            <para
+>pattern/ — означает поиск всех файлов и папок, но рекурсивный поиск проходит через папки, имя которых соответствует шаблону, либо исключает их.</para>
+          </listitem>
+          <listitem>
+            <para
+>Для имён, содержащих пробелы, можно использовать кавычки. Фильтр <quote
+>Program Files</quote
+> отбирает файлы и папки с именем <filename
+>Program Files</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>Примеры:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>Примечание: условие поиска «text» эквивалентно «*text*».</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>Параметры флажков</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Все вложенные папки рекурсивно</guilabel
+>: при сравнении синхронизатор обходит вложенные папки.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Переходить по символическим ссылкам</guilabel
+>: синхронизатор переходит по символическим ссылкам на папки (а не на файлы!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Сравнивать по содержимому</guilabel
+>: файлы, размеры которых совпадают, также сравниваются по содержимому.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Игнорировать дату</guilabel
+>: игнорирует информацию о дате (полезно для &FTP;, smb, архивов, …). Информация о дате имеет значение *только* в локальной файловой системе.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Асимметричный режим</guilabel
+>: <guilabel
+>Папка слева</guilabel
+> — целевая папка, <guilabel
+>Папка справа</guilabel
+> — исходная папка. Эта функция синхронизирует содержимое левой папки с правой папкой. <itemizedlist
+> <listitem
+> <para
+>Файлы, которые есть только слева, будут удалены.</para
+> </listitem
+> <listitem
+> <para
+>Файлы, которые есть только справа, будут скопированы влево.</para
+> </listitem
+> <listitem
+> <para
+>Файлы, считающиеся одинаковыми, останутся без изменений.</para
+> </listitem
+> <listitem
+> <para
+>Файлы, считающиеся разными, будут скопированы влево. Эту функцию следует применять с осторожностью!</para
+> <itemizedlist
+> <listitem
+> <para
+>Учтите, что предусмотрена мера для предотвращения потери данных: если даты учитываются (так как параметр <guilabel
+>Игнорировать дату</guilabel
+> отключён), то по умолчанию <emphasis
+>файл не перезаписывается его старой версией</emphasis
+>. Пользователь всё же может перезаписать файл (щелчком правой кнопкой мыши и выбором пункта <guilabel
+>Копировать справа налево</guilabel
+>).</para
+> </listitem
+> </itemizedlist
+> </listitem
+> </itemizedlist
+>Эта функция полезна, если информация о дате непригодна, или для синхронизации левой папки с содержимым файлового сервера (например, папки загрузок). Кроме того, она полезна для создания резервной копии из правой папки в левую. ПРИМЕЧАНИЕ. Этот параметр нельзя использовать для синхронизации настольного компьютера и ноутбука (например, файлы, которые есть только слева, будут удалены!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Прокрутка результатов</guilabel
+>: этот параметр предназначен для медленных серверов &FTP;… Когда синхронизатор завершает сравнение файла, он сразу помещает файл в конец списка и при необходимости прокручивает окно. Это важно, если нужно знать, что делает синхронизатор. Если сервер &FTP; медленный, сравнение папки может занять много времени. Включив этот параметр, можно увидеть, что средство сравнения <quote
+>живо</quote
+>, но работает медленно. На быстрых файловых системах это может немного снизить скорость сравнения.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Без учёта регистра</guilabel
+>: сравнение имён файлов без учёта регистра — полезно при синхронизации файловых систем &Windows;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Игнорировать скрытые файлы</guilabel
+>: игнорирует файлы, имена которых начинаются с точки.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>После выполнения всех вышеописанных действий нажмите кнопку <guibutton
+>Сравнить</guibutton
+>, чтобы сравнить папки. Результаты показываются в <guilabel
+>Списке файлов</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Список файлов</term>
+      <listitem>
+        <para
+><guilabel
+>Список файлов</guilabel
+> содержит следующие столбцы: <quote
+>Имя слева | Размер слева | Время слева | Задача | Время справа | Размер справа | Имя справа</quote
+>. Здесь можно проверить результаты сравнения и при необходимости изменить действия синхронизации. Цвет текста определяет направление копирования по умолчанию, заданное компаратором. <itemizedlist
+> <listitem
+> <para
+>Зелёный: копирование слева направо.</para
+> </listitem
+> <listitem
+> <para
+>Синий: копирование справа налево или удаление справа в асимметричном режиме.</para
+> </listitem
+> <listitem
+> <para
+>Красный: файлы, различающиеся по заданным критериям (направление копирования отсутствует).</para
+> </listitem
+> <listitem
+> <para
+>Чёрный: файлы, идентичные (направление копирования отсутствует).</para
+> </listitem
+> </itemizedlist
+> Двойной щелчок по файлу вызывает функцию <guilabel
+>Сравнивать по содержимому</guilabel
+> в &krusader;. Столбец «Задачи» (&lt;=&gt;) определяет направление копирования по умолчанию, которое при необходимости можно изменить. Окно результатов поддерживает перетаскивание элементов в другие окна (перетаскивание [слева], &Shift;+перетаскивание [справа]) и копирование выбранных элементов слева/справа в буфер обмена (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>Список файлов</guilabel
+>: столбец задач (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>В этом столбце показывается задача, запланированная для синхронизатора; эту задачу можно изменить с помощью <link linkend="synccomp_right-click"
+>меню, вызываемого правой кнопкой мыши</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: копирует с левой стороны на правую. Для папок: <command
+>mkdir</command
+> в правой стороне.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: файлы одинаковы, никакие действия не выполняются.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: файл исключён или синхронизатор не знает, что делать.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: копирует с правой стороны на левую. Для папок: <command
+>mkdir</command
+> в левой стороне</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: удаление файлов с правой стороны.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>Показать параметры</term>
+      <listitem>
+        <para
+>Здесь можно включать и исключать отдельные типы файлов. Файлы, отсутствующие в списке, синхронизация не затрагивает.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: включение и отключение задачи копирования слева направо.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: включение и отключение показа совпадающих файлов.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: включение и отключение показа исключённых файлов и файлов, для которых <quote
+>неизвестно, что делать</quote
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: включение и отключение задачи копирования справа налево.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Корзина</guibutton
+>: включение и отключение удаления файлов для задачи левой стороны.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Дубликаты</guibutton
+>: включает/отключает показ файлов, которые есть с обеих сторон.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Единичные</guibutton
+>: включение или отключение файлов, существующих только на одной стороне.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Кнопки действий</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Сравнить</guibutton
+>: сравнивает папки, результаты показываются в <guilabel
+>Списке файлов</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Стоп</guibutton
+>: остановка сравнения.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Синхронизировать</guibutton
+>: показывает диалоговое окно синхронизации.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Закрыть</guibutton
+>: закрытие окна синхронизатора.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Строка состояния может содержать</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Количество папок, просканированных при сравнении.</para>
+          </listitem>
+          <listitem>
+            <para
+>Имя файла при сравнении по содержимому (для больших файлов).</para>
+          </listitem>
+          <listitem>
+            <para
+>Число файлов в списке.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>Меню, вызываемое правой кнопкой мыши, в <guilabel
+>Списке файлов</guilabel
+></term>
+      <listitem>
+        <para
+>Меню, вызываемое правой кнопкой мыши, разделено на три раздела:</para>
+        <para
+>1. Измените операции <guilabel
+>Задача</guilabel
+>, определённые компаратором. Выберите один или несколько файлов. Изменение будет применено к выделению, а не только к элементу, на котором выполнен щелчок правой кнопкой мыши. Если выбранный элемент — папка, изменение будет применено также к её файлам и вложенным папкам.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Синхронизировать папки…</guibutton
+>: запуск синхронизации.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Исключить</guibutton
+>: исключение файла или папки из синхронизации (задача изменяется на !=).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Восстановить исходную операцию</guibutton
+>: изменение задачи на исходный результат сравнения.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Обратное направление</guibutton
+>: изменение задачи ( -&gt; на &lt;-, и &lt;- на -&gt; ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Копировать справа налево</guibutton
+>: изменение задачи на &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Копировать слева направо</guibutton
+>: изменение задачи на -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Удалить (одиночный слева)</guibutton
+>: изменение задачи на DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. Измените выделенные объекты</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Выделить элементы</guibutton
+>: открывает диалоговое окно, позволяющее выделить элементы. Это диалоговое окно <guimenuitem
+>Выделить группу</guimenuitem
+> из <link linkend="edit-menu"
+>меню «Правка»</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Снять выделение с элементов</guibutton
+>: открывает диалоговое окно, позволяющее снять выделение с элементов. Это диалоговое окно <guimenuitem
+>Снять выделение с группы</guimenuitem
+> из <link linkend="edit-menu"
+>меню «Правка»</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Инвертировать выделение</guibutton
+>: инвертирование состояния выделения всех элементов.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. прочие (учтите, что следующие операции выполняются над файлом, на котором выполнен щелчок правой кнопкой мыши, а не над выделением).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Просмотреть левый файл</guibutton
+>: запуск программы просмотра для левого файла.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Просмотреть правый файл</guibutton
+>: запуск программы просмотра для правого файла.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Сравнить файлы</guibutton
+>: запуск утилиты сравнения (например, &kompare;) для файлов.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Другие кнопки</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Профили</guibutton
+>: если приходится часто синхронизировать одни и те же папки, можно сохранить параметры, например, включаемые файлы, исключаемые файлы, … Нажмите кнопку <guibutton
+>Профиль</guibutton
+> — появится возможность добавлять, загружать, сохранять и удалять профили синхронизатора.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Поменять местами стороны</guibutton
+>: меняет местами <guilabel
+>Список файлов</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Синхронизировать с <application
+>kget</application
+></term>
+      <listitem>
+        <para
+>Если требуется синхронизировать локальную папку с нестабильным сервером &FTP;, <application
+>kget</application
+> — гораздо лучшее решение, чем простое копирование файлов. После сравнения можно щёлкнуть правой кнопкой мыши по списку результатов и выбрать <guimenuitem
+>Синхронизация с KGet</guimenuitem
+>, чтобы выполнить синхронизацию; после этого перечисленные файлы будут загружены с помощью <application
+>kget</application
+>, а не &krusader;. Разумеется, <application
+>kget</application
+> должен быть установлен на компьютере, иначе эта возможность будет недоступна.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>Синхронизация</title
+>  
+
+  <para
+>После нажатия кнопки <guibutton
+>Синхронизировать</guibutton
+> открывается диалоговое окно синхронизации.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>Флажки</term>
+      <listitem>
+        <para
+>Здесь подтверждаются операции копирования и удаления синхронизатора</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Справа налево</guilabel
+>: копирование X1 файлов (Y1 байт) — включение и отключение копирования справа налево.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Слева направо</guilabel
+>: копирование X2 файлов (Y2 байт), включение и отключение копирования слева направо.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Слева</guilabel
+>: удаление X3 файлов (Y3 байт), включение и отключение удаления с левой стороны.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Подтверждать перезапись</guilabel
+>: при включении этого параметра Krusader перед перезаписью файла будет показывать диалоговое окно <guibutton
+>Переименовать, Пропустить, Перезаписать, Пропустить все, Перезаписать все</guibutton
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Метки состояния</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>Готово</guilabel
+>: файлов A1/A2, байт B1/B2. Эта строка изменяется при синхронизации и показывает, что синхронизатор завершил работу с A1 файлами из A2 (B1 байт из B2).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>Индикатор выполнения</guilabel
+>: показывает ход синхронизации (по байтам).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Кнопки действий</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>Запустить</guibutton
+>: запуск синхронизации.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Пауза / Продолжить</guibutton
+>: приостановка и возобновление процесса синхронизации.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>Закрыть</guibutton
+>: закрытие диалогового окна синхронизации (и остановка синхронизации).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>Параллельная синхронизация</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>Здесь можно задать число «квази» потоков.</para>
+          </listitem>
+          <listitem>
+            <para
+>Позволяет значительно увеличить скорость при синхронизации с медленными серверами &FTP;.</para>
+          </listitem>
+          <listitem>
+            <para
+>Не влияет на скорость локальной синхронизации.</para>
+          </listitem>
+          <listitem>
+            <para
+>Удалённое <quote
+>сравнение по содержимому</quote
+> и <quote
+>сравнение папок</quote
+> выполняются параллельно.</para>
+          </listitem>
+          <listitem>
+            <para
+>Удалённая синхронизация также выполняется параллельно, за исключением задач <command
+>mkdir</command
+> (<command
+>mkdir</command
+> должен выполняться до копирования).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

@@ -1,0 +1,321 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<appendix id="useraction-xml">
+  <title
+>useractions.xml</title>
+  <para
+>В этом приложении приведено несколько примеров файлов <filename
+>useractions.xml</filename
+>. С их помощью можно оценить возможности <link linkend="useractions"
+>UserActions</link
+> и приступить к их изучению. Освоив создание UserActions, можно убедиться, что &krusader; — ещё более мощный и настраиваемый инструмент.</para>
+  <para
+>Загружайте свои UserActions на <ulink url="https://store.kde.org"
+>store.kde.org</ulink
+> — ведётся их сбор. Если ваш UserAction будет отобран, он войдёт в состав &krusader; в следующем выпуске.</para>
+
+<itemizedlist>
+    <listitem
+><para
+>Запускает <command
+>uptime</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="uptime" >
+  &lt;title
+>Время работы&lt;/title>
+  &lt;tooltip
+>Показывает, сколько времени прошло с момента загрузки компьютера&lt;/tooltip>
+  &lt;icon
+>clock&lt;/icon>
+  &lt;category
+>Информация&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>uptime&lt;/command>
+  &lt;defaultshortcut
+>Alt+Ctrl+U&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Запускает <command
+>ls -l</command
+> <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="ls -l" >
+  &lt;title
+>ls -l в текущем каталоге&lt;/title>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" 
+>ls -l %aPath% %oPath%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+    <listitem
+><para
+>Заполнитель Echo <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+ &lt;KrusaderUserActions>
+  &lt;action name="test_placeholder" >
+  &lt;title
+>Заполнитель Echo&lt;/title>
+  &lt;tooltip
+>Выводит значения заполнителей&lt;/tooltip>
+  &lt;category
+>Тестирование&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command executionmode="collect_output" onmultiplefiles="call_each" 
+>echo -e &quot;aPath %aPath()%  \naCurrent: %aCurrent()%&quot;&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+    </para
+></listitem>
+
+      <listitem
+><para
+>Это действие пользователя копирует текущий путь и имя файла в буфер обмена: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="clipboard current" >
+  &lt;title
+>Копировать в буфер обмена&lt;/title>
+  &lt;tooltip
+>Копировать в буфер обмена&lt;/tooltip>
+  &lt;icon
+>klipper&lt;/icon>
+  &lt;category
+>Система&lt;/category>
+  &lt;description
+>Копировать текущий путь и имя файла в буфер обмена&lt;/description>
+  &lt;command
+>%_Clipboard(&quot;%aCurrent%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+C&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Выбирает <literal role="extension"
+>.diff</literal
+> и <literal role="extension"
+>*.h</literal
+> в активной панели: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="test_select" >
+  &lt;title
+>Добавить выделение *.diff и *.h&lt;/title>
+  &lt;category
+>Выделение&lt;/category>
+  &lt;command
+>%aSelect(&quot;*.diff&quot;, &quot;add&quot;)% %aSelect(&quot;*.h&quot;, &quot;add&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Активная панель переключается на <filename
+>mnt/floppy</filename
+> (закладка): <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+&lt;action name="mnt/floppy bookmark" >
+  &lt;title
+>Переход к /mnt/floppy&lt;/title>
+  &lt;category
+>Закладки&lt;/category>
+  &lt;command
+>%aGoto(&quot;/mnt/floppy&quot;, &quot;yes&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Выделяет на неактивной панели все имена файлов, отмеченные на активной панели: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="asdfasdf" >
+  &lt;title
+>Выделение в другой панели&lt;/title>
+  &lt;category
+>Выделение&lt;/category>
+  &lt;description
+>Выделить все имена файлов, выделенные в активной панели, а также в неактивной панели&lt;/description>
+  &lt;command
+>%oSelect(&quot;%aList(&quot;selected&quot;, &quot; &quot;, &quot;Yes&quot;)%&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Создаёт резервную копию текущего файла/папки с именем <filename
+>foo.bak</filename
+> в текущей папке: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="backup current" >
+  &lt;title
+>Резервное копирование в текущем каталоге&lt;/title>
+  &lt;tooltip
+>Создаёт резервную копию в текущей папке&lt;/tooltip>
+  &lt;icon
+>document-save-as&lt;/icon>
+  &lt;category
+>Система&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>%_Copy(&quot;%aCurrent%&quot;, &quot;%_Ask(&quot;new name&quot;, &quot;%aCurrent%.bak&quot;)%&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Shift+F5&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Открывает <link linkend="krusearcher"
+>KruSearcher</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="search" >
+  &lt;title
+>Проверка поиска&lt;/title>
+  &lt;command
+>%_NewSearch(&quot;Search 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Устанавливает выбранное изображение в качестве обоев: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="set wallpaper" >
+  &lt;title
+>Установить как обои&lt;/title>
+  &lt;tooltip
+>Установить как обои&lt;/tooltip>
+  &lt;icon
+>image&lt;/icon>
+  &lt;category
+>Меню сервиса&lt;/category>
+  &lt;description
+>Установить как обои (с масштабированием)&lt;/description>
+  &lt;command
+>dcop kdesktop KBackgroundIface setWallpaper &quot;%aCurrent%&quot; 6&lt;/command>
+  &lt;defaultshortcut
+>Win+W&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Это действие пользователя изменяет файл с правами root с помощью <command
+>kdesu</command
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="edit as root" >
+  &lt;title
+>Редактировать от имени root&lt;/title>
+  &lt;tooltip
+>Редактировать от имени root&lt;/tooltip>
+  &lt;icon
+>kwrite&lt;/icon>
+  &lt;category
+>Система&lt;/category>
+  &lt;description
+>Редактировать файл с правами root с помощью kdesu&lt;/description>
+  &lt;command
+>kdesu kwrite %aCurrent%&lt;/command>
+  &lt;defaultshortcut
+>Win+F4&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Это действие пользователя добавляет элементы в список проигрывания Amarok: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="amarok enqueue" >
+  &lt;title
+>Поставить в очередь в Amarok&lt;/title>
+  &lt;tooltip
+>Добавляет выбранные элементы в список воспроизведения Amarok&lt;/tooltip>
+  &lt;icon
+>amarok&lt;/icon>
+  &lt;category
+>Мультимедиа&lt;/category>
+  &lt;description same_as="tooltip" />
+  &lt;command
+>amarok --append %aList(&quot;Selected&quot;)%&lt;/command>
+  &lt;defaultshortcut
+>Win+A&lt;/defaultshortcut>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+      <listitem
+><para
+>Открывает <link linkend="synchronizer"
+>Синхронизатор</link
+>: <programlisting
+>&lt;!DOCTYPE KrusaderUserActions>
+&lt;KrusaderUserActions>
+ &lt;action name="synchronizer" >
+  &lt;title
+>Синхронизатор&lt;/title>
+  &lt;command
+>%_Sync(&quot;Sync 2&quot;)%&lt;/command>
+ &lt;/action>
+&lt;/KrusaderUserActions
+></programlisting>
+      </para
+></listitem>
+
+</itemizedlist>
+
+</appendix>

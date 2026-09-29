@@ -1,0 +1,72 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>Разделение файлов</title>
+  <indexterm>
+    <primary
+>Разделение файлов</primary>
+  </indexterm>
+  <para
+>Эта функция разделяет один (большой) файл на несколько файлов меньшего размера, чтобы их можно было разместить на носителях меньшей ёмкости (например, ZIP-диски, …) или отправить по электронной почте. Эти файлы можно снова объединить, чтобы восстановить исходный файл. Функции разделения и объединения &krusader; и <trademark class="copyright"
+>Total Commander</trademark
+> совместимы. Чтобы разделить файл, выберите <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Разделить</guimenuitem
+> </menuchoice
+> или <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: откроется диалоговое окно <guilabel
+>Разделение</guilabel
+> для подтверждения операции.</para>
+  <para
+>Если исходный файл называется <filename
+>foo</filename
+>, то части будут называться <filename
+>foo.000 foo.001 foo.002</filename
+> и т. д. Теоретического ограничения на количество частей нет, но рекомендуется ограничить их число максимумом в 1023 файла. &krusader; создаёт файл <filename
+>foo.crc</filename
+>. Этот файл содержит имя, размер и контрольную сумму CRC исходного файла. Объединить файл можно и без файла <filename
+>foo.crc</filename
+>, но в этом случае &krusader; не сможет проверить, правильно ли восстановлен исходный файл.</para>
+  <para
+>Пример файла <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>Чтобы объединить несколько файлов, выберите один из частичных файлов <filename
+>foo.xxx</filename
+> и выберите <menuchoice
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Объединить файлы…</guimenuitem
+> </menuchoice
+> или нажмите <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. Целевой папкой является неактивная панель, которую можно изменить. Имена файлов должны быть пронумерованы в порядке возрастания: <filename
+>foo.001, foo.002, foo.003</filename
+> и т. д. либо содержать буквы в порядке возрастания: (метод «букв»: <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>) <filename
+>fileaa, fileab, fileac</filename
+> и т. д. Если файл <filename
+>foo.crc</filename
+> находится в той же папке, что и частичные файлы, &krusader; использует его для проверки объединённого файла на наличие ошибок.</para>
+</sect1>
