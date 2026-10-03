@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-21 00:48+0000\n"
-"PO-Revision-Date: 2026-02-25 16:10+0200\n"
+"PO-Revision-Date: 2026-08-25 16:02+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -730,11 +730,10 @@ msgid "Downloading remote files"
 msgstr "Ladataan etätiedostoja"
 
 #: app/Archive/abstractthreadedjob.cpp:388
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "Laajennin: väliaikaistiedostoa ei voitu avata (%1)"
+msgstr "Väliaikaistiedostoa ”%1” ei voitu avata."
 
 #: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
@@ -973,10 +972,9 @@ msgstr "Poista"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "Laajennin: väliaikaistiedostoa ei voitu avata (%1)"
+msgstr "Mallin ”%1” väliaikaistiedostoa ei voitu avata."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -7656,10 +7654,9 @@ msgid "Enter the filename to edit:"
 msgstr "Anna muokattavan tiedoston nimi:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "Kansiota %1 ei ole olemassa."
+msgstr "Tiedostoa ”%1” ei voitu luoda."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9866,16 +9863,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "%1-arkistoille ei kansioiden luettelemista tueta."
 
 #: plugins/krarc/krarc.cpp:1570
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"Varmista, että %1-ohjelmatiedosto on asennettu järjestelmääsi oikein."
+"”%1”.\n"
+"Varmista, että ”%2”-ohjelmatiedosto on asennettu järjestelmääsi oikein"
 
 #: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format
