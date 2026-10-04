@@ -275,8 +275,27 @@ WorkerResult kio_isoProtocol::listDir(const QUrl &url)
         dir = root;
     }
 
+    // Add the listed directory itself, as a "." entry (expected by modern
+    // KIO clients).
+    // An ISO image is read-only, therefore a non-writable directory must
+    // be presented.
+    // A note for future developments: A similar approach could be seen in
+    // the `listAccounts()` function at <https://invent.kde.org/network/
+    // kio-gdrive/-/blob/master/src/kio_gdrive.cpp> and in the `listDir(const
+    // QUrl &url)` function at <https://invent.kde.org/network/kio-extras/-/
+    // blob/master/mtp/kio_mtp.cpp> (although for a writable directory in
+    // that case)
+    UDSEntry dotEntry;
+    dotEntry.fastInsert(UDSEntry::UDS_NAME, QStringLiteral("."));
+    dotEntry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    dotEntry.fastInsert(UDSEntry::UDS_SIZE, 0LL);
+    dotEntry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR |
+                                              S_IRGRP | S_IXGRP |
+                                              S_IROTH | S_IXOTH);
+    listEntry(dotEntry);
+
     QStringList l = dir->entries();
-    totalSize(l.count());
+    totalSize(l.count() + 1); // `+ 1` because the "." entry is counted
 
     UDSEntry entry;
     QStringList::Iterator it = l.begin();
