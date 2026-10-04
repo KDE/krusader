@@ -43,8 +43,22 @@ void KrSqueezedTextLabel::squeezeTextToLabel(qsizetype index, qsizetype length)
         QFontMetrics fm(fontMetrics());
         int labelWidth = size().width();
         int textWidth = fm.horizontalAdvance(sqtext);
+
+        bool hasToSqueeze = false;
+        qsizetype avgCharSize = 0;
         if (textWidth > labelWidth) {
-            qsizetype avgCharSize = textWidth / sqtext.length();
+            avgCharSize = textWidth / sqtext.length();
+            if (avgCharSize != 0) {
+                // In this case, there is no risk of division by zero when
+                // dividing by avgCharSize. Note: avgCharSize is zero (because
+                // sqtext.length() is bigger than textWidth) for example when
+                // searching inside some binary files whose content is displayed
+                // using UTF-8 characters
+                hasToSqueeze = true;
+            }
+        }
+
+        if (hasToSqueeze) {
             qsizetype numOfExtraChars = (textWidth - labelWidth) / avgCharSize;
             qsizetype delta;
 
