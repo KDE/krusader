@@ -484,7 +484,7 @@ bool KIso::openArchive(QIODevice::OpenMode mode)
                 idr = reinterpret_cast<struct iso_directory_record *>(&((reinterpret_cast<struct iso_primary_descriptor *>(&desc->data))->root_directory_record));
                 joliet = JolietLevel(&desc->data);
                 if (joliet) {
-                    QTextStream(&path) << "Joliet level " << joliet;
+                    path = QStringLiteral("Joliet level %1").arg(joliet);
                     if (c_j > 1)
                         path += " (" + QString::number(c_j) + ')';
                 } else {
