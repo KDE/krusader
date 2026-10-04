@@ -19,7 +19,6 @@ add_definitions(-DTRANSLATION_DOMAIN="krusader")
 
 target_link_libraries(kio_iso
     KF6::Archive
-    KF6::Completion
     KF6::ConfigCore
     KF6::KIOCore
     ${ZLIB_LIBRARY}
