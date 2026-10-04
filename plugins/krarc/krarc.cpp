@@ -120,6 +120,9 @@ public:
     }
 };
 
+// Reminder: If this function is modified, it's important to research whether the
+// changes must also be applied to `kdemain(int argc, char **argv)` in plugins/
+// iso/iso.cpp
 int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     if (argc != 4) {
