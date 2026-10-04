@@ -11,10 +11,13 @@
 
 #include "iso.h"
 
+#include <cstdlib>
+#include <memory>
 #include <zlib.h>
 
 // QtCore
 #include <QByteArray>
+#include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -22,38 +25,55 @@
 #include <QMimeType>
 #include <qplatformdefs.h>
 
+#include <KIO/WorkerFactory>
+
 #include "kiso.h"
 #include "kisodirectory.h"
 #include "kisofile.h"
 #include "libisofs/iso_fs.h"
 
-// Pseudo plugin class to embed meta data
-class KIOPluginForMetaData : public QObject
+// A note for future developments: A similar approach could be seen in
+// the `class KIOPluginFactory : public KIO::WorkerFactory` at <https://
+// invent.kde.org/frameworks/kio/-/blob/master/src/kioworkers/file/file.cpp>
+class IsoWorkerFactory : public KIO::WorkerFactory
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.iso" FILE "iso.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.iso" FILE "iso.json")
+
+public:
+    std::unique_ptr<KIO::WorkerBase> createWorker(const QByteArray &pool, const QByteArray &app) override
+    {
+        // `unique_ptr<kio_isoProtocol>` is implicitly converted to `unique_ptr<WorkerBase>`
+        return std::make_unique<kio_isoProtocol>(pool, app);
+    }
 };
 
 using namespace KIO;
-extern "C" {
 
-int Q_DECL_EXPORT kdemain(int argc, char **argv)
+// Reminder: If this function is modified, it's important to research whether the
+// changes must also be applied to `kdemain(int argc, char **argv)` in plugins/
+// krarc/krarc.cpp
+// A note for future developments: A similar approach could be seen
+// on <https://invent.kde.org/frameworks/kio/-/blob/master/src/kioworkers/file/file.cpp>
+// and <https://invent.kde.org/network/kio-extras/-/blob/master/smb/main.cpp>.
+extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     // qDebug()   << "Starting " << getpid() << endl;
 
     if (argc != 4) {
         fprintf(stderr, "Usage: kio_iso protocol domain-socket1 domain-socket2\n");
-        exit(-1);
+        return -1;
     }
+
+    QCoreApplication app(argc, argv);
+    app.setApplicationName(QStringLiteral("kio_iso"));
 
     kio_isoProtocol slave(argv[2], argv[3]);
     slave.dispatchLoop();
 
     // qDebug()   << "Done" << endl;
-    return 0;
+    return EXIT_SUCCESS;
 }
-
-} // extern "C"
 
 typedef struct {
     char magic[8];
