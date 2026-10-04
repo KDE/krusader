@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-21 00:48+0000\n"
-"PO-Revision-Date: 2026-05-25 21:36+0200\n"
+"PO-Revision-Date: 2026-10-03 20:45+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -722,11 +722,10 @@ msgid "Downloading remote files"
 msgstr "원격 파일 다운로드 중"
 
 #: app/Archive/abstractthreadedjob.cpp:388
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgctxt "%1=temporary file name"
 msgid "The temporary file \"%1\" could not be opened."
-msgstr "확장기: 임시 파일을 열 수 없음(%1)"
+msgstr "\"%1\" 임시 파일을 열 수 없습니다."
 
 #: app/Archive/abstractthreadedjob.cpp:499
 #, kde-format
@@ -964,10 +963,9 @@ msgstr "삭제"
 
 #: app/Dialogs/checksumdlg.cpp:94 app/Dialogs/checksumdlg.cpp:100
 #: app/KrViewer/lister.cpp:1346 app/Panel/panelfunc.cpp:542
-#, fuzzy, kde-format
-#| msgid "Expander: temporary file could not be opened (%1)"
+#, kde-format
 msgid "A temporary file with the template \"%1\" could not be opened."
-msgstr "확장기: 임시 파일을 열 수 없음(%1)"
+msgstr "\"%1\" 템플릿을 사용한 임시 파일을 열 수 없습니다."
 
 #: app/Dialogs/checksumdlg.cpp:121
 #, kde-format
@@ -2883,22 +2881,18 @@ msgstr ""
 "하십시오."
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "KDE 기본 색상 사용"
+msgstr "KDE Plasma 기본 색상 사용"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>KDE 전역 색 설정을 사용합니다.</p><p><i>KDE 시스템 설정 -> 모양 -> 색상</"
-"i></p>"
+"<p>KDE Plasma의 전역 색 설정을 사용합니다.</p><p><i>KDE Plasma 시스템 설정 -"
+"> 모양과 스타일 -> 색상과 테마 -> 색상</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2906,12 +2900,7 @@ msgid "Use alternate background color"
 msgstr "대체 배경색 사용"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
@@ -2919,8 +2908,8 @@ msgid ""
 "</p>"
 msgstr ""
 "<p><b>배경색</b>과 <b>대체 배경색</b>을 한 줄마다 돌아가면서 표시합니다.</"
-"p><p><i>KDE 기본 색상</i>을 사용하지 않는다면 <i>색</i> 상자에서 대체 색상을 "
-"설정할 수 있습니다.</p>"
+"p><p><i>KDE Plasma 기본 색상</i>을 사용하지 않는다면 <i>색</i> 상자에서 대체 "
+"색상을 설정할 수 있습니다.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2928,18 +2917,14 @@ msgid "Show current item even if not focused"
 msgstr "포커스가 맞지 않아도 현재 항목 표시"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
 "i>.</p>"
 msgstr ""
 "<p>비활성 목록 패널에서 마지막 커서 위치를 표시합니다.</p><p>이 옵션은 "
-"<i>KDE 기본 색상</i>을 사용하지 않을 때에만 사용할 수 있습니다.</p>"
+"<i>KDE Plasma 기본 색상</i>을 사용하지 않을 때에만 사용할 수 있습니다.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
@@ -6080,6 +6065,8 @@ msgid ""
 "Feedback:\n"
 "https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
+"피드백:\n"
+"https://krusader.org/get-involved/mailing-lists/index.html"
 
 #: app/main.cpp:130
 #, kde-format
@@ -7398,16 +7385,13 @@ msgid "Delete file, folder, etc."
 msgstr "파일이나 폴더 등을 삭제합니다."
 
 #: app/Panel/listpanelactions.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined "
-#| "in Konfigurator, default is <b>konsole</b>.</p></qt>"
+#, kde-format
 msgid ""
 "<qt><p>Open terminal in current folder.</p><p>It uses the system default "
 "terminal emulator.</p></qt>"
 msgstr ""
-"<qt><p>현재 폴더에서 터미널을 엽니다.</p><p>Konfigurator에서 터미널을 설정할 "
-"수 있으며, 기본값은 <b>Konsole</b>입니다.</p></qt>"
+"<qt><p>현재 폴더에서 터미널을 엽니다.</p><p>시스템 기본 터미널 에뮬레이터를 "
+"사용합니다.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:99
 #, kde-format
@@ -7570,10 +7554,9 @@ msgid "Enter the filename to edit:"
 msgstr "편집할 파일 이름 입력:"
 
 #: app/Panel/panelfunc.cpp:514
-#, fuzzy, kde-format
-#| msgid "The folder %1 does not exist."
+#, kde-format
 msgid "The file \"%1\" could not be created."
-msgstr "폴더 %1이(가) 없습니다.|/|폴더 %1$[이가 %1] 없습니다."
+msgstr "\"%1\" 파일을 만들 수 없습니다."
 
 #: app/Panel/panelfunc.cpp:613
 #, kde-format
@@ -9732,16 +9715,13 @@ msgid "Listing folders is not supported for %1 archives."
 msgstr "%1 형식 압축 파일에서 폴더 목록을 보는 것은 지원하지 않습니다."
 
 #: plugins/krarc/krarc.cpp:1570
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Make sure that the %1 binary is installed properly on your system."
+#, kde-format
 msgid ""
 "\"%1\".\n"
 "Make sure that the \"%2\" binary is installed properly on your system"
 msgstr ""
-"\n"
-"시스템에 %1 실행 파일이 설치되어 있는지 확인하십시오."
+"\"%1\".\n"
+"시스템에 \"%2\" 실행 파일이 설치되어 있는지 확인하십시오"
 
 #: plugins/krarc/krarc.cpp:1860 plugins/krarc/krarc.cpp:1886
 #, kde-format
