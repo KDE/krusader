@@ -223,12 +223,12 @@ QString KrServices::urlToLocalPath(const QUrl &url)
     // QUrl::toLocalFile() does not work if the protocol is "file" e.g. when opening an archive
     fileUrl.setScheme("file");
     QString path = fileUrl.toLocalFile();
-    REPLACE_DIR_SEP2(path);
+    path = QDir::fromNativeSeparators(path);
 
 #ifdef Q_OS_WIN
-    if (path.startsWith(DIR_SEPARATOR)) {
+    if (path.startsWith(Defaults::dirSeparatorChar)) {
         int p = 1;
-        while (p < path.length() && path[p] == DIR_SEPARATOR_CHAR)
+        while (p < path.length() && path[p] == Defaults::dirSeparatorChar)
             p++;
         /* /C:/Folder */
         if (p + 2 <= path.length() && path[p].isLetter() && path[p + 1] == ':') {

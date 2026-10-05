@@ -74,7 +74,7 @@ private:
     /** checks if a returned status ("exit code") of an archiving-related process is OK. */
     bool checkStatus(int exitCode);
     /** service function for parseLine. */
-    QString nextWord(QString &s, char d = ' ');
+    QString nextWord(QString &s, QChar d = u' ');
     /** translate permission string to mode_t. */
     mode_t parsePermString(QString perm);
     /** return the name of the directory inside the archive. */
@@ -105,23 +105,5 @@ private:
     QString m_currentCharset;
     QTextCodec *m_codec;
 };
-
-#ifdef Q_OS_WIN
-#define DIR_SEPARATOR "/"
-#define DIR_SEPARATOR2 "\\"
-#define DIR_SEPARATOR_CHAR '/'
-#define DIR_SEPARATOR_CHAR2 '\\'
-#define REPLACE_DIR_SEP2(x) x = x.replace(DIR_SEPARATOR2, DIR_SEPARATOR);
-#define ROOT_DIR "C:\\"
-#define EXEC_SUFFIX ".exe"
-#else
-#define DIR_SEPARATOR "/"
-#define DIR_SEPARATOR2 "/"
-#define DIR_SEPARATOR_CHAR '/'
-#define DIR_SEPARATOR_CHAR2 '/'
-#define REPLACE_DIR_SEP2(x)
-#define ROOT_DIR "/"
-#define EXEC_SUFFIX ""
-#endif
 
 #endif

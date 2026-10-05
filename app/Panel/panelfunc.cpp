@@ -1275,7 +1275,7 @@ void ListPanelFunc::refreshActions()
     panel->_actions->actFTPDisconnect->setEnabled(files()->isRemote()); // allow disconnecting a network session
     panel->_actions->actCreateChecksum->setEnabled(files()->isLocal());
     panel->_actions->actDirUp->setEnabled(!files()->isRoot());
-    panel->_actions->actRoot->setEnabled(!panel->virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR), QUrl::StripTrailingSlash));
+    panel->_actions->actRoot->setEnabled(!panel->virtualPath().matches(QUrl::fromLocalFile(QDir::rootPath()), QUrl::StripTrailingSlash));
     panel->_actions->actHome->setEnabled(!atHome());
     panel->_actions->actHistoryBackward->setEnabled(history->canGoBack());
     panel->_actions->actHistoryForward->setEnabled(history->canGoForward());
@@ -1285,7 +1285,7 @@ void ListPanelFunc::refreshActions()
 FileSystem *ListPanelFunc::files()
 {
     if (!fileSystemP)
-        fileSystemP = FileSystemProvider::instance().getFilesystem(QUrl::fromLocalFile(ROOT_DIR));
+        fileSystemP = FileSystemProvider::instance().getFilesystem(QUrl::fromLocalFile(QDir::rootPath()));
     return fileSystemP;
 }
 
@@ -1405,7 +1405,7 @@ void ListPanelFunc::home()
 
 void ListPanelFunc::root()
 {
-    openUrl(QUrl::fromLocalFile(ROOT_DIR));
+    openUrl(QUrl::fromLocalFile(QDir::rootPath()));
 }
 
 void ListPanelFunc::cdToOtherPanel()

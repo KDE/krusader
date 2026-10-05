@@ -767,9 +767,9 @@ void ListPanel::start(const QUrl &url)
     QUrl startUrl(url);
 
     if (!startUrl.isValid())
-        startUrl = QUrl::fromLocalFile(ROOT_DIR);
+        startUrl = QUrl::fromLocalFile(QDir::rootPath());
 
-    _lastLocalPath = startUrl.isLocalFile() ? startUrl.path() : ROOT_DIR;
+    _lastLocalPath = startUrl.isLocalFile() ? startUrl.path() : QDir::rootPath();
 
     func->openUrl(startUrl);
 
@@ -1265,13 +1265,13 @@ void ListPanel::restoreSettings(KConfigGroup cfg)
     // so we reset its properties before calling openUrl().
     setProperties(0);
 
-    _lastLocalPath = ROOT_DIR;
+    _lastLocalPath = QDir::rootPath();
     if (func->history->restore(KConfigGroup(&cfg, "History"))) {
         func->refresh();
     } else {
         QUrl url(cfg.readEntry("Url", "invalid"));
         if (!url.isValid())
-            url = QUrl::fromLocalFile(ROOT_DIR);
+            url = QUrl::fromLocalFile(QDir::rootPath());
         func->openUrl(url);
     }
 
@@ -1335,7 +1335,7 @@ void ListPanel::updateButtons()
     backButton->setEnabled(func->history->canGoBack());
     forwardButton->setEnabled(func->history->canGoForward());
     historyButton->setEnabled(func->history->count() > 1);
-    cdRootButton->setEnabled(!virtualPath().matches(QUrl::fromLocalFile(ROOT_DIR), QUrl::StripTrailingSlash));
+    cdRootButton->setEnabled(!virtualPath().matches(QUrl::fromLocalFile(QDir::rootPath()), QUrl::StripTrailingSlash));
     cdUpButton->setEnabled(!func->files()->isRoot());
     cdHomeButton->setEnabled(!func->atHome());
 }

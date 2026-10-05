@@ -134,9 +134,9 @@ void SynchronizerGUI::initGUI(const QString &profileName, QUrl leftURL, QUrl rig
     hasSelectedFiles = (selectedFiles.count() != 0);
 
     if (leftURL.isEmpty())
-        leftURL = QUrl::fromLocalFile(ROOT_DIR);
+        leftURL = QUrl::fromLocalFile(QDir::rootPath());
     if (rightURL.isEmpty())
-        rightURL = QUrl::fromLocalFile(ROOT_DIR);
+        rightURL = QUrl::fromLocalFile(QDir::rootPath());
 
     setWindowTitle(i18n("Krusader::Synchronize Folders"));
     auto *synchGrid = new QGridLayout(this);

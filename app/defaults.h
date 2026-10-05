@@ -244,25 +244,12 @@ constexpr bool insertMovesDown = true;
 constexpr bool immediateContextMenu = true;
 // Reset selection items
 constexpr bool resetSelectionItems = false;
-} // namespace Defaults
 
-// Root directory
-#ifdef Q_OS_WIN
-#define DIR_SEPARATOR "/"
-#define DIR_SEPARATOR2 "\\"
-#define DIR_SEPARATOR_CHAR '/'
-#define DIR_SEPARATOR_CHAR2 '\\'
-#define REPLACE_DIR_SEP2(x) x = x.replace(DIR_SEPARATOR2, DIR_SEPARATOR);
-#define ROOT_DIR "C:\\"
-#define EXEC_SUFFIX ".exe"
-#else
-#define DIR_SEPARATOR "/"
-#define DIR_SEPARATOR2 "/"
-#define DIR_SEPARATOR_CHAR '/'
-#define DIR_SEPARATOR_CHAR2 '/'
-#define REPLACE_DIR_SEP2(x)
-#define ROOT_DIR "/"
-#define EXEC_SUFFIX ""
-#endif
+// `u'/'` is correct in every operating system. `QDir::separator()` would not be correct (it returns '\' in
+// Windows), in its documentation this can be seen: "You do not need to use this function to build file
+// paths. If you always use `/`, Qt will translate your paths to conform to the underlying operating system."
+constexpr QChar dirSeparatorChar = u'/';
+
+} // namespace Defaults
 
 #endif

@@ -166,11 +166,11 @@ kio_krarcProtocol::kio_krarcProtocol(const QByteArray &pool_socket, const QByteA
         QDir().mkdir(tmpDirPath);
     }
 
-    m_arcTempDir = tmpDirPath + DIR_SEPARATOR;
+    m_arcTempDir = tmpDirPath + Defaults::dirSeparatorChar;
     QString dirName = "krArc" + QDateTime::currentDateTime().toString(Qt::ISODate);
     dirName.replace(QRegularExpression(":"), "_");
     tmpDir.mkdir(dirName);
-    m_arcTempDir = m_arcTempDir + dirName + DIR_SEPARATOR;
+    m_arcTempDir = m_arcTempDir + dirName + Defaults::dirSeparatorChar;
 
     krArcCodec = new KrArcCodec(QTextCodec::codecForLocale());
 }
@@ -243,8 +243,8 @@ KIO::WorkerResult kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
 
     if (m_arcType == "arj" || m_arcType == "lha") {
         QString arcDir = path.mid(arcFilePath.length());
-        if (arcDir.right(1) != DIR_SEPARATOR)
-            arcDir = arcDir + DIR_SEPARATOR;
+        if (arcDir.right(1) != Defaults::dirSeparatorChar)
+            arcDir = arcDir + Defaults::dirSeparatorChar;
 
         if (m_dirDict.find(arcDir) == m_dirDict.end())
             addNewDir(arcDir);
@@ -252,21 +252,21 @@ KIO::WorkerResult kio_krarcProtocol::mkdir(const QUrl &url, int permissions)
     }
 
     QString arcDir = findArcDirectory(url);
-    QString tempDir = arcDir.mid(1) + path.mid(path.lastIndexOf(DIR_SEPARATOR) + 1);
-    if (tempDir.right(1) != DIR_SEPARATOR)
-        tempDir = tempDir + DIR_SEPARATOR;
+    QString tempDir = arcDir.mid(1) + path.mid(path.lastIndexOf(Defaults::dirSeparatorChar) + 1);
+    if (tempDir.right(1) != Defaults::dirSeparatorChar)
+        tempDir = tempDir + Defaults::dirSeparatorChar;
 
     if (permissions == -1)
         permissions = 0777; // set default permissions
 
     QByteArray arcTempDirEnc = m_arcTempDir.toLocal8Bit();
-    for (qsizetype i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
+    for (qsizetype i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(Defaults::dirSeparatorChar, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
         QT_MKDIR(newDirs.constData(), permissions);
     }
 
-    if (tempDir.endsWith(DIR_SEPARATOR))
+    if (tempDir.endsWith(Defaults::dirSeparatorChar))
         tempDir.truncate(tempDir.length() - 1);
 
     // pack the directory
@@ -324,16 +324,16 @@ KIO::WorkerResult kio_krarcProtocol::put(const QUrl &url, int permissions, KIO::
     if (arcDir.isEmpty())
         KRDEBUG("arcDir is empty.");
 
-    QString tempFile = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(DIR_SEPARATOR) + 1);
+    QString tempFile = arcDir.mid(1) + getPath(url).mid(getPath(url).lastIndexOf(Defaults::dirSeparatorChar) + 1);
     QString tempDir = arcDir.mid(1);
-    if (tempDir.right(1) != DIR_SEPARATOR)
-        tempDir = tempDir + DIR_SEPARATOR;
+    if (tempDir.right(1) != Defaults::dirSeparatorChar)
+        tempDir = tempDir + Defaults::dirSeparatorChar;
 
     if (permissions == -1)
         permissions = 0777; // set default permissions
 
     QByteArray arcTempDirEnc = m_arcTempDir.toLocal8Bit();
-    for (qsizetype i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(DIR_SEPARATOR, i + 1)) {
+    for (qsizetype i = 0; i < tempDir.length() && i >= 0; i = tempDir.indexOf(Defaults::dirSeparatorChar, i + 1)) {
         QByteArray newDirs = encodeString(tempDir.left(i));
         newDirs.prepend(arcTempDirEnc);
         QT_MKDIR(newDirs.constData(), 0755);
@@ -628,9 +628,9 @@ KIO::WorkerResult kio_krarcProtocol::del(QUrl const &url, bool isFile)
     }
 
     QString file = getPath(url).mid(getPath(m_arcFile->url()).length() + 1);
-    if (!isFile && file.right(1) != DIR_SEPARATOR) {
+    if (!isFile && file.right(1) != Defaults::dirSeparatorChar) {
         if (m_arcType == "zip")
-            file = file + DIR_SEPARATOR;
+            file = file + Defaults::dirSeparatorChar;
     }
     KrLinecountingProcess proc;
     proc << delCmd << getPath(m_arcFile->url()) << file;
@@ -671,7 +671,7 @@ KIO::WorkerResult kio_krarcProtocol::stat(const QUrl &url)
 
     // but treat the archive itself as the archive root
     if (path == getPath(m_arcFile->url(), QUrl::StripTrailingSlash)) {
-        newUrl.setPath(path + DIR_SEPARATOR);
+        newUrl.setPath(path + Defaults::dirSeparatorChar);
         path = getPath(newUrl);
     }
     // we might be stating a real file
@@ -735,7 +735,7 @@ KIO::WorkerResult kio_krarcProtocol::copy(const QUrl &url, const QUrl &dest, int
 
             QString destDir = getPath(dest, QUrl::StripTrailingSlash);
             if (!QDir(destDir).exists()) {
-                qsizetype ndx = destDir.lastIndexOf(DIR_SEPARATOR_CHAR);
+                qsizetype ndx = destDir.lastIndexOf(Defaults::dirSeparatorChar);
                 if (ndx != -1)
                     destDir.truncate(ndx + 1);
             }
@@ -825,8 +825,8 @@ KIO::WorkerResult kio_krarcProtocol::listDir(const QUrl &url)
         return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Listing folders is not supported for %1 archives.", m_arcType));
     }
     QString path = getPath(url);
-    if (path.right(1) != DIR_SEPARATOR)
-        path = path + DIR_SEPARATOR;
+    if (path.right(1) != Defaults::dirSeparatorChar)
+        path = path + Defaults::dirSeparatorChar;
 
     // it might be a real dir !
     if (QFileInfo::exists(path)) {
@@ -844,9 +844,9 @@ KIO::WorkerResult kio_krarcProtocol::listDir(const QUrl &url)
     }
 
     QString arcDir = path.mid(getPath(m_arcFile->url()).length());
-    arcDir.truncate(arcDir.lastIndexOf(DIR_SEPARATOR));
-    if (arcDir.right(1) != DIR_SEPARATOR)
-        arcDir = arcDir + DIR_SEPARATOR;
+    arcDir.truncate(arcDir.lastIndexOf(Defaults::dirSeparatorChar));
+    if (arcDir.right(1) != Defaults::dirSeparatorChar)
+        arcDir = arcDir + Defaults::dirSeparatorChar;
 
     if (m_dirDict.find(arcDir) == m_dirDict.end()) {
         return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, getPath(url));
@@ -899,9 +899,9 @@ KIO::WorkerResult kio_krarcProtocol::setArcFile(const QUrl &url)
             m_arcFile = nullptr;
         }
         QString newPath = path;
-        if (newPath.right(1) != DIR_SEPARATOR)
-            newPath = newPath + DIR_SEPARATOR;
-        for (qsizetype pos = 0; pos >= 0; pos = newPath.indexOf(DIR_SEPARATOR, pos + 1)) {
+        if (newPath.right(1) != Defaults::dirSeparatorChar)
+            newPath = newPath + Defaults::dirSeparatorChar;
+        for (qsizetype pos = 0; pos >= 0; pos = newPath.indexOf(Defaults::dirSeparatorChar, pos + 1)) {
             QFileInfo qfi(newPath.left(pos));
             if (qfi.exists() && !qfi.isDir()) {
                 QT_STATBUF stat_p;
@@ -1006,7 +1006,7 @@ bool kio_krarcProtocol::initDirDict(const QUrl &url, bool forced)
 
     // add the "/" directory
     auto *root = new UDSEntryList();
-    m_dirDict.insert(DIR_SEPARATOR, root);
+    m_dirDict.insert(Defaults::dirSeparatorChar, root);
     // and the "/" UDSEntry
     UDSEntry entry;
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
@@ -1087,16 +1087,16 @@ QString kio_krarcProtocol::findArcDirectory(const QUrl &url)
     KRDEBUG(url.fileName());
 
     QString path = getPath(url);
-    if (path.right(1) == DIR_SEPARATOR)
+    if (path.right(1) == Defaults::dirSeparatorChar)
         path.truncate(path.length() - 1);
 
     if (!initDirDict(url)) {
         return QString();
     }
     QString arcDir = path.mid(getPath(m_arcFile->url()).length());
-    arcDir.truncate(arcDir.lastIndexOf(DIR_SEPARATOR));
-    if (arcDir.right(1) != DIR_SEPARATOR)
-        arcDir = arcDir + DIR_SEPARATOR;
+    arcDir.truncate(arcDir.lastIndexOf(Defaults::dirSeparatorChar));
+    if (arcDir.right(1) != Defaults::dirSeparatorChar)
+        arcDir = arcDir + Defaults::dirSeparatorChar;
 
     return arcDir;
 }
@@ -1117,9 +1117,9 @@ UDSEntry *kio_krarcProtocol::findFileEntry(const QUrl &url)
     if (getPath(m_arcFile->url(), QUrl::StripTrailingSlash) == getPath(url, QUrl::StripTrailingSlash))
         name = '.'; // the '/' case
     else {
-        if (name.right(1) == DIR_SEPARATOR)
+        if (name.right(1) == Defaults::dirSeparatorChar)
             name.truncate(name.length() - 1);
-        name = name.mid(name.lastIndexOf(DIR_SEPARATOR) + 1);
+        name = name.mid(name.lastIndexOf(Defaults::dirSeparatorChar) + 1);
     }
 
     UDSEntryList::iterator entry;
@@ -1131,7 +1131,7 @@ UDSEntry *kio_krarcProtocol::findFileEntry(const QUrl &url)
     return nullptr;
 }
 
-QString kio_krarcProtocol::nextWord(QString &sourceString, char delimiter)
+QString kio_krarcProtocol::nextWord(QString &sourceString, QChar delimiter)
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     sourceString = sourceString.trimmed();
@@ -1191,10 +1191,10 @@ UDSEntryList *kio_krarcProtocol::addNewDir(const QString &path)
         return itef.value();
 
     // set dir to the parent dir
-    dir = addNewDir(path.left(path.lastIndexOf(DIR_SEPARATOR, -2) + 1));
+    dir = addNewDir(path.left(path.lastIndexOf(Defaults::dirSeparatorChar, -2) + 1));
 
     // add a new entry in the parent dir
-    QString name = path.mid(path.lastIndexOf(DIR_SEPARATOR, -2) + 1);
+    QString name = path.mid(path.lastIndexOf(Defaults::dirSeparatorChar, -2) + 1);
     name = name.left(name.length() - 1);
 
     if (name == "." || name == "..") { // entries with these names wouldn't be displayed
@@ -1253,10 +1253,10 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QTime qtime(dateStr.mid(9, 2).toInt(), dateStr.mid(11, 2).toInt(), dateStr.mid(13, 2).toInt());
         time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // full name
-        fullName = nextWord(line, '\n');
+        fullName = nextWord(line, u'\n');
 
         if (perm.length() != 10)
-            perm = (perm.at(0) == 'd' || fullName.endsWith(DIR_SEPARATOR)) ? "drwxr-xr-x" : "-rw-r--r--";
+            perm = (perm.at(0) == 'd' || fullName.endsWith(Defaults::dirSeparatorChar)) ? "drwxr-xr-x" : "-rw-r--r--";
         mode = parsePermString(perm);
     }
     if (m_arcType == "rar") {
@@ -1276,7 +1276,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // checksum : ignored
         nextWord(line);
         // full name
-        fullName = nextWord(line, '\n');
+        fullName = nextWord(line, u'\n');
 
         if (perm.length() == 7) { // windows rar permission format
             bool isDir = (perm.at(1).toLower() == 'd');
@@ -1295,7 +1295,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     if (m_arcType == "arj") {
         nextWord(line);
         // full name
-        fullName = nextWord(line, '\n');
+        fullName = nextWord(line, u'\n');
         // ignore the next 2 fields
         nextWord(line);
         nextWord(line);
@@ -1354,7 +1354,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // ignore the next field (the ratio)
         nextWord(line);
         // full name
-        fullName = line.mid(line.lastIndexOf(DIR_SEPARATOR) + 1);
+        fullName = line.mid(line.lastIndexOf(Defaults::dirSeparatorChar) + 1);
     }
     if (m_arcType == "lzma") {
         fullName = m_arcFile->name();
@@ -1410,7 +1410,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
 
         time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // full name
-        fullName = nextWord(line, '\n');
+        fullName = nextWord(line, u'\n');
     }
     if (m_arcType == "ace") {
         // date & time
@@ -1429,7 +1429,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         // ignore the next field
         nextWord(line);
         // full name
-        fullName = nextWord(line, '\n');
+        fullName = nextWord(line, u'\n');
         if (fullName[0] == '*') // encrypted archives starts with '*'
             fullName = fullName.mid(1);
     }
@@ -1438,7 +1438,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         perm = nextWord(line);
         mode = parsePermString(perm);
         // Owner & Group
-        owner = nextWord(line, DIR_SEPARATOR_CHAR);
+        owner = nextWord(line, Defaults::dirSeparatorChar);
         group = nextWord(line).mid(1);
         // size
         size = nextWord(line).toLong();
@@ -1449,7 +1449,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         QTime qtime(t.mid(0, 2).toInt(), t.mid(3, 2).toInt(), 0);
         time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // full name
-        fullName = nextWord(line, '\n').mid(1);
+        fullName = nextWord(line, u'\n').mid(1);
         // if ( fullName.right( 1 ) == "/" ) return;
         if (fullName.contains("->")) {
             symlinkDest = fullName.mid(fullName.indexOf("->") + 2);
@@ -1481,14 +1481,14 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         line = line.mid(15);
 
         // full name
-        fullName = nextWord(line, '\n');
+        fullName = nextWord(line, u'\n');
     }
 
-    if (fullName.right(1) == DIR_SEPARATOR)
+    if (fullName.right(1) == Defaults::dirSeparatorChar)
         fullName = fullName.left(fullName.length() - 1);
-    if (!fullName.startsWith(DIR_SEPARATOR))
-        fullName = DIR_SEPARATOR + fullName;
-    QString path = fullName.left(fullName.lastIndexOf(DIR_SEPARATOR) + 1);
+    if (!fullName.startsWith(Defaults::dirSeparatorChar))
+        fullName = Defaults::dirSeparatorChar + fullName;
+    QString path = fullName.left(fullName.lastIndexOf(Defaults::dirSeparatorChar) + 1);
     // set/create the directory UDSEntryList
     QHash<QString, KIO::UDSEntryList *>::iterator itef = m_dirDict.find(path);
     if (itef == m_dirDict.end())
@@ -1496,7 +1496,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
     else
         dir = itef.value();
 
-    QString name = fullName.mid(fullName.lastIndexOf(DIR_SEPARATOR) + 1);
+    QString name = fullName.mid(fullName.lastIndexOf(Defaults::dirSeparatorChar) + 1);
     // file name
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
     // file type
@@ -1512,7 +1512,7 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, symlinkDest);
     }
     if (S_ISDIR(mode)) {
-        fullName = fullName + DIR_SEPARATOR;
+        fullName = fullName + Defaults::dirSeparatorChar;
         if (m_dirDict.find(fullName) == m_dirDict.end())
             m_dirDict.insert(fullName, new UDSEntryList());
         else {
@@ -1769,7 +1769,7 @@ KIO::WorkerResult kio_krarcProtocol::initArcParameters()
         return WorkerResult::pass();
 
 #else
-    if (cmd.startsWith(DIR_SEPARATOR))
+    if (cmd.startsWith(Defaults::dirSeparatorChar))
         return WorkerResult::pass();
 
 #endif
@@ -1851,7 +1851,7 @@ void kio_krarcProtocol::check7zOutputForPassword(KProcess *proc, QByteArray &buf
 void kio_krarcProtocol::invalidatePassword()
 {
     KRFUNC;
-    KRDEBUG(getPath(m_arcFile->url(), QUrl::StripTrailingSlash) + DIR_SEPARATOR);
+    KRDEBUG(getPath(m_arcFile->url(), QUrl::StripTrailingSlash) + Defaults::dirSeparatorChar);
 
     if (!m_encrypted)
         return;
@@ -1863,7 +1863,7 @@ void kio_krarcProtocol::invalidatePassword()
     authInfo.keepPassword = true;
     authInfo.verifyPath = true;
     QString fileName = getPath(m_arcFile->url(), QUrl::StripTrailingSlash);
-    authInfo.url = QUrl::fromLocalFile(ROOT_DIR);
+    authInfo.url = QUrl::fromLocalFile(QDir::rootPath());
     authInfo.url.setHost(fileName /*.replace('/','_')*/);
     authInfo.url.setScheme("krarc");
 
@@ -1889,7 +1889,7 @@ QString kio_krarcProtocol::getPassword()
     authInfo.keepPassword = true;
     authInfo.verifyPath = true;
     QString fileName = getPath(m_arcFile->url(), QUrl::StripTrailingSlash);
-    authInfo.url = QUrl::fromLocalFile(ROOT_DIR);
+    authInfo.url = QUrl::fromLocalFile(QDir::rootPath());
     authInfo.url.setHost(fileName /*.replace('/','_')*/);
     authInfo.url.setScheme("krarc");
 
@@ -1932,12 +1932,12 @@ QString kio_krarcProtocol::getPath(const QUrl &url, QUrl::FormattingOptions opti
 {
     // Note: KRFUNC was not used here in order to avoid filling the log with too much information
     QString path = url.adjusted(options).path();
-    REPLACE_DIR_SEP2(path);
+    path = QDir::fromNativeSeparators(path);
 
 #ifdef Q_OS_WIN
-    if (path.startsWith(DIR_SEPARATOR)) {
+    if (path.startsWith(Defaults::dirSeparatorChar)) {
         int p = 1;
-        while (p < path.length() && path[p] == DIR_SEPARATOR_CHAR)
+        while (p < path.length() && path[p] == Defaults::dirSeparatorChar)
             p++;
         /* /C:/Folder */
         if (p + 2 <= path.length() && path[p].isLetter() && path[p + 1] == ':') {
