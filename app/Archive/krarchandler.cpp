@@ -75,6 +75,7 @@ KrArcHandler::KrArcHandler(QObject *parent)
         QStringLiteral("application/epub+zip"),
         QStringLiteral("application/x-webarchive"),
         QStringLiteral("application/x-plasma"),
+        QStringLiteral("application/x-xpinstall"),
         QStringLiteral("application/vnd.rar"),
         // The mime type for java archives changed over the years. For more information:
         // https://stackoverflow.com/questions/44468917/whats-the-right-content-type-for-a-java-jar-file
