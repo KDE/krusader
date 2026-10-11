@@ -1257,8 +1257,10 @@ void kio_krarcProtocol::parseLine(int lineNo, QString line)
         time = QDateTime(qdate, qtime).toSecsSinceEpoch();
         // full name
         fullName = nextWord(line, u'\n');
-
-        if (perm.length() != 10)
+        // Note: Some zip files contain inconsistent metadata (e.g. entries that declare a Unix host
+        // but store no permission bits). When listed with `unzip -ZTs-z-t-h`, such entries appear
+        // as: `?---------  2.0 unx    15681 b- stor 19800101.000000 install.rdf`
+        if (perm.length() != 10 || perm.at(0) == u'?')
             perm = (perm.at(0) == 'd' || fullName.endsWith(Defaults::dirSeparatorChar)) ? "drwxr-xr-x" : "-rw-r--r--";
         mode = parsePermString(perm);
     }
