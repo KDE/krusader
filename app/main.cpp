@@ -210,17 +210,35 @@ int main(int argc, char *argv[])
     KAboutData::setApplicationData(aboutData);
     app.setWindowIcon(Icon(Krusader::appIconName()));
 
-    // Command line arguments ...
+    // Command line arguments
+
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("left"), i18n("Start left panel at <path>"), QLatin1String("path")));
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("right"), i18n("Start right panel at <path>"), QLatin1String("path")));
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("profile"), i18n("Load this profile on startup"), QLatin1String("panel-profile")));
     parser.addOption(QCommandLineOption(QStringList() << "d" << QLatin1String("debug"), i18n("Enable debug output")));
+
+    QCommandLineOption selfTestOpt(QStringLiteral("self-test"),
+                                   QStringLiteral("Intended for internal automated testing")); // This string should not be translated
+    selfTestOpt.setFlags(QCommandLineOption::HiddenFromHelp);
+    parser.addOption(selfTestOpt);
+
     parser.addPositionalArgument(QLatin1String("url"), i18n("URL to open"));
 
     // check for command line arguments
     parser.process(app);
+
+    const bool runSelfTest = parser.isSet(selfTestOpt);
+    if (runSelfTest) {
+        // Prevent automated tests from reading or writing to the current user's configuration.
+        // A note for future developments: On <https://invent.kde.org/utilities/kate/-/blob/
+        // master/apps/kate/main.cpp>, inside the `int main(int argc, char **argv)` function,
+        // similar code could be seen: `parser.process(app); if (parser.isSet(selfTestOption))
+        // { QStandardPaths::setTestModeEnabled(true); }`
+        QStandardPaths::setTestModeEnabled(true);
+    }
+
     aboutData.processCommandLine(&parser);
 
     // handle crashes
@@ -287,7 +305,7 @@ int main(int argc, char *argv[])
     } // don't remove bracket
 
     Krusader::AppName = appName;
-    auto *krusader = new Krusader(parser);
+    auto *krusader = new Krusader(parser, runSelfTest);
 
     if (!url.isEmpty())
         krusader->openUrl(url);
@@ -318,6 +336,15 @@ int main(int argc, char *argv[])
         splash->finish(krusader);
         delete splash;
     }
+
+    // If internal automated testing is required
+    if (runSelfTest) {
+        // This is a ["smoke test", other tests can be added](https://web.archive.org/web/
+        // 20260523183938/https://nicolasfella.de/posts/smoke-tests-for-fun-and-profit/).
+        // The wait time was determined after performing some trials on invent.kde.org
+        QTimer::singleShot(std::chrono::milliseconds(4000), krusader, &Krusader::quit);
+    }
+
     // let's go.
     return app.exec();
 }
