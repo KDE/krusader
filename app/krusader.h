@@ -55,7 +55,7 @@ class Krusader : public KParts::MainWindow, public KrMainWindow
     Q_CLASSINFO("D-Bus Interface", "org.krusader.Instance")
 
 public:
-    explicit Krusader(const QCommandLineParser &parser);
+    explicit Krusader(const QCommandLineParser &parser, bool runSelfTest);
     ~Krusader() override;
 
     void setTray(bool forceCreation = false);
@@ -124,7 +124,7 @@ protected:
     void showEvent(QShowEvent *event) override;
     bool queryClose() override;
     void setupActions();
-    bool versionControl(); // handle version differences in krusaderrc
+    bool versionControl(bool runSelfTest); // handle version differences in krusaderrc
     bool event(QEvent *) override;
 
 public Q_SLOTS:
