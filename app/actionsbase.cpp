@@ -21,7 +21,7 @@ void ActionsBase::ActionGroup::reconnect(QObject *recv)
 {
     const auto actions = _slots.keys();
     for (QAction *action : actions) {
-        disconnect(action, nullptr, nullptr, nullptr);
+        disconnect(action, &QAction::triggered, nullptr, nullptr);
         connect(action, SIGNAL(triggered(bool)), recv, _slots[action]);
     }
 }

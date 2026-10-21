@@ -84,7 +84,7 @@ void KrSearchBar::setView(KrView *view)
 {
     if (_view) {
         _view->widget()->removeEventFilter(this);
-        disconnect(_openSelectDialogBtn, nullptr, nullptr, nullptr);
+        disconnect(_openSelectDialogBtn, &QToolButton::clicked, nullptr, nullptr);
     }
 
     _view = view;
