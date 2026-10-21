@@ -491,7 +491,9 @@ void KrSearchDialog::stopSearch()
 {
     if (searcher != nullptr) {
         searcher->stop();
-        disconnect(searcher, nullptr, nullptr, nullptr);
+        disconnect(searcher, &KrSearchMod::searching, nullptr, nullptr);
+        disconnect(searcher, &KrSearchMod::found, nullptr, nullptr);
+        disconnect(searcher, &KrSearchMod::finished, nullptr, nullptr);
     }
 }
 
