@@ -18,18 +18,15 @@
 // QtGui
 #include <QKeyEvent>
 // QtWidgets
+#include <QGuiApplication>
 #include <QMenuBar>
 #include <QStatusBar>
-#include <QGuiApplication>
 
-#include <KWindowSystem>
-#include <kwaylandextras.h>
-#include <kx11extras.h>
 #include <KActionCollection>
 #include <KFileItem>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KFileItem>
+#include <KParts/NavigationExtension>
 #include <KParts/Part>
 #include <KProcess>
 #include <KSharedConfig>
@@ -37,8 +34,10 @@
 #include <KShortcutsDialog>
 #include <KStandardAction>
 #include <KToolBar>
+#include <KWindowSystem>
+#include <kwaylandextras.h>
+#include <kx11extras.h>
 #include <utility>
-#include <KParts/NavigationExtension>
 
 #include "../defaults.h"
 #include "../icon.h"
