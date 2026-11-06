@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-12 00:57+0000\n"
-"PO-Revision-Date: 2026-08-25 16:02+0300\n"
+"PO-Revision-Date: 2026-10-06 13:30+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -2910,22 +2910,19 @@ msgstr ""
 "code> (esim. /usr/bin)"
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, fuzzy, kde-format
-#| msgid "Use the default KDE colors"
+#, kde-format
 msgid "Use KDE Plasma's default colors"
-msgstr "Käytä KDE:n oletusvärejä"
+msgstr "Käytä KDE Plasman oletusvärejä"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
-#| "Application Appearance  -> Colors</i></p>"
+#, kde-format
 msgid ""
 "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma System "
 "Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgstr ""
-"<p>Käytä KDE:n järjestelmänlaajuisia väriasetuksia.</p> "
-"<p><i>Järjestelmäasetukset -&gt; Sovellusten ulkoasu -&gt; Värit</i></p>"
+"<p>Käytä KDE Plasman järjestelmänlaajuisia väriasetuksia.</"
+"p><p><i>Järjestelmäasetukset → Ulkoasu ja tyyli → Värit ja teemat → Värit</"
+"i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:68
 #, kde-format
@@ -2933,12 +2930,7 @@ msgid "Use alternate background color"
 msgstr "Vuorottele taustaväriä"
 
 #: app/Konfigurator/kgcolors.cpp:70
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
-#| "alternates line by line.</p><p>When you don't use the <i>KDE default "
-#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
-#| "box.</p>"
+#, kde-format
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
@@ -2946,8 +2938,8 @@ msgid ""
 "</p>"
 msgstr ""
 "<p><b>Taustaväri</b> ja <b>vaihtoehtoinen taustaväri</b> vuorottelevat "
-"riveittäin.</p><p>Jollet käytä <i>KDE:n oletusvärejä</i>, voit määrittää "
-"vuorottelevat värit <i>Värit</i>-kentässä.</p>"
+"riveittäin.</p><p>Jollei käytetä <i>KDE Plasman oletusvärejä</i>, voi "
+"<i>Värit</i>-kentästä määrittää vuorottelevat värit.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:75
 #, kde-format
@@ -2955,19 +2947,15 @@ msgid "Show current item even if not focused"
 msgstr "Näytä nykyinen tietue, vaikkei sitä olisi kohdistettu"
 
 #: app/Konfigurator/kgcolors.cpp:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Shows the last cursor position in the non active list panel.</"
-#| "p><p>This option is only available when you don't use the <i>KDE default "
-#| "colors</i>.</p>"
+#, kde-format
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use <i>KDE Plasma's default colors</"
 "i>.</p>"
 msgstr ""
-"<p>Shows the last cursor position in the non active list panel.</p><p>This "
-"option is only available when you don't use the <i>KDE default colors</i>.</"
-"p>"
+"<p>Näyttää kohdistimen viimeisimmän sijainnin passiivisessa "
+"luettelopaneelissa.</p><p>Valinta on käytettävissä vain, ellei käytetä "
+"<i>KDE Plasman oletusvärejä</i>.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:82
 #, kde-format
@@ -3969,9 +3957,7 @@ msgid ""
 "Trash, Popular URLs, Jump Back, etc."
 msgstr ""
 "Kirjanmerkkihakuun sisältyvät myös kirjamerkkivalikon erityiskohteet kuten "
-"roskakori, suositut osoitteet, paluuhistoria jne.Kirjanmerkkihakuun "
-"sisältyvät myös kirjamerkkivalikon erityiskohteet kuten roskakori, suositut "
-"osoitteet, paluuhistoria jne."
+"roskakori, suositut osoitteet, paluuhistoria jne."
 
 #: app/Konfigurator/kgpanel.cpp:288
 #, kde-format
@@ -4834,9 +4820,7 @@ msgid ""
 msgstr ""
 "Ellei kuvaketta löydy järjestelmän kuvaketeemasta, varalla käytetään tätä "
 "teemaa. Ellei varateemakaan sisällä kuvaketta, käytetään Breeze- tai Oxygen-"
-"teemaa, jos jompikumpi on saatavilla.Ellei kuvaketta löydy järjestelmän "
-"kuvaketeemasta, varalla käytetään tätä teemaa. Ellei varateemakaan sisällä "
-"kuvaketta, käytetään Breeze- tai Oxygen-teemaa, jos jompikumpi on saatavilla."
+"teemaa, jos jompikumpi on saatavilla."
 
 #: app/Konfigurator/kgstartup.cpp:92 app/useraction_examples.xml:59
 #: app/useraction_examples.xml:68 app/useraction_examples.xml:77
@@ -6158,6 +6142,8 @@ msgid ""
 "Feedback:\n"
 "https://krusader.org/get-involved/mailing-lists/index.html"
 msgstr ""
+"Palaute:\n"
+"https://krusader.org/get-involved/mailing-lists/index.html"
 
 #: app/main.cpp:130
 #, kde-format
@@ -7482,16 +7468,13 @@ msgid "Delete file, folder, etc."
 msgstr "Poista tiedosto, kansio jne."
 
 #: app/Panel/listpanelactions.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined "
-#| "in Konfigurator, default is <b>konsole</b>.</p></qt>"
+#, kde-format
 msgid ""
 "<qt><p>Open terminal in current folder.</p><p>It uses the system default "
 "terminal emulator.</p></qt>"
 msgstr ""
-"<qt><p>Avaa pääte valittuun kansioon.</p><p>Päätteen voi määrittää "
-"Konfiguratorissa, oletusarvo on <b>konsole</b>.</p></qt>"
+"<qt><p>Avaa pääte valittuun kansioon.</p><p>Toiminto käyttää järjestelmän "
+"oletuspääte-emulaattoria.</p></qt>"
 
 #: app/Panel/panelcontextmenu.cpp:99
 #, kde-format
