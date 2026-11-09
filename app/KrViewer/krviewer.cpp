@@ -23,12 +23,15 @@
 #include <QStatusBar>
 
 #include <KActionCollection>
+#include <KDialogJobUiDelegate>
 #include <KFileItem>
+#include <KIO/CommandLauncherJob>
+#include <KIO/DesktopExecParser>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KParts/NavigationExtension>
 #include <KParts/Part>
-#include <KProcess>
+#include <KService>
 #include <KSharedConfig>
 #include <KShell>
 #include <KShortcutsDialog>
@@ -348,17 +351,29 @@ void KrViewer::edit(const QUrl &url, Mode mode, int new_window, QWidget *parent)
         new_window = group.readEntry("View In Separate Window", Defaults::viewInSeparateWindow);
 
     if (editor != "internal editor" && !editor.isEmpty()) {
-        KProcess proc;
         QStringList cmdArgs = KShell::splitArgs(editor, KShell::TildeExpand);
         if (cmdArgs.isEmpty()) {
             KMessageBox::error(krMainWindow, i18nc("Arg is a string containing the bad quoting.", "Bad quoting in editor command:\n%1", editor));
             return;
         }
-        // if the file is local, pass a normal path and not a url. this solves
-        // the problem for editors that aren't url-aware
-        proc << cmdArgs << url.toDisplayString(QUrl::PreferLocalFile);
-        if (!proc.startDetached())
-            KMessageBox::error(krMainWindow, i18n("Can not open \"%1\"", editor));
+
+        // KIO::DesktopExecParser is what puts the file into the command line, so that the editor
+        // is given a path it can open: a file on a remote file system such as sftp://host/file
+        // becomes a path inside a kio-fuse mount, or, where kio-fuse is not running, a temporary
+        // local copy that kioexec uploads again (if the kioworker is not read-only) once the
+        // editor has exited.
+        const KService editorService(cmdArgs.first(), KShell::joinArgs(cmdArgs), QString());
+        KIO::DesktopExecParser parser(editorService, {url});
+        const QStringList args = parser.resultingArguments();
+        if (args.isEmpty()) {
+            const QString message = parser.errorMessage();
+            KMessageBox::error(krMainWindow, message.isEmpty() ? i18n("Could not launch the editor \"%1\"", editor) : message);
+            return;
+        }
+
+        auto *job = new KIO::CommandLauncherJob(args.first(), args.mid(1));
+        job->setUiDelegate(new KDialogJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, krMainWindow));
+        job->start();
         return;
     }
 
