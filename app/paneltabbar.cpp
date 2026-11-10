@@ -348,7 +348,33 @@ void PanelTabBar::mouseDoubleClickEvent(QMouseEvent *e)
 
 void PanelTabBar::mouseReleaseEvent(QMouseEvent *e)
 {
+    // If Qt 6.11 or later is used, `QTabBar` emits `tabCloseRequested`
+    // when a tab is middle-clicked and `tabsClosable` is `true`
+    // (https://doc.qt.io/qt-6/whatsnew611.html#qt-widgets-module).
+    // Krusader already handles middle-clicking in `PanelTabBar::mousePressEvent()`,
+    // therefore the `QTabBar` handling in `mouseReleaseEvent()` would attempt to
+    // close the same tab again. In order to avoid that problem, a `blockSignalsForMiddleClick`
+    // variable is used; it equals to `true` if signals have to be blocked
+    const bool blockSignalsForMiddleClick =
+        e->button() == Qt::MiddleButton && !signalsBlocked();
+
+    if (blockSignalsForMiddleClick) {
+        // This blockage is aimed to prevent the corresponding QTabBar handling from
+        // attempting to close the (already closed) tab, which is not configurable
+        blockSignals(true);
+    }
+
     QTabBar::mouseReleaseEvent(e);
+
+    if (blockSignalsForMiddleClick) {
+        // Re-enable signals after the QTabBar handling.
+        // A note for future developments: A similar approach could be seen at the
+        // beginning of the `void DetachableTabBar::mouseReleaseEvent(QMouseEvent *event)`
+        // function at <https://invent.kde.org/utilities/konsole/-/blob/master/src/
+        // widgets/DetachableTabBar.cpp>
+        blockSignals(false);
+    }
+
     if (_draggingTab)
         emit draggingTabFinished(e);
     _draggingTab = false;
