@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="more-features">
+<title
+>وظائف متقدمة</title
+>&vfs; &compare; &occupied-space; &splitter; &checksum; <sect1 id="send-email"
+> <title
+>إرسال الملفات بالبريد الإلكتروني</title
+> <para
+>اختر ملفًا واستخدم <menuchoice
+> <guimenu
+>قائمة النقر باليمين</guimenu
+> <guimenuitem
+>إرسال بالبريد الإلكتروني</guimenuitem
+> </menuchoice
+>. سيؤدي اختيار هذا الخيار إلى فتح نافذة بريدك جديدة مع إرفاق الملف. املأ الموضوع والمستلم(ين) وأرسله. بالطبع، يجب ضبط بريدك بشكل صحيح.</para
+> </sect1
+> &profiles; <sect1 id="acl">
+  <title
+>أذون ACL</title>
+  <para
+><link linkend="gloss-acl"
+>أذون ACL</link
+> مدعومة بالكامل عند استخدام الخصائص، وحفظ السمات، والمزامن. لعرض/تعديل أذون ACL، اختر ملفًا واستخدم <link linkend="context-menu"
+>قائمة السياق</link
+>: <menuchoice
+> <guimenu
+>الخصائص...</guimenu
+> <guimenuitem
+>الأذون</guimenuitem
+> <guimenuitem
+>الأذون المتقدمة</guimenuitem
+> </menuchoice
+>. عند النسخ/النقل، تُنسخ أذون ACL أيضًا. يحافظ المزامن على أذون ACL أيضًا.</para>
+</sect1
+></chapter>

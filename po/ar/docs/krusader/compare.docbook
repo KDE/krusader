@@ -1,0 +1,120 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="compare">
+  <title
+>مقارنة</title>
+  <para
+>يحتوي كروسيدر على عدة وظائف مقارنة: <guimenuitem
+>مقارنة بالمحتوى</guimenuitem
+> و<guimenuitem
+>مقارنة المجلدات</guimenuitem
+> ووظيفة مقارنة <link linkend="synchronizer"
+>المزامن</link
+>.</para>
+  <sect2 id="compare-content">
+    <title
+>مقارنة بالمحتوى</title>
+    <indexterm>
+      <primary
+>مقارنة</primary>
+      <secondary
+>المحتوى</secondary>
+    </indexterm>
+    <para
+>اختر ملفًا واحدًا في كل لوحة واستخدم <menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>مقارنة بالمحتوى...</guimenuitem
+> </menuchoice
+>. سيفتح كروسيدر أداة فرق رسومية خارجية <link linkend="konfig-dependencies"
+>مضبوطة</link
+>. &kompare; و<ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> و<ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> مدعومة.</para>
+  </sect2>
+  <sect2 id="compare-dir">
+    <title
+>قارن المجلدات</title>
+    <indexterm>
+      <primary
+>مقارنة</primary>
+      <secondary
+>المجلّدات</secondary>
+    </indexterm>
+    <para
+>قارن ملفات كل لوحة باستخدام  <menuchoice
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>مقارنة المجلدات</guimenuitem
+> </menuchoice
+>. مبدئيًا، سيُحدد الملفات الأحدث والفردية في كل لوحة، ويمكن تغيير هذا السلوك في قائمة <guimenuitem
+>إعداد المقارنة</guimenuitem
+>. <note
+> <para
+>لا تُقارن الملفات بالمحتوى بل بأسمائها وتواريخها فقط.</para>
+    </note
+></para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>حرر</guimenu
+> <guimenuitem
+>إعداد المقارنة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يضبط وظيفة <guimenuitem
+>مقارنة المجلدات</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>تحديد الأحدث والفردي</guimenuitem
+> (مبدئي)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>تحديد الفردي</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>تحديد الأحدث</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>تحديد المختلف والفردي</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>تحديد المختلف</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+</sect1>

@@ -1,0 +1,3506 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="krviewer">
+  <title
+>عارض كر: محرر-عارض كيدي الداخلي</title>
+  <indexterm>
+    <primary
+>المستعرض</primary>
+    <seealso
+>المحرّر</seealso>
+  </indexterm>
+  <para
+>الضغط على &Enter; على ملف محدد <emphasis
+>يفتح الملف بالتطبيق المرتبط</emphasis
+>. المحرر-العارض مبوب، اضبطه في <link linkend="konfig-general"
+>صفحة الضبط العامة</link
+></para>
+  <sect2 id="krview">
+    <title
+>المستعرض</title>
+    <para
+>لعرض ملف بأسرع ما يمكن حسب نوعه، ضعه تحت المؤشر واضغط <keycap
+>F3</keycap
+>. العارض الداخلي لكيدي هو في الواقع جزء من كنكرر، الذي يمكنه عرض كل أنواع الملفات التي يعرضها كنكرر (مثل عرض الصور، تشغيل الموسيقى، إظهار محتوى أرشيف). يُسمى هذا 'العارض العام'، وتحتاج لضبط أنواع &MIME; له.</para>
+    <para
+>يعمل العارض كالتالي: <itemizedlist
+> <listitem
+> <para
+>يحاول عرض الملف باستخدام <emphasis
+>'العارض العام'.</emphasis
+></para
+> </listitem
+> <listitem
+> <para
+>عندما لا يمكن تحديد نوع الملف (نوع &MIME;) أو عندما لا يكون للملف (مثل ملف ثنائي) إجراء مرتبط، يُعطل 'العارض العام'. يُعالج الملف كملف نصي، وهو <emphasis
+>'عارض النص'</emphasis
+>.</para
+> </listitem
+> <listitem
+> <para
+>يمكن للمستخدم التبديل في <link linkend="kredit_krviewer_menu"
+>قائمة عارض كر</link
+> بين: 'العارض العام' (إن توفر)، 'عارض النص' و<emphasis
+>'العارض السداسي عشري'</emphasis
+>.</para
+> </listitem
+> </itemizedlist
+>يمكنك ضبط وضع العارض المبدئي في <link linkend="konfig-general"
+>صفحة الضبط العامة</link
+>.</para>
+    <para
+><keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo
+> يعرض &URL; عند الطلب، مثل: <itemizedlist>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+> </userinput
+>يعرض صفحات الدليل.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>man:/</command
+><replaceable
+>krusader</replaceable
+> </userinput
+>يعرض صفحة دليل كروسيدر.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>info:/</command
+> </userinput
+>يعرض صفحات المعلومات.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>https://</command
+><replaceable
+>krusader.org</replaceable
+> </userinput
+>يعرض صفحة ويب.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>ftp://</command
+><replaceable
+>ftp.kde.org/pub/kde/</replaceable
+> </userinput
+>يعرض خادم &FTP;.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>sftp://</command
+><replaceable
+>sftp.foo/</replaceable
+> </userinput
+>يعرض خادم &FTP; آمن.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>file:/</command
+><replaceable
+>home/frank</replaceable
+> </userinput
+>يعرض مجلد فرانك الرئيس.</para>
+      </listitem>
+      <listitem>
+        <para
+><userinput
+> <command
+>tar:/</command
+><replaceable
+>home/frank/archive.tar.gz/</replaceable
+> </userinput
+>يفتح نافذة تصفح محتوى لأرشيف <literal role="extension"
+>tar.gz</literal
+>.</para>
+      </listitem>
+    </itemizedlist
+></para>
+    <para
+>يمكن لعارض كر أن يحتوي على القوائم التالية: <link linkend="katepart-menu-file"
+>ملف</link
+>، <link linkend="katepart-menu-edit"
+>تحرير</link
+>، <link linkend="katepart-menu-view"
+>عرض</link
+>، <link linkend="katepart-menu-settings"
+>إعدادات</link
+> و<link linkend="kredit_krviewer_menu"
+>عارض كر</link
+>، حسب نوع الملف المعروض. ستُناقش في <link linkend="kredit"
+>قسم المحرر</link
+>. يمكن للعارض الداخلي اتباع الروابط في صفحات &HTML;. باستخدام <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> يمكن للعارض تشغيل محرر كروسيدر الداخلي (وهو في الأساس نفس التطبيق).</para>
+    <note>
+      <para
+>العارض المضمن ليس من كتابتنا، بل يُقدم عبر &kde-frameworks; وعبيد KIO. لا يمكننا ولا نريد تغييره، استخدام هذه المكتبات يقلل كمية الشيفرة المكتوبة. لذا لا نضطر لإعادة اختراع العجلة ;-)</para>
+    </note>
+  </sect2>
+  <sect2 id="kredit">
+    <title
+>المحرّر</title>
+    <indexterm>
+      <primary
+>المحرّر</primary>
+    </indexterm>
+    <para
+>محرر كروسيدر الداخلي يحتوي تقريبًا على كل ما تتوقعه من محرر. التحرير مشابه للعرض لكن باستخدام مفتاح <keycap
+>F4</keycap
+>. المحرر المبدئي هو محرر كروسيدر الداخلي. يمكنك تغيير المحرر المبدئي في <link linkend="konfig-general"
+>صفحة الضبط العامة</link
+>، إذا فضلت استخدام محرر خارجي.</para>
+    <tip>
+      <para
+>عند استخدام محرر كروسيدر الداخلي لأول مرة، يُوصى بالنظر إلى كل قسم من قائمة <link linkend="katepart-menu-settings"
+>الإعدادات</link
+>، وضبطه بالطريقة التي تريدها.</para>
+    </tip>
+  </sect2>
+  <sect2 id="kredit_menus">
+    <title
+>نظرة عامة على القوائم</title>
+
+<!--mostly brought in from kwrite-->
+<para
+>توجد قوائم وعناصر قوائم مختلفة في الوضع البسيط والمتقدم. يُفعّل الوضع المتقدم بتحديد الخيار <link linkend="katepart-appearance"
+>تمكين وضع المستخدم الخبير (وضع كيدي 3)</link
+> في صفحة <guilabel
+>المظهر</guilabel
+> في إعدادات &kappname;.</para>
+
+<sect3 id="katepart-menu-file">
+<title
+>قائمة ملف</title>
+
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-save">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>احفظ</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يُحفظ المستند الحالي. إذا سُبق حفظ المستند، فسيؤدي ذلك إلى الكتابة فوق الملف المحفوظ سابقًا دون طلب موافقة المستخدم. إذا كان هذا هو أول حفظ لمستند جديد، فسيُستدعى مربع حوار "احفظ باسم" (الموضح أدناه). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-save-as">
+<menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>حفظ باسم...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يسمح هذا بحفظ مستند باسم ملف جديد. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-reload">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>أعد التحميل</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يعيد تحميل الملف النشط من القرص. يفيد هذا الأمر إذا قام برنامج أو عملية أخرى بتغيير الملف أثناء فتحه في كيت. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-print">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>اطبع...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يفتح مربع حوار طباعة بسيطًا يسمح للمستخدم بتحديد ماذا وأين وكيف يطبع. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+> <!-- from plugin Exporter -->
+<term id="katepart-menu-export-as-html">
+<menuchoice
+><guimenu
+>١ملف</guimenu
+> <guimenuitem
+>تصدير كـ HTML...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>صدّر ملفك بتنسيق &HTML; ليُعرض مستندك كصفحة ويب. يُعرض هذا العنصر فقط عند تحميل الملحق <guilabel
+>المصدر</guilabel
+>. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect3>
+
+<sect3 id="katepart-menu-edit"
+> <!-- This is also valid for kates menu edit-->
+<title
+>قائمة حرر</title>
+
+<variablelist>
+<varlistentry>
+<term id="katepart-menu-undo"
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>تراجع</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يُستخدم هذا لإلغاء أو عكس أحدث إجراء أو عملية للمستخدم. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-redo"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>أعد</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>سيؤدي هذا إلى عكس آخر تغيير (إن وجد) أُجري باستخدام التراجع</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cut"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>قص</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يحذف هذا الأمر التحديد الحالي ويضعه على الحافظة. الحافظة هي ميزة تعمل بشكل غير مرئي لتوفير طريقة لنقل البيانات بين التطبيقات.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-copy"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>انسخ</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>ينسخ هذا النص المحدد حاليًا إلى الحافظة ليُمكن لصقه في مكان آخر. الحافظة هي ميزة تعمل بشكل غير مرئي لتوفير طريقة لنقل البيانات بين التطبيقات.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-paste"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>الصق</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>سيُدرج هذا محتويات الحافظة في موضع المؤشر. الحافظة هي ميزة تعمل بشكل غير مرئي لتوفير طريقة لنقل البيانات بين التطبيقات.</para>
+</listitem>
+</varlistentry>
+<varlistentry
+><!-- from plugin Exporter -->
+<term
+><anchor id="katepart-menu-copy-as-html"/><menuchoice
+><guimenu
+>حرر</guimenu
+> <guimenuitem
+>انسخ كـ HTML</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>ينسخ هذا النص المحدد حاليًا إلى الحافظة كـ&HTML;. يُعرض هذا العنصر فقط عند تحميل الملحق <guilabel
+>المصدر</guilabel
+>. </para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-select-all"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>تحديد الكل</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>سيؤدي هذا إلى تحديد المستند بأكمله. قد يكون هذا مفيدًا جدًا لنسخ الملف بأكمله إلى تطبيق آخر.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-deselect"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>إلغاء التحديد</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يلغي تحديد النص المحدد في المحرر إن وجد.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-block-selection-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>وضع اختيار الكتل</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يبدّل وضع التحديد. عندما يكون وضع التحديد <guilabel
+>كتلة</guilabel
+>، يمكنك عمل تحديدات عمودية، مثل حدد العمود 5 إلى 10 في الأسطر 9 إلى 15. يعرض شريط الحالة الحالة الحالية لوضع التحديد، إما <guilabel
+>كتلة</guilabel
+> أو <guilabel
+>سطر</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-vi-input-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Meta;&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>وضع إدخال VI</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>التبديل إلى وضع تحرير نمطي شبيه بالسادس. يدعم هذا الوضع الأوامر والحركات الأكثر استخدامًا من الوضع العادي والمرئي لفيم وله شريط حالة اختياري لوضع السادس. يعرض شريط الحالة هذا الأوامر أثناء إدخالها، ومخرجات الأوامر، والوضع الحالي. يمكن ضبط سلوك هذا الوضع في قسم <link linkend="katepart-pref-edit-vi-input-mode"
+>وضع إدخال السادس</link
+> من صفحة <guilabel
+>التحرير</guilabel
+> في حوار إعدادات &kappname;.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><anchor id="katepart-menu-overwrite-mode"/><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ins;</keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>وضع الكتابة فوق</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يُبدّل بين وضعي الإدراج والكتابة فوق النص. عندما يكون الوضع هو <guilabel
+>INS</guilabel
+>، ستُدرج المحارف مكان وجود المؤشر. أما عندما يكون الوضع <guilabel
+>OVR</guilabel
+>، فإن كتابة المحارف ستستبدل المحارف الحالية إذا كان المؤشر موضوعًا قبل أي محرف. يظهر شريط الحالة الحالة الحالية لوضع الكتابة فوق النص، إما <guilabel
+>INS</guilabel
+> أو <guilabel
+>OVR</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>ابحث...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يؤدي هذا إلى فتح شريط البحث التزايدي في الجزء السفلي من نافذة المحرر. يوجد على الجانب الأيسر من الشريط زر به أيقونة لإغلاق الشريط، يليه مربع نص صغير لإدخال نمط البحث.</para>
+<para
+>عند بدء إدخال أحرف نمط البحث، يبدأ البحث فورًا. إذا وُجد تطابق في النص، يُبرز هذا ويتغير لون خلفية حقل الإدخال إلى أخضر فاتح. إذا لم يطابق نمط البحث أي سلسلة في النص، يُشار إلى ذلك بلون خلفية أحمر فاتح لحقل الإدخال ويُعرض <guilabel
+>غير موجود</guilabel
+> على الجانب الأيمن من الشريط.</para>
+<para
+>استخدم زر <guilabel
+>التالي</guilabel
+> أو <guilabel
+>السابق</guilabel
+> للانتقال إلى التطابق التالي أو السابق في المستند.</para>
+<para
+>يمكنك اختيار ما إذا كان البحث حساسًا لحالة الأحرف. اختيار <guilabel
+>مطابقة الحالة</guilabel
+> سيحدد النتائج للمدخلات التي تطابق حالة (كبيرة أو صغيرة) كل حرف في نمط البحث. </para>
+<para
+>انقر على الزر ذي أيقونة السهم الأخضر على الجانب الأيمن من شريط البحث التدريجي للتبديل إلى شريط البحث والاستبدال القوي. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-find-again"/><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>ابحث عن التالي</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>يكرر هذا آخر عملية بحث، إن وجدت، دون استدعاء شريط البحث التدريجي. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-previous">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>ابحث عن السابق</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يكرر هذا عملية البحث الأخيرة، إن وجدت، دون استدعاء شريط البحث التزايدي، والبحث للخلف بدلًا من الأمام عبر المستند. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-replace"/><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>استبدل...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يفتح هذا الأمر شريط البحث والاستبدال المتقدم. يوجد على الجانب العلوي الأيسر من الشريط زر به أيقونة لإغلاق الشريط، يليه مربع نص صغير لإدخال نمط البحث.</para>
+<para
+>يمكنك التحكم في وضع البحث عن طريق اختيار <guilabel
+>نص مجرد</guilabel
+>، أو <guilabel
+>كلمات كاملة</guilabel
+>، أو <guilabel
+>تسلسلات الهروب</guilabel
+> أو <guilabel
+>تعبير نمطي</guilabel
+> من المربع المنسدل. </para>
+<para
+>إذا اختيرت <guilabel
+>تسلسلات الهروب</guilabel
+> أو <guilabel
+>تعبير نمطي</guilabel
+>، فسيُفَعَّل عنصر القائمة <guibutton
+>أضف...</guibutton
+> الموجود في أسفل القائمة السياقية لمربعات النص وسيتيح لك إضافة تسلسلات هروب أو عناصر تعبير نمطي إلى نمط البحث أو الاستبدال من قوائم محددة مسبقًا.</para>
+<para
+>استخدم زر <guilabel
+>التالي</guilabel
+> أو <guilabel
+>السابق</guilabel
+> للانتقال إلى التطابق التالي أو السابق في المستند.</para>
+<para
+>أدخل النص المراد الاستبدال به في مربع النص المسمى <guilabel
+>استبدل</guilabel
+> وانقر فوق زر <guibutton
+>استبدل</guibutton
+> لاستبدال النص المبرز فقط أو زر <guibutton
+>استبدل الكل</guibutton
+> لاستبدال نص البحث في المستند بأكمله. </para>
+<para
+>يمكنك تعديل سلوك البحث والاستبدال باختيار خيارات مختلفة في أسفل الشريط. اختيار <guilabel
+>مطابقة الحالة</guilabel
+> سيحدد النتائج للمدخلات التي تطابق حالة (كبيرة أو صغيرة) كل حرف في نمط البحث. <guilabel
+>التحديد فقط</guilabel
+> سيبحث ويستبدل ضمن التحديد الحالي فقط. زر <guilabel
+>إيجاد الكل</guilabel
+> يبرز جميع التطابقات في المستند ويظهر عدد التطابقات التي وُجدت في نافذة منبثقة صغيرة. </para>
+<para
+>انقر على الزر ذي أيقونة السهم الأخضر على الجانب الأيمن من شريط البحث والاستبدال القوي للتبديل إلى شريط البحث التدريجي. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>إيجاد المحدد</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>١جِد الحدوث التّالي للنّصّ المحدّد.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-find-selected-backwards">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>إيجاد المحدد للخلف</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>١جِد الحدوث السّابق للنّصّ المحدّد.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-go-to-line">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>اذهب إلى السطر...</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>يفتح هذا شريط "اذهب إلى السطر" في أسفل النافذة والذي يُستخدم لجعل المؤشر يقفز إلى سطر معين (محدد برقم) في المستند. يمكن إدخال رقم السطر مباشرة في مربع النص أو بيانيًا بالنقر فوق عناصر تحكم السهم لأعلى أو لأسفل بجانب مربع النص. سيزيد السهم الصغير لأعلى رقم السطر وسينقصه السهم لأسفل. أغلق الشريط بنقرة على الزر الذي يحتوي على أيقونة على الجانب الأيسر من الشريط. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-view">
+<!-- This is also valid for kates menu view, but kate does not have the New Window item -->
+<title
+>قائمة عرض</title>
+
+<para
+>تتيح لك قائمة <guimenu
+>عرض</guimenu
+> إدارة الإعدادات الخاصة بالمحرر النشط، وإدارة الأطر.</para>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-new-window"/>
+<menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>نافذة جديدة</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>تُنشأ نافذة أخرى تحتوي على المستند الحالي. تنعكس جميع التغييرات التي تجرى على المستند في نافذة واحدة على النافذة الأخرى والعكس صحيح.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-command-line"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F7</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>انتقل إلى سطر الأوامر</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يعرض سطر أوامر Katepart في أسفل النافذة. في سطر الأوامر، اكتب <userinput
+>مساعدة</userinput
+> للحصول على المساعدة و<userinput
+>قائمة مساعدة</userinput
+> للحصول على قائمة الأوامر.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>عرض</guimenu
+><guimenuitem
+>إظهار وحدة تحكم جافا سكريبت</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>يفتح هذا عرض أداة يتيح لك تشغيل كود جافا سكريبت تفاعليًا. لمزيد من المعلومات، انظر <ulink url="help:/katepart/advanced-editing-tools-scripting.html"
+>توسيع &kate; بالنصوص البرمجية</ulink
+> </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-schema"/>
+<menuchoice
+><guimenu
+>عرض</guimenu
+> <guisubmenu
+>مخطط</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>اختر مخطط خط.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F10</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>التفاف الكلمات الديناميكي</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>سيتم التفاف أسطر النص عند حدود العرض على الشاشة.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-dynamic-word-wrap-indicators"/>
+<menuchoice
+><guimenu
+>عرض</guimenu
+> <guisubmenu
+>مؤشرات التفاف الكلمات الديناميكي</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+ <para
+>اختر متى وكيف يجب عرض مؤشرات لف الكلمات الحركي. يتوفر هذا فقط إذا حُدّد خيار <guilabel
+>لف كلمات حركي</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-static-word-wrap"/>
+<menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>إظهار علامة التفاف الكلمات الثابتة</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>إذا حُدد هذا الخيار، فسيُرسَم خط عمودي عند عمود لف الكلمات كما هو محدد في <menuchoice
+> <guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط المحرر...</guimenuitem
+></menuchoice
+> في تبويب التحرير. يرجى ملاحظة أن علامة لف الكلمات تُرسَم فقط إذا كنت تستخدم خطًا ثابت العرض.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-icon-border"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F6</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>إظهار حدود الأيقونات</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>١هذا عنصر تبديل. تفعيله سيجعل حدود الأيقونات مرئية في الجانب الأيسر من المحرر النشط، والعكس صحيح. تشير حدود الأيقونات إلى مواقع الأسطر المعلّمة في المحرر.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-show-line-numbers"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F11</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>إظهار أرقام الأسطر</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>١هذا عنصر تبديل. تفعيله سيجعل جزءًا يعرض أرقام أسطر المستند مرئيًا في الحد الأيسر لـ المحرر النشط، والعكس صحيح.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-scrollbar-marks"/>
+<menuchoice
+><guimenu
+>عرض</guimenu
+> <guisubmenu
+>إظهار علامات شريط التمرير</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>إذا فعل هذا الخيار، فسيعرض العرض علامات على شريط التمرير العمودي. العلامات تعادل العلامات الموجودة على <link linkend="katepart-menu-view-show-icon-border"
+>حد الأيقونات</link
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-hide-folding-markers"/>
+<menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>إظهار علامات الطي</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>إذا كان هذا الخيار محددًا، ستُعرض علامات طي الكود.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<anchor id="katepart-menu-view-code-folding"/>
+<menuchoice
+><guimenu
+>عرض</guimenu
+> <guisubmenu
+>طي الكود</guisubmenu
+> </menuchoice>
+</term>
+<listitem>
+<para
+>تتعلق هذه الخيارات بـ <ulink url="help:/katepart/advanced-editing-tools-code-folding.html"
+>طي الكود</ulink
+>:</para>
+<variablelist>
+
+<varlistentry id="view-show-folding-markers">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+><keycap
+>F9</keycap
+></keycombo
+> </shortcut
+> <guimenuitem
+>أظهر علامات الطي</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>يبدل عرض جزء علامات الطي في الجانب الأيسر من العرض.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>اطوِ العقدة الحالية</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>يقلص المنطقة التي تحتوي على المؤشر.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-unfold-current-node">
+<term
+><menuchoice>
+<guimenuitem
+>افرد العقدة الحالية</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>يمدد المنطقة التي تحتوي على المؤشر.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="view-fold-toplevel-nodes">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenuitem
+>اطوِ العقد في المستوى العلوي</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>يقلص جميع مناطق المستوى العلوي في المستند. انقر على المثلث الذي يشير لليمين لتمديد جميع مناطق المستوى العلوي.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>كبّر الخط</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>يزيد هذا حجم خط العرض.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenuitem
+>قلص الخط</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>يصغّر هذا حجم خطّ العرض.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+<sect3 id="katepart-menu-go"
+><!-- This is also valid for kates menu bookmarks-->
+<title
+>قائمة العلامات</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-menu-set-bookmark">
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>العلامات المرجعية</guimenu
+> <guimenuitem
+>عيّن علامة مرجعية</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يضبط أو يزيل علامة مرجعية في السطر الحالي من المستند النشط. (إذا كانت موجودة، تُزال، وإلا تُضبط واحدة). </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term id="katepart-menu-clear-bookmarks">
+<menuchoice
+><guimenu
+>العلامات المرجعية</guimenu
+> <guimenuitem
+>امسح جميع العلامات المرجعية</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>سيقوم هذا الأمر بإزالة جميع العلامات من المستند بالإضافة إلى قائمة العلامات الملحقة في أسفل عنصر القائمة هذا. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-previous">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&PgUp;</keycombo
+> </shortcut
+> <guimenu
+>العلامات المرجعية</guimenu
+> <guimenuitem
+>السابق</guimenuitem
+></menuchoice>
+</term>
+<listitem
+><para
+>سيؤدي هذا إلى نقل المؤشر إلى بداية أول سطر في الأعلى يحتوي على علامة مرجعية. سيشمل نص عنصر القائمة رقم السطر وأول جزء من النص في السطر. يتوفر هذا العنصر فقط عند وجود علامة مرجعية في سطر يسبق المؤشر.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-menu-bookmarks-next">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt; <keycap
+>PgDown</keycap
+></keycombo
+></shortcut
+> <guimenu
+>العلامات المرجعية</guimenu
+><guimenuitem
+>التالي</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>سيؤدي هذا إلى نقل المؤشر إلى بداية السطر التالي الذي يحتوي على علامة مرجعية. سيشمل نص عنصر القائمة رقم السطر وأول جزء من النص في السطر. يتوفر هذا العنصر فقط عند وجود علامة مرجعية في سطر يقع بعد المؤشر.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>في أسفل هذه القائمة، تظهر قائمة بالعلامات المرجعية إذا كانت أي علامات مرجعية متاحة لهذه النافذة. </para>
+
+</sect3>
+
+<!-- This is also valid for kates menu tools, kate has additional items:
+Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at top-->
+<sect3 id="katepart-menu-tools">
+<title
+>قائمة أدوات</title>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-read-only"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>وضع القراءة فقط</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>اضبط المستند الحالي على وضع القراءة فقط. يمنع هذا أي إضافة نص وأي تغييرات في تنسيق المستند.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-filetype"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guisubmenu
+>الوضع</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>اختر مخطط نوع الملف الذي تفضله للمستند النشط. يتجاوز هذا وضع نوع الملف العام المحدد في <menuchoice
+> <guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط المحرر...</guimenuitem
+></menuchoice
+> في تبويب أنواع الملفات لمستندك الحالي فقط.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-highlighting"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guisubmenu
+>التظليل</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>اختر مخطط التظليل الذي تفضله للمستند النشط. هذا يستبدل وضع التظليل العام المحدد في <menuchoice
+> <guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط المحرر...</guimenuitem
+> </menuchoice
+> لمستندك الحالي فقط.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-indentation"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guisubmenu
+>الإزاحة</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>اختر  نمط الإزاحة الذي تريده لمستندك النشط. هذا يستبدل وضع الإزاحة العام المحدد في <menuchoice
+> <guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط المحرر...</guimenuitem
+> </menuchoice
+> لمستندك الحالي فقط.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-encoding"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guisubmenu
+>الترميز</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>يمكنك استبدال الترميز المبدئي المحدد في <menuchoice
+> <guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط المحرر...</guimenuitem
+> </menuchoice
+> في صفحة <guilabel
+>افتح/احفظ</guilabel
+> لضبط ترميز مختلف لمستندك الحالي. سيكون الترميز الذي تضبطه هنا صالحًا لمستندك الحالي فقط.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><anchor id="katepart-menu-tools-end-of-line"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guisubmenu
+>نهاية السطر</guisubmenu
+></menuchoice
+> </term>
+ <listitem>
+<para
+>اختر وضع نهاية السطر المفضل لمستندك النشط. هذا يستبدل وضع نهاية السطر العام المحدد في <menuchoice
+> <guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط المحرر...</guimenuitem
+> </menuchoice
+> لمستندك الحالي فقط.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-add-byte-mark-order"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guisubmenu
+>أضف علامة ترتيب البايتات (BOM)</guisubmenu
+></menuchoice
+></term>
+ <listitem>
+<para
+>بتحديد هذا الإجراء يمكنك صراحة إضافة علامة ترتيب بايتات للمستندات المرمزة بيونيكود. علامة ترتيب البايتات (BOM) هي محرف يونيكود يُستخدم للإشارة إلى ترتيب البايتات في ملف نصي أو دفق، لمزيد من المعلومات انظر <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>علامة ترتيب البايتات</ulink
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Space;</keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>استدعِ إكمال الكود</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>يستدعي إكمال الأوامر يدويًا، عادةً باستخدام اختصار مرتبط بهذا الإجراء.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>إكمال الكلمات</guimenuitem
+> </menuchoice
+> </term>
+<listitem>
+<para
+>يقوم <guimenuitem
+>أعد استخدام الكلمة بالأسفل</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>9</keycap
+></keycombo
+>) و<guimenuitem
+>أعد استخدام الكلمة بالأعلى</guimenuitem
+> (<keycombo action="simul"
+>&Ctrl; <keycap
+>8</keycap
+></keycombo
+>) بإكمال النص المكتوب حاليًا من خلال البحث عن كلمات مماثلة للخلف أو للأمام من موقع المؤشر الحالي. يظهر <guimenuitem
+>إكمال الصدفة</guimenuitem
+> صندوق إكمال يحتوي على المدخلات المطابقة.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>O</keycap
+></keycombo
+></shortcut
+> <guimenu
+>أدوات</guimenu
+><guimenuitem
+>تدقيق إملائي آلي</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>عند تمكين <guimenuitem
+>التدقيق الإملائي التلقائي</guimenuitem
+>، يُوضع خط تحت النص الخاطئ في المستند فورًا.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-Spelling..."/><menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>الإملاء...</guimenuitem
+></menuchoice>
+</term>
+
+<!--para
+>These options are described in the documentation for the
+<ulink url="help:/sonnet/index.html"
+>Check Spelling Dialog</ulink
+>.</para
+Move / merge the following into kdelibs/doc/sonnet/index.docbook and replace it with the para above
+-->
+
+<listitem
+><para
+><action
+>يبدأ هذا برنامج التدقيق الإملائي - وهو برنامج مصمم لمساعدة المستخدم على اكتشاف أي أخطاء إملائية وتصحيحها.</action
+> سيؤدي النقر فوق هذه المدخلة إلى بدء المدقق وإظهار مربع حوار الإملاء الذي يمكن للمستخدم من خلاله التحكم في العملية. هناك أربعة إعدادات مصفوفة عموديًا في وسط الحوار مع اللصائق المقابلة لها على اليسار مباشرة. بدءًا من الأعلى هي:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>كلمة مجهولة:</guilabel
+></term>
+<listitem
+><para
+>هنا، يشير مدقق الإملاء إلى الكلمة قيد النظر حاليًا. يحدث هذا عندما يواجه المدقق كلمة ليست في قاموسه - وهو ملف يحتوي على قائمة بالكلمات المكتوبة بشكل صحيح والتي يقارن بها كل كلمة في المحرر.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>استبدل بـ:</guilabel
+></term>
+<listitem
+><para
+>إذا كان لدى المدقق أي كلمات مماثلة في قاموسه، فستُدرج الكلمة الأولى هنا. يمكن للمستخدم قبول الاقتراح، أو كتابة تصحيحه الخاص، أو اختيار اقتراح مختلف من المربع التالي.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>اللغة:</guilabel
+></term>
+<listitem
+><para
+>إذا كنت قد ثبت قواميس متعددة، يمكنك هنا اختيار القاموس/اللغة التي يجب استخدامها.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>يوجد على الجانب الأيمن من مربع الحوار 6 أزرار تسمح للمستخدم بالتحكم في عملية التدقيق الإملائي. وهي:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>أضف إلى القاموس</guibutton
+></term>
+<listitem
+><para
+>يؤدي الضغط على هذا الزر إلى إضافة <guilabel
+>كلمة مجهولة</guilabel
+> إلى قاموس المدقق. وهذا يعني أن المدقق سيعتبر هذه الكلمة مكتوبة بشكل صحيح دائمًا في المستقبل.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>اقترح</guilabel
+></term>
+<listitem
+><para
+>قد يسرد المدقق هنا عددًا من البدائل الممكنة للكلمة قيد النظر. سيؤدي النقر فوق أي من الاقتراحات إلى إدخال تلك الكلمة في مربع <guilabel
+>استبدل بـ</guilabel
+> أعلاه.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>استبدل</guibutton
+></term>
+<listitem
+><para
+>يجعل هذا الزر المدقق يستبدل الكلمة قيد النظر في المستند بالكلمة الموجودة في مربع <guilabel
+>استبدل بـ</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>استبدل الكلّ</guibutton
+></term>
+<listitem
+><para
+>يؤدي هذا الزر إلى قيام المدقق ليس فقط باستبدال <guilabel
+>كلمة مجهولة:</guilabel
+> الحالية ولكن أيضًا بإجراء نفس الاستبدال آليًا لأي تكرارات أخرى لهذه الـ <guilabel
+>كلمة مجهولة</guilabel
+> في المستند.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>تجاهل</guibutton
+></term>
+<listitem
+><para
+>سيؤدي تفعيل هذا الزر إلى جعل المدقق ينتقل دون إجراء أي تغييرات.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>تجاهل الكل</guibutton
+></term>
+<listitem
+><para
+>يخبر هذا الزر المدقق بعدم فعل أي شيء مع الـ <guilabel
+>كلمة مجهولة:</guilabel
+> الحالية وتجاوز أي حالات أخرى لنفس الكلمة.</para
+> <note
+><para
+>ينطبق هذا فقط على تشغيل التدقيق الإملائي الحالي. إذا شُغل المدقق مرة أخرى لاحقًا، فسيتوقف عند هذه الكلمة نفسها.</para
+></note
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>توجد ثلاثة أزرار أخرى أفقيًا على طول الجزء السفلي من حوار التدقيق الإملائي. وهي:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>مساعدة</guibutton
+></term>
+<listitem
+><para
+>يستدعي هذا نظام مساعدة كيدي مع صفحة المساعدة لهذا الحوار.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>انتهى</guibutton
+></term>
+<listitem
+><para
+>ينهي هذا الزر عملية التدقيق الإملائي، ويعود إلى المستند.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>ألغِ</guibutton
+></term>
+<listitem
+><para
+>يلغي هذا الزر عملية التدقيق الإملائي، وتُعكس جميع التعديلات، وستعود إلى مستندك.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spelling-from-cursor"/><menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>الإملاء (من عند المؤشر)...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>يبدأ هذا برنامج التدقيق الإملائي ولكنه يبدأ من مكان وجود المؤشر بدلًا من بداية المستند.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-spellcheck-selection"/><menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>تدقيق إملائي للمحدّد...</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>يدقق إملائيًا في التحديد الحالي.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-change-dictionary"/><menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>غيّر القاموس</guimenuitem
+></menuchoice
+></term>
+ <listitem>
+<para
+>يعرض مربعًا منسدلًا يحتوي على جميع القواميس المتاحة للتدقيق الإملائي في أسفل نافذة المحرر. يسمح هذا بالتبديل السهل لقاموس التدقيق الإملائي، على سبيل المثال، للتدقيق الإملائي الآلي للنصوص بلغات مختلفة.</para>
+ </listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-cleanindent"/><menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>تنظيف المسافة البادئة</guimenuitem
+></menuchoice
+></term
+>  <listitem>
+<para
+>ينظف هذا الإزاحة للتحديد الحالي أو للسطر الذي يوجد فيه المؤشر حاليًا. يضمن تنظيف الإزاحة أن جميع النصوص المحددة تتبع وضع الإزاحة الذي تختاره.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-tools-align"/><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>محاذاة</guimenuitem
+> </menuchoice
+></term>
+<listitem>
+<para
+>يسبب إعادة محاذاة للسطر الحالي أو السطور المحددة باستخدام وضع الإزاحة وإعدادات الإزاحة في المستند.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>تعليق</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>يضيف هذا مسافة واحدة إلى بداية السطر حيث يوجد مؤشر النص أو إلى بداية أي سطور محددة.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry
+><!-- only in power mode-->
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>إلغاء التعليق</guimenuitem
+> </menuchoice
+> </term>
+<listitem
+><para
+>يزيل هذا مسافة واحدة (إن وجدت) من بداية السطر حيث يوجد مؤشر النص أو من بداية أي سطور محددة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>أحرف كبيرة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>اجعل النص المحدد أو الحرف بعد المؤشر بأحرف كبيرة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>أحرف صغيرة</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>اجعل النص المحدد أو الحرف بعد المؤشر بأحرف صغيرة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt;<keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>تكبير الحرف الأول</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>اكتب الحرف الأول من النص المحدد أو الكلمة الحالية بأحرف كبيرة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>ضم الأسطر</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>يضم السطور المحددة، أو السطر الحالي والسطر الذي أسفله مع محرف مسافة بيضاء واحد كفاصل. تُزال المسافات البيضاء البادئة/اللاحقة في السطور المضمومة في الأطراف المتأثرة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>تطبيق التفاف الكلمات</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>تطبيق التفاف الكلمات الثابت على المستند بأكمله. يعني ذلك أن سطرًا جديدًا من النص سيبدأ آليًا عندما يتجاوز السطر الحالي الطول المحدد بواسطة خيار <guilabel
+>التفاف الكلمات عند</guilabel
+> في لسان التحرير في <menuchoice
+> <guimenu
+>الإعدادات</guimenu
+><guimenuitem
+>اضبط المحرر...</guimenuitem
+></menuchoice
+></para
+></listitem>
+</varlistentry>
+
+</variablelist>
+<para
+>إذا كان <link linkend="katepart-pref-plugins"
+>الملحق</link
+> إدراج ملف مفعّلًا، ستجد هنا عنصر قائمة إضافيًا <guimenuitem
+>إدراج ملف...</guimenuitem
+>. </para>
+<!-- Data Tools and Insane HTML (LE) Expansion Ctrl+. when plugins are enabled-->
+</sect3>
+
+<sect3 id="katepart-menu-settings">
+<!-- This is also valid for kates menu settings,
+only the items Show Toolbar and Show Statusbar are swapped and Configure kate is the last item-->
+<title
+>قائمة الإعدادات</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="katepart-menu-preferences"/><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>اضبط المحرر...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>يفتح عنصر القائمة هذا حوارًا يمكن من خلاله ضبط عدة <link linkend="kredit_config"
+>إعدادات</link
+> مختلفة. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<!--/end kwrite-->
+
+  <!-- KRVIEWER menu -->
+<sect3 id="kredit_krviewer_menu">
+<title
+>قائمة KrViewer</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>G</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>عارض عام</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>العارض الداخلي لـ &krusader; هو في الواقع جزء من كنكرر، والذي يمكنه أساسًا عرض كل نوع ملف يمكن عرضه بواسطة كنكرر (&eg; عرض الصور، تشغيل الموسيقى، إظهار محتوى أرشيف).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>عارض نصوص</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>اعرض الملف في وضع النص.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>عارض سداسي</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>اعرض الملف في وضع سداسي.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>ليستر</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>عارض نصوص/سداسي سريع لأحجام الملفات الضخمة، تم بواسطة <link linkend="konfig-general"
+>ليستر كروسيدر</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>محرر نصوص</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>حرّر الملف في وضع النص.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>افصل اللسان</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>افصل لسان التصفح وافتحه في نافذة جديدة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl; <keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>KrViewer</guimenu
+> <guimenuitem
+>خروج</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يغلق نافذة العارض/المحرر لـ &krusader;.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    </sect3>
+  </sect2>
+
+<!--taken from kwrite's configuring-part.docbook-->
+<sect2 id="kredit_config">
+<title
+>ضبط مكون المحرر</title>
+<para
+>تحتوي هذه المجموعة على جميع الصفحات المتعلقة بمكون المحرر في &kappname;. معظم الإعدادات هنا مبدئية، ويمكن تجاوزها عبر <link linkend="katepart-pref-open-save-modes-filetypes"
+>تعريف نوع ملف</link
+>، أو عبر <ulink url="help:/katepart/config-variables.html"
+>متغيرات المستند</ulink
+> أو بتغييرها لكل مستند أثناء جلسة التحرير.</para>
+<sect3 id="katepart-appearance"
+> <!-- updated to 4.7 + synced with kwrite -->
+<title
+>المظهر</title>
+
+<sect4 id="katepart-appearance-general">
+<title
+>عامّ</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>لف الكلمات الديناميكي</guilabel
+></term>
+<listitem>
+<para
+>إذا حُدد هذا الخيار، فستُلف أسطر النص عند حدود العرض على الشاشة.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>مؤشرات التفاف الكلمات الديناميكي (إن وُجدت)</guilabel
+></term>
+<listitem
+><para
+>اختر متى يجب عرض مؤشرات لف الكلمات الديناميكي، إما <guilabel
+>مطفأ</guilabel
+>، أو <guilabel
+>تابع لأرقام الأسطر</guilabel
+> أو <guilabel
+>يعمل دائمًا</guilabel
+>. </para
+></listitem
+></varlistentry>
+<varlistentry>
+<term
+><guilabel
+>محاذاة الأسطر الملفوفة ديناميكيًا إلى عمق الإزاحة: </guilabel
+></term>
+<listitem
+><para
+>يمكّن بدء الأسطر الملفوفة ديناميكيًا من المحاذاة عموديًا إلى مستوى إزاحة السطر الأول. يمكن أن يساعد ذلك في جعل الكود والترميز أكثر قابلية للقراءة.</para
+><para
+>بالإضافة إلى ذلك، يتيح لك هذا تعيين حد أقصى لعرض الشاشة، كنسبة مئوية، وبعدها لن تُحاذى الأسطر الملفوفة ديناميكيًا عموديًا. على سبيل المثال، عند 50%، فإن الأسطر التي تكون مستويات إزاحتها أعمق من 50% من عرض الشاشة لن يُطبق عليها المحاذاة العمودية للأسطر الملفوفة اللاحقة.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>إبراز الفراغات البيضاء</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>إبراز علامات الجدولة</guilabel
+></term>
+<listitem
+><para
+>سيعرض المحرر رمز &raquo; للإشارة إلى وجود علامة جدولة في النص.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>إبراز المسافات الزائدة في النهاية</guilabel
+></term>
+<listitem
+><para
+>سيعرض المحرر نقاطًا للإشارة إلى وجود مساحات بيضاء زائدة في نهاية الأسطر.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>متقدّم </guilabel
+></term>
+<listitem
+><para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>أظهر خطوط الإزاحة </guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا، سيعرض المحرر خطوطًا عمودية للمساعدة في تحديد خطوط الإزاحة.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أبرز المجال بين الأقواس المحدّدة </guilabel
+></term>
+<listitem
+><para
+>إذا فُعّل هذا الخيار، فسيُبرز المدى بين الأقواس المتطابقة المختارة.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-appearance-borders">
+<title
+>الحدود</title>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>الحدود</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>إظهار علامات الطي (إن توفرت) </guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا الخيار، فسيُعرض في العرض الحالي علامات لطي الكود إذا كان طي الكود متاحًا.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أظهر إطار الأيقونات </guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا، فسترى حدودًا للأيقونات على الجانب الأيسر. تظهر حدود الأيقونات علامات المراجع على سبيل المثال.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أظهر أرقام الأسطر </guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا، فسترى أرقام الأسطر على الجانب الأيسر.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أظهر علامات شريط التّمرير </guilabel
+></term>
+<listitem
+><para
+>إذا حُدد هذا الخيار، فسيُظهر العرض الحالي علامات على شريط التمرير العمودي. ستظهر هذه العلامات المراجع على سبيل المثال.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>افرز قائمة العلامات </guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>حسب الإنشاء </guilabel
+></term>
+<listitem
+><para
+>ستُضاف كل مرجع جديد إلى الأسفل، بغض النظر عن مكانه في المستند.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>حسب الموضع </guilabel
+></term>
+<listitem
+><para
+>ستُفرز العلامات بأرقام الأسطر المعلّمة.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="katepart-prefcolors"
+><!-- checked for 4.7 + synced with kwrite -->
+<title
+>الخطوط والألوان</title>
+
+<para
+>يتيح لك هذا القسم من الحوار ضبط جميع الخطوط والألوان في أي نظام ألوان لديك، بالإضافة إلى إنشاء أنظمة جديدة أو حذف الأنظمة القائمة. لكل نظام إعدادات للألوان والخطوط وأنماط النص العادي والمظلل. </para>
+
+<para
+>سيحدد &kappname; النظام النشط حاليًا لك مسبقًا، وإذا أردت العمل على نظام مختلف فابدأ باختياره من مربع التحرير والسرد <guilabel
+>النظام</guilabel
+>. باستخدام الزرين <guibutton
+>جديد</guibutton
+> و<guibutton
+>حذف</guibutton
+> يمكنك إنشاء نظام جديد أو حذف الأنظمة القائمة.</para>
+<para
+>في أسفل الصفحة يمكنك اختيار <guilabel
+>النظام المبدئي لـ &kappname;</guilabel
+>.</para>
+
+<sect4 id="katepart-prefcolors-colors">
+<title
+>الألوان</title>
+
+<variablelist>
+<varlistentry id="katepart-variable-prefcolors-colors-text-background">
+<term
+><guilabel
+>خلفية منطقة النص</guilabel
+></term>
+<listitem>
+
+<variablelist>
+
+<varlistentry id="katepart-variable-pref-colors-normal-text">
+<term
+><guilabel
+>نص عادي</guilabel
+></term>
+<listitem
+><para
+>هذه هي الخلفية المبدئية لمنطقة المحرر، وستكون اللون المهيمن في منطقة المحرر.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-selected-text">
+<term
+><guilabel
+>النص المحدد</guilabel
+></term>
+<listitem
+><para
+>هذه هي خلفية النص المحدد. المبدئي هو لون التحديد العام، كما هو مضبوط في تفضيلات ألوان بلازما لديك. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-current-line">
+<term
+><guilabel
+>السّطر الحاليّ</guilabel
+></term>
+<listitem
+><para
+>اضبط لون السطر الحالي. يساعد ضبط هذا اللون بشكل مختلف قليلًا عن خلفية النص العادي في الحفاظ على التركيز على السطر الحالي. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-pref-colors-marks">
+<term
+><guilabel
+>علامة</guilabel
+></term>
+<listitem
+><para
+>يتيح لك مربع التحرير والسرد هذا ضبط ألوان التراكب لأنواع العلامات المختلفة. يُخلط اللون مع لون خلفية السطر المعلّم، بحيث يكون للسطر الذي يحوي علامات أكثر أو سطر معلّم حالي خلفية تمثل مزيجًا من ألوان أكثر. تُستخدم ألوان العلامات أيضًا إذا فعّلت عرض علامات شريط التمرير.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="katepart-variable-prefcolors-colors-other-elements">
+<term
+><guilabel
+>عناصر إضافية</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>خلفية الحد الأيسر</guilabel
+></term>
+<listitem
+><para
+>يُستخدم هذا اللون للعلامات وأرقام السطور وحدود علامة الطي في الجانب الأيسر من عرض المحرر عند عرضها. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أرقام الأسطر</guilabel
+></term>
+<listitem
+><para
+>يُستخدم هذا اللون لرسم أرقام السطور على الجانب الأيسر من العرض عند عرضها.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>إبراز الأقواس</guilabel
+></term>
+<listitem
+><para
+>يُستخدم هذا اللون لرسم خلفية الأقواس المتطابقة. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>علامات التفاف الكلمات</guilabel
+></term>
+<listitem
+><para
+>يُستخدم هذا اللون لرسم نمط إلى يسار السطور الملفوفة آليًا عندما تُحاذى عموديًا، بالإضافة إلى علامة لَف النص الثابتة.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>علامات الجدولات والمسافات</guilabel
+></term>
+<listitem
+><para
+>يُستخدم هذا اللون لرسم مؤشرات المسافات البيضاء عند تفعيلها. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>سطر الخطأ الهجائيّ</guilabel
+></term>
+<listitem
+><para
+>يضبط لون الخطّ المُستخدم في الإشارة إلى الأخطاء الهجائيّة. </para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-prefcolors-fonts">
+<title
+>الخطوط</title>
+<para
+>هنا يمكنك اختيار الخط للنظام. يمكنك الاختيار من أي خط متوفر على نظامك، وتعيين حجم مبدئي. يُعرض نص عيّنة في أسفل الحوار، لتتمكن من رؤية تأثير اختياراتك. </para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-normal-text-styles">
+<title
+>أنماط النص العادي</title>
+<para
+>تُورث أنماط النص العادي بواسطة أنماط النص المظلل، مما يسمح للمحرر بعرض النص بطريقة متسقة جدًا، على سبيل المثال يستخدم نص التعليق نفس النمط في جميع تنسيقات النص تقريبًا التي يمكن لـ &kappname; إبرازها.</para>
+<para
+>يستخدم الاسم في قائمة الأنماط النمط المهيأ للعنصر، مما يوفر لك معاينة فورية عند تهيئة النمط. </para>
+<para
+>يتيح لك كل نمط اختيار سمات مشتركة بالإضافة إلى ألوان المقدمة والخلفية. لإلغاء تعيين لون الخلفية، انقر بزر الفأرة الأيمن لاستخدام قائمة السياق.</para>
+</sect4>
+
+<sect4 id="katepart-prefcolors-highlighting-text-styles">
+<title
+>أنماط نصوص الإبراز</title>
+<para
+>هنا يمكنك تحرير أنماط النص المستخدمة من قبل تعريف تمييز محدد. يختار المحرر مسبقًا التمييز المستخدم في مستندك الحالي. للعمل على تمييز مختلف، اختر واحدًا من المربع المنسدل <guilabel
+>Highlight</guilabel
+> فوق قائمة الأنماط. </para>
+<para
+>يستخدم الاسم في قائمة الأنماط النمط المهيأ للعنصر، مما يوفر لك معاينة فورية عند تهيئة النمط. </para>
+<para
+>يتيح لك كل نمط اختيار سمات مشتركة بالإضافة إلى ألوان المقدمة والخلفية. لإلغاء تعيين لون الخلفية، انقر بزر الفأرة الأيمن لاستخدام قائمة السياق. بالإضافة إلى ذلك، يمكنك معرفة ما إذا كان النمط مساويًا للنمط المبدئي المستخدم للعنصر، وتعيينه إلى ذلك إذا لم يكن كذلك.</para>
+<para
+>ستلاحظ أن العديد من عمليات التمييز تحتوي على تمييزات أخرى مُمثلة بمجموعات في قائمة الأنماط. على سبيل المثال، تستورد معظم عمليات التمييز تمييز Alert، وتستورد العديد من تنسيقات كود المصدر تمييز Doxygen. يؤثر تحرير الألوان في تلك المجموعات فقط على الأنماط عند استخدامها في تنسيق التمييز المحرر. </para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-edit">
+<title
+>التّحرير</title>
+
+<sect4 id="katepart-pref-edit-general">
+<title
+>عامّ</title>
+<variablelist>
+
+<varlistentry>
+<term id="katepart-pref-word-wrap"
+><guilabel
+>لفّ الكلمات الثابت</guilabel
+></term>
+<listitem
+><para
+>لف الكلمات هي ميزة تجعل المحرر يبدأ سطرًا جديدًا من النص آليًا وينقل (يلف) المؤشر إلى بداية ذلك السطر الجديد. سيبدأ &kappname; سطرًا جديدًا من النص آليًا عندما يصل السطر الحالي إلى الطول المحدد بواسطة خيار <link linkend="katepart-pref-wrap-words-at"
+>لف الكلمات عند:</link
+>.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>تفعيل التفاف الكلمات الثابت</guilabel
+></term>
+<listitem>
+<para
+>يشغل أو يطفئ لف الكلمات الساكن.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>إظهار علامات التفاف الكلمات الثابت (إن أمكن)</guilabel
+></term>
+<listitem>
+<para
+>إذا حُدد هذا الخيار، فسيُرسَم خط عمودي عند عمود لف الكلمات كما هو محدد في <menuchoice
+> <guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط المحرر...</guimenuitem
+></menuchoice
+> في تبويب التحرير. يرجى ملاحظة أن علامة لف الكلمات تُرسَم فقط إذا كنت تستخدم خطًا ثابت العرض.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term id="katepart-pref-wrap-words-at"
+><guilabel
+>لف الكلمات عند:</guilabel
+></term>
+<listitem>
+<para
+>إذا كان خيار <link linkend="katepart-pref-word-wrap"
+>تفعيل التفاف الكلمات الثابت</link
+> محددًا، يحدد هذا المدخل الطول (بالأحرف) الذي سيبدأ عنده المحرر سطرًا جديدًا آليًا.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>متنوّع</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>إزالة المسافات الزائدة في النهاية أثناء التحرير</guilabel
+></term>
+<listitem
+><para
+>سيقوم &kappname; آليًا بإزالة المسافات الإضافية في نهايات أسطر النص.</para
+></listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>الأقواس التلقائية</guilabel
+></term
+> <listitem
+><para
+>عندما يكتب المستخدم قوسًا أيسر ([، (، أو {) يقوم &kappname; آليًا بإدخال القوس الأيمن (}، )، أو ]) إلى يمين المؤشر.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>نسخ/قص السطر الحالي إذا لم يكن هناك تحديد</guilabel
+></term
+> <listitem>
+<para
+>إذا فُعّل هذا الخيار وكان تحديد النص فارغًا، يُنفذ إجراء النسخ والقص على سطر النص في موقع المؤشر الحالي.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>اسمح بالتّمرير بعد نهاية المستند</guilabel
+></term
+> <listitem>
+<para
+>يتيح لك هذا الخيار التمرير بعد نهاية المستند. يمكن استخدام هذا لتوسيط نهاية المستند عموديًا، أو وضعها في أعلى العرض الحالي.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-cursor-selection">
+<title
+>المؤشر والانتقاء</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>حركة مؤشّر النّصّ</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>البداية الذكية والنهاية الذكية</guilabel
+></term>
+<listitem>
+<para
+>عند تحديده، سيؤدي الضغط على مفتاح Home إلى تخطي المؤشر للمساحات البيضاء والانتقال إلى بداية نص السطر.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>التفاف المؤشر</guilabel
+></term>
+<listitem>
+<para
+>عند التفعيل، سيؤدي تحريك مؤشر الإدراج باستخدام مفتاحي &Left; و&Right; إلى الانتقال إلى السطر السابق/التالي عند بداية/نهاية السطر، على غرار معظم المحررات.</para
+><para
+>عند التعطيل، لا يمكن تحريك مؤشر الإدراج إلى يسار بداية السطر، لكن يمكن تحريكه إلى ما بعد نهاية السطر، وهو ما قد يكون مفيدًا جدًا للمبرمجين. عند اختيار هذا الخيار، يؤدي تحريك المؤشر بمفاتيح الأسهم إلى ما بعد نهاية السطر (إلى اليمين) إلى قفزه إلى بداية السطر التالي. وبالمثل، عندما يُحرّك المؤشر إلى ما بعد بداية السطر (إلى اليسار) يقفز إلى نهاية السطر السابق. عند عدم تحديد هذا الخيار، يؤدي تحريك المؤشر إلى اليمين بعد نهاية السطر إلى استمراره أفقيًا في نفس السطر، ومحاولة تحريكه إلى اليسار بعد البداية لا تفعل شيئًا.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>PageUp/PageDown يحرك المؤشر</guilabel
+></term>
+<listitem>
+<para
+>يغير هذا الخيار سلوك المؤشر عندما يضغط المستخدم مفتاح &PgUp; أو &PgDn;. إذا لم يُحدد، سيحافظ مؤشر النص على موضعه النسبي داخل النص المرئي في &kappname; مع ظهور نص جديد نتيجة العملية. لذا إذا كان المؤشر في منتصف النص المرئي عند حدوث العملية، سيبقى هناك (إلا عند الوصول إلى البداية أو النهاية). مع تحديد هذا الخيار، سيؤدي الضغط الأول على المفتاح إلى تحريك المؤشر إما إلى أعلى أو أسفل النص المرئي عند عرض صفحة جديدة من النص.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>التمركز التلقائي للمؤشر (أسطر):</guilabel
+></term>
+<listitem>
+<para
+>يضبط عدد الأسطر المطلوب إبقاؤها مرئية فوق وتحت المؤشر قدر الإمكان.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>وضع تحديد النص</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>عادي</guilabel
+></term>
+<listitem>
+<para
+>ستُستبدل التحديدات بالنص المطبوع وستُفقد عند حركة المؤشر.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>مستمرّ</guilabel
+></term>
+<listitem>
+<para
+>ستبقى التحديدات حتى بعد حركة المؤشر والطباعة.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-indent">
+<title
+>الإزاحة</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>وضع الإزاحة المبدئي:</guilabel
+></term>
+<listitem>
+<para
+>حدد وضع الإزاحة الآلي الذي تريد استخدامه كمبدئي. يوصى بشدة باستخدام <userinput
+>بلا</userinput
+> أو <userinput
+>عادي</userinput
+> هنا، واستخدام تكوينات نوع الملف لضبط أوضاع إزاحة أخرى لتنسيقات النصوص مثل شفرات سي/سي++ أو &XML;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>أزح باستخدام</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>جدولات</guilabel
+></term>
+<listitem>
+<para
+>عند تفعيل هذا، سيقوم المحرر بإدراج محارف جدولة عند ضغطك على مفتاح &Tab; أو استخدام <ulink url="help:/katepart/kate-part-autoindent.html"
+>الإزاحة الآلية</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>المسافات</guilabel
+></term>
+<listitem>
+<para
+>عند تفعيل هذا، سيقوم المحرر بإدراج عدد محسوب من المسافات وفقًا للموضع في النص وإعداد <option
+>tab-width</option
+> عند ضغطك على مفتاح &Tab; أو استخدام <ulink url="help:/katepart/kate-part-autoindent.html"
+>الإزاحة الآلية</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>علامات الجدولة والمسافات</guilabel
+></term>
+<listitem>
+<para
+>عند تفعيل هذا، سيقوم المحرر بإدراج مسافات كما هو موضح أعلاه عند الإزاحة أو ضغط &Tab; في بداية السطر، لكنه يدرج علامات جدولة عند ضغط مفتاح &Tab; في وسط أو نهاية السطر.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>عرض علامة الجدولة:</guilabel
+></term>
+<listitem>
+<para
+>يضبط هذا عدد المسافات التي تُعرض بدلًا من محرف الجدولة.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>عرض الإزاحة:</guilabel
+></term>
+<listitem>
+<para
+>عرض الإزاحة هو عدد المسافات المستخدمة لإزاحة السطر. إذا ضُبط للإزاحة باستخدام علامات الجدولة، يُدرج محرف جدولة إذا كانت الإزاحة قابلة للقسمة على عرض علامة الجدولة.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>خصائص الإزاحة</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>أبقِ المسافات الإضافيّة</guilabel
+></term>
+<listitem
+><para
+>إذا عُطل هذا الخيار، فإن تغيير مستوى الإزاحة يحاذي السطر لمضاعفات العرض المحدد في <guilabel
+>عرض الإزاحة</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>اضبط إزاحة الكود الملصوق من الحافظة</guilabel
+></term>
+<listitem>
+<para
+>إن حُدّد هذا الخيار، فسيُزاح الكود الملصوق من الحافظة. تحفيز إجراء  <guimenuitem
+>تراجع</guimenuitem
+> سيزيل الإزاحة.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>إجراءات الإزاحة</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>مفتاح Backspace في المساحة الفارغة البادئة يقلل الإزاحة</guilabel
+></term>
+<listitem>
+<para
+>إذا حدد هذا الخيار، يقلل مفتاح &Backspace; مستوى الإزاحة إذا كان المؤشر يقع في المساحة الفارغة البادئة للسطر.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>إجراء مفتاح Tab (في حال عدم وجود تحديد)</guilabel
+></term>
+<listitem>
+<para
+>إذا أردت أن يقوم مفتاح &Tab; بمحاذاة السطر الحالي في كتلة التعليمات البرمجية الحالية مثل emacs، فاجعل مفتاح &Tab; اختصارًا للإجراء <guimenuitem
+>محاذاة</guimenuitem
+>. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>تقدم دائمًا إلى موضع علامة الجدولة التالي</guilabel
+></term>
+<listitem>
+<para
+>إذا حدد هذا الخيار، يقوم مفتاح &Tab; دائمًا بإدراج مساحة بيضاء للوصول إلى موضع علامة الجدولة التالي. إذا فُعّل خيار <guilabel
+>أدرج مسافات بدلًا من علامات الجدولة</guilabel
+> في تبويب <guilabel
+>عام</guilabel
+> في صفحة <guilabel
+>تحرير</guilabel
+>، تُدرج مسافات؛ وإلا تُدرج علامة جدولة واحدة.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>زد مستوى الإزاحة دائمًا</guilabel
+></term>
+<listitem>
+<para
+>إذا حدد هذا الخيار، يقوم مفتاح &Tab; دائمًا بإزاحة السطر الحالي بعدد مواضع المحارف المحدد في <guilabel
+>عرض الإزاحة</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>زد مستوى الإزاحة إذا كان في المساحة الفارغة البادئة</guilabel
+></term>
+<listitem>
+<para
+>إذا تم تحديد هذا الخيار، يقوم مفتاح &Tab; إما بمسافة بادئة للسطر الحالي أو بالتقدم إلى موضع الجدولة التالي. إذا كانت نقطة الإدراج عند أو قبل أول حرف غير فراغ في السطر، أو إذا كان هناك انتقاء، فسيتم وضع مسافة بادئة للسطر الحالي بعدد مواضع الأحرف المحددة في <guilabel
+>عرض المسافة البادئة</guilabel
+>. إذا كانت نقطة الإدراج بعد أول حرف غير فراغ في السطر ولا يوجد انتقاء، فسيتم إدراج فراغات بحيث يتم الوصول إلى موضع الجدولة التالي: إذا كان الخيار <guilabel
+>إدراج فراغات بدلًا من علامات الجدولة</guilabel
+> في علامة التبويب <guilabel
+>عام</guilabel
+> في صفحة <guilabel
+>حرر</guilabel
+> مفعّلًا، فسيتم إدراج فراغات؛ وإلا، فسيتم إدراج علامة جدولة واحدة.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-edit-autocompletion">
+<title
+>الإكمال الآليّ</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>عامّ</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>فعّل الإكمال الآلي</guilabel
+></term>
+<listitem>
+<para
+>إذا فُعّل، يظهر صندوق إكمال الكلمات آليًا أثناء الطباعة ليعرض قائمة بمدخلات نصية لإكمال النص الحالي تحت المؤشر.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>أقل طول للكلمة لإكمالها</guilabel
+></term>
+<listitem
+><para
+>أثناء طباعة النص، يبحث إكمال الكلمات عن كلمات في المستند تبدأ بالنص المطبوع بالفعل. يضبط هذا الخيار أقل كمية من المحارف المطلوبة لتنشيط إكمال الكلمات وإظهار صندوق الإكمال.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-vi-input-mode">
+<title
+>وضع دخل في‌آي</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>عامّ</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>استخدام وضع الإدخال VI</guilabel
+></term>
+<listitem>
+<para
+>عند التحديد، سيتم تفعيل وضع الإدخال vi عند فتح عرض جديد. لا يزال بإمكانك تبديل وضع الإدخال vi تشغيل/إيقاف لعرض معين في قائمة <guimenu
+>حرر</guimenu
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>فلتغلب أوامر في‌آي على اختصارات «كيت»</guilabel
+></term>
+<listitem>
+<para
+>عند تحديده، ستتجاوز أوامر Vi أوامر كايت المدمجة. على سبيل المثال: <keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> سيعيد التنفيذ، وسيتجاوز الإجراء القياسي (إظهار حوار البحث والاستبدال).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>إخفاء شريط حالة وضع Vi</guilabel
+></term>
+<listitem>
+<para
+>افتراضيًا، سيتم استخدام شريط حالة إضافي عند تفعيل وضع الإدخال Vi. يعرض شريط الحالة هذا الأوامر أثناء كتابتها والرسائل/الأخطاء الناتجة عن أوامر Vi.</para>
+<para
+>سيؤدي تحديد هذا الخيار إلى إخفاء سطر الحالة الإضافي هذا.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>تخطيط المفاتيح</guilabel
+></term>
+<listitem
+><para
+>يُستخدم تخطيط المفاتيح لتغيير معنى المفاتيح المطبوعة. يتيح لك هذا نقل الأوامر لمفاتيح أخرى أو إنشاء ضغطات مفاتيح خاصة للقيام بسلسلة من الأوامر.</para>
+<para
+>مثال:</para>
+<para
+><keycap
+>F2</keycap
+> -> <keycap
+>I--</keycap
+> &Esc;</para>
+<para
+>سيؤدي هذا إلى إضافة <keycap
+>I--</keycap
+> في بداية السطر عند ضغط <keycap
+>F2</keycap
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect4>
+
+<sect4 id="katepart-pref-edit-spellcheck">
+<title
+>التدقيق الإملائي</title>
+<para
+>تُشرح خيارات التكوين هذه في توثيق وحدة إعدادات النظام <ulink url="help:/kcontrol/spellchecking"
+>مدقق الإملاء</ulink
+>.</para>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-open-save">
+<title
+>الفتح/الحفظ</title>
+
+<sect4 id="katepart-pref-open-save-general">
+<title
+>عامّ</title>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>نسق الملفّ</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>الترميز:</guilabel
+></term>
+<listitem>
+<para
+>يحدد هذا الترميز القياسي المستخدم لفتح/حفظ الملفات، ما لم يُغير في حوار الفتح/الحفظ أو باستخدام خيار سطر الأوامر.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>اكتشاف الترميز</guilabel
+></term>
+<listitem>
+<para
+>حدد عنصرًا من الصندوق المنسدل، إما لتعطيل الاكتشاف الآلي أو استخدم <guilabel
+>عام</guilabel
+> لتمكين الاكتشاف الآلي لجميع الترميزات. ولكن بما أن هذا قد لا يكتشف إلا utf-8/utf-16، فإن تحديد منطقة سيستخدم استدلالات مخصصة لنتائج أفضل. إذا لم يتطابق الترميز المختار كقياسي أعلاه، ولا الترميز المحدد في حوار الفتح/الحفظ، ولا الترميز المحدد في سطر الأوامر مع محتوى الملف، فسيُشغل هذا الاكتشاف.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>ترميز الاحتياط</guilabel
+></term>
+<listitem>
+<para
+>يحدد هذا الترميز الاحتياطي لمحاولة فتح الملفات إذا لم يتطابق الترميز المختار كمعيار أعلاه، ولا الترميز المحدد في حوار الفتح/الحفظ، ولا الترميز المحدد في سطر الأوامر مع محتوى الملف. قبل استخدام هذا، سيتم محاولة تحديد الترميز المستخدم بالبحث عن علامة ترتيب البايت في بداية الملف: إذا وُجدت، سيتم اختيار ترميز يونيكود الصحيح؛ وإلا سيتم تشغيل كشف الترميز، وإذا فشل كلاهما سيتم تجربة الترميز الاحتياطي.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>نهاية السطر:</guilabel
+></term>
+<listitem>
+<para
+>اختر وضع نهاية السطر المفضل لمستندك النشط. لديك الخيار بين يونكس، أو دوس/ويندوز، أو ماكنتوش.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>اكتشاف نهاية السطر آليًا</guilabel
+></term>
+<listitem>
+<para
+>حدد هذا إذا أردت من المحرر اكتشاف نوع نهاية السطر آليًا. سيُستخدم أول نوع نهاية سطر يوعثر عليه للملف بأكمله.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>تفعيل علامة ترتيب البايت</guilabel
+></term>
+<listitem>
+<para
+>علامة ترتيب البايتات هي تسلسل خاص في بداية المستندات المرمزة بيونيكود. تساعد المحررات على فتح مستندات النص بترميز يونيكود الصحيح. لمزيد من المعلومات انظر <ulink url="https://en.wikipedia.org/wiki/Byte_Order_Mark"
+>علامة ترتيب البايتات</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<!--
+Line Length Limit missing
+ -->
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>التنظيف التلقائي عند التحميل/الحفظ</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>أزل المسافات اللاحقة</guilabel
+></term>
+<listitem>
+<para
+>سيقوم المحرر تلقائيًا بإزالة الفراغات الزائدة في نهايات أسطر النص أثناء تحميل/حفظ الملف.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-advanced">
+<title
+>متقدّم</title>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>ملف تهيئة المجلد</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>عمق البحث عن ملف التهيئة:</guilabel
+></term>
+<listitem>
+<para
+>سيبحث المحرر عن عدد مستويات المجلدات المحدد لأعلى بحثًا عن ملف تهيئة &kappname; ويحمل إعدادات السطر منه. مزيد من المعلومات حول ملفات تهيئة المجلد المخفية هذه تجدها في <ulink url="help:/katepart/config-variables.html"
+>قسم متغيرات المستند</ulink
+>. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>نسخ احتياطي عند الحفظ</guilabel
+></term>
+<listitem
+><para
+>سيؤدي النسخ الاحتياطي عند الحفظ إلى نسخ &kappname; للملف القرصي إلى &lt;prefix&gt;&lt;filename&gt;&lt;suffix&gt; قبل حفظ التغييرات. اللاحقة الافتراضية هي <emphasis role="bold"
+>~</emphasis
+> والبادئة فارغة افتراضيًا. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>الملفات المحلية</guilabel
+></term>
+<listitem>
+<para
+>حدد هذا إذا كنت تريد نسخًا احتياطية للملفات المحلية عند الحفظ.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الملفات البعيدة</guilabel
+></term>
+<listitem>
+<para
+>حدد هذا إذا كنت تريد نسخًا احتياطية للملفات البعيدة عند الحفظ.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>البادئة</guilabel
+></term>
+<listitem>
+<para
+>أدخل البادئة التي ستوضع قبل أسماء ملفات النسخ الاحتياطي.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>اللاحقة</guilabel
+></term>
+<listitem>
+<para
+>أدخل اللاحقة التي ستضاف إلى أسماء ملفات النسخ الاحتياطي.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>تعطيل مزامنة ملف المبادلة</guilabel
+></term>
+<listitem>
+<para
+>يستطيع &kappname; استرداد (معظم) ما كُتب بعد آخر حفظ في حالة تعطل أو انقطاع التيار الكهربائي. يتم إنشاء ملف مبادلة (.swp.&lt;filename&gt;) بعد أول إجراء تحرير على مستند. إذا لم يحفظ المستخدم التغييرات وتعطل &kappname;، يبقى ملف المبادلة على القرص. عند فتح ملف، يتحقق &kappname; مما إذا كان هناك ملف مبادلة للمستند، وإذا كان موجودًا، يسأل المستخدم عما إذا كان يريد استرداد البيانات المفقودة أم لا. لدى المستخدم أيضًا إمكانية عرض الاختلافات بين الملف الأصلي والملف المسترد. يتم حذف ملف المبادلة بعد كل حفظ وعند الخروج العادي.</para>
+<para
+>يقوم &kappname; بمزامنة ملفات المبادلة على القرص كل 15 ثانية، ولكن فقط إذا تغيرت منذ آخر مزامنة. يمكن للمستخدم تعطيل مزامنة ملفات المبادلة إذا أراد، عن طريق تحديد مربع <guilabel
+>تعطيل مزامنة ملف المبادلة</guilabel
+>، لكن هذا قد يؤدي إلى فقدان المزيد من البيانات.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+<sect4 id="katepart-pref-open-save-modes-filetypes">
+<title
+>الأوضاع وأنواع الملفات</title>
+<para
+>تسمح لك هذه الصفحة بتجاوز التشكيلة المبدئية للمستندات ذات أنواع MIME المحددة. عندما يحمل المحرر مستندًا، سيحاول معرفة ما إذا كان يطابق أقنعة الملفات أو أنواع MIME لأحد أنواع الملفات المعرفة، وإذا كان الأمر كذلك، فسيطبق المتغيرات المعرفة. إذا تطابق أكثر من نوع ملف، فسيُستخدم النوع ذو الأولوية الأعلى. </para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>نوع الملف:</guilabel
+></term>
+<listitem
+><para
+>نوع الملف ذو الأولوية القصوى هو الذي يُعرض في المربع المنسدل الأول. إذا وُجدت أنواع ملفات أكثر، فإنها تُدرج أيضًا.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>جديد</guilabel
+></term>
+<listitem
+><para
+>يُستخدم هذا لإنشاء نوع ملف جديد. بعد النقر فوق هذا الزر، تصبح الحقول أدناه فارغة ويمكنك ملء الخصائص التي تريدها لنوع الملف الجديد.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>احذف</guilabel
+></term>
+<listitem
+><para
+>لإزالة نوع ملف موجود، حدده من المربع المنسدل واضغط على زر الحذف.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>خصائص <replaceable
+>نوع الملف الحالي</replaceable
+></guilabel
+></term>
+<listitem
+><para
+>نوع الملف ذو الأولوية القصوى هو الذي يُعرض في المربع المنسدل الأول. إذا وُجدت أنواع ملفات أكثر، فإنها تُدرج أيضًا.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>الاسم:</guilabel
+></term>
+<listitem
+><para
+>سيكون اسم نوع الملف هو نص عنصر القائمة المقابل. يُعرض هذا الاسم في <menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>أنواع الملفات</guimenuitem
+> </menuchoice
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>القسم:</guilabel
+></term>
+<listitem
+><para
+>يُستخدم اسم القسم لتنظيم أنواع الملفات في القوائم. يُستخدم هذا أيضًا في قائمة <menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>أنواع الملفات</guimenuitem
+> </menuchoice
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>المتغيرات:</guilabel
+></term>
+<listitem
+><para
+>يسمح لك هذا السلسلة النصية بضبط إعدادات التطبيق للملفات المحددة بواسطة نوع &MIME; هذا باستخدام متغيرات التطبيق. يمكنك ضبط أي خيار إعداد تقريبًا، مثل الإبراز، ووضع الإزاحة، وما إلى ذلك.</para>
+<para
+>اضغط على <guibutton
+>حرر</guibutton
+> لرؤية قائمة بجميع المتغيرات المتاحة وأوصافها. حدد خانة الاختيار الموجودة على اليسار لتفعيل متغير معين ثم اضبط قيمة المتغير على اليمين. توفر بعض المتغيرات مربعًا منسدلًا لاختيار القيم الممكنة بينما يتطلب البعض الآخر إدخال قيمة صالحة يدويًا.</para>
+<para
+>للحصول على معلومات كاملة حول هذه المتغيرات، انظر <ulink url="help:/katepart/config-variables.html"
+>الضبط باستخدام متغيرات المستند</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الإبراز:</guilabel
+></term>
+<listitem
+><para
+>إذا أنشأت نوع ملف جديد، فإن هذا المربع المنسدل يسمح لك بتحديد نوع ملف للإبراز.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>وضع الإزاحة:</guilabel
+></term>
+<listitem
+><para
+>يحدد المربع المنسدل وضع الإزاحة للمستندات الجديدة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>امتدادات الملفات:</guilabel
+></term>
+<listitem
+><para
+>يسمح لك قناع المحارف البديلة بتحديد الملفات حسب اسم الملف. يستخدم القناع النموذجي علامة النجمة وامتداد الملف، على سبيل المثال <filename
+>*.txt; *.text</filename
+>. السلسلة هي قائمة من الأقنعة مفصولة بفاصلة منقوطة.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أنواع MIME:</guilabel
+></term>
+<listitem
+><para
+>يعرض معالجًا يساعدك في تحديد أنواع MIME بسهولة.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>الأولويّة:</guilabel
+></term>
+<listitem
+><para
+>يضبط أولوية لنوع الملف هذا. إذا حدد أكثر من نوع ملف نفس الملف، فسيُستخدم النوع ذو الأولوية الأعلى.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem
+> </varlistentry>
+<varlistentry>
+<term
+><guibutton
+>تنزيل ملفات التمييز...</guibutton
+></term>
+<listitem>
+<para
+>انقر فوق هذا الزر لتنزيل أوصاف تمييز بناء الجملة الجديدة أو المحدثة من موقع &kappname; على الويب. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect4>
+
+</sect3>
+
+<sect3 id="katepart-pref-plugins">
+<title
+>الامتدادات</title
+> <!-- updated to 4.7 + synced with kwrite -->
+<para
+>تسرد علامة التبويب <guilabel
+>ملحقات</guilabel
+> جميع الملحقات المتاحة ويمكنك تحديد تلك التي تريد استخدامها. انقر فوق الزر <guibutton
+>معلومات</guibutton
+> لفتح حوار <guilabel
+>حول</guilabel
+> لهذه الملحقة.</para>
+<para
+>بمجرد تحديد ملحقة قابلة للتهيئة، يتم تفعيل الزر <guibutton
+>اضبط</guibutton
+> ويمكنك النقر فوقه لتهيئة الملحقة المميزة.</para>
+<variablelist>
+<title
+>ملحقات مكون المحرر</title>
+<!-- not released with 4.7
+<varlistentry>
+<term
+><guilabel
+>Artistic Comment</guilabel
+></term>
+<listitem
+><para
+>Format long source-code comments like license-headers
+or descriptions using different style.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>الأقواس الآلية</guilabel
+></term>
+<listitem
+><para
+>ملحق الأقواس الآلية يحل محل ميزة <quote
+>الأقواس الآلية</quote
+> الداخلية لـ &kappname;. يقوم تلقائيًا بإدراج قوس إغلاق <keycap
+>}</keycap
+> في بداية السطر التالي بعد إنهاء سطر بقوس فتح <keycap
+>{</keycap
+> والضغط على مفتاح &Enter;.</para
+></listitem>
+</varlistentry>
+<!--http://jakob.petsovits.at/topic/kate-->
+<!--Right, it's the automatic insertion of a closing brace (<quote
+>}</quote
+>) after you ended a line with an opening one (<quote
+>{</quote
+>). Kate's standard insertion of parentheses, brackets and braces is simply too obtrusive for me, so even if I tried it several times I always had to disable it again because I can't stand it. So here's how AutoBrace works.
+You, the developer, are writing a line of code, and want to open a new block delimited by braces. Looks like this:
+If you press Enter and AutoBrace is enabled, it will insert your favorite new brace where it belongs. Looks like this:
+-->
+<varlistentry>
+<term
+><guilabel
+>أدوات البيانات</guilabel
+></term>
+<listitem
+><para
+>يفعّل أدوات البيانات مثل المرادفات والتدقيق الإملائي (إن كانت مثبتة). أدوات البيانات متاحة فقط عند تحديد نص، أو عند النقر بالزر الأيمن للفأرة &RMB; على كلمة. إذا لم تُعرض أدوات بيانات حتى عند تحديد نص، فستحتاج إلى تثبيتها. إذا كان هذا الملحق مفعّلًا وأدوات البيانات مثبتة، ستظهر عناصر إضافية في نهاية قائمة السياق.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>المُصدّر</guilabel
+></term>
+<listitem
+><para
+>يتيح لك هذا الأمر تصدير المستند الحالي بكل معلومات التظليل إلى مستند &HTML; باستخدام <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>تصدير كـ &HTML;</guimenuitem
+></menuchoice
+>. بالإضافة إلى ذلك، يمكنك استخدام <menuchoice
+><guimenu
+>حرر</guimenu
+> <guimenuitem
+>نسخ كـ &HTML;</guimenuitem
+></menuchoice
+> لنسخ النص المحدد حاليًا كـ &HTML; إلى حافظة النظام.</para
+></listitem>
+</varlistentry>
+<!-- not in 4.7
+<varlistentry>
+<term
+><guilabel
+>Highlight Selection</guilabel
+></term>
+<listitem
+><para
+>Highlights all words that match the currently selected text.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><guilabel
+>مُدرج الأيقونات</guilabel
+></term>
+<listitem
+><para
+>ملحق مُدرج الأيقونات مفيد فقط لمطوري &kde;: يضيف عنصرًا <guimenuitem
+>إدراج كود KIcon</guimenuitem
+> إلى قائمة سياق المحرر. إذا فُعّل، يفتح منتقي أيقونات &plasma; (عارضًا أيقونات التطبيقات، أيقونات الإجراءات &etc;..). إذا نقرت عليه، يُدرج اسم الملف دون امتداده كنص. مفيد فقط لتعيين الأيقونات عبر &kde-frameworks; من خلال الصنف KIcon(). </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>ترميز &HTML; جنوني (غير ZEN) (إصدار خفيف)</guilabel
+></term>
+<listitem
+><para
+>ملحق يقوم بإكمال المحددات على غرار الترميز الزِنّي. لمزيد من المعلومات، انظر <ulink url="https://en.wikipedia.org/wiki/Zen_Coding"
+>الترميز الزِنّي</ulink
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أدرج ملفًّا</guilabel
+></term>
+<listitem
+><para
+>يتيح لك هذا الملحق إدراج أي ملف قابل للقراءة في موضع المؤشر. إذا فُعّل، تحتوي قائمة <guimenu
+>أدوات</guimenu
+> على عنصر قائمة إضافي <guimenuitem
+>إدراج ملف</guimenuitem
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect3>
+</sect2>
+<!--/end kwrite-->
+
+</sect1>

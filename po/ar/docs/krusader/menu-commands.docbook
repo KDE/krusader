@@ -1,0 +1,2275 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="menu-commands">
+  <title
+>أوامر القائمة</title>
+  <indexterm>
+    <primary
+>الأوامر</primary>
+    <secondary
+>القائمة</secondary>
+  </indexterm>
+  <sect1 id="file-menu">
+    <title
+>قائمة ملف</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>ملف نصي جديد...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينشئ ملفًا نصيًا جديدًا في المجلد الحالي، ما لم يُحدد مجلد آخر. يُفتح الملف الجديد للتحرير بعد إنشائه.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F7</keycap
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>مجلد جديد</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينشئ مجلدًا جديدًا في المجلد الحالي.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Ctrl; <keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>رابط رمزي جديد...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينشئ رابطًا رمزيًا للملف المحدد حاليًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F3</keycap
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>اعرض الملف</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح الملف المحدد حاليًا لـ <link linkend="kredit"
+>العرض</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F4</keycap
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>حرر الملف</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح الملف المحدد حاليًا لـ <link linkend="kredit"
+>التحرير</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F5</keycap
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>انسخ إلى اللوحة الأخرى</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>انسخ الملفات أو المجلدات المحددة حاليًا إلى اللوحة الأخرى.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F6</keycap
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>انقل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح حوارًا لـ <link linkend="copying"
+>نقل</link
+> الملفات أو المجلدات المحددة حاليًا إلى موقع محدد.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>اضغط...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينشئ <link linkend="pack-archive"
+>أرشيفًا جديدًا</link
+> لجميع الملفات والمجلدات المحددة في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>فك الضغط...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="unpacking-archives"
+>يفك ضغط</link
+> جميع الملفات المحددة في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>اختبر الأرشيف</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="test-archive"
+>يختبر الأرشيف</link
+> للتأكد من سلامته.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>قارن بالمحتوى...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يقارن ملفين حاليين بالمحتوى - ملف من كل لوحة عبر أداة فرق رسومية خارجية. مبدئيًا، يُستخدم &kompare;، لكن يمكنك أيضًا استخدام مثلًا  <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> أو <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>، غيّره في <link linkend="konfig-dependencies"
+>صفحة تبعيات المكون</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="multi_rename">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>إعادة تسمية متعددة...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدأ خيار القائمة هذا <ulink url="https://apps.kde.org/krename"
+><application
+>Krename</application
+></ulink
+>، أداة إعادة تسمية دفعة خارجية قوية جدًا.</para>
+          <itemizedlist>
+            <title
+>مميزات Krename</title>
+            <listitem>
+              <para
+>إعادة تسمية قائمة من الملفات بناءً على مجموعة من التعبيرات</para>
+            </listitem>
+            <listitem>
+              <para
+>نسخ/نقل قائمة من الملفات إلى مجلد آخر</para>
+            </listitem>
+            <listitem>
+              <para
+>تحويل أسماء الملفات إلى أحرف كبيرة/صغيرة</para>
+            </listitem>
+            <listitem>
+              <para
+>إضافة أرقام إلى أسماء الملفات</para>
+            </listitem>
+            <listitem>
+              <para
+>إيجاد واستبدال أجزاء من اسم الملف</para>
+            </listitem>
+            <listitem>
+              <para
+>إعادة تسمية ملفات MP3/OGG Vorbis استنادًا إلى وسوم ID3 الخاصة بها</para>
+            </listitem>
+            <listitem>
+              <para
+>ضبط تواريخ الوصول والتعديل</para>
+            </listitem>
+            <listitem>
+              <para
+>تغيير الأذون وملكية الملف</para>
+            </listitem>
+            <listitem>
+              <para
+>واجهة برمجة ملحقات تسمح لك بتوسيع ميزات KRename</para>
+            </listitem>
+            <listitem>
+              <para
+>إعادة تسمية المجلدات بشكل متكرر</para>
+            </listitem>
+            <listitem>
+              <para
+>دعم لـ KFilePlugins</para>
+            </listitem>
+            <listitem>
+              <para
+>تراجع عن إعادة التسمية</para>
+            </listitem>
+            <listitem>
+              <para
+>وغيرها الكثير....</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>إنشاء مجاميع اختبارية...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="checksum"
+>إنشاء مجاميع اختبارية</link
+> على ملف (ملفات) و/أو مجلد (مجلدات).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>تحقق من المجموع الاختباري...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            <link linkend="checksum"
+>تحقق من المجموع الاختباري</link>
+          </para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>تقسيم ملف...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>وظيفة <link linkend="splitter"
+>تقسيم الملف</link
+> تقسم ملفًا إلى عدة ملفات أصغر بحيث يمكن تخزينه على عدة وسائط أصغر (مثل <hardware
+>الأقراص المرنة، محركات الأقراص المضغوطة، ...</hardware
+>) أو إرساله عبر البريد الإلكتروني.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>دمج ملفات...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>وظيفة <link linkend="splitter"
+>دمج الملفات</link
+> تدمج عدة ملفات في ملف واحد بعد استخدام وظيفة <link linkend="splitter"
+>تقسيم الملف</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <!--vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>أنهِ</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يغلق كروسيدر وينظف المجلد المؤقت، مثل الضغط على مفتاح <keycap
+>F10</keycap
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="edit-menu">
+    <title
+>قائمة حرر</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>قص</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>يقص</link
+> الملف (الملفات) المحددة إلى الحافظة لنقلها إلى موقع آخر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>انسخ</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>ينسخ</link
+> الملف (الملفات) المحددة إلى الحافظة لنقلها إلى موقع آخر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>حرر</guimenu
+><guimenuitem
+>الصق</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="copying"
+>يلصق</link
+> العناصر المقصوصة أو المنسوخة سابقًا من الحافظة إلى المجلد الحالي.</para>
+        </listitem>
+      </varlistentry>
+<!--
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycap
+>F2</keycap>
+            </shortcut>
+            <guimenu
+>Edit</guimenu>
+            <guimenuitem
+>Rename</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+          <link linkend="renaming"
+>Renames</link
+> the currently
+          selected file.</para>
+        </listitem>
+      </varlistentry
+>-->
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycap
+>F8</keycap
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>حذف</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="deleting"
+>يحذف</link
+> الملف (الملفات) المحددة حاليًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>تحديد مجموعة...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح حوارًا يسمح لك بتحديد الملفات في اللوحة النشطة. في حوار <guilabel
+>البحث عن</guilabel
+> ضع معايير البحث الرئيسية. أدخل اسم ملف، أو حرفًا بديلًا (<literal role="extension"
+>*.o.*</literal
+>، <literal role="extension"
+>*.c</literal
+> &etc;) أو كليهما - مفصولين بمسافة. عند استخدام <literal
+>'نص'</literal
+>، تكون النتائج مماثلة لـ <literal
+>'*نص*'</literal
+>. يمكنك استبعاد الملفات من البحث باستخدام '|' (مثلًا <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+>). باستخدام <link linkend="profiles"
+>مدير التشكيلات</link
+> يمكنك إدارة اختياراتك للاستخدام المستقبلي. النقر المزدوج على تشكيلة هو مثل إدخال التحديد والضغط على زر <guibutton
+>موافق</guibutton
+>. يتم شرح خيارات إضافية لحوار <guilabel
+>تحديد مجموعة</guilabel
+> في <link linkend="krusearcher"
+>حوار البحث</link
+>، وهي في الأساس نفس الحوارات تقريبًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>إلغاء تحديد مجموعة...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>عكس <guimenuitem
+>تحديد مجموعة</guimenuitem
+>. سيتم إلغاء تحديد الملفات التي تطابق النمط في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>تحديد الكل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يحدد جميع الملفات في اللوحة النشطة. يمكنك أيضًا تحديد جميع المجلدات بتفعيل خيار <guilabel
+>التحديد التلقائي للمجلدات</guilabel
+> في <link linkend="konfig-panel"
+>صفحة لوحة Konfigurator</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>إلغاء تحديد الكل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يلغي تحديد جميع الملفات في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>عكس التحديد</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يعكس حالة تحديد جميع الملفات في اللوحة النشطة (أي الملفات المحددة ستصبح غير محددة والملفات غير المحددة ستصبح محددة).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>تحرير</guimenu
+> <guimenuitem
+>استعادة التحديد</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>استعادة حالة تحديد العناصر التي أُزيل تحديدها سابقًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>بحث في المجلد...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدّل وظيفة <link linkend="quicksearch"
+>البحث السريع</link
+> في كروسيدر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>مقارنة المجلدات</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدّل وظيفة <link linkend="compare-dir"
+>مقارنة المجلدات</link
+> في كروسيدر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>تحرير</guimenu
+> <guimenuitem
+>إعداد المقارنة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يضبط وظيفة <guimenuitem
+>مقارنة المجلدات</guimenuitem
+>.</para>
+          <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>تحديد الأحدث والمفرد</guimenuitem
+> (مبدئي)</para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>اختر المنفرد</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>اختر الأحدث</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>اختر المختلف والمنفرد</guimenuitem>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guimenuitem
+>اختر المختلف</guimenuitem>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>تحرير</guimenu
+> <guimenuitem
+>حساب المساحة المشغولة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+><link linkend="calculate"
+>يحسب المساحة المشغولة</link
+> للملفات والمجلدات والأرشيفات وأنظمة الملفات البعيدة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+><keycombo action="simul"
+> &Alt;<keysym
+>رجوع</keysym
+></keycombo
+></shortcut
+> <guimenu
+>حرر</guimenu
+> <guimenuitem
+>خصائص</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح حوار الخصائص للملف المحدد حاليًا. (يشير KP إلى لوحة المفاتيح الرقمية.)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="go-menu">
+    <title
+>قائمة اذهب</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Up;</keycombo
+> </shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>لأعلى</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينتقل إلى المجلد الأصلي للوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Left;</keycombo
+> </shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>عُد</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينتقل إلى المجلد الذي شُوهد سابقًا في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Right;</keycombo
+> </shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>للأمام</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينتقل إلى المجلد التالي الذي شُوهد في اللوحة النشطة. يصبح متاحًا فقط إذا استُخدم <menuchoice
+><guimenu
+>اذهب</guimenu
+> <guimenuitem
+>رجوع</guimenuitem
+></menuchoice
+> مسبقًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; &Home;</keycombo
+> </shortcut
+> <guimenu
+>Hاذهب</guimenu
+> <guimenuitem
+>المنزل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينتقل إلى المجلد الرئيسي للمستخدم الحالي.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; &Backspace;</keycombo
+> </shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>الجذر</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينتقل إلى المجلد الجذر للنظام.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>عناوين URL الشائعة...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يعرض قائمة بالمجلدات التي شُوهدت بكثرة، ويمكنك الانتقال إلى أحدها بالنقر المزدوج عليه.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>تعيين نقطة القفز للخلف</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يضبط المجلد الحالي كنقطة <quote
+>قفز للخلف</quote
+>. للانتقال إلى هذا المجلد بسرعة، اختر الأمر <guimenuitem
+>القفز للخلف</guimenuitem
+> من قائمة <guimenu
+>اذهب</guimenu
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>اذهب</guimenu
+> <guimenuitem
+>القفز للخلف</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يعود إلى نقطة <quote
+>قفز للخلف</quote
+> سابقة.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="view-menu">
+    <title
+>قائمة عرض</title>
+    <para
+>يؤثر الإجراء في هذه القائمة الفرعية عادةً في جلسة كروسيدر الحالية. إذا أردت إجراء تغييرات دائمة، استخدم <link linkend="konfigurator"
+>صفحة بدء Konfigurator</link
+>.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>تكبير</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>زيادة مقياس العرض.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>تصغير</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>قلّص مقياس العرض.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>تكبير/تصغير مبدئي</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>أعِد ضبط مقياس العرض.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>D</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>عرض مفصّل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يعرض أسماء الملفات، أحجامها، تاريخ الإنشاء والوقت وسماتها.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Alt;&Shift; <keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>عرض موجز</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يعرض أسماء الملفات فقط.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>أظهر الملفات المخفية</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدّل خيار عرض الملفات المخفية في لوحتَي كروسيدر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>كل الملفات</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يعطّل جميع المرشّحات ويعرض كل الملفات.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>مخصّص</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يتيح لك تثبيت مرشّح مخصّص على لوحة كروسيدر. ستعرض فقط الملفات والمجلدات المطابقة لنمط/أنماط المرشّح. لا تنسَ إلغاء تنشيط المرشّح المخصّص بعد الاستخدام، وإلا فقد لا تظهر بعض الملفات.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>أظهر المعاينات</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>إذا كان محددًا، اعرض المعاينات لكل الملفات والمجلدات على اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>اختر مجموعة محارف بعيدة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يختار مجموعة المحارف البعيدة لـ <link linkend="remote-connections"
+>الاتصالات البعيدة</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>أعِد التحميل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يحدّث محتويات اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>احفظ الإعدادات كمبدئية</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يتيح لك حفظ إعدادات عرض اللسان الحالي للنسخ الجديدة من نوع العرض هذا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>طبّق الإعدادات على ألسنة أخرى</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يتيح لك تطبيق إعدادات عرض اللسان الحالي على الألسنة الأخرى.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="useractions-menu">
+    <title
+>قائمة إجراءات المستخدم</title>
+    <para
+>يمكنك إضافة مدخلات قائمتك الخاصة هنا بتعريف <link linkend="useractions"
+>إجراءات المستخدم</link
+> الخاصة بك. </para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إجراءات المستخدم</guimenu
+> <guimenuitem
+>إدارة إجراءات المستخدم...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح مدير <link linkend="useractions"
+>إجراءات المستخدم</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>A</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>وسائط متعددة</guisubmenu
+> <guimenuitem
+>أدرج في قائمة تشغيل Amarok</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُلحق العنصر/العناصر المحددة بقائمة تشغيل &amarok;.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>عينات</guisubmenu
+> <guimenuitem
+>حجم لوحة متساوٍ</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يضبط النسبة بين اللوحتين إلى 50/50.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;<keycap
+>E</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>عينات</guisubmenu
+> <guimenuitem
+>حرّر كجذر</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يتيح لك تحرير ملف باستخدام <application
+>kwrite</application
+> بأذون الجذر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>م</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>عينات</guisubmenu
+> <guimenuitem
+>وصل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يوصل نظام ملفات جديدًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;<keycap
+>ن</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>عينات</guisubmenu
+> <guimenuitem
+>انسخ العنصر الحالي إلى الحافظة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينسخ اسم العنصر الحالي إلى الحافظة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta;<keycap
+>F5</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>النظام</guisubmenu
+> <guimenuitem
+>انسخ احتياطيًا للعنصر الحالي</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينسخ احتياطيًا الملف الحالي في المجلد الحالي ويطلب من المستخدم اسم ملف جديد. مبدئيًا، يُلحق <literal role="extension"
+>.old</literal
+> باسم الملف الأصلي.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>1</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>واجهة المستخدم</guisubmenu
+> <guimenuitem
+>رتب حسب الاسم</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>عند تشغيل هذا الإجراء، يصبح مفتاح الترتيب الرئيس في لوحة كروسيدر هو اسم الملف.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>2</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>واجهة المستخدم</guisubmenu
+> <guimenuitem
+>رتب حسب الامتداد</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>عند تشغيل هذا الإجراء، يصبح مفتاح الترتيب الرئيس في لوحة كروسيدر هو امتداد الملف (الجزء من اسم الملف بعد آخر '.'). هذا مفيد لتجميع ملفات من نفس النوع معًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>3</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>واجهة المستخدم</guisubmenu
+> <guimenuitem
+>رتب حسب الحجم</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>عند تشغيل هذا الإجراء، يصبح مفتاح الترتيب الرئيس في لوحة كروسيدر هو حجم الملف. هذا مفيد لتحديد أكبر الملفات في مجلد معين.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Meta; <keycap
+>4</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>إجراءات المستخدم</guimenu
+><guisubmenu
+>واجهة المستخدم</guisubmenu
+> <guimenuitem
+>رتب حسب تاريخ التعديل</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>عند تشغيل هذا الإجراء، يصبح مفتاح الترتيب الرئيس في لوحة كروسيدر هو تاريخ آخر تعديل لكل ملف. هذا مفيد لإيجاد الملفات التي عملت عليها مؤخرًا.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="tools-menu">
+    <title
+>قائمة أدوات</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>س</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>بحث...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح <link linkend="krusearcher"
+>KruSearcher</link
+> - وحدة البحث في كروسيدر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>ل</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>تحديد موقع...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح واجهة المستخدم الرسومية <link linkend="locate"
+>تحديد الموقع</link
+> للبحث السريع عن الملفات.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>ي</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>مزامنة المجلدات</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>تقارن وظيفة <link linkend="synchronizer"
+>مزامنة المجلدات</link
+> بين اللوحتين اليسرى واليمنى وتظهر الفروقات بينهما. بعد المقارنة، يمكنك نقل الملفات/المجلدات لمزامنتها.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>مدير الوصل...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح قائمة فرعية بعناصر لفتح <link linkend="mount-man"
+>مدير الوصل</link
+> أو وصل/فصل نقاط وصل مختلفة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>س</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>استخدام القرص...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح <link linkend="diskusage"
+>استخدام القرص</link
+>.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>ن</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>اتصال شبكة جديد</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح حوار <link linkend="remote-connections"
+>اتصال شبكة جديد</link
+> لبدء اتصال &FTP; أو SMB أو FISH أو SFTP بمضيف بعيد. إذا تركت حقلي اسم المستخدم وكلمة المرور فارغين، ستسجل الدخول كمجهول. يمكنك <link linkend="bookman"
+>وضع إشارة مرجعية</link
+> لهذه الجلسات البعيدة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>د</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>افصل من الشبكة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينهي <link linkend="remote-connections"
+>الاتصال البعيد</link
+> في اللوحة النشطة ويعود إلى مسار البدء.</para>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>ابدأ الطرفية</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح نافذة طرفية في المجلد المبدئي (عادة مجلدك الرئيس). يمكنك اختيار تطبيق الطرفية المفضل لديك في <link linkend="konfig-general"
+>صفحة عامة من المكوّن</link
+>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="root-mode">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>ك</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>بدء كروسادر بوضع الجذر</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدأ كروسيدر في <link linkend="root-mode"
+>وضع الجذر</link
+> في نفس الموقع. يتطلب كروسيدر في وضع الجذر <command
+>kdesu</command
+> مبدئيًا، إذا لم يكن <command
+>kdesu</command
+> متوفرًا أو كنت تفضل مثلًا <command
+>gksu</command
+> عند استخدام <ulink url="https://www.gnome.org"
+><application
+>جنوم</application
+></ulink
+> يمكنك تغيير هذا السلوك في <link linkend="konfig-dependencies"
+>صفحة تبعيات المكون</link
+>.</para>
+          <caution>
+            <para
+>كن حذرًا عند استخدام كروسيدر بامتيازات الجذر.</para>
+          </caution>
+        </listitem>
+      </varlistentry>
+      <!-- vertical bar -->
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>إفراغ سلة المهملات</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفرّغ <link linkend="deleting"
+>سلة المهملات</link
+>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="window-menu">
+    <title
+>قائمة النافذة</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>ن</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>لسان جديد</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح لسانًا جديدًا في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>نافذة</guimenu
+> <guimenuitem
+>قفل اللسان/فتح اللسان</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يقفل ثم يفتح اللسان الحالي في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>ن</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>تكرار اللسان الحالي</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح لسانًا جديدًا مكررًا للسان النشط في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>و</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>نقل اللسان الحالي إلى الجانب الآخر</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينقل اللسان الحالي إلى الجانب الآخر من نافذة كروسيدر.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>إغلاق اللسان الحالي</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يغلق اللسان الحالي في اللوحة النشطة. هذا الأمر متاح فقط إذا كان هناك أكثر من لسان واحد في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>نافذة</guimenu
+> <guimenuitem
+>إغلاق الألسنة غير النشطة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يغلق جميع الألسنة في اللوحة النشطة باستثناء اللسان النشط.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>نافذة</guimenu
+> <guimenuitem
+>إغلاق الألسنة المكررة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يغلق الألسنة المكررة في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>النافذة</guimenu
+> <guimenuitem
+>اللسان التالي</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينتقل إلى اللسان التالي في اللوحة النشطة. هذا الأمر متاح فقط إذا كان هناك أكثر من لسان واحد في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>النافذة</guimenu
+> <guimenuitem
+>اللسان السابق</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ينتقل إلى اللسان السابق في اللوحة النشطة. هذا الأمر متاح فقط إذا كان هناك أكثر من لسان واحد في اللوحة النشطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="c_panel_profiles">
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>ل</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>تشكيلات</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح قائمة حيث يمكن حفظ <link linkend="panel_profiles"
+>تشكيلات اللوحة</link
+> واستعادتها.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>تبديل اللوحتين</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ستصبح اللوحة اليسرى اللوحة اليمنى والعكس صحيح، سيتم تبديل الألسنة الحالية فقط.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>تبديل الجانبين</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>ستصبح اللوحة اليسرى الكاملة اللوحة اليمنى والعكس صحيح، وسيتم تبديل جميع الألسنة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>وضع عمودي</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدّل <link linkend="list_panel"
+>لوحة القائمة</link
+> بين الوضع الأفقي والعمودي.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>F</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>تبديل وضع ملء الشاشة لمحاكي الطرفية</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدّل وضع ملء الشاشة لمحاكي الطرفية. هذا الخيار متاح فقط عندما يكون <guilabel
+>إظهار محاكي الطرفية</guilabel
+> مفعّلًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>نافذة</guimenu
+> <guimenuitem
+>احفظ الموضع</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يحفظ الحجم والموضع الحاليين للنافذة الرئيسة لـكروسيدر. يمكن أتمتة هذا الإجراء باستخدام <guilabel
+>احفظ آخر موضع وحجم وإعدادات لوحة</guilabel
+> في <link linkend="konfigurator"
+>صفحة بدء كونفيغوراتور</link
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="settings-menu">
+    <title
+>قائمة إعدادات</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guisubmenu
+>أشرطة الأدوات</guisubmenu
+> <guimenuitem
+>أظهر شريط الأدوات الرئيس</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُظهر <link linkend="mainwindow"
+>شريط الأدوات الرئيس</link
+> إذا كان مُحددًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guisubmenu
+>أشرطة الأدوات</guisubmenu
+> <guimenuitem
+>أظهر شريط أدوات المهام</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُظهر <link linkend="job_toolbar"
+>شريط أدوات المهام</link
+> إذا كان مُحددًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guisubmenu
+>أشرطة الأدوات</guisubmenu
+> <guimenuitem
+>أظهر شريط أدوات الإجراءات</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُظهر <link linkend="actions_toolbar"
+>شريط أدوات الإجراءات</link
+> إذا كان مُحددًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>أظهر شريط الحالة</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُظهر <link linkend="mainwindow"
+>شريط الحالة</link
+> إذا كان مُختارًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>أظهر شريط مفاتيح FN</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُظهر <link linkend="fnkeys"
+>شريط مفاتيح FN</link
+> إذا كان مُحددًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><shortcut
+> <keycombo action="simul"
+> &Ctrl;&Alt; <keycap
+>T</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>أظهر محاكي الطرفية</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُظهر <link linkend="cmdline"
+>محاكي الطرفية</link
+> إذا كان مُحددًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>أظهر سطر الأوامر</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يُظهر <link linkend="cmdline"
+>سطر الأوامر</link
+> إذا كان مُحددًا.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>إعداد وضع تنفيذ الأوامر</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يسمح لك باختيار وضع تنفيذ الأوامر. يمكنك اختيار أحد الخيارات التالية.</para>
+	  <itemizedlist>
+            <listitem>
+              <para
+><guimenuitem
+>ابدأ وانسَ</guimenuitem
+>: ابدأ التنفيذ ولا تنتظر النتائج.</para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>اعرض المخرجات القياسية ومخرجات الأخطاء منفصلتين</guimenuitem
+>: أظهر المخرجات إلى stdout وstderr على لوحتين منفصلتين. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>اعرض المخرجات القياسية ومخرجات الأخطاء ممزوجتين</guimenuitem
+>: أظهر المخرجات إلى stdout وstderr على لوحة واحدة (مبدئي). </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>ابدأ في طرفية جديدة</guimenuitem
+>: نفّذ الأمر في نافذة طرفية جديدة. </para>
+            </listitem>
+            <listitem>
+              <para
+><guimenuitem
+>أرسل إلى محاكي الطرفية المضمن</guimenuitem
+>: أرسل الأمر إلى محاكي الطرفية المضمن. </para>
+            </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+      <varlistentry id="job-queue-mode">
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>وضع قائمة الانتظار</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يبدّل وضع <link linkend="queue"
+>مدير قائمة الانتظار</link
+>. إذا كان مُحددًا، فإن الضغط على <keycap
+>F2</keycap
+> أو الزر المقابل في حوار النسخ/النقل يبدأ المهمة فورًا حتى لو كانت هناك مهام قيد التشغيل في قائمة الانتظار. إذا لم يكن مُحددًا، فستُوضع المهمة في قائمة الانتظار إذا لم تكن قائمة الانتظار فارغة. وإلا، فستُبدأ المهمة فورًا. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry id="configure-shortcuts">
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط الاختصارات...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <indexterm>
+            <primary
+>اضبط</primary>
+            <secondary
+>الاختصارات</secondary>
+          </indexterm>
+          <para
+>يفتح حوارًا يسمح لك بضبط روابط المفاتيح لـكروسيدر.</para>
+          <para
+>باستخدام الزرين <guibutton
+>استورد الاختصارات</guibutton
+> و<guibutton
+>صدّر الاختصارات</guibutton
+> يمكنك تحميل وحفظ تشكيلة روابط مفاتيح. يسمح هذا لـكروسيدر بأن يكون له روابط مفاتيح <trademark class="copyright"
+>Total Commander</trademark
+> أو <application
+>Midnight Commander</application
+> أو foo-commander أو روابطك المخصصة. القيد الوحيد هو أن روابط المفاتيح العامة لـ&plasma; وبعض روابط مفاتيح كروسيدر لا يمكن تغييرها بعد، بالإضافة إلى بعض الميزات في foo-commander التي إما ليست لدينا أو لا نحتاجها. تُخزّن روابط المفاتيح في <filename
+>/usr/share/krusader</filename
+>، <filename
+>foo.keymap.info</filename
+> يحتوي على وصف، <filename
+>foo.keymap</filename
+> هو ملف ini يحمل روابط المفاتيح. حتى كروسيدر-1.70.1 كان هذا ملفًا ثنائيًا، كروسيدر متوافق مع الإصدارات السابقة لاستيراد هذا التنسيق الثنائي القديم. إذا وُجد ملف نصي <filename
+>*.keymap.info</filename
+>، فسيعرضه كروسيدر، مُظهرًا معلومات إضافية حول ملف روابط المفاتيح المُحمّل. هنا لديك فرصة للخروج دون استيراد ملف روابط المفاتيح المُقترح.</para>
+          <tip>
+            <para
+>ملف روابط مفاتيح <trademark class="copyright"
+>Total Commander</trademark
+> مُقدّم. يُرجى <link linkend="help_krusader"
+> رفع مخططات روابط المفاتيح المفضلة لديك</link
+> لتكون متاحة لمجتمع كروسيدر. شكرًا!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط أشرطة الأدوات...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح حوارًا يسمح لك بضبط <link linkend="mainwindow"
+>شريط الأدوات الرئيس</link
+> أو <link linkend="actions_toolbar"
+>شريط أدوات الإجراءات</link
+>. يمكنك إضافة أزرار إجراءات <link linkend="useractions"
+>إجراءات المستخدم</link
+> المفضلة لديك إلى شريط الأدوات المطلوب.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط كروسيدر...</guimenuitem
+> </menuchoice>
+        </term>
+        <listitem>
+          <para
+>يفتح <link linkend="konfigurator"
+>كونفيغوراتور</link
+> - مركز ضبط كروسيدر.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="help-menu">
+    <title
+>قائمة مساعدة</title>
+    <para
+>بالإضافة إلى ذلك، يحتوي كروسيدر على عناصر قائمة &kde; <guimenu
+>مساعدة</guimenu
+> الشائعة، لمزيد من المعلومات اقرأ الأقسام حول <ulink url="help:/fundamentals/menus.html#menus-help"
+>قائمة المساعدة</ulink
+> من أساسيات &kde;. </para>
+  </sect1>
+</chapter>
