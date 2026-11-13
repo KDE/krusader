@@ -1,0 +1,72 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="splitter">
+  <title
+>مُقسّم الملفات</title>
+  <indexterm>
+    <primary
+>مُقسّم الملفات</primary>
+  </indexterm>
+  <para
+>تقسم هذه الوظيفة ملفًا واحدًا (كبيرًا) إلى عدة ملفات أصغر حجمًا لتُوضع على وسائط أصغر (مثل محركات أقراص ZIP، ...) أو تُرسل بالبريد الإلكتروني. يمكن دمج الملفات المتعددة مرة أخرى لإعادة إنشاء الملف الأصلي. وظائف التقسيم/الدمج في كروسيدر و<trademark class="copyright"
+>Total Commander</trademark
+> متوافقة. لتقسيم ملف، اختر <menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>تقسيم</guimenuitem
+> </menuchoice
+> أو <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: سيُفتح حوار <guilabel
+>تقسيم</guilabel
+> لتأكيد العملية.</para>
+  <para
+>إذا كان اسم الملف الأصلي هو <filename
+>foo</filename
+>، فستكون أسماء الملفات الأصغر <filename
+>foo.000 foo.001 foo.002</filename
+> إلخ… لا يوجد حد نظري لعدد الملفات الأصغر، لكن يُوصى بقصر العدد على 1023 ملفًا كحد أقصى. ينشئ كروسيدر ملفًا <filename
+>foo.crc</filename
+>. يحتوي هذا الملف على اسم وحجم ومجموع تدقيقي crc للملف الأصلي. يمكن دمج الملف دون ملف <filename
+>foo.crc</filename
+> لكن في هذه الحالة لا يستطيع كروسيدر التحقق مما إذا كان الملف الأصلي قد أُعيد إنشاؤه بشكل صحيح.</para>
+  <para
+>مثال لملف <filename
+>foo.crc</filename
+>: <programlisting
+>filename=foo size=432998467868 crc32=21EB719A</programlisting
+></para>
+  <para
+>لدمج الملفات المتعددة، اختر ملفًا جزئيًا <filename
+>foo.xxx</filename
+> ثم اختر <menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>دمج الملفات...</guimenuitem
+> </menuchoice
+> أو <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo
+>. المجلد الهدف هو اللوحة غير النشطة ويمكن تغييره. يجب أن تُرقم أسماء الملفات بترتيب تصاعدي: <filename
+>foo.001, foo.002, foo.003</filename
+> إلخ… أو تحتوي على أحرف بترتيب تصاعدي: ("طريقة الأحرف <userinput
+> <command
+>split</command
+> <option
+>-b</option
+> </userinput
+>") <filename
+>fileaa, fileab, fileac</filename
+> إلخ… إذا وُجد ملف <filename
+>foo.crc</filename
+> في نفس مجلد الملفات الجزئية، سيستخدمه كروسيدر للتحقق من وجود أخطاء في الملف المدمج.</para>
+</sect1>

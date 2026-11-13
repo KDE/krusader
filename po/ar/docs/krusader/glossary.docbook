@@ -1,0 +1,358 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<glossary id="glossary">
+  <indexterm>
+    <primary
+>المُسرَد</primary>
+  </indexterm>
+  <para
+>يهدف هذا الفصل إلى شرح المصطلحات المختلفة المستخدمة في توثيق &krusader;. إذا كنت تعتقد أن بعض الاختصارات أو المصطلحات مفقودة، فلا تتردد في الاتصال بفريق توثيق &krusader;.</para>
+  <para
+>الشكر لـ <ulink url="https://en.wikipedia.org/"
+>wikipedia.org</ulink
+> الموسوعة الحرة التي يمكن لأي شخص تعديلها.</para>
+  <glossentry id="gloss-acl">
+    <glossterm>
+      <acronym
+>ACL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Access_control_list"
+> قائمة التحكم في الوصول</ulink
+>؛ مفهوم في أمن الحاسوب يُستخدم لفرض فصل الامتيازات. وهو وسيلة لتحديد حقوق الوصول المناسبة لكائن معين بناءً على جوانب معينة من العملية التي تقدم الطلب.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-bsd">
+    <glossterm>
+      <acronym
+>BSD</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Bsd"
+>توزيعة برمجيات بيركلي</ulink
+>؛ تشير إلى أي من أنظمة التشغيل الحرة المتوافقة مع &UNIX;، المشتقة من &BSD; &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-cvs">
+    <glossterm>
+      <acronym
+>CVS</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Concurrent_Versions_System"
+> نظام الإصدارات المتزامنة</ulink
+>؛ مكون مهم من إدارة تكوين المصدر (SCM). باستخدامه، يمكن للمطورين تسجيل تاريخ ملفات المصدر والمستندات.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-deb">
+    <glossterm>
+      <acronym
+>DEB</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+>هذا تنسيق ملف ثنائي يُستخدم بواسطة <ulink url="https://en.wikipedia.org/wiki/Debian"
+> &Debian;</ulink
+> والتوزيعات المبنية على &Debian;. وهو لاحقة لملف تثبيت مبني خصيصًا لهذه التوزيعات؛ &eg; <filename
+>krusader_1.70.1-1_amd64.deb</filename
+>. ببساطة، هو أرشيف خاص يحتوي على جميع ملفات البرنامج وموقعها المقترح على النظام.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dbus">
+    <glossterm
+>&DBus; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://freedesktop.org/wiki/Software/dbus"
+>&DBus;</ulink
+> هو نظام مراسلة بين الخدمات. طُور بواسطة &RedHat;، وتأثر بشدة بـ &kde; 3 <link linkend="glos-dcop"
+>DCOP</link
+>، الذي حل محله. يمكن لـ &krusader; استخدام &DBus; للتواصل مع التطبيقات الأخرى. من ناحية أخرى، يمكنك استخدام &DBus; للتحكم في &krusader; من تطبيقات أخرى. استخدم <application
+>qdbusviewer</application
+> لفحص الإمكانيات.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-dcop">
+    <glossterm
+>DCOP </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Dcop"
+>بروتوكول التواصل المكتبي</ulink
+>؛ بروتوكول التواصل بين العمليات المستخدم بواسطة بيئة سطح المكتب &kde; 3. يمكّن تطبيقات &kde; 3 المختلفة من التواصل مع بعضها البعض. استُبدل بـ <link linkend="glos-dbus"
+>&DBus;</link
+> في &kde; 4.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-faq">
+    <glossterm>
+      <acronym
+>FAQ</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="faq"
+>الأسئلة المتكررة</link
+>؛ مستند تُجاب فيه الأسئلة التي تظهر مرات عديدة. إذا كان لديك سؤال لمطوري &krusader;، يجب عليك دائمًا إلقاء نظرة على <link linkend="faq"
+>الأسئلة المتكررة</link
+> أولًا.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="glos-ftp">
+    <glossterm
+>&FTP;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/File_Transfer_Protocol"
+> بروتوكول نقل الملفات</ulink
+>؛ هو بروتوكول إنترنت يسمح لك باسترجاع الملفات من خوادم &FTP; المسماة.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-git">
+    <glossterm
+>Git</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Git_(software)"
+> Git</ulink
+>؛ نظام تحكم في الإصدارات موزع يحل محل <link linkend="gloss-svn"
+>Subversion</link
+>. يُستخدم بواسطة العديد من مشاريع البرمجيات بما في ذلك &kde; و &krusader;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gpl">
+    <glossterm>
+      <acronym
+>GPL</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Gpl"
+>رخصة جنو العمومية العامة</ulink
+>؛ رخصة برمجيات أنشأتها <ulink url="https://www.fsf.org/"
+>مؤسسة البرمجيات الحرة</ulink
+> تحدد شروط إصدار البرمجيات الحرة.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-gui">
+    <glossterm
+>&GUI;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Graphical_user_interface"
+> واجهة المستخدم الرسومية</ulink
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-iso">
+    <glossterm>
+      <acronym
+>ISO</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/ISO_image"
+>صورة ISO</ulink
+> (<literal role="extension"
+>.iso</literal
+>) هو مصطلح غير رسمي لصورة قرص لنظام ملفات ISO 9660. بشكل أوسع، يشير إلى أي صورة قرص ضوئي، حتى صورة UDF.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kde">
+    <glossterm
+>&kde;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kde"
+>بيئة سطح المكتب ك</ulink
+>؛ مشروع لتطوير بيئة سطح مكتب رسومية حرة لأنظمة متوافقة مع &UNIX;.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-keybinding">
+    <glossterm
+>ربط المفاتيح</glossterm>
+    <glossdef>
+      <para
+>جميع ميزات &krusader; متاحة من خلال شريط القوائم، ولكن يمكنك أيضًا ربط (ربط) مجموعة مفاتيح معينة بتلك الوظيفة. ستجد، مع ذلك، أن استخدام <link linkend="keyboard-commands"
+>لوحة المفاتيح</link
+> أسرع بشكل ملحوظ من استخدام شريط القوائم أو <link linkend="gloss-gui"
+>&GUI;</link
+>. <link linkend="keyboard-commands"
+>استخدام لوحة المفاتيح</link
+> هو أداة مهمة لـ <link linkend="gloss-ofm"
+>مديري الملفات التقليديين</link
+>. يأتي &krusader; مع عدة <link linkend="key_bindings"
+>روابط مفاتيح</link
+> محددة مسبقًا.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kpart">
+    <glossterm
+>ك‌بارت</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/KPart"
+>ك‌بارت</ulink
+>؛ ك‌بارتس هو اسم إطار المكونات لبيئة سطح المكتب كيدي. ك‌بارتس مماثلة لمكونات بونوبو في <ulink url="https://www.gnome.org"
+><application
+>جنوم</application
+></ulink
+>، وكلاهما مبني على نفس مفاهيم ربط وتضمين الكائنات من مايكروسوفت. مثلًا، إذا استخدمت عارض كروسيدر لعرض ملف PDF، سيُطلق أوكلار داخل عارض كروسيدر.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-kio">
+    <glossterm
+><acronym
+>ك‌آي‌أو</acronym
+> أو كيوسليف</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Kioslave"
+>مدخلات/مخرجات كيدي</ulink
+>؛ المعروف أيضًا باسم عبيد ك‌آي‌أو هو جزء من بنية كيدي. يوفر وصولًا إلى الملفات ومواقع الويب والموارد الأخرى من خلال واجهة برمجة تطبيقات واحدة متسقة.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-mount">
+    <glossterm
+>وصل</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Mount_%28computing%29"
+>الوصل</ulink
+>؛ في علم الحاسوب، هو عملية جعل نظام الملفات جاهزًا للاستخدام من قبل نظام التشغيل، عادةً بقراءة هياكل بيانات فهرسة معينة من التخزين إلى الذاكرة مسبقًا. يستحضر المصطلح فترة في تاريخ الحوسبة حيث كان على المشغل وصل شريط مغناطيسي أو قرص صلب على محور قبل استخدامه.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ofm">
+    <glossterm>
+      <acronym
+>أ‌ف‌أم</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>مدير ملفات أرثوذكسي</ulink
+>؛ المعروف أيضًا باسم <quote
+>القادة</quote
+>. يستخدم أعضاء هذه العائلة من مديري الملفات واجهة بسيطة لكنها قوية جدًا وهي مشتقة مباشرة من واجهة <ulink url="https://en.wikipedia.org/wiki/Norton_Commander"
+>نورتون كوماندر</ulink
+> (إن‌سي).</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-rpm">
+    <glossterm
+>آر‌بي‌أم</glossterm>
+    <glossdef>
+      <para
+>هذا هو تنسيق الملف الثنائي للتوزيعات المبنية على <ulink url="http://www.rpm.org/"
+>مدير حزم آر‌بي‌أم</ulink
+>، أداة تعبئة واسعة الاستخدام لنظام تشغيل لينكس. إذا كنت لا تزال بحاجة للحصول على كروسيدر ونظامك يدعم حزم آر‌بي‌أم، فيجب أن تحصل على حزم كروسيدر المنتهية بـ <literal role="extension"
+>.rpm</literal
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-ssh">
+    <glossterm
+><acronym
+>إس‌إس‌إتش</acronym
+>، الصدفة الآمنة</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/SSH"
+>إس‌إس‌إتش</ulink
+>؛ هو مجموعة من المعايير وبروتوكول شبكة مرتبط يسمح بإنشاء قناة آمنة بين حاسوب محلي وحاسوب بعيد.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-svn">
+    <glossterm
+><acronym
+>إس‌في‌إن</acronym
+>، سابفيرجن</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Subversion"
+>سابفيرجن</ulink
+>؛ نظام تحكم بالإصدارات هو بديل مقنع لـ <link linkend="gloss-cvs"
+>سي‌في‌إس</link
+>. يُستخدم من قبل العديد من مشاريع البرمجيات بما في ذلك كيدي.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-termemu">
+    <glossterm
+>مُحاكي طرفية</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Terminal_emulator"
+>مُحاكي طرفية</ulink
+>؛ ببساطة صدفة ذات نافذة؛ يُعرف هذا بنافذة سطر الأوامر في بعض البيئات الأخرى. إذا أردت استخدام الصدفة وكتابة الأوامر، فيجب أن تعرف على الأقل بضعة أوامر على مستوى النظام لنظام تشغيلك.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-posix">
+    <glossterm>
+      <acronym
+>بوزيكس</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Posix"
+>واجهة نظام تشغيل محمولة ليونكس</ulink
+>؛ اسم جماعي لعائلة من المعايير ذات الصلة المحددة من قبل معهد مهندسي الكهرباء والإلكترونيات (IEEE) لتعريف واجهة برمجة التطبيقات (API) للبرمجيات المتوافقة مع متغيرات نظام تشغيل يونكس.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-url">
+    <glossterm
+>&URL; </glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/URL"
+>محدد موقع موارد عالمي</ulink
+>؛ محدد موقع موارد عالمي هو المصطلح التقني لما يُشار إليه عادةً بعنوان موقع ويب. أمثلة على الـ &URL; تتضمن <ulink url="https://krusader.org"
+>https://krusader.org</ulink
+> و <link linkend="remote-connections"
+>اتصالات بعيدة</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-vfs">
+    <glossterm>
+      <acronym
+>في‌أف‌إس</acronym>
+    </glossterm>
+    <glossdef>
+      <para
+><link linkend="vfs"
+>أنظمة الملفات الافتراضية (في‌أف‌إس)</link
+> هي <link linkend="features"
+>ميزة أساسية لأ‌ف‌أم</link
+>، هذه طبقة مجردة فوق جميع أنواع المعلومات المؤرشفة (ملفات زيب، خوادم إف‌تي‌بي، أرشيفات تار، أنظمة ملفات إن‌أف‌إس، مشاركات سامبا، صور أي‌إس‌أو لقرص مضغوط/قرص دي‌في‌دي، كتالوجات آر‌بي‌أم، إلخ)، مما يسمح للمستخدم بالوصول إلى جميع المعلومات في هذه الأنواع المتباينة من أنظمة الملفات بشفافية - تمامًا مثل الدخول إلى مجلد فرعي عادي! يدعم كروسيدر عدة <link linkend="vfs"
+>أنظمة ملفات افتراضية (في‌أف‌إس)</link
+>.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-xml">
+    <glossterm
+>&XML;</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Xml"
+>لغة ترميز قابلة للامتداد</ulink
+>؛ تنسيق نصي مرن جدًا مشتق من إس‌جي‌أم‌أل (ISO 8879). صُممت أصلًا لمواجهة تحديات النشر الإلكتروني واسع النطاق، تلعب &XML; أيضًا دورًا متزايد الأهمية في تبادل مجموعة واسعة من البيانات على الويب وفي أماكن أخرى.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry id="gloss-zeroconf">
+    <glossterm
+>زيروكونف</glossterm>
+    <glossdef>
+      <para
+><ulink url="https://en.wikipedia.org/wiki/Zeroconf"
+>زيروكونف</ulink
+>؛ أو شبكات التهيئة الصفرية هي مجموعة من التقنيات التي تنشئ تلقائيًا شبكة آي‌بي قابلة للاستخدام دون تهيئة أو خوادم خاصة. هذا يسمح للمستخدمين غير الخبراء بتوصيل الحواسيب والطابعات الشبكية وغيرها من العناصر معًا وتوقع أن تعمل تلقائيًا.</para>
+    </glossdef>
+  </glossentry>
+</glossary>

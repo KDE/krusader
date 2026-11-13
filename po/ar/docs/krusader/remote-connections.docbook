@@ -1,0 +1,359 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="remote-connections">
+  <title
+>الاتصالات البعيدة</title>
+  <indexterm>
+    <primary
+>الاتصالات البعيدة</primary>
+  </indexterm>
+  <para
+>يمكن إجراء الاتصالات البعيدة بسهولة عن طريق كتابة &URL; في <link linkend="list_panel"
+>شريط الموقع</link
+>؛ هذه هي في الواقع خوادم KIO. يُرجى ملاحظة أن لوحة كروسيدر لا تدعم جميع خوادم KIO، على سبيل المثال <command
+>http://</command
+> لن يعمل في اللوحة، ولكنه سيعمل في <link linkend="krviewer"
+>عارض</link
+>. بعض الأمثلة:</para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>public.ftpserver.org/folder/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>fish://</command
+><replaceable
+>username@hostname/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>sftp://</command
+><replaceable
+>username:password@sftp.foo.org/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>username@my.server.org:21/folder/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>smb://</command
+><replaceable
+>username:password@server/share</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>ftp://</command
+><replaceable
+>username@proxyusername:password@proxipassword@hostname/folder</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>nfs://</command
+><replaceable
+>&lt;host&gt;:&lt;port&gt;&lt;url-path&gt;</replaceable
+> </userinput>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <userinput
+><command
+>webdav://</command
+><replaceable
+>www.server.com/path/</replaceable
+> </userinput>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <para
+>يمكنك وضع إشارة مرجعية على هذه الروابط، ومع ذلك، يُرجى قراءة قسم <link linkend="bookman"
+>المرجعيات</link
+> بخصوص <emphasis
+>حفظ كلمات المرور بأمان</emphasis
+>. للاتصال بمواقع متعددة، ضع إشارة مرجعية على هذه الروابط وافتحها واحدة تلو الأخرى، أو افتحها جميعًا معًا باستخدام <link linkend="panel_profiles"
+>تشكيلات اللوحة</link
+>. للتبديل من موقع إلى آخر، ما عليك سوى فتح <link linkend="folder-tabs"
+>ألسنة مجلدات</link
+> لكل منها.</para>
+  <para
+>هناك ثلاث طرق لبدء اتصال بعيد:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>اكتب &URL; في <link linkend="list_panel"
+>شريط الموقع</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>اختر <menuchoice
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>اتصال شبكة جديد</guimenuitem
+> </menuchoice
+> والذي سيعرض حوارًا يطلب تفاصيل الموقع البعيد. هذا الحوار مفيد إذا لم تكن معتادًا على كتابة الروابط البعيدة في شريط الموقع. ترك حقلي كلمة المرور واسم المستخدم فارغين سيسجل دخولك كمجهول. ملاحظة: نخطط لإعادة كتابة نافذة الحوار هذه.</para>
+    </listitem>
+    <listitem>
+      <para
+>يمكنك وضع إشارة مرجعية على مجلد على مضيف بعيد والعودة إلى هذا المجلد من زر المرجعيات في الزاوية العلوية من لوحتك تمامًا كما في متصفح الويب.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>بعد تسجيل الدخول إلى خادم بعيد، يمكنك تصفحه تمامًا مثل قرصك الصلب المحلي مع الاستثناءات التالية:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>لا يمكنك تنفيذ الملفات على الخوادم البعيدة.</para>
+    </listitem>
+    <listitem>
+      <para
+>لا يمكن دائمًا حساب الأذون على الخوادم البعيدة (يعتمد على الخادم وطريقة الوصول) لذا قد ترى <guilabel
+>?</guilabel
+> في أعمدة الأذون لبعض الملفات.</para>
+    </listitem>
+    <listitem>
+      <para
+>معلومات استخدام القرص غير متوفرة لمعظم أنظمة الملفات البعيدة.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>لتغيير مجموعة المحارف للمضيف البعيد استخدم <menuchoice
+> <guimenu
+>عرض</guimenu
+> <guimenuitem
+>اختيار مجموعة محارف بعيدة</guimenuitem
+> </menuchoice
+>.</para>
+  <para
+>يمكنك إغلاق الاتصال البعيد النشط الحالي بطريقتين منفصلتين:</para
+> 
+  <itemizedlist>
+    <!--
+        <listitem>
+           <para
+>Manually: <emphasis role="bold"
+><menuchoice
+><guimenu
+>Commands</guimenu>
+                 <guimenuitem
+>Disconnect From Net</guimenuitem
+></menuchoice
+></emphasis
+></para>
+        </listitem>
+        -->
+    <listitem>
+      <para
+>يدويًا: أضف زر قطع الاتصال إلى <link linkend="mainwindow"
+>شريط الأدوات الرئيس</link
+> وانقر عليه.</para>
+    </listitem>
+    <listitem>
+      <para
+>آلي: غيّر &URL; في <link linkend="list_panel"
+>شريط الموقع</link
+>.</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>كروسيدر هو مدير ملفات يدعم الاتصالات البعيدة عبر خوادم KIO، ولكن إذا كنت تبحث عن ميزات اتصال بعيد أكثر تقدمًا، على سبيل المثال عميل &FTP; متقدم، نوصي باستخدام على سبيل المثال <ulink url="https://lftp.yar.ru/"
+>LFTP</ulink
+> أو <ulink url="https://filezilla-project.org/"
+><application
+>FileZilla</application
+></ulink
+>.</para>
+  </note>
+
+<sect2 id="remote-connections-lan-fish">
+  <title
+>اتصالات الشبكة المحلية عبر بروتوكول fish:/ (zeroconf)</title>
+  <indexterm>
+    <primary
+>اتصالات الشبكة المحلية البعيدة (zeroconf)</primary>
+  </indexterm>
+
+<para
+>هذا القسم مساهم به من Andrew Svet (z-vet)، التعليقات حول هذا الفصل موضع تقدير. شكرًا!</para>
+
+ <note>
+   <para
+>هذا يعمل على نظام &Debian;، لذا سيعمل على &Debian; ومشتقاته (&kubuntu;، إلخ…)، على الرغم من أنه يجب أن يعمل على أنظمة لينكس أخرى أيضًا. نفترض أن لديك <link linkend="gloss-ssh"
+>SSH</link
+> مثبتًا ومهيأً ويعمل على كل جهاز في الشبكة المحلية الذي تريد الاتصال به/منه. هناك العديد من الدروس الجيدة جدًا حول <link linkend="gloss-ssh"
+>SSH</link
+> على الإنترنت، على سبيل المثال في <ulink url="http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch17_:_Secure_Remote_Logins_and_File_Copying"
+>linuxhomenetworking.com</ulink
+> أو فقط ابحث عنه في جوجل. نستخدم منفذ <link linkend="gloss-ssh"
+>SSH</link
+> الافتراضي (22) لهذا الفصل. تذكر تغييره إذا كنت تستخدم منفذًا مختلفًا. جميع التعديلات والتحريرات إلخ… يجب أن تتم كجذر. </para>
+ </note>
+
+<para
+>فلنبدأ بتثبيت جميع الحزم التي نحتاجها: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>apt-get install</command
+> <option
+>avahi-daemon libnss-mdns kdnssd</option
+></userinput>
+</screen
+> كل شيء مثبت الآن، فلنقم ببعض الإعدادات. أولًا، نحتاج إلى الإعلان عن خدماتنا على الشبكة المحلية (LAN). لهذا السبب قمنا بتثبيت avahi-daemon: فهو يمثل جهازك على الشبكة المحلية ويسمح للتطبيقات الأخرى بنشر الخدمات التي توفرها. يأتي Avahi-daemon مع ملف إعداد نموذجي باسم <filename
+>ssh.service</filename
+> يمكن العثور عليه في المسار <filename class="directory"
+>/usr/share/doc/avahi-daemon/examples</filename
+>. لكي يتم الإعلان عن الخدمة على الشبكة المحلية، نحتاج إلى نسخ هذا الملف إلى مجلد <filename class="directory"
+>/etc/avahi/services</filename
+>: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/usr/share/doc/avahi-daemon/examples/ssh.service /etc/avahi/services</option
+></userinput>
+</screen
+> الآن نحتاج إلى الإعلان عن بروتوكول fish:/ أيضًا، لذا سنستخدم ملف ssh.service كقالب لملف fish.service: <screen>
+<prompt
+>#</prompt
+> <userinput
+><command
+>cp</command
+> <option
+>/etc/avahi/services/ssh.service /etc/avahi/services/fish.service</option
+></userinput>
+</screen
+> هذا الملف مجرد نسخة من ملف ssh.service. قم بتحرير ملف <filename
+>fish.service</filename
+> واستبدل العبارة <quote
+>Remote Terminal on %h</quote
+> بالعبارة <quote
+>Fish to %h</quote
+>، والعبارة <quote
+>_ssh._tcp</quote
+> بالعبارة <quote
+>_fish._tcp</quote
+>. إليك كيف سيبدو الملف بعد التعديل: <programlisting
+> 
+&lt;?xml version="1.0" standalone='no'?&gt;&lt;!--*-nxml-*--> 
+&lt;!DOCTYPE service-group SYSTEM "avahi-service.dtd"&gt;
+
+&lt;!-- $Id: remote-connections.docbook,v 1.6 2007/05/02 18:07:28 codeknight Exp $ --> 
+
+&lt;!-- 
+  This file is part of avahi. 
+  
+  avahi is free software; you can redistribute it and/or modify it 
+  under the terms of the GNU Lesser General Public License as 
+  published by the Free Software Foundation; either version 2 of the 
+  License, or (at your option) any later version. 
+
+  avahi is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR 
+
+&lt;!-- See avahi.service(5) for more information about this configuration file --> 
+
+&lt;service-group
+> 
+
+  &lt;name replace-wildcards="yes"
+>FISH to %h&lt;/name
+> 
+
+  &lt;service
+> 
+    &lt;type
+>_fish._tcp&lt;/type
+> 
+    &lt;port
+>22&lt;/port
+> 
+  &lt;/service
+> 
+
+&lt;/service-group
+>  
+</programlisting
+> احفظ الملف المعدل. الآن نحن بحاجة إلى إنشاء ملف جديد باسم <filename
+>_fish._tcp</filename
+>، افتح محرر نصوص وأضف الأسطر التالية: <programlisting>
+Name=FISH Protocol (ssh) 
+Type=_fish._tcp 
+UserEntry=u 
+PathEntry=path 
+PasswordEntry=p
+</programlisting
+> واحفظ الملف في المسار <filename
+>/usr/share/apps/zeroconf/_fish._tcp</filename
+>. افعل الشيء نفسه على كل جهاز في شبكتك المحلية، ثم أعد تشغيل avahi-daemon: <screen>
+<prompt
+># /etc/init.d/</prompt
+> <userinput
+><command
+>avahi-daemon</command
+> <option
+>restart</option
+></userinput>
+</screen
+> بعد ذلك افتح &krusader; واكتب في شريط أدوات الموقع (location-toolbar-lnk): <filename
+>zeroconf:/</filename
+> لفتح اتصال <link linkend="gloss-zeroconf"
+>zeroconf</link
+>. ادخل إلى مجلد <guilabel
+>Fish Protocol</guilabel
+>. ستجد بالداخل روابط لكل جهاز أعلن عن بروتوكول <filename
+>fish:/</filename
+> على شبكتك المحلية، وسيشير شريط أدوات الموقع (location-toolbar-lnk:) إلى <filename
+>zeroconf:/_fish._tcp</filename
+>. سيؤدي النقر المزدوج على أي من هذه الأجهزة إلى إظهار نافذة تطلب كلمة السر، وتطالبك بعبارة مرور مفتاح ssh الخاص بك (في حال عُينت كلمة سر). أدخل عبارة السر الخاصة بك. تهانينا: لقد اتصلت بالجهاز البعيد باستخدام كروسيدر! </para
+> 
+
+</sect2>
+
+</sect1>
+
+

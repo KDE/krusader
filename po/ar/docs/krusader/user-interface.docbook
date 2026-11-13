@@ -1,0 +1,989 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="user-interface">
+  <title
+>واجهة المستخدم</title>
+  <indexterm>
+    <primary
+>واجهة المستخدم</primary>
+  </indexterm>
+  <sect1 id="ofm-userinterface">
+    <title
+>واجهة مستخدم OFM</title>
+    <para
+>يحتوي مفهوم مدير الملفات OFM على <link linkend="features"
+>ميزات كثيرة</link
+> تجعلها قوية بما يكفي لتنتمي إلى أفضل مديري الملفات اليوم. الواجهة بسيطة: لوحة يسرى، ولوحة يمنى، وسطر أوامر أسفله. بفضل التفاعل بين هذه العناصر الثلاثة، سيصبح إدارة الملفات أكثر كفاءة.</para>
+    <para
+>إذا أردت معرفة <ulink url="http://www.softpedia.com/reviews/linux/Krusader-Review-18193.shtml"
+>كيف يعمل كروسيدر</ulink
+> يمكنك تجربته بنفسك، فقط ثبّته على حاسوبك. لقبول <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>مدير ملفات تقليدي (OFM)</ulink
+> مثل كروسيدر، يحتاج المستخدم إلى التعود على <emphasis
+>أفكار جديدة</emphasis
+> هي في الواقع عمرها 20 عامًا بالفعل. إذا كنت تفضل إضاعة الوقت وفقدان الكثير من الإنتاجية، يمكنك دائمًا الاستمرار في استخدام مديري الملفات أحادي اللوحة القائمة على &Windows; Explorer.</para>
+  </sect1>
+  <sect1 id="mainwindow">
+    <title
+>النافذة الرئيسة لـ كروسيدر</title>
+    <figure id="screenshot-mainwindow" float="1">
+      <title
+>النافذة الرئيسة لـ كروسيدر</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="mainwindow.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>النافذة الرئيسة لـ كروسيدر</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>تعتمد واجهة المستخدم على نموذج <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>مدير الملفات التقليدي (OFM)</ulink
+>، وهو مبدأ عمره 20 عامًا أثبت جدارته. يُعرف بأنه بسيط وسهل وقوي. في الأقسام التالية سنغطي الوظائف الأساسية لكل جزء باستثناء:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="menu-commands"
+>شريط القوائم</link
+> الذي له فصل خاص به.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="bookman"
+>العلامات المرجعية</link
+> التي لها فصل خاص بها.</para>
+      </listitem>
+      <listitem>
+        <para
+>يُظهر <emphasis role="bold"
+>شريط الحالة</emphasis
+> خصائص الملف الحالي (الذي يكون) في التركيز. </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <sect1 id="toolbars">
+    <title
+>أشرطة الأدوات</title>
+    <para
+>يأتي كروسيدر مع عدة أشرطة أدوات.</para>
+    <sect2 id="main_toolbar">
+      <title
+>شريط الأدوات الرئيس</title>
+      <indexterm>
+        <primary
+>شريط الأدوات</primary>
+        <secondary
+>شريط الأدوات الرئيس</secondary>
+      </indexterm>
+      <figure id="screenshot-maintoolbar" float="1">
+        <title
+>شريط الأدوات الرئيس</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="toolbar.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>شريط الأدوات الرئيس</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>شريط الأدوات الرئيس لـ كروسيدر هو شريط أدوات قياسي لـ &kde; يمكن سحبه حول التطبيق (يرجى فتح قفله أولًا بإلغاء تحديد العنصر <guimenuitem
+>أقفل مواضع أشرطة الأدوات</guimenuitem
+> في قائمة النقر باليمين) أو ضبطه عبر قائمة <keycap
+>النقر باليمين</keycap
+>. يمكنك أن تقرر ما إذا كنت تريد عرضه في كل مرة تبدأ فيها كروسيدر في <link linkend="konfigurator"
+>صفحة بدء Konfigurator</link
+>، ويمكنك تبديل استخدامه في الجلسة الحالية في <link linkend="settings-menu"
+>قائمة الإعدادات</link
+>. يمكن ضبط محتويات شريط الأدوات الرئيس من <guimenuitem
+>اضبط أشرطة الأدوات...</guimenuitem
+> في <link linkend="settings-menu"
+>قائمة الإعدادات</link
+>. نظرًا لأن الأوامر والخيارات المختلفة في كروسيدر تعتمد على السياق، فإن بعض الأوامر غير متوفرة دائمًا. سيتم تعطيل أيقونة الإجراء غير المناسب أو غير النشط (تصبح رمادية) لتعطيل استخدامها. يمكن وضع <link linkend="bookman"
+>العلامات المرجعية</link
+> في شريط الأدوات الرئيس وشريط أدوات الإجراءات باستخدام الفأرة عبر <quote
+>السحب والإفلات</quote
+>.</para>
+    </sect2>
+    <sect2 id="job_toolbar">
+      <title
+>شريط أدوات المهام</title>
+      <indexterm>
+        <primary
+>شريط الأدوات</primary>
+        <secondary
+>شريط أدوات المهام</secondary>
+      </indexterm>
+      <para
+>مبدئيًا، يقع شريط أدوات المهام لـ كروسيدر (<link linkend="queue"
+>مدير الطابور</link
+> أو ببساطة JobMan) في الجزء الأيمن من شريط الأدوات الرئيس. يسمح لك هذا الشريط بعرض تقدم المهمة، وإيقاف واستئناف تنفيذ قائمة المهام، وتراجع آخر مهمة منفذة.</para>
+    </sect2>
+    <sect2 id="actions_toolbar">
+      <title
+>شريط أدوات الإجراءات</title>
+      <indexterm>
+        <primary
+>شريط الأدوات</primary>
+        <secondary
+>شريط أدوات الإجراءات</secondary>
+      </indexterm>
+      <para
+>يمكن <quote
+>توصيل</quote
+> <link linkend="useractions"
+>إجراءات المستخدم</link
+> و<link linkend="bookman"
+>العلامات المرجعية</link
+> في <guilabel
+>شريط أدوات الإجراءات</guilabel
+>. لإظهاره، استخدم <menuchoice
+> <guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>أظهر شريط أدوات الإجراءات</guimenuitem
+> </menuchoice
+>. لإضافة إجراءات مستخدم، استخدم <menuchoice
+> <guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>اضبط أشرطة الأدوات...</guimenuitem
+> </menuchoice
+> واختر شريط أدوات الإجراءات. يمكنك، على سبيل المثال، سحب شريط أدوات الإجراءات إلى الجانب الأيمن باستخدام الفأرة.</para>
+    </sect2>
+    <sect2 id="location_toolbar">
+      <title
+>شريط أدوات الموقع</title>
+      <indexterm>
+        <primary
+>شريط الأدوات</primary>
+        <secondary
+>شريط أدوات الموقع</secondary>
+      </indexterm>
+      <para
+>أسفل <guibutton
+>شريط الأدوات الرئيس</guibutton
+> يوجد <guibutton
+>شريط أدوات الموقع</guibutton
+> لكل لوحة. يُظهر المسار الذي تشير إليه اللوحة حاليًا. عند دخول الأرشيفات، سيُعرض المسار بالتنسيق التالي: <quote
+>نوع الأرشيف:/مجلد/اسم ملف الأرشيف/المجلد داخل الأرشيف</quote
+>. هذا التنسيق يجعل المسارات موحدة وسهلة القراءة. يدعم <guibutton
+>شريط أدوات الموقع</guibutton
+> أيضًا خوادم KIO ولكن ليس جميعها، بعضها يمكن استخدامه فقط مع <link linkend="krviewer"
+>العارض</link
+> وبعضها لا يمكن استخدامه. يمكن للمستخدم إدخال مسار مرغوب بالنقر عليه.</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <userinput>
+              <replaceable
+>/mnt/cdrom/</replaceable>
+            </userinput>
+          </para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>settings:/</command
+> </userinput
+>سيستعرض ويفتح إدخالات &systemsettings;.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>trash:/</command
+> </userinput
+>يفتح مجلد المهملات.</para>
+        </listitem>
+        <listitem>
+          <para
+><userinput
+> <command
+>mtp:/</command
+> </userinput
+>يستخدم kio_mtp للوصول إلى الوسائط المتعددة المخزنة على الأجهزة القائمة على <trademark
+>Android</trademark
+> ورفعها وتنظيمها.</para>
+        </listitem>
+        <listitem>
+          <para
+>وأخيرًا وليس آخرًا <link linkend="remote-connections"
+>الاتصالات البعيدة</link
+>.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>يمكنك نسخ ولصق &URL; في <guibutton
+>شريط أدوات الموقع</guibutton
+> أو استخدام النقر الأوسط. باستخدام قائمة النقر باليمين يمكنك ضبط وظيفة الإكمال التلقائي. يتوفر أيضًا زر اختياري <guilabel
+>امسح شريط أدوات الموقع</guilabel
+>.</para>
+      <para
+>التنقل السريع: أشر بـ&Ctrl; بالفأرة في منتصف &URL; لـ<guibutton
+>شريط المواقع</guibutton
+>. تظهر نافذة منبثقة موقع &URL; التالي. ضغط &Ctrl; + &LMB; يُظهر الموقع الذي كان الفأرة يشير إليه. تتيح هذه الميزة تنقلًا أسرع في شجرة مجلدات كبيرة.</para>
+    </sect2>
+    <sect2 id="panel_toolbar">
+      <title
+>شريط أدوات اللوحة</title>
+      <indexterm>
+        <primary
+>شريط الأدوات</primary>
+        <secondary
+>شريط أدوات اللوحة</secondary>
+      </indexterm>
+      <para
+>لكل لوحة <link linkend="konfig-panel-buttons"
+>شريط أدوات لوحة قابل للضبط</link
+>. يمكن إظهار شريط أدوات اللوحة بالكامل أو أزرار محددة أو إخفاؤها.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>زر فتح المجلد</guibutton
+>: يفتح متصفح المجلدات.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>زر المساواة (=)</guibutton
+>: يغير مجلد اللوحة إلى مجلد اللوحة الأخرى.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>زر الأعلى (..)</guibutton
+>: يغير مجلد اللوحة إلى المجلد الأب.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>زر المنزل (~)</guibutton
+>: يغير مجلد اللوحة إلى المجلد الرئيسي.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>زر الجذر (/)</guibutton
+>: يغير مجلد اللوحة إلى المجلد الجذر.</para>
+        </listitem>
+        <listitem>
+          <para
+><guibutton
+>زر التصفح المتزامن</guibutton
+>: عندما يكون نشطًا، يُنفذ كل تغيير مجلد في اللوحة المحددة في اللوحة الأخرى أيضًا.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+  <sect1 id="panels">
+    <title
+>اللوحات</title>
+    <para
+>لوحات كروسيدر هي مكان حدوث معظم الإجراءات. حاليًا، يوجد نوعان من اللوحات:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+><link linkend="list_panel"
+>لوحة القائمة</link
+>: تظهر الملفات والمجلدات.</para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="sidebar"
+>الشريط الجانبي</link
+>: له عدة أوضاع عرض: معاينة، شجرة، تحديد سريع، عرض واستخدام القرص للملف أو المجلد الذي له التركيز. يمكن ترك الشريط الجانبي مفتوحًا أو مغلقًا حسب الرغبة.</para>
+      </listitem>
+    </itemizedlist>
+    <para
+>كروسيدر هو مدير ملفات <quote
+>لوحة مزدوجة</quote
+> لذا توجد لوحتان: اللوحة <quote
+>اليسرى</quote
+> واللوحة <quote
+>اليمنى</quote
+>، أو تمييز منطقي أكثر أهمية، اللوحة *النشطة* واللوحة *غير النشطة*. اللوحة النشطة هي التي ستقبل إدخال الفأرة ولوحة المفاتيح. إذا اخترت أمرًا من <guilabel
+>شريط القوائم</guilabel
+> أو <guilabel
+>شريط الأدوات</guilabel
+>، فسيؤثر الأمر على الملفات/المجلدات المحددة في اللوحة النشطة. يمكنك التبديل بين اللوحات باستخدام مفتاح &Tab; أو بالنقر على <guilabel
+>لصائق المعلومات أو الإجماليات</guilabel
+>، أو بتحديد أي ملف في لوحة بالفأرة. كما هو الحال دائمًا، يمكن تعديل إعدادات بدء التشغيل المبدئية باستخدام <link linkend="konfigurator"
+>صفحة بدء التشغيل في Konfigurator</link
+>، وتتحكم في الجلسة الحالية باستخدام <link linkend="settings-menu"
+>قائمة الإعدادات</link
+>.</para>
+    <figure id="screenshot-listpanel" float="1">
+      <title
+>لوحة القائمة</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="listpanel.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>لوحة القائمة</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <sect2 id="list_panel">
+      <title
+>لوحة القائمة</title>
+      <indexterm>
+        <primary
+>اللوحة</primary>
+        <secondary
+>لوحة القائمة</secondary>
+      </indexterm>
+      <para
+>هذه هي اللوحة المبدئية والتي ستحتمل أن تستخدمها معظم الوقت. تظهر هذه اللوحة محتويات مجلد واحد يمكن أن يكون محليًا (جزء من أنظمة الملفات الموصولة لديك، إما ملف أصلي أو الملفات داخل أرشيف) أو ملفات بعيدة (يُوصل إليها عبر &FTP; أو &NFS; أو Samba). يوجد وضعان: <link linkend="view-menu"
+>العرض المفصل</link
+> الذي يظهر أسماء الملفات، حجم الملف، تاريخ ووقت الإنشاء وخصائصها. و<link linkend="view-menu"
+>العرض المختصر</link
+> الذي يظهر أسماء الملفات فقط، يمكن تغيير عدد الأعمدة المختصرة بالنقر بالزر الأيمن على رأس <guilabel
+>الاسم</guilabel
+>. يُدعم نسخ/لصق/قص الملفات عبر الحافظة بين &konqueror; وكروسيدر <keycombo action="simul"
+>&Ctrl; <keycap
+>C</keycap
+></keycombo
+>، <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo
+>، <keycombo action="simul"
+>&Ctrl; <keycap
+>X</keycap
+></keycombo
+>. <keycombo action="simul"
+>&Alt;&Ctrl; <keycap
+>R</keycap
+></keycombo
+> يبدل <guilabel
+>لوحة القائمة</guilabel
+> بين الوضع الأفقي والعمودي.</para>
+      <para
+>العناصر التالية متوفرة:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>لصيقة المعلومات</guilabel
+> </emphasis
+>: تظهر مقدار المساحة الحرة المتوفرة فعليًا على نظام الملفات، سعة نظام الملفات وأين وُصل نظام الملفات. إذا لم تكن المعلومات متوفرة (غالبًا في حالة نظام الملفات البعيد)، فستُعرض رسالة مع سبب عدم التوفر بدلًا من المعلومات.</para>
+          <para id="media_button"
+><guibutton
+>زر الوسائط</guibutton
+> على يسار <guilabel
+>لصيقة المعلومات</guilabel
+> يعرض قائمة بجميع الوسائط المتوفرة، حيث يمكنك اختيار الوسيط المطلوب (قسم قرص صلب، &DVD;، عصا &USB; ، إلخ…). ضغط <keycombo
+>&Ctrl;<keycap
+>رجوع</keycap
+></keycombo
+> عندما تكون <guibutton
+>قائمة الوسائط</guibutton
+> مفتوحة يصل الوسيط المظلل عندما يكون مفصولًا، ويفصله عندما يكون موصولًا. قائمة السياق لوسيط تعطي عدة خيارات مثل <guilabel
+>وصل</guilabel
+>، <guilabel
+>افتح في لسان جديد</guilabel
+> ، إلخ… <guibutton
+>قائمة الوسائط</guibutton
+> <link linkend="konfig-panel-mediamenu"
+>قابلة للضبط</link
+>.</para>
+        </listitem>
+          <listitem>
+          <para
+><emphasis
+> <guilabel
+>رؤوس الأعمدة</guilabel
+> </emphasis
+>: هنا يمكنك تغيير ترتيب الفرز للملفات والمجلدات حسب الرغبة. ترتيب الفرز المبدئي هو حسب <guilabel
+>الاسم</guilabel
+>. يمكن تغيير ترتيب الفرز فورًا بالنقر على أحد <guilabel
+>رؤوس الأعمدة</guilabel
+>. لعكس ترتيب الفرز، انقر مرة ثانية على رأس العمود. سيظهر سهم على يمين نص رأس العمود يوضح اتجاه الفرز (سهم لأعلى = فرز من أ إلى ي، سهم لأسفل = فرز من ي إلى أ). <link linkend="useractions"
+>إجراءات المستخدم</link
+> المبدئية تضبط ربط مفتاح لرؤوس الأعمدة. <guilabel
+>رؤوس الأعمدة</guilabel
+> المبدئية هي: <guilabel
+>الاسم</guilabel
+>، <guilabel
+>الامتداد</guilabel
+>، <guilabel
+>الحجم</guilabel
+>، <guilabel
+>آخر تعديل</guilabel
+>، <guilabel
+>rwx</guilabel
+>. الامتدادات الذرية <link linkend="konfig-general"
+>المعرفة مسبقًا</link
+> مثل <literal role="extension"
+>.tar.gz</literal
+> تظهر كجزء واحد في عمود <guilabel
+>الامتداد</guilabel
+>. رؤوس أعمدة اختيارية إضافية متوفرة باستخدام &RMB;. يمكن تغيير عرض <guilabel
+>رؤوس الأعمدة</guilabel
+> بالفأرة بالنقر مرة واحدة وتحريك خط الفاصل إلى العرض المطلوب (أبق زر الفأرة مضغوطًا). تتذكر كلتا <guilabel
+>لوحتي القائمة</guilabel
+> ترتيب الفرز وعرض العمود. يمكن تغيير <guilabel
+>رؤوس الأعمدة</guilabel
+> وحفظها بشكل فردي لكل لوحة.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>قائمة الملفات</guilabel
+> </emphasis
+>: تعرض الملفات والمجلدات في المجلد المُتصفح. <link linkend="quicksearch"
+>شريط البحث</link
+> يسمح لك بالبحث عن الملفات بكتابة أسمائها، أو الأحرف القليلة الأولى من اسم ملف. ضغط &Enter; أو النقر المزدوج على ملف سيفتح/ينفذ ذلك الملف. يمكنك تحديد/إلغاء تحديد الملفات باستخدام الفأرة، أو بمفتاح &Ins; أو <link linkend="edit-menu"
+>قائمة التحرير</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>لصيقة الإجماليات</guilabel
+> </emphasis
+>: اختيار أو إلغاء اختيار الملفات سيغير <emphasis
+> <guilabel
+>لصيقة الإجماليات</guilabel
+> </emphasis
+>في أسفل اللوحة، والتي تعرض عدد الملفات التي حددتها (وإجمالي مساحة القرص التي تستخدمها) بالإضافة إلى إجمالي الملفات واستخدام القرص للمجلد الحالي (على عكس لصيقة المعلومات التي تعرض معلومات لنظام الملفات بأكمله). إذا كان المجلد يحتوي على العديد من المجلدات الفرعية، فقد لا يكون من الممكن إسقاط &URL; على اللوحة (التي تظهر فيها المجلدات فقط)، ولكن يمكن إسقاط &URL; على <quote
+>لصيقة المعلومات</quote
+> أو <quote
+>لصيقة الإجماليات</quote
+> بدلًا من ذلك. عند تعيين <link linkend="view-menu"
+>مرشح مخصص</link
+>، سيظهر الإعداد، مثال: [*.cpp].</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>عند استخدام <quote
+>&kde; المبدئي <link linkend="konfig-color"
+>الألوان</link
+></quote
+>، فإن الملفات المحددة تظهر باللون الأزرق والملف الحالي محاط بمستطيل رفيع الخط. افتراضيًا، يظهر أيقونة وفقًا لنوع الملف. استخدم <link linkend="konfig-panel"
+>صفحة لوحة المكونات</link
+> لتغيير الإعداد المبدئي لتلبية احتياجاتك الفردية.</para>
+      <para
+>بعض <guilabel
+>لوحة القائمة</guilabel
+> المفيدة <link linkend="key_bindings"
+>ارتباطات المفاتيح</link
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo
+> سينعش اللوحة.</para>
+        </listitem>
+        <listitem>
+          <para
+>ركز على ملف أو مجلد في اللوحة اليسرى، اضغط <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> وستتغير اللوحة اليمنى: <itemizedlist>
+            <listitem>
+              <para
+>على ملف: تحصل اللوحة اليمنى على نفس المسار مثل اللوحة اليسرى.</para>
+            </listitem>
+            <listitem>
+              <para
+>على مجلد: تفتح اللوحة اليمنى المجلد المركز عليه في اللوحة اليسرى.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+        <listitem>
+          <para
+>بالنسبة للوحة اليمنى: اضغط <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> وستتغير اللوحة اليسرى.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="sidebar">
+      <title
+>الشريط الجانبي</title>
+      <indexterm>
+        <primary
+>الشريط الجانبي</primary>
+        <secondary
+>الشريط الجانبي (اللوحة الثالثة)</secondary>
+      </indexterm>
+      <para
+>هذه هي <quote
+>كروسيدر اليد الثالثة</quote
+> أو اللوحة الثالثة، انقر على زر السهم المتجه لأعلى على يمين <guilabel
+>لصيقة الإجماليات</guilabel
+> أو <keycombo action="simul"
+>&Alt; &Down;</keycombo
+> لفتح <guilabel
+>الشريط الجانبي</guilabel
+>. تحتوي هذه اللوحة على عدة أوضاع عرض يمكن تفعيلها بالنقر على الزر المناسب.</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>لوحة المعاينة</guilabel
+> </emphasis
+>: تعطي معاينة للملف الذي يحوز التركيز (الملف المحدد حاليًا).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>لوحة الشجرة</guilabel
+> </emphasis
+>: تُستخدم لتصفح شجرة المجلدات المحلية بسرعة. تتصرف هذه اللوحة مثل لوحة القائمة لكن لا يمكن تحديد سوى مجلد واحد في المرة، والنقر المزدوج أو الضغط على &Enter; على مجلد سيفتح ذلك المجلد في اللوحة النشطة. تدعم اللوحات بالكامل إجراءات الفأرة للسحب والإفلات (نسخ، نقل، رابط).</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>اللوحة السريعة</guilabel
+> </emphasis
+>: تُستخدم لتحديد الملفات بسرعة، مثلًا أدخل <literal role="extension"
+>*.png</literal
+> وانقر على زر <guibutton
+>انطلق</guibutton
+>. يخزن زر <quote
+>القرص المرن</quote
+> التحديد الحالي. كما يتوفر <quote
+>حوار تحديد المجموعة</quote
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>لوحة العارض</guilabel
+> </emphasis
+>: تعرض ملفًا نصيًا، تعرض صورة، إلخ. يُنشأ عرض مصغر كلما فتحت <guilabel
+>لوحة العارض</guilabel
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><emphasis
+> <guilabel
+>لوحة استخدام القرص</guilabel
+> </emphasis
+>: تعرض <link linkend="diskusage"
+>استخدام القرص</link
+> لمجلد.</para>
+        </listitem>
+      </itemizedlist>
+      <para
+>من الممكن تغيير موضع الشريط الجانبي باستخدام زر التدوير الموجود على يسار زر السهم المتجه لأسفل في الجزء السفلي من لسان كروسيدر. كل نقرة على هذا الزر تنقل الشريط الجانبي موضعًا واحدًا في الحلقة <quote
+>أسفل-يسار-أعلى-يمين</quote
+>. </para>
+      <para
+>إذا لزم الأمر يمكنك تغيير حجم النافذة مثلًا لعرض صورة أو محتوى ملف بشكل أفضل. انقر على زر السهم المتجه لأسفل لإغلاق <guilabel
+>لوحة اليد الثالثة</guilabel
+>.</para>
+    </sect2>
+    <sect2 id="folderhistory">
+      <title
+>تاريخ المجلدات</title>
+      <para
+>تتذكر كلتا اللوحتين المجلدات التي زُرتها مؤخرًا. انقر على زر <guibutton
+>تاريخ المجلدات</guibutton
+> (رمز <quote
+>الساعة</quote
+>) لفتح قائمة تاريخ المجلدات. هنا يمكنك التبديل بسرعة إلى المجلدات التي زُرتها سابقًا. المجلد المركّز حاليًا محدد. في كل بداية جديدة لـ كروسيدر، تُملأ قائمة التاريخ بالعناصر من الجلسة السابقة (يُحفظ التاريخ).</para>
+    </sect2>
+  </sect1>
+  <sect1 id="cmdline_termemu">
+    <title
+>سطر الأوامر / محاكي الطرفية</title>
+    <para
+>يمكن أن يكون لهذا الجزء من <link linkend="gloss-gui"
+>&GUI;</link
+> أربعة أوضاع: سطر الأوامر، محاكي الطرفية، عرض كليهما، وعرض لا شيء. يمكنك اختيار وضع التشغيل إما عند بدء التشغيل من خلال <link linkend="konfigurator"
+>صفحة بدء التشغيل في المكونات</link
+>، أو للجلسة الحالية من خلال <link linkend="settings-menu"
+>قائمة الإعدادات</link
+>. </para>
+
+  <sect2 id="cmdline">
+    <title
+>سطر الأوامر</title>
+
+    <figure id="screenshot-commandline" float="1">
+      <title
+>سطر الأوامر</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="cmdline.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>سطر الأوامر</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>يوفر وضع سطر الأوامر التقليدي سطر إدخال واحد لإدخال الأوامر، ويتميز أيضًا بثلاثة أزرار:</para>
+     <itemizedlist>
+        <listitem>
+          <para
+><guibutton
+>تاريخ الأوامر</guibutton
+> (سهم لأسفل) لفتح الأوامر المستخدمة سابقًا بسرعة </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>موسع إجراءات المستخدم</guibutton
+> (زر علامة الجمع الخضراء) لإضافة <link linkend="useractions"
+>عناصر نائبة لإجراءات المستخدم</link
+> بسهولة </para>
+        </listitem>
+
+        <listitem>
+          <para
+><guibutton
+>تشغيل في وضع الطرفية</guibutton
+> (رمز وحدة التحكم) مع الخيارات التالية: <itemizedlist>
+          <listitem
+><para
+>بدء ونسيان</para>
+          </listitem>
+
+          <listitem
+><para
+>عرض المخرجات القياسية ومخرجات الأخطاء منفصلتين</para>
+           </listitem>
+
+          <listitem
+><para
+>عرض المخرجات القياسية ومخرجات الأخطاء ممزوجتين</para>
+          </listitem>
+
+           <listitem
+><para
+>بدء في طرفية جديدة</para>
+          </listitem>
+
+           <listitem
+><para
+>إرسال إلى محاكي الطرفية المضمن</para>
+           </listitem>
+
+         </itemizedlist>
+          </para>
+
+        </listitem>
+
+
+     </itemizedlist>
+    <para
+>عند بدء كتابة أوامرك، ستقدم ميزة الإكمال التلقائي لسطر الأوامر اقتراحاتها وفقًا لما تختاره في &systemsettings;. إذا أردت تغيير طريقة عمل الإكمال التلقائي في جلسة كروسيدر الحالية، <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> على سطر الأوامر وغيّرها. على يسار سطر الإدخال يمكنك العثور على المسار المحلي الذي تشير إليه اللوحة النشطة حاليًا. هذا المسار هو المكان الذي سيُنفذ فيه أمرك. كتابة <userinput
+> <command
+>cd</command
+> <replaceable
+> &lt;مجلد&gt;</replaceable
+> </userinput
+> في سطر الأوامر ستؤدي أيضًا إلى توجيه اللوحة النشطة إلى هذا المجلد. انقر <link linkend="cmdline_keybindings"
+>هنا</link
+> لعرض اختصارات لوحة المفاتيح لسطر الأوامر.</para>
+</sect2>
+
+  <sect2 id="termemu">
+    <title
+>محاكي الطرفية</title>
+
+    <figure id="screenshot-terminalemulator" float="1">
+      <title
+>محاكي الطرفية</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="terminalEmu.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>محاكي الطرفية</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>وضع محاكي الطرفية هو في الواقع وحدة تحكم صغيرة ويعمل كواحدة. يمكنك تغيير المجلد النشط في الطرفية باستخدام الأمر <userinput
+> <command
+>cd</command
+> </userinput
+>. سيتبع محاكي الطرفية مجلد اللوحة النشطة. يمكنك سحب ملف من <interface
+>لوحة القائمة</interface
+> وسيُلصق اسم الملف في محاكي الطرفية. إذا سحبت ملفات متعددة، ستُلصق الأسماء في محاكي الطرفية. يمكن استخدام محاكي طرفية بملء الشاشة عند <link linkend="konfig-general-general"
+>تضبيطه</link
+> أو <keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>F</keycap
+></keycombo
+> يبدل بين الوضع العادي ووضع ملء الشاشة. إذا كان سطر الأوامر مخفيًا، اضغط <keycombo action="simul"
+>&Ctrl; <keycap
+>سهم لأسفل</keycap
+></keycombo
+> لتركيز محاكي الطرفية. <keycombo action="simul"
+>&Ctrl; <keycap
+>سهم لأعلى</keycap
+></keycombo
+> يعيدك إلى الأسفل. <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo
+> و <keycombo action="simul"
+>&Ctrl; &Shift; &Enter;</keycombo
+> يلصقان اسم الملف. يمكنك إغلاق المحاكي بكتابة <userinput
+> <command
+>exit</command
+> </userinput
+>.</para>
+    <para
+>انقر <link linkend="termemu_keybindings"
+>هنا</link
+> لعرض روابط مفاتيح محاكي الطرفية.</para>
+    </sect2>
+
+  </sect1>
+  <sect1 id="fnkeys">
+    <title
+>شريط مفاتيح الوظائف (FN)</title>
+    <figure id="screenshot-fnkeys" float="1">
+      <title
+>شريط مفاتيح الوظائف (FN)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="fnkeys.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>شريط مفاتيح الوظائف (FN)</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>يشتق هذا الشريط اسمه من مفاتيح الوظائف (FN) التي يمثلها. لكل زر في هذا الشريط مفتاح وظيفة مناظر يؤدي نفس الإجراء. يُشتق هذا الشريط من تصميم أول مديري ملفات ذوي لوحين مزدوجين، وتعمل مفاتيح FN عادةً بنفس الطريقة مع تغييرين: يُستخدم المفتاح <keycap
+>F2</keycap
+> لإعادة تسمية الملفات، ويفتح المفتاح <keycap
+>F9</keycap
+> طرفية في آخر مسار محلي أشار إليه اللوح النشط. يمكن لـ <guilabel
+>Mkdir</guilabel
+> <keycap
+>F7</keycap
+> (الاسم المترجم لأمر <command
+>mkdir</command
+>) إنشاء أشجار مجلدات كاملة أثناء العمل &eg; <literal
+>foo/bar/test</literal
+>. يمكنك اختيار عرض <link linkend="faqu_resize"
+>أو عدم عرض</link
+> <guilabel
+>شريط مفاتيح FN</guilabel
+> عند بدء تشغيل كروسيدر عبر <link linkend="konfigurator"
+>صفحة بدء Konfigurator</link
+>، ويمكنك تبديل استخدامه في الجلسة الحالية من <link linkend="settings-menu"
+>قائمة الإعدادات</link
+>. الإجراءات و<link linkend="key_bindings"
+>روابط المفاتيح</link
+> التي تؤديها مفاتيح الوظائف قابلة للضبط منذ الإصدار 1.51، وستظل نشطة مع عرض <guilabel
+>شريط مفاتيح FN</guilabel
+> أو بدونه.</para>
+  </sect1>
+  <sect1 id="folder-tabs">
+    <title
+>ألسنة المجلدات</title>
+    <figure id="screenshot-tabbedbrowsing" float="1">
+      <title
+>ألسنة المجلدات</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="tabbed_browsing.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>ألسنة المجلدات</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>باستخدام <guibutton
+>ألسنة المجلدات</guibutton
+> يمكنك التبديل بسرعة إلى مجلدات متعددة؛ لكل لوح <guibutton
+>ألسنة مجلدات</guibutton
+> خاصة به. تُحفظ مواضع <guibutton
+>ألسنة المجلدات</guibutton
+> عند إغلاق كروسيدر. للتبديل بين <guibutton
+>ألسنة المجلدات</guibutton
+>، انقر عليها بالفأرة. تحتوي <guibutton
+>ألسنة المجلدات</guibutton
+> المضغوطة على تلميحات أدوات لعرض المسار الكامل. تتوفر عمليات <guibutton
+>ألسنة المجلدات</guibutton
+> التالية:</para>
+    <itemizedlist>
+      <listitem>
+        <para
+>لفتح <action
+>لسن جديد</action
+> مع إبقاء اللسن الحالي مفتوحًا: <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> على مجلد واختر <guimenuitem
+>فتح في لسن جديد</guimenuitem
+>، أو انقر على الزر الأيمن في شريط الألسنة.</para>
+      </listitem>
+      <listitem>
+        <para
+>لقفل <action
+>لسن</action
+>، <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> واختر <guimenuitem
+>اقفل اللسن</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>لتثبيت <action
+>لسن</action
+>، <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> واختر <guimenuitem
+>ثبّت اللسن</guimenuitem
+>. اللسن المثبت هو لسن مقفل لكن بعنوان قابل للتغيير مؤقتًا. يُعاد تعيينه إلى العنوان المثبت عند إعادة تنشيط اللسن. لإلغاء تثبيت اللسن المثبت، انقر بزر الفأرة الأيمن عليه واختر العنصر <guimenuitem
+>ألغ تثبيت اللسن</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>لتكرار <action
+>لسن</action
+>: <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> على لسن المجلد واختر <guimenuitem
+>كرر اللسن الحالي</guimenuitem
+>، أو استخدم <keycombo action="simul"
+> &Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo
+>. </para>
+      </listitem>
+      <listitem>
+        <para
+>لإغلاق <action
+>لسن</action
+> (باستثناء اللسن الأخير): <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> على اللسن واختر <guimenuitem
+>أغلق اللسن الحالي</guimenuitem
+>، أو استخدم &MMB;، أو استخدم زر لسن المجلد <guibutton
+>الصليب الأحمر</guibutton
+>، أو استخدم <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>لتغيير <action
+>الألسنة</action
+>: <keycombo action="simul"
+>&Ctrl; <keycap
+>,</keycap
+></keycombo
+> أو <keycombo action="simul"
+>&Ctrl; <keycap
+>.</keycap
+></keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>لفتح <action
+>المجلد الحالي في لسن جديد</action
+>: استخدم <keycombo action="simul"
+> &Ctrl;&Alt;&Enter;</keycombo
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>لإغلاق <action
+>جميع الألسنة الأخرى</action
+>، <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> واختر <guimenuitem
+>أغلق الألسنة غير النشطة</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>لإغلاق <action
+>الألسنة المكررة</action
+>، <keycap
+>انقر بزر الفأرة الأيمن</keycap
+> واختر <guimenuitem
+>أغلق الألسنة المكررة</guimenuitem
+>.</para>
+      </listitem>
+      <listitem>
+        <para
+>لنقل لسن إلى اللوح الآخر، اسحبه إلى منطقة اللوح الآخر باستخدام &LMB; (سيصبح مؤشر الفأرة سهمًا يشير إلى اليسار أو اليمين) وأفلته. يمكنك أيضًا الضغط على <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo
+>.</para>
+      </listitem>
+</itemizedlist>
+  </sect1>
+  <sect1 id="ui_buttons">
+    <title
+>الأزرار</title>
+    <para
+>تتوفر عدة أزرار للعمليات السريعة: <link linkend="main_toolbar"
+>شريط الأدوات الرئيس</link
+>، <link linkend="actions_toolbar"
+>شريط أدوات الإجراءات</link
+>، <link linkend="panel_toolbar"
+>شريط أدوات اللوح</link
+>، <link linkend="location_toolbar"
+>شريط أدوات الموقع</link
+>، <link linkend="list_panel"
+>الوسائط</link
+>، <link linkend="folderhistory"
+>تاريخ المجلدات</link
+>، <link linkend="bookman"
+>العلامات المرجعية</link
+>، <link linkend="folder-tabs"
+>اللسن</link
+>، <link linkend="cmdline"
+>سطر الأوامر</link
+>، <link linkend="fnkeys"
+>مفاتيح الوظائف</link
+>.</para>
+  </sect1>
+</chapter>

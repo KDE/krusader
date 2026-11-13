@@ -1,0 +1,156 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="locate">
+  <title
+>واجهة أمامية لـ locate &GUI;</title>
+  <indexterm>
+    <primary
+>حدد</primary>
+  </indexterm>
+  <para
+>كروسيدر يملك واجهة أمامية &GUI; لأمر <command
+>locate</command
+> (findutils). يُستخدم locate للبحث السريع عن الملفات ليس من مجلد بل من قاعدة بيانات. تحتوي الحزمة، من بين ملفات أخرى، على <command
+>locate</command
+> و<command
+>updatedb</command
+>. يمر <command
+>updatedb</command
+> عبر نظام الملفات المحلي ويخزن إدخالات الملفات في قاعدة البيانات. غالبًا ما يستدعي <command
+>cron</command
+> الأمر <command
+>updatedb</command
+> كل ليلة (مضبوط باستخدام <application
+>KCron</application
+>). اختر <menuchoice
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>تحديد موقع...</guimenuitem
+> </menuchoice
+> أو <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo
+> لبدء هذه الميزة. يمكن لـ <link linkend="konfig-advanced"
+>Konfigurator</link
+> ضبط وسائط إضافية لـ <command
+>updatedb</command
+>.</para>
+  <para
+>خيارات مربعات الاختيار <itemizedlist>
+    <listitem>
+      <para
+><guilabel
+>أظهر الملفات الموجودة فقط</guilabel
+>: إذا احتوت قاعدة البيانات على إدخالات لم تعد موجودة (مُحذفة، منقولة منذ آخر <command
+>updatedb</command
+>)، لا يسردها <command
+>locate</command
+>. يتحقق من وجود كل ملف قبل السرد في نافذة النتائج (بطيء).</para>
+    </listitem>
+    <listitem>
+      <para
+><guilabel
+>حساس لحالة الأحرف</guilabel
+>: إلغاء تحديده يسمح بالبحث بالأحرف الصغيرة والكبيرة.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>أزرار الإجراءات <itemizedlist>
+    <listitem>
+      <para
+><guibutton
+>تحديد موقع</guibutton
+>: ينفذ <command
+>locate <replaceable
+>foo foo</replaceable
+></command
+> ويضع مخرجاته في نافذة النتائج.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>إيقاف</guibutton
+>: يوقف عملية التحديد.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>تحديث قاعدة البيانات</guibutton
+>: يبدأ <command
+>updatedb</command
+> لتحديث قاعدة بيانات locate بعد إدخال كلمة مرور الجذر.</para>
+    </listitem>
+    <listitem>
+      <para
+><guibutton
+>إغلاق</guibutton
+>: يغلق نافذة locate.</para>
+    </listitem>
+  </itemizedlist
+></para>
+  <para
+>نافذة النتائج <itemizedlist>
+    <listitem>
+      <para
+>نقر مزدوج على عنصر: ينتقل إلى مجلده، ويجعل العنصر مرئيًا، ويغلق حوار locate.</para>
+    </listitem>
+    <listitem>
+      <para
+>نقر يمين: يحرر/يعرض/يجد القائمة. <itemizedlist>
+        <listitem>
+          <para
+><keycap
+>F3</keycap
+>: يعرض العنصر الحالي.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>F4</keycap
+>: يحرر العنصر الحالي.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo
+>: يجد الملفات في نافذة النتائج.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo
+>: يعرض نتيجة البحث التالية.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo
+>: يعرض نتيجة البحث السابقة.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+        <listitem>
+          <para
+>تدعم نافذة النتائج سحب العناصر إلى نوافذ أخرى ونسخها إلى الحافظة (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+        </listitem>
+  </itemizedlist
+></para>
+</sect1>

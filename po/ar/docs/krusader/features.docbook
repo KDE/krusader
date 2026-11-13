@@ -1,0 +1,748 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2024 Krusader Krew <https://krusader.org>
+-->
+<chapter id="features">
+<title
+>الميزات</title>
+<indexterm>
+  <primary
+>الميزات</primary>
+</indexterm>
+<note>
+  <para
+>أبرز الميزات والتحسينات موضحة هنا، وسيكون من الطويل جدًا تضمين <emphasis
+>جميع</emphasis
+> الميزات والتحسينات. ستكتشف المزيد من الميزات في هذا الدليل وفي ملفي <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+><filename
+>ChangeLog</filename
+></ulink
+> و <ulink url="https://commits.kde.org/krusader?path=NEWS"
+><filename
+>NEWS</filename
+></ulink
+>.</para>
+</note>
+<para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>ميزات <ulink url="http://www.softpanorama.org/OFM/index.shtml"
+>مدير الملفات التقليدي (OFM)</ulink
+></title>
+          <listitem>
+            <para
+>لوحتان قويتان وسهلتا الاستخدام من <link linkend="panels"
+>لوحات OFM</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="cmdline"
+>سطر الأوامر</link
+> و <link linkend="termemu"
+>محاكي طرفية</link
+> اختياري بالأسفل.</para>
+          </listitem>
+          <listitem>
+            <para
+>توجه <link linkend="keyboard-commands"
+>لوحة المفاتيح</link
+> قوي والقدرة على أداء جميع الوظائف دون الفأرة.</para>
+          </listitem>
+          <listitem>
+            <para
+>استدعاء سياقي للنصوص والبرامج مثلًا نقرة الفأرة/&Enter; (تنفيذ أو فتح بالتطبيق المرتبط)، <keycap
+>F3</keycap
+> (عرض) و <keycap
+>F4</keycap
+> (تحرير).</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="useractions"
+>قائمة المستخدم</link
+>، أنشئ قائمتك المخصصة.</para>
+          </listitem>
+          <listitem>
+            <para
+>السجل مثلًا <link linkend="folderhistory"
+>سجل المجلدات</link
+>، <link linkend="popular-urls"
+>عناوين URL الشائعة</link
+>، إلخ…</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="vfs"
+>أنظمة الملفات الافتراضية (VFS)</link
+> مثلًا لـ <link linkend="remote-connections"
+>الاتصالات البعيدة</link
+>، <link linkend="archives"
+>الأرشيفات</link
+>، نتائج البحث، المزامن.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krviewer"
+>عارض ومحرر داخلي</link
+> قوي عبر kparts يدعم تقريبًا كل تنسيقات الملفات.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>وحدة البحث المتقدم</link
+>: البحث في الأرشيفات ومحتوى البحث على أنظمة الملفات البعيدة.</para>
+          </listitem>
+          <listitem>
+            <para
+>عدة أوضاع عرض للوحة عبر <link linkend="sidebar"
+>الشريط الجانبي</link
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>أدوات كروسيدر</title>
+          <listitem>
+            <para
+><link linkend="remote-connections"
+>الاتصالات البعيدة</link
+>: &FTP;/SAMBA مع دعم SFTP/SCP عبر خدام KIO</para>
+          </listitem>
+          <listitem>
+            <para
+>واجهة رسومية أمامية لـ <link linkend="locate"
+>تحديد المواقع</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="synchronizer"
+>مزامنة المجلدات</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="mount-man"
+>مدير التوصيل</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="diskusage"
+>استخدام القرص</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="root-mode"
+>وضع الجذر</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>ميزات كروسيدر</title>
+          <listitem>
+            <para
+>معالجة الأرشيف: التصفح، فك الضغط، الضغط، الاختبار. <link linkend="archives"
+>الأرشيفات</link
+> المدعومة: ace، arj، bzip2، deb، gzip، iso، lha، rar، rpm، tar، zip و 7-zip.</para>
+          </listitem>
+          <listitem>
+            <para
+>آلية <link linkend="checksum"
+>إنشاء المجموع الاختباري والتحقق منه</link
+> التي تدعم md5، sha1، sha256، sha224، sha256، sha384، sha512، tiger، whirlpool، cfv، و crc.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="calculate"
+>احسب المساحة المشغولة</link
+> للملفات والمجلدات والأرشيفات وأنظمة الملفات البعيدة.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-dir"
+>مقارنة الدليل</link
+> و <link linkend="view-menu"
+>التصفية</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="compare-content"
+>قارن الملفات بالمحتوى</link
+> عبر برامج الفرق الخارجية مثل &kompare;، <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+> أو <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="multi_rename"
+>أعد تسمية</link
+> الملفات والمجلدات عبر <ulink url="https://www.kde.org/applications/utilities/krename/"
+><application
+>KRename</application
+></ulink
+></para>
+          </listitem>
+          <listitem>
+            <para
+>يدعم السحب والإفلات بالكامل: اسحب من &konqueror; مباشرة إلى ملف <literal role="extension"
+>.tar.gz</literal
+>، من لوحة كروسيدر إلى سلة المهملات، سطح المكتب أو إلى &konqueror;</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-advanced"
+>احتفظ بالتاريخ</link
+> للأهداف المحلية في عمليات النسخ/النقل.</para>
+          </listitem>
+          <listitem>
+            <para
+><keycap
+>F9</keycap
+> يفتح <link linkend="tools-menu"
+>نافذة طرفية</link
+> في المجلد الحالي.</para>
+          </listitem>
+          <listitem>
+            <para
+>تحرير سهل لـ <link linkend="file-menu"
+>أذون الملفات</link
+> والملكية و <link linkend="konfig-panel-view"
+>الأذون الرقمية</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="krusearcher"
+>مرشحات التحديد</link
+> المستخدمة في مثلًا المزامن وKruSearcher.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="jump_back"
+>القفز للخلف</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="konfig-general"
+>مدرِك لنوع &MIME;</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="folder-tabs"
+>لوحات مبوبة</link
+> و <link linkend="krviewer"
+>محرر/عارض مبوب</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="quicksearch"
+>بحث سريع، تحديد وترشيح</link
+></para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="splitter"
+>مقسم الملفات</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>إيماءات الفأرة </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="list_panel"
+>تنقل سريع</link
+> في شريط الأدوات الموضعي.</para>
+          </listitem>
+          <listitem>
+            <para
+>وظيفة المساعدة ما هذا لصالح تلميحات الأدوات حيثما معقول.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_toolbar"
+>تصفح متزامن</link
+></para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <itemizedlist>
+          <title
+>خصص كروسيدر لاحتياجاتك الخاصة</title>
+          <listitem>
+            <para
+><link linkend="konfig-startup"
+>Konfigurator</link
+> مركز إعدادات كروسيدر.</para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="mainwindow"
+>شريط الأدوات الرئيس</link
+>، <link linkend="actions_toolbar"
+>شريط أدوات الإجراءات</link
+> لإجراءات المستخدم والإشارات المرجعية.</para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="key_bindings"
+>ارتباطات المفاتيح</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="konfig-color"
+>الألوان</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="panel_profiles"
+>تشكيلات اللوحة</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="bookman"
+>مدير الإشارات المرجعية</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+><link linkend="selection_modes"
+>أنماط التحديد</link
+></para>
+          </listitem>
+          <listitem>
+            <para
+>يمكن <link linkend="konfig-startup"
+>ضبط</link
+> العديد من الميزات الإضافية بالطريقة التي تريدها.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <itemizedlist>
+        <title
+>إضافات كروسيدر</title>
+        <listitem>
+          <para
+><link linkend="useractions"
+>إجراءات المستخدم</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="konfig-color"
+>تشكيلات الألوان</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="configure-shortcuts"
+>تشكيلات ربط المفاتيح</link
+></para>
+        </listitem>
+      </itemizedlist
+>نزّل وارفع إضافات كروسيدر المفضلة لديك في <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-1.80.0 <quote
+>الحجر الثالث النهائي</quote
+></title>
+    <listitem>
+      <para
+>تحسينات الأرشيف <itemizedlist>
+        <listitem>
+          <para
+><link linkend="archives"
+>دعم كلمات السر</link
+> لـ: arj، ace، rar وzip. يمكن تخزين كلمات المرور في <application
+>Kwallet</application
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>دعم 7-zip</link
+>، عبر التطبيقات الخارجية <application
+>7z</application
+> و <application
+>7za</application
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="archives"
+>دعم الكشف التلقائي</link
+>، مما يسمح لك بفتح <quote
+>الأرشيفات المخفية</quote
+> (مثلًا مستندات <trademark class="registered"
+>OpenOffice</trademark
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+>الضغط/فك الضغط أصبح الآن في الخلفية.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="list_panel"
+>عرض موجز</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>تحسينات عديدة لنظام <link linkend="useractions"
+>إجراءات المستخدم</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>تحسينات لا تُحصى في سهولة الاستخدام، خاصة في Konfigurator وشريط القوائم المعاد ترتيبه بشكل كبير.</para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="media_button"
+>زر الوسائط</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>نسخ/نقل: <link linkend="copying"
+>احتفظ بجميع السمات</link
+> (الوقت، المالك، المجموعة).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-color"
+>تعتيم ألوان اللوحة غير النشطة</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>إعادة تسمية ملف دون امتداد، وضع المثيل الواحد، بدء التشغيل إلى علبة النظام، اطّلع على هذا في <link linkend="konfigurator"
+>كونفيغوراتور</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>امتدادات ذرية قابلة للضبط <link linkend="list_panel"
+>الامتدادات الذرية</link
+>، بحيث تُعرض امتدادات مثل <literal role="extension"
+>.tar.gz</literal
+> كجزء واحد في <guilabel
+>عمود الامتداد</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>قائمة سياقية للعلامات المرجعية وتمكين/تعطيل العلامات المرجعية الخاصة.</para>
+    </listitem>
+    <listitem>
+      <para
+>شريط قوائم معاد تصميمه <link linkend="menu-commands"
+>شريط القوائم</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>تحسينات <link linkend="termemu"
+>محاكي الطرفية</link
+> تجلب وظائف جديدة، استخدامات جديدة، ومظهرًا جديدًا.</para>
+    </listitem>
+    <listitem>
+      <para
+>تحسينات <link linkend="synchronizer"
+>المزامن</link
+> وخيوط متوازية لخوادم &FTP; البطيئة.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-startup"
+>وضع المثيل الواحد</link
+>، <link linkend="konfig-startup"
+>بدء التشغيل إلى علبة النظام</link
+></para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="context-menu"
+>قائمة سياقية للعلامات المرجعية الدائمة.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+>دعم كامل لـ <link linkend="acl"
+>أذون ACL</link
+>، مثل الخصائص، حفظ السمات، المزامن وغيرها.</para>
+    </listitem>
+    <listitem>
+      <para
+>نتائج البحث، نتائج التحديد، نتائج المزامن: دعم سحب العناصر ونسخها إلى الحافظة (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>).</para>
+    </listitem>
+    <listitem>
+      <para
+>إصلاحات عديدة للأخطاء.</para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-1.90.0 <quote
+>حجر القوة</quote
+></title>
+    <listitem>
+      <para
+>آخر إصدار لـ &kde; 3.x مع مجموعة كبيرة من إجراءات المستخدم. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-2.0.0 <quote
+>مارس باثفايندر</quote
+></title>
+    <listitem>
+      <para
+>الإصدار الأول لسلسلة &kde; 4.x </para>
+    </listitem>
+    <listitem>
+      <para
+>يعمل كروسيدر على &Windows;! (لكنه ليس مفيدًا وقويًا بعد كما هو تحت &Linux;) </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="queue"
+>مدير الطابور!</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="konfig-panel"
+>خمس طرق في اللوحة!</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-2.1.0-beta1 <quote
+>القابض الصدئ</quote
+></title>
+    <listitem>
+      <para
+>عارض نصوص/سداسي عشري سريع لأحجام الملفات الضخمة. </para>
+    </listitem>
+    <listitem>
+      <para
+>علامات تبويب مقفلة. </para>
+    </listitem>
+    <listitem>
+      <para
+>تعبئة/تفريغ بطابور. </para>
+    </listitem>
+    <listitem>
+      <para
+>تكامل أفضل مع سلة المهملات. </para>
+    </listitem>
+    <listitem>
+      <para
+>يدعم شريط البحث السريع والتحديد والتصفية التعبيرات النمطية لمطابقة الملفات. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-2.5.0 <quote
+>سماء صافية</quote
+></title>
+    <listitem>
+      <para
+>مُنقل إلى &kf5-full;. </para>
+    </listitem>
+    <listitem>
+        <para
+>شريط <link linkend="quickfilter"
+>التصفية السريعة</link
+> الجديد بثلاثة أوضاع تشغيل: تحديد، بحث، وتصفية. </para>
+    </listitem>
+    <listitem>
+        <para
+>مدير الطابور المعاد تصميمه (JobMan) و <link linkend="job_toolbar"
+>شريط أدوات المهام</link
+> الجديد. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-2.7.0 <quote
+>راحة البال</quote
+></title>
+    <listitem>
+      <para
+>بحث سريع في قائمة العلامات. </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="folder-tabs"
+>ألسنة مثبتة</link
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>تلميح أداة بمعلومات الملف عند تحويم اسم الملف. </para>
+    </listitem>
+    <listitem>
+      <para
+>خيارات موسعة للوحة الشجرة في <link linkend="sidebar"
+>الشريط الجانبي</link
+>. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-2.8.0 <quote
+>يوم جديد</quote
+></title>
+    <listitem>
+      <para
+>تكرار الألسنة بالنقر المزدوج. </para>
+    </listitem>
+    <listitem>
+      <para
+>إغلاق الألسنة بـ &Ctrl;+&LMB; أو &Alt;+&LMB; (قابل للضبط). </para>
+    </listitem>
+    <listitem>
+      <para
+>تراجع عن إغلاق الألسنة أثناء تشغيل التطبيق. </para>
+    </listitem>
+    <listitem>
+      <para
+>ألسنة ذات حجم ديناميكي. </para>
+    </listitem>
+    <listitem>
+      <para
+>خيارات ضبط لموضع اللسان الجديد، رؤية زر اللسان، وسلوك زر اللسان الجديد. </para>
+    </listitem>
+    <listitem>
+      <para
+>سجل واقتراحات في حوار المجلد الجديد. </para>
+    </listitem>
+    <listitem>
+      <para
+>التنقل بين تحديد الاسم الكامل، اسم الملف، والامتداد باستخدام اختصار إعادة التسمية (<keycap
+>F2</keycap
+> مبدئيًا). </para>
+    </listitem>
+    <listitem>
+      <para
+><keycombo
+>&Shift;<keycap
+>Del</keycap
+></keycombo
+> يزيل المدخلات غير المرغوب فيها من السجل في حوارات متعددة. </para>
+    </listitem>
+    <listitem>
+      <para
+>تحسين المزامنة بين اللوحة والطرفية المضمنة. </para>
+    </listitem>
+    <listitem>
+      <para
+>تحسين ضبط الألوان. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para>
+  <itemizedlist>
+    <title
+>ميزات جديدة في إصدار كروسيدر-2.9.0 <quote
+>الحياة السادسة</quote
+></title>
+    <listitem>
+      <para
+>نُقل إلى &kf6-full;. </para>
+      <para
+>تُحفظ الإعدادات عند تعطل التطبيق. </para>
+    </listitem>
+  </itemizedlist>
+</para>
+
+<para
+><note
+><para
+>إذا كنت تستخدم إصدارًا تطويريًا أو إصدار &git;، فمن الممكن أن أحدث الميزات الجديدة ليست بعد في <quote
+>دليل كروسيدر</quote
+>. يُرجى قراءة ملف <ulink url="https://commits.kde.org/krusader?path=ChangeLog"
+>سجل التغييرات</ulink
+> عبر الإنترنت أو في مصادر كروسيدر لمعرفة المزيد عن الميزات الجديدة. لوصف موجز، يُرجى قراءة ملف <ulink url="https://commits.kde.org/krusader?path=NEWS"
+>الأخبار</ulink
+> عبر الإنترنت أو في مصادر كروسيدر. <link linkend="faqg_wish"
+>ملاحظات المستخدم</link
+> و<link linkend="faqg_bug_report"
+>تقارير الأخطاء</link
+> مرحب بها دائمًا! </para
+></note
+></para>
+</chapter>

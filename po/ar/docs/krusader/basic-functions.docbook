@@ -1,0 +1,540 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="basic-functions">
+  <title
+>وظائف أساسية</title>
+  <sect1 id="controls">
+    <title
+>الضوابط</title>
+    <sect2 id="control-general">
+      <title
+>عام</title>
+      <para
+>هذا قسم قصير نسبيًا لكنه مهم سيتناول تفاصيل التحكم في كروسيدر. لا يحاول هذا القطع تغطية جميع تركيبات المفاتيح لسببين: <orderedlist numeration="arabic"
+> <listitem
+> <para
+>هناك عدد كبير جدًا منها</para
+> </listitem
+> <listitem
+> <para
+>معظم إجراءات كروسيدر قابلة للضبط في <link linkend="konfig-panel"
+>صفحة لوحة المكونات</link
+></para
+> </listitem
+> </orderedlist
+>سنذكر فقط أهم اختصارات لوحة المفاتيح مع التشكيلة المبدئية، لكن ضع في اعتبارك أن معظم <link linkend="key_bindings"
+>ارتباطات المفاتيح</link
+> قابلة للضبط. إذا وجدت أنك تستخدم أمرًا معينًا كثيرًا وتريد معرفة الاختصار لهذا الأمر، أو تريد تغيير اختصار هذا الأمر، فاطلع على نافذة <link linkend="key_bindings"
+>ضبط الاختصارات</link
+> (<menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>ضبط الاختصارات...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="moving-around">
+      <title
+>التنقل</title>
+      <para
+>بالتنقل نعني نقل بؤرة لوحة المفاتيح والفأرة بين الأجزاء المختلفة من <link linkend="mainwindow"
+>النافذة الرئيسة</link
+> لـ كروسيدر. يمكن أن تكون البؤرة في أحد خمسة أماكن: اللوحة اليسرى أو اليمنى، شريط القوائم، سطر الأوامر، أو محاكي الطرفية. اللوحة التي تحمل البؤرة تُسمى اللوحة النشطة. ستبقى اللوحة النشطة نشطة حتى تستلم اللوحة الأخرى البؤرة (أي: إذا كانت اللوحة اليسرى نشطة ونقرت على سطر الأوامر - فستبقى اللوحة اليسرى هي اللوحة النشطة). يجب عليك تغيير اللوحة النشطة عمدًا.</para>
+      <para
+>الطريقة الأكثر شيوعًا لنقل البؤرة إلى لوحة معينة هي استخدام الفأرة للنقر على تلك اللوحة. لكن يجب أن تكون على علم بما يلي: <itemizedlist>
+        <listitem>
+          <para
+>النقر على شريط الأدوات، شريط مفاتيح FN، أو شريط الحالة <emphasis
+>لا</emphasis
+> يغير البؤرة.</para>
+        </listitem>
+        <!--
+   Quick View Panel: old Krusader feature , removed since krusader-1.12-beta1      
+   <listitem>
+     <para
+>The display part of the Quick View Panel does not accept clicks so you should click on the
+           Location Toolbar of this panel if you want it to have focus.</para>
+   </listitem>
+-->
+        <listitem>
+          <para
+>الضغط على زر <guibutton
+>تشغيل في وضع الطرفية</guibutton
+> في سطر الأوامر لن ينقل البؤرة، لذا عليك النقر داخل سطر الإدخال.</para>
+        </listitem>
+        <listitem>
+          <para
+>عند اختيار قائمة، سيصبح شريط القوائم مركز البؤرة. سيبقى مركز البؤرة حتى تختار أمرًا - تعود البؤرة إلى المالك السابق.</para>
+        </listitem>
+      </itemizedlist
+></para>
+      <para
+>هناك، بالطبع، طرق لاستخدام لوحة المفاتيح لتغيير البؤرة: <itemizedlist>
+        <listitem>
+          <para
+>مفتاح &Tab; سيبدل اللوحات، إذا كانت إحدى اللوحات تحمل البؤرة، أو يدور بين جميع الأوامر في قائمة، إذا كان شريط القوائم نشطًا.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; &Down;</keycombo
+> سينقلك من اللوحة النشطة إلى سطر الأوامر أو محاكي الطرفية، و <keycombo action="simul"
+>&Ctrl; &Up;</keycombo
+> سيعيدك من سطر الأوامر إلى اللوحة النشطة.</para>
+        </listitem>
+        <listitem>
+          <para
+>مفتاح &Esc; سيجعل شريط القوائم يعيد البؤرة، إذا كان يحملها، إلى اللوحة النشطة السابقة.</para>
+        </listitem>
+        <listitem>
+          <para
+>إذا كنت داخل محاكي الطرفية، يمكنك استخدام مفتاح &Tab;، أو الفأرة، للتنقل إلى لوحة نشطة.</para>
+        </listitem>
+        <listitem>
+          <para
+>الضغط على <keycombo action="simul"
+>&Alt; <keycap
+>الحرف المسطر</keycap
+></keycombo
+> من شريط القوائم سيفتح تلك القائمة (ما لم تكن هذه التركيبة <quote
+>مفتاحًا محجوزًا</quote
+>، مستخدمًا من قبل أحد إجراءات كروسيدر).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="selecting-files">
+      <title
+>التحديد</title>
+      <note>
+        <para
+>يقدم كروسيدر 4 <link linkend="selection_modes"
+>أوضاع تحديد</link
+>، ناهيك عن <link linkend="quickselect"
+>شريط التحديد السريع</link
+>، فقط وضع التحديد الخاص بـ كروسيدر موضح هنا.</para>
+      </note>
+      <para
+>التحديد هو مهارة تحتاج إتقانها للحصول على أقصى استفادة من كروسيدر. بما أن اللوحة الشجرية تسمح بتحديد مجلد واحد فقط في كل مرة، تشرح هذه الفقرة بشكل أساسي كيفية تحديد الملفات في لوحة القائمة.</para>
+      <para
+>تحريك المؤشر سهل. النقر الأيسر على ملف أو مجلد (يُشار إليهما هنا بـ <quote
+>العناصر</quote
+> بمعنى الملفات والمجلدات) سيحدده. إليك بعض النقاط المفيدة التي ستجعل استخدام كروسيدر أسهل (بافتراض أنك تستخدم وضع التحديد بالفأرة الخاص بـ كروسيدر): <itemizedlist>
+        <listitem>
+          <para
+>مفتاحا &Space; و &Ins; سيبدلان تحديد الملف تحت المؤشر دون التأثير على تحديد الملفات/المجلدات الأخرى، سينتقل المؤشر موضعًا واحدًا لأسفل.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycap
+>النقر الأيسر</keycap
+> على ملف سيحدد، أو يلغي تحديد، جميع الملفات المحددة سابقًا.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Ctrl; <keycap
+>النقر الأيسر</keycap
+></keycombo
+> سيبدل تحديد الملف تحت المؤشر دون التأثير على تحديد الملفات/المجلدات الأخرى.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift; <keycap
+>النقر الأيسر</keycap
+></keycombo
+> سيحدد جميع العناصر بين موقع المؤشر السابق والجديد.</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift;&Home;</keycombo
+> يحدد كل شيء فوق المؤشر (ويلغي تحديد كل شيء أسفل المؤشر، إذا كان محددًا).</para>
+        </listitem>
+        <listitem>
+          <para
+><keycombo action="simul"
+>&Shift;&End;</keycombo
+> يحدد كل شيء أسفل المؤشر (ويلغي تحديد كل شيء فوق المؤشر، إذا كان محددًا).</para>
+        </listitem>
+        <listitem>
+          <para
+>الإدخال <quote
+>..</quote
+> غير قابل للتحديد.</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="edit-menu"
+>قائمة التحرير</link
+> يمكن أن تقدم طرقًا إضافية لتحديد ملفاتك.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="executing_commands">
+      <title
+>تنفيذ الأوامر</title>
+      <para
+>ليس هناك الكثير ليقول هنا، كل ما عليك فعله هو تحديد بعض الملفات (إذا لم تفعل، سيعمل كروسيدر على الملف(ات) أو المجلد(ات) التي تحمل البؤرة)، اختر <link linkend="menu-commands"
+>أمرًا</link
+> من شريط القوائم أو استخدم اختصار لوحة مفاتيح (أو قائمة النقر الأيمن) وسيُنفذ الأمر المحدد. انظر أيضًا <link linkend="executing_files"
+>تنفيذ الملفات</link
+>.</para>
+    </sect2>
+    <sect2 id="quicksearch">
+      <title
+>بحث سريع</title>
+      <!-- Thanks to Heiner Eichmann -->
+      <para
+>ستجري هذه الميزة بحثًا سريعًا عن اسم الملف في اللوحة النشطة.</para>
+      <para
+>اكتب <keycap
+>foo</keycap
+> (حرف واحد) لإجراء بحث سريع في اللوحة النشطة عن ملف يبدأ بـ <quote
+>foo</quote
+>. سيُفتح حوار بحث سريع صغير أسفل اللوحة النشطة. اكتب الأحرف الأولى من اسم الملف المطلوب (يُسمح بأكثر من حرف واحد)، سينتقل المؤشر إلى اسم الملف ذلك (إن وُجد)، &eg; اكتب <quote
+>ab</quote
+> للبحث عن ملف يبدأ بـ <quote
+>ab</quote
+>. سينتقل المفتاحان &Up;/&Down; إلى المطابقة التالية أو السابقة. سيغلق &Esc; سطر البحث السريع. سيبقى المؤشر على آخر ملف وُجد. يدعم البحث السريع <ulink url="https://en.wikipedia.org/wiki/Regular_expression"
+>التعبيرات النمطية</ulink
+> للبحث عن الملفات.</para>
+      <note>
+        <para
+>إذا ضغطت <keycombo action="simul"
+>&Alt; <keycap
+>foo</keycap
+></keycombo
+>، سيُنفذ اختصار الربط المفاتيحي. إن لم يكن هناك ربط مفاتيح مضبوط، سيُستخدم الحرف المتبقي <keycap
+>foo</keycap
+> للبحث السريع.</para>
+      </note>
+      <para
+>استخدم نافذة <link linkend="key_bindings"
+>ضبط الاختصارات</link
+> (<menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>ضبط الاختصارات...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickfilter">
+      <title
+>مرشح سريع</title>
+      <para
+>ستجري هذه الميزة مرشحًا سريعًا لقائمة الملفات في اللوحة النشطة.</para>
+      <para
+>اضغط <keycombo
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+> لفتح شريط المرشح السريع. اكتب <keycap
+>foo</keycap
+> (حرف واحد) لتصفية جميع الملفات التي لا تحتوي على <quote
+>foo</quote
+> في أسمائها من اللوحة النشطة. يمكنك استخدام أحرف البدل للتصفية. &eg; استخدم <quote
+>a*b</quote
+> لتصفية الملفات التي تحتوي على <quote
+>a</quote
+> و <quote
+>b</quote
+> في أسمائها. يتبع المرشح السريع <link linkend="konfig-panel-general"
+>إعداد حساسية حالة الأحرف</link
+> للبحث السريع.</para>
+      <para
+>يؤدي الضغط على &Enter; في وضع المرشح السريع إلى تعيين التركيز على اللوحة، وعندما تكون اللوحة أو المرشح السريع في التركيز، يغلق &Esc; المرشح السريع. </para>
+      <para
+>لتغيير الاختصار المبدئي للمرشح السريع، استخدم نافذة <link linkend="key_bindings"
+>ضبط الاختصارات</link
+> (<menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>ضبط الاختصارات...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="quickselect">
+      <title
+>تحديد سريع</title>
+      <para
+>ستجري هذه الميزة تحديدًا سريعًا لقائمة الملفات في اللوحة النشطة.</para>
+      <para
+>اضغط <keycombo
+>&Ctrl;&Shift;<keycap
+>S</keycap
+></keycombo
+> لفتح شريط التحديد السريع. اكتب <keycap
+>foo</keycap
+> (حرف واحد) لتصفية جميع الملفات التي لا تحتوي على <quote
+>foo</quote
+> في أسمائها من اللوحة النشطة. يمكنك استخدام أحرف البدل للتصفية. &eg; استخدم <quote
+>a*b</quote
+> لتصفية الملفات التي تحتوي على <quote
+>a</quote
+> و <quote
+>b</quote
+> في أسمائها. يتبع التحديد السريع <link linkend="konfig-panel-general"
+>إعداد حساسية حالة الأحرف</link
+> للبحث السريع.</para>
+      <para
+>يؤدي الضغط على &Enter; في وضع التحديد السريع إلى تعيين التركيز على اللوحة، وعندما تكون اللوحة أو التحديد السريع في التركيز، يغلق &Esc; التحديد السريع. </para>
+      <para
+>لتغيير الاختصار المبدئي للتحديد السريع، استخدم نافذة <link linkend="key_bindings"
+>ضبط الاختصارات</link
+> (<menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>ضبط الاختصارات...</guimenuitem
+></menuchoice
+>).</para>
+    </sect2>
+    <sect2 id="context-menu">
+      <title
+>قائمة السياق</title>
+      <para
+>يحتوي كروسيدر على العديد من قوائم السياق التي تسمح لك بإجراء عمليات سريعة بالفأرة، عادةً ما يفتح النقر بالزر الأيمن قائمة السياق (اعتمادًا على إعدادات <link linkend="selection_modes"
+>أنماط التحديد</link
+>). تعطي هذه القائمة نظرة عامة على أهم قوائم السياق. استخدمها لاكتشاف الأوامر المتاحة. <itemizedlist>
+        <listitem>
+          <para
+><link linkend="mainwindow"
+>شريط الأدوات الرئيس</link
+> (الاتجاه، موضع النص، حجم الأيقونة)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="list_panel"
+>اللوحة القائمة</link
+> على ملف أو مجلد</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="cmdline"
+>سطر الأوامر</link
+> (تراجع، لصق، إكمال النص...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="termemu"
+>محاكي الطرفية</link
+> (إرسال إشارة، خط، تاريخ...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="folder-tabs"
+>ألسنة المجلدات</link
+> (جديد، مكرر، إغلاق)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="krusearcher"
+>KruSearcher</link
+> قائمة نتائج البحث للملفات (<keycap
+>F3</keycap
+> عرض، <keycap
+>F4</keycap
+> تحرير)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="mount-man"
+>MountMan</link
+> (فصل، تنسيق...)</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="synchronizer"
+>مزامنة المجلدات</link
+> قائمة الملفات</para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="useractions"
+>إجراءات المستخدم</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+>تُعرض إجراءات النقر بالزر الأيمن لـ &konqueror; في كروسيدر</para>
+        </listitem>
+        <listitem>
+          <para
+>إظهار/إخفاء <link linkend="list_panel"
+>رؤوس الأعمدة</link
+></para>
+        </listitem>
+        <listitem>
+          <para
+><link linkend="bookman"
+>العلامات</link
+> تمكين/تعطيل العلامات الدائمة</para>
+        </listitem>
+        <listitem>
+          <para
+>...</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic">
+    <title
+>إدارة الملفات الأساسية</title>
+    <sect2 id="executing_files">
+      <title
+>تنفيذ الملفات</title>
+      <para
+>يمكنك تنفيذ الملفات فقط في لوحة القائمة النشطة. لتنفيذ ملف، فقط (انقر نقرًا مزدوجًا) عليه أو اضغط &Enter; عندما يكون تحت مؤشر القائمة. سيفتحه كروسيدر في التطبيق المبدئي لهذا النوع من الملفات (صورة، ملف نصي...) أو سيُنفَّذ الملف (نص برمجي، ثنائي...). إذا أردت استخدام تطبيق آخر لفتح الملف، انقر بزر الفأرة الأيمن (&RMB;) على الملف واذهب إلى القائمة الفرعية <guisubmenu
+>فتح باستخدام</guisubmenu
+> التي ستقدم خيارات إضافية. كروسيدر متوافق مع مدير الملفات المبدئي لـ&plasma; لجميع أنواع الملفات باستثناء الأرشيفات التي تُفتح داخل لوحة كروسيدر وليس في تطبيق خارجي. انظر <link linkend="konfig-archives"
+>صفحة الأرشيفات في Konfigurator</link
+> للتفاصيل.</para>
+    </sect2>
+    <sect2 id="copying">
+      <title
+>النسخ والنقل</title>
+      <figure id="screenshot-copyjob" float="1">
+        <title
+>حوار النسخ</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="copyjob.png"
+></imagedata>
+          </imageobject>
+          <textobject>
+            <phrase
+>حوار النسخ</phrase>
+          </textobject>
+        </mediaobject>
+      </figure>
+      <para
+>لنسخ أو نقل الملفات/المجلدات، حددها واضغط <keycap
+>F5</keycap
+> للنسخ أو <keycap
+>F6</keycap
+> للنقل. يحاول كروسيدر الحفاظ على وقت التعديل. عند نسخ مجلد، يُغيَّر المالك إلى المستخدم الذي ينسخ المجلد، وتُغيَّر المجموعة إلى المجموعة المبدئية للمستخدم. عند نسخ ملف، يُغيَّر المالك إلى المستخدم الذي ينسخ الملف، وتُغيَّر المجموعة إلى المجموعة المبدئية للمستخدم، وتُحفظ الأذون. يُحفظ المالك والمجموعة والأذون عند نقل ملف أو مجلد. عند نسخ أو نقل الملفات/المجلدات، يظهر حوار يسمح لك باختيار وجهة العملية. الوجهة المبدئية هي المجلد المُتصفَّح في اللوحة الأخرى. إذا أدخلت &URL; جزئيًا، سيستخدم كروسيدر مجلد اللوحة الحالي كقاعدة لـ&URL;.</para>
+    </sect2>
+    <sect2 id="queue">
+      <title
+>مدير الطابور</title
+> 
+      <para
+>يمكن وضع عمليات النسخ والنقل والضغط وفك الضغط في طابور. بعد اختيار النسخ أو النقل، اضغط <keycap
+>F2</keycap
+> لاستخدامه. بعد اختيار الضغط أو فك الضغط، اضغط <keycap
+>F2</keycap
+> لاستخدامه. أو الاختصارات المباشرة: النسخ عبر الطابور <keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo
+>، النقل عبر الطابور <keycombo action="simul"
+>&Shift;<keycap
+>F6</keycap
+></keycombo
+>. ينفذ مدير الطابور الإجراءات واحدًا تلو الآخر. على سبيل المثال، إذا كان لديك محرك أقراص محمول (بطيء)، وتريد نسخ 40 ملفًا إليه، فمن الأفضل نسخها واحدًا تلو الآخر بدلًا من بدء نسخ 40 ملفًا بالتوازي. لهذا السبب، وضعها في طابور مهم. إذا ضغطت/فككت ضغط 40 ملفًا بالتوازي، ستُحمّل حاسوبك فوق طاقته، لكن إضافتها إلى طابور أكثر فائدة. </para>
+      <para
+>من الممكن تبديل <link linkend="job-queue-mode"
+>وضع مدير الطابور</link
+> عبر عنصر القائمة <menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>وضع طابور المهام</guimenuitem
+></menuchoice
+>. </para>
+    </sect2>
+    <sect2 id="deleting">
+      <title
+>الحذف - النقل إلى سلة المهملات في &plasma;</title>
+      <para
+>يتم حذف الملفات/المجلدات بتحديدها والضغط على <keycap
+>F8</keycap
+> أو <keycap
+>Delete</keycap
+>. افتراضيًا (<link linkend="konfig-general"
+>مبدئيًا</link
+>) سينقل إلى سلة مهملات &plasma;. يمكنك فتح سلة مهملات &plasma; عبر أيقونة سلة المهملات في <link linkend="main_toolbar"
+>شريط الأدوات الرئيس</link
+> أو عبر خادم KIO <filename
+>trash:/</filename
+>. ماديًا، توجد سلة مهملات &plasma; في <filename
+>~/.local/share/Trash/</filename
+> أو <filename
+>Trash</filename
+> في المجلد الفرعي في مجلد المستخدم الرئيس الذي يمكن تحديده باستخدام الأمر <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo
+> سيحذف الملف نهائيًا. سيطلب حوار تأكيدك وسيحذرك عند حذف مجلدات غير فارغة. بالطبع، سيتم فقط تنفيذ العمليات المسموح بها من قبل نظام التشغيل - سيُبلَّغ بخلاف ذلك. إذا كنت لا ترغب في رؤية حوارات التأكيد، يمكنك تعطيلها في <link linkend="konfig-advanced"
+>صفحة Konfigurator المتقدمة</link
+>. إذا ضبطت على حذف الملفات نهائيًا في <link linkend="konfig-general"
+>صفحة Konfigurator العامة</link
+>، فإن <keycap
+>F8</keycap
+> أو <keycap
+>Delete</keycap
+> سيحذف الملفات نهائيًا، بينما <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo
+> سينقلها إلى سلة مهملات &plasma;.</para>
+    </sect2>
+    <sect2 id="shred">
+      <title
+>تمزيق الملفات</title>
+      <para
+>أُزيلت ميزة التمزيق من &kde; 4 (ونتيجة لذلك من كروسيدر-2 لـ&kde; 4). السبب الرئيس هو أن التمزيق يعتمد على نظام الملفات، وحتى إذا كتبت فوق الملف 100 مرة، فليس من المؤكد أنه سيُحذف من القرص نهائيًا. اقتباس من منشورات &kgpg;: <quote
+>أُزيلت ميزة التمزيق من مكتبة &kde;. لن يدعم &kgpg; هذه الميزة بعد الآن. تستخدم أنظمة الملفات الحديثة التسجيل (journalisation). لذا يجب تنفيذ ميزة التمزيق في نظام الملفات، وليس في &kgpg;.</quote
+> لكن قد تستخدم <link linkend="useractions"
+>إجراء مستخدم</link
+> تمزيق مناسب لنظام الملفات لديك. لكن ضع في اعتبارك أنه إذا أردت التأكد بنسبة 100% من استحالة قراءة أي شخص لملف محذوف، فأنت بحاجة إلى تدمير عتاد القرص الصلب لديك... </para>
+    </sect2>
+    <sect2 id="renaming">
+      <title
+>إعادة تسمية الملفات، إنشاء الدلائل، ومعالجة الروابط</title>
+      <para
+>أعد تسمية الملف تحت المؤشر بمفتاح <keycap
+>F2</keycap
+> أو بنقرتين فرديتين بالفأرة. إذا كان فقط اسم الملف بحاجة إلى إعادة تسمية وليس الامتداد، يمكنك ضبط ذلك في <link linkend="konfig-general-atomic"
+>صفحة Konfigurator العامة</link
+>. <guilabel
+>أنشئ مجلدًا جديدًا</guilabel
+> بمفتاح <keycap
+>F7</keycap
+>. النقر بزر الفأرة الأيمن على ملف عادي سيعطيك الخيار <menuchoice
+><guisubmenu
+>معالجة الروابط</guisubmenu
+> <guimenuitem
+>رابط رمزي جديد...</guimenuitem
+></menuchoice
+>. سيطلب منك حوار إدخال اسم رابط رمزي. سيشير هذا الرابط الرمزي إلى الملف/المجلد الذي نقرت عليه بزر الفأرة الأيمن. إذا كان الملف الذي نقرت عليه بزر الفأرة الأيمن رابطًا رمزيًا، فسيُعرض عليك أيضًا الخيار <menuchoice
+><guisubmenu
+>معالجة الروابط</guisubmenu
+> <guimenuitem
+>إعادة توجيه الرابط</guimenuitem
+></menuchoice
+> الذي سيسمح لك بتغيير هدف الرابط.</para>
+    </sect2>
+    <sect2 id="viewing">
+      <title
+>عرض وتحرير الملفات</title>
+      <para
+><link linkend="krviewer"
+>KrViewer</link
+> له فصل خاص به.</para>
+    </sect2>
+  </sect1
+>&archives; </chapter>

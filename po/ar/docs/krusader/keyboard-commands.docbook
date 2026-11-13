@@ -1,0 +1,2391 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="keyboard-commands">
+  <title
+>أوامر لوحة المفاتيح</title>
+  <indexterm>
+    <primary
+>الأوامر</primary>
+    <secondary
+>لوحة المفاتيح</secondary>
+  </indexterm>
+  <sect1 id="keyboard-usage">
+    <title
+>استخدام لوحة المفاتيح</title>
+    <para
+>في هذا الفصل ستتعلم كيفية استخدام لوحة المفاتيح بفعالية، لأن معظم العمليات يمكن إنجازها بسرعة أكبر باستخدام لوحة المفاتيح مقارنة بالفأرة. سيستغرق تعلم <link linkend="key_bindings"
+>ارتباطات المفاتيح</link
+> بعض الوقت، لكن إتقانها يوفر عليك الكثير من الوقت. يُرجى ملاحظة أن &krusader; يمكنه استخدام <link linkend="configure-shortcuts"
+>تشكيلات ارتباطات المفاتيح</link
+> للتبديل بسهولة إلى إعدادات أخرى لارتباطات المفاتيح، مثل إعدادات القادة الآخرين، أو يمكنك إنشاء ارتباطات المفاتيح الخاصة بك.</para>
+    <para
+>بعد بدء &krusader;، يمكن بدء العمل بلوحة المفاتيح. استخدم <keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+> للانتقال إلى <link linkend="list_panel"
+>شريط أدوات الموقع</link
+> حيث يمكنك كتابة المجلد المطلوب. بعد <keycombo action="simul"
+>&Ctrl;&Down;</keycombo
+> تكون في <link linkend="termemu"
+>محاكي الطرفية</link
+> ويمكنك كتابة أي أمر تريده، بشرط أن يكون <link linkend="konfig-startup"
+>الطرفية ظاهرة</link
+>. استخدم <keycombo action="simul"
+>&Ctrl;&Up;</keycombo
+> للعودة إلى اللوحة النشطة. إذا أردت الانتقال إلى ملف أو مجلد يبدأ بـ <literal
+>f</literal
+>، فاضغط ببساطة على <keycap
+>f</keycap
+> بلوحة المفاتيح لاستخدام <link linkend="quicksearch"
+>شريط البحث</link
+>. استخدم مفتاح &Enter; لتنفيذ الملف أو فتح مجلد يحظى بالتركيز. تذكر مفاتيح الوظائف - <keycap
+>F3</keycap
+> للعرض، <keycap
+>F4</keycap
+> للتحرير، <keycap
+>F5</keycap
+> للنسخ، <keycombo action="simul"
+>&Alt;&Shift;<keycap
+>U</keycap
+></keycombo
+> لفك الضغط، إلخ…</para>
+    <para
+>يمكنك أيضًا تنفيذ عدة عمليات باستخدام <link linkend="folder-tabs"
+>ألسنة المجلدات</link
+>، بما في ذلك عدة عمليات <link linkend="edit-menu"
+>تحديد</link
+>. وفي النهاية يمكنك إغلاق &krusader; باستخدام <keycap
+>F10</keycap
+>.</para>
+  </sect1>
+  <sect1 id="key_bindings">
+    <title
+>ارتباطات المفاتيح</title>
+    <indexterm>
+      <primary
+>ارتباطات المفاتيح</primary>
+    </indexterm>
+    <indexterm>
+      <primary
+>الأوامر</primary>
+      <secondary
+>لوحة المفاتيح</secondary>
+    </indexterm>
+    <para
+>معظم ارتباطات المفاتيح (الاختصارات) قابلة للضبط في قائمة <menuchoice
+> <guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>اضبط الاختصارات...</guimenuitem
+> </menuchoice
+>، إذا كنت تفضل استخدام ارتباطات مفاتيح أخرى غير المبدئية. يمكنك حتى ضبط إجراءات إضافية لارتباط مفتاح (للإجراءات التي ليس لها ارتباط مفتاح مضبوط مبدئيًا). يُرجى ملاحظة أن بعض ارتباطات المفاتيح ليست ارتباطات مفاتيح &krusader; (مثل ارتباطات مفاتيح &plasma;). ارتباطات المفاتيح التي يستخدمها &krusader; مبدئيًا مذكورة أدناه.</para>
+
+    <!-- FN keys -->
+    <para>
+      <emphasis role="bold"
+>مفاتيح الوظائف (FN)</emphasis>
+    </para>
+    <para
+>هذه هي ارتباطات المفاتيح لـ <link linkend="fnkeys"
+>شريط مفاتيح FN</link
+>. هذه الارتباطات قابلة للضبط منذ الإصدار 1.51.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F1</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>مساعدة</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F2</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>إعادة تسمية الملفات.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F3</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>اعرض الملفّات</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F4</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>حرر ملفات</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F5</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>نسخ الملفّات</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F6</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>انقل الملفات</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F7</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>أنشئ مجلدًّا جديدًا.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F8</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>حذف (أو نقل إلى سلة المهملات) الملفات.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F9</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="tools-menu"
+>الطرفية.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>F10</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أغلق كروسيدر</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- SHIFT keys -->
+    <para>
+      <emphasis role="bold"
+>مفاتيح &Shift;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="help-menu"
+>ما هذا؟</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F2</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="multi_rename"
+>إعادة تسمية متعددة (<application
+>Krename</application
+>).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F3</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krviewer"
+>أدخل &URL; للعرض.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F4</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>تحرير ملف جديد.</link>
+              </para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>نسخ عبر الطابور.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F6</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="queue"
+>نقل عبر الطابور.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F10</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>عرض جميع الملفات.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; <keycap
+>F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>عرض مخصص للملفات.</link>
+              </para>
+            </entry>
+          </row>
+          <!-- This keybinding is disabled in the "viewactions.cpp" source file
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Shift;<keycap
+>F11</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="view-menu"
+>Executables</link
+></para
+></entry
+></row>
+-->
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>التغيير إلى لسان المجلد الأيسر.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>التغيير إلى لسان المجلد الأيمن.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- ALT keys -->
+    <para>
+      <emphasis role="bold"
+>&Alt; keys</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>حدّد الكل.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>أزِل تحديد الكلّ.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>*</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>اعكس التّحديد.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>.</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="view-menu"
+>إظهار/إخفاء الملفات المخفية (النقطية).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="mount-man"
+>مدير الوصل.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>`</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="useractions"
+>قائمة المستخدم</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Home;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>المنزل.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="file-menu"
+>الخصائص.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>الإشارات المرجعية اليسرى.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>الإشارات المرجعية اليمنى.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="sidebar"
+>الشريط الجانبي</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>ارتباطات مفاتيح قياسية (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- ALT+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>&Alt;+&Shift; keys</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>عرض موجز</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="compare-dir"
+>قارن المجلدات</link
+></para>
+            </entry>
+          </row
+>		  
+           <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>منظور مفصّل</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="test-archive"
+>اختبر الأرشيف.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>K</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>بدء &krusader; في <link linkend="root-mode"
+>وضع الجذر</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="panel_profiles"
+>تشكيلات اللوحة</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+          <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panel_toolbar"
+>مزامنة اللوحات المعروفة بـ <quote
+>زر المساواة (=)</quote
+>.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="pack-archive"
+>اضغط  ملفات.</link>
+              </para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>مدير الاصطفاف</para>
+            </entry>
+          </row
+>		  
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="diskusage"
+>استخدام القرص</link
+>.</para>
+            </entry>
+          </row>
+		  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="unpacking-archives"
+>فك ضغط الملفات.</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+
+    <!-- CTRL -->
+    <para>
+      <emphasis role="bold"
+>مفاتيح &Ctrl;</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>B</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>إضافة علامة مرجعية للعنصر الحالي.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="bookman"
+>فتح العلامات المرجعية</link
+>في اللوحة النشطة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>تحرير الملف كجذر (إجراء مستخدم مبدئي).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افتح <link linkend="quicksearch"
+>شريط البحث السريع</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>H</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افتح <link linkend="folderhistory"
+>قائمة التاريخ</link
+> في اللوحة النشطة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>I</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افتح <link linkend="quickfilter"
+>شريط التصفية السريعة</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>إرجاع-خلف <link linkend="jump_back"
+>مشابه لـ <trademark class="registered"
+>سفاري</trademark
+></link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اذهب إلى <link linkend="list_panel"
+>شريط الموقع</link
+> (الأصل) كما في <trademark class="registered"
+>فايرفوكس</trademark
+> وكنكرر.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>افتح قائمة الوسائط</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>حوار <link linkend="tools-menu"
+>اتصال شبكي جديد</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>حوار اختيار مجلد لفتح هذا المجلد في اللوحة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>P</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="splitter"
+>اقسم ملف.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Q</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أغلق كروسيدر.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>أعد تحميل (أنعش) اللوحة.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo
+>&Ctrl; <keycap
+>S</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="krusearcher"
+>ابحث.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>بدّل اللوحتين (لا تبدّل كل ألسنة المجلدات)</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>أغلق اللسان الحالي.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="synchronizer"
+>زامِن المجلدات</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Z</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="bookman"
+>عناوين &URL; شائعة.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>+</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>حدّد المجموعة.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>-</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="edit-menu"
+>ألغِ تحديد المجموعة.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>افتح قائمة تاريخ سطر الأوامر.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="cmdline"
+>اذهب من اللوحة النشطة إلى سطر الأوامر/محاكي الطرفية</link
+>. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="cmdline"
+>اذهب من سطر الأوامر/محاكي الطرفية إلى اللوحة النشطة.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اذهب من اللوحة النشطة إلى <link linkend="list_panel"
+>شريط الموقع</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Home;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اقفز إلى المجلد الرئيسي.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+><keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> أو <keycombo
+> &Right; </keycombo
+></para>
+            </entry>
+            <entry>
+              <para
+>ركّز على ملف أو مجلد في اللوحة اليسرى، اضغط <keycombo action="simul"
+>&Ctrl; &Left;</keycombo
+> فتتغير اللوحة <link linkend="panels"
+>اليمنى</link
+>: <itemizedlist
+> <listitem
+> <para
+>على ملف: تحصل اللوحة اليمنى على نفس المسار الذي في اللوحة <link linkend="panels"
+>اليسرى</link
+>.</para
+> </listitem
+> <listitem
+> <para
+>على مجلد: تُنعش اللوحة اليمنى بمحتويات المجلد.</para
+> </listitem
+> </itemizedlist
+>بالنسبة للوحة اليمنى: اضغط <keycombo action="simul"
+>&Ctrl; &Right;</keycombo
+> فتتغير اللوحة اليسرى.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Backspace;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اقفز إلى المجلد الجذر.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>صعود مجلد واحد.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اذهب إلى المجلد من اللوحة الأخرى.</para>
+            </entry>
+          </row>
+	  <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Return</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+	      <para
+>عندما تكون <link linkend="media_button"
+>قائمة الوسائط</link
+> مفتوحة، (يُوصل/يُفصل) الجهاز المظلل.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+SHIFT -->
+    <para>
+      <emphasis role="bold"
+>&Ctrl;+&Shift; keys</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>D</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="remote-connections"
+>افصل الاتصال البعيد.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>J</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="jump_back"
+>عين نقطة القفز للخلف.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>L</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>واجهة <link linkend="locate"
+>تحديد الموقع</link
+> الرسومية.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>O</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>انقل <link linkend="folder-tabs"
+>اللسان</link
+> الحالي إلى الجانب الآخر من النافذة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افتح <link linkend="quickselect"
+>شريط التحديد السريع</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>U</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="view-menu"
+>بدّل الجانبين (أيضًا بدّل كل ألسنة المجلدات)</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>افتح قائمة الوسائط اليسرى</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="list_panel"
+>افتح قائمة الوسائط اليمنى</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افتح <link linkend="cmdline"
+>محاكي الطرفية</link
+>، بشكل مستقل، سواء كان سطر الأوامر ظاهرًا أم لا.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أغلق <link linkend="cmdline"
+>محاكي الطرفية</link
+>، بشكل مستقل، سواء كان سطر الأوامر ظاهرًا أم لا.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgUp;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>انقل اللسان الحالي إلى اليسار.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>انقل اللسان الحالي إلى اليمين.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- CTRL+ALT -->
+    <para>
+      <emphasis role="bold"
+>&Ctrl;+&Alt; keys</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أظهر/أخفِ <link linkend="cmdline"
+>الطرفية المضمنة</link
+>.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>وصل (إجراء مستخدم مبدئي).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>لسان جديد.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>R</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>بدّل <link linkend="list_panel"
+>لوحة القائمة</link
+> بين الوضع العمودي والأفقي.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>S</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أنشئ رابطًا رمزيًا جديدًا.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>قائمة السجل اليسرى.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folderhistory"
+>قائمة السجل اليمنى.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>حجم لوحة متساوٍ (إجراء مستخدم مبدئي).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Shift; <keycap
+>N</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="folder-tabs"
+>ضاعف لسانًا.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افتح المجلد الحالي في <link linkend="folder-tabs"
+>لسان جديد.</link
+></para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- GENERAL CTRL -->
+    <para>
+      <emphasis role="bold"
+>مفاتيح &Ctrl; عامة</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>A</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>حدّد الكل.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &PgDn;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>انتقل إلى الجزء السفلي في المجلد الحالي.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>ارتباطات مفاتيح قياسية (&plasma;).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>F1..F12</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>ارتباطات مفاتيح قياسية (&plasma;).</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS -->
+    <para>
+      <emphasis role="bold"
+>مفاتيح أخرى</emphasis>
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>foo</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="quicksearch"
+>بحث سريع</link
+>، أو تحديد سريع، أو <link linkend="quickfilter"
+>مرشح سريع</link
+>. انظر <link linkend="konfig-panel-general"
+>صفحة الضبط هذه</link
+> لكيفية ضبط الوضع المبدئي.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Tab;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="panels"
+>بدّل بين اللوحتين</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Enter;</para>
+            </entry>
+            <entry>
+              <para
+><link linkend="executing_files"
+>على ملف:</link
+> افتح/نفّذ ذلك الملف</para>
+              <para
+><link linkend="browsing-archives"
+>على ملف أرشيف:</link
+> تصفّح الأرشيف كما لو كان مجلدًا.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Esc;</para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="moving-around"
+>سيجعل شريط القوائم يفقد التركيز إذا كان عليه.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>احذف</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>احذف (أو انقل إلى المهملات).</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="basic"
+>حذف بديل.</link>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Space; </para>
+            </entry>
+            <entry>
+              <para
+><link linkend="selecting-files"
+>على ملف:</link
+> بدّل تحديد الملف إلى موضع واحد لأسفل دون التأثير على تحديد الملفات/المجلدات الأخرى.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Backspace;</para>
+            </entry>
+            <entry>
+              <para
+>مجلد واحد لأعلى.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Ins; </para>
+            </entry>
+            <entry>
+              <para
+>يفعل نفس ما يفعله مفتاح &Space; <link linkend="selecting-files"
+>وينتقل موضعًا واحدًا لأسفل لتبديل الملف التالي.</link
+></para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycap
+>القائمة</keycap>
+              </para>
+            </entry>
+            <entry>
+              <para
+>قائمة النقر بزر الفأرة الأيمن.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&Home; </para>
+            </entry>
+            <entry>
+              <para
+>يقفز المؤشر إلى أعلى القائمة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>&End; </para>
+            </entry>
+            <entry>
+              <para
+>يقفز المؤشر إلى آخر ملف في القائمة.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- COMMANDLINE -->
+    <para id="cmdline_keybindings">
+      <emphasis role="bold"
+>سطر الأوامر</emphasis>
+    </para>
+    <para
+>ارتباطات مفاتيح <link linkend="cmdline"
+>سطر الأوامر</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para
+>سهم &Up; وسهم &Down;</para>
+            </entry>
+            <entry>
+              <para
+>مرر عبر الأوامر المكتوبة سابقًا.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>/</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افتح قائمة سجل سطر الأوامر.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اقفز من سطر الأوامر إلى اللوحة النشطة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اقفز من اللوحة النشطة إلى سطر الأوامر.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أدرج اسم الملف/المجلد الحالي دون مسار في موضع سطر الأوامر الحالي.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift;&Enter;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أدرج الملف/المجلد الحالي بمسار كامل في موضع سطر الأوامر الحالي.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- TERMINAL EMULATOR -->
+    <para id="termemu_keybindings">
+      <emphasis role="bold"
+>محاكي الطرفية</emphasis>
+    </para>
+    <para
+>روابط مفاتيح <link linkend="termemu"
+>محاكي الطرفية</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>F</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>بدّل بين <link linkend="termemu"
+>محاكي الطرفية</link
+> العادي وملء الشاشة.</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>V</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أدرج من الحافظة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اقفز من محاكي الطرفية إلى اللوحة النشطة إذا كان سطر الأوامر مخفيًا.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اقفز من اللوحة النشطة إلى محاكي الطرفية إذا كان سطر الأوامر مخفيًا.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Shift; <keycap
+>سهم لأعلى/لأسفل</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>ركّز/ألغ تركيز محاكي الطرفية دائمًا بغض النظر عن إظهار سطر الأوامر أو إخفائه. </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Shift; &Ins;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أدرج من الحافظة.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- SYNCHRONIZER -->
+    <para id="synchronizer_keybindings">
+      <emphasis role="bold"
+>المزامن</emphasis>
+    </para>
+    <para
+>روابط مفاتيح <link linkend="synchronizer"
+>المزامن</link
+>.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>W</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اعكس الاتّجاه</para>
+            </entry>
+          </row>
+            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Down;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>استثنِ</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Up;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>استعادة المهمة الأصلية</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Left;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>انسخ إلى اليسار</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; &Right;</keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>انسخ إلى اليمين</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Alt; <keycap
+>Delete</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>وسم للحذف</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <!-- DEFAULT USERACTIONS -->
+    <para>
+      <emphasis role="bold"
+>إجراءات المستخدم المبدئية</emphasis>
+    </para>
+    <para
+>روابط مفاتيح <link linkend="useractions"
+>إجراءات المستخدم</link
+> المبدئية المقدمة من &krusader;.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl; <keycap
+>E</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>حرر ملف كجذر.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>C</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>انسخ العنصر الحالي إلى الحافظة.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>M</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>صل نظام ملفات جديد.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Ctrl;&Alt; <keycap
+>=</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>حجم لوحة متساوٍ.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>A</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>أدخِل في قائمة طابور &amarok;.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>1</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>رتّب بالاسم.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>2</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افرز حسب الامتداد.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>3</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>رتّب اللوحة النشطة حسب الحجم.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>4</keycap
+> </keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>افرز حسب التعديل.</para>
+            </entry>
+          </row>
+	            <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>F5</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <link linkend="useractions-menu"
+>انسخ الملف الحالي احتياطيًا (إجراء مستخدم مبدئي).</link>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- GLOBAL SHORTCUTS -->
+    <para>
+      <emphasis role="bold"
+>الاختصارات العامة المبدئية</emphasis>
+    </para>
+    <para
+>الاختصارات العامة مسجلة في بلازما كيدي ويمكن تفعيلها حتى عندما لا يكون كروسيدر التطبيق النشط حاليًا.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>
+              <para>
+                <keycombo action="simul"
+>&Meta; <keycap
+>K</keycap
+></keycombo>
+              </para>
+            </entry>
+            <entry>
+              <para
+>اجلب النافذة الرئيسة للأعلى.</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <!-- OTHER KEYS URLs -->
+    <itemizedlist>
+      <title
+>روابط مفاتيح أخرى</title>
+      <listitem>
+        <para>
+          <link linkend="selecting-files"
+>تحديد الملفات</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="krviewer"
+>KrViewer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para
+><link linkend="diskusage"
+>استخدام القرص</link
+></para>
+      </listitem>
+      <listitem>
+        <para
+>واجهة <link linkend="locate"
+>تحديد الموقع</link
+> الرسومية</para>
+      </listitem>
+      <listitem>
+        <para
+>وحدة <menuchoice
+><guimenu
+>المظهر والسلوك العام</guimenu
+><guisubmenu
+>الاختصارات والإيماءات</guisubmenu
+></menuchoice
+> في &plasma; &systemsettings;.</para>
+      </listitem>
+      <listitem>
+        <para
+>روابط مفاتيح قابلة للضبط لـ <link linkend="useractions"
+>إجراءات المستخدم</link
+></para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+</chapter>

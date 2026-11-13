@@ -1,0 +1,507 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+
+<!ENTITY % Arabic "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<title
+>دليل مستخدم كيدي</title>
+<author
+><firstname
+>كروسيدر</firstname
+><surname
+>كرو</surname
+> <contrib
+>صفحة دليل كروسيدر.</contrib
+> <email
+>krusader-devel@googlegroups.com</email
+></author>
+<date
+>2017-05-06</date>
+<productname
+>كروسيدر</productname>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle
+><command
+>krusader</command
+></refentrytitle>
+<manvolnum
+>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname
+>كروسيدر</refname>
+<refpurpose
+>مدير ملفات متقدم بلوحين مزدوجين وعميل &FTP; من كيدي</refpurpose>
+</refnamediv>
+<!-- body begins here -->
+
+<refsynopsisdiv>
+<cmdsynopsis
+><command
+>كروسيدر</command
+> <arg choice="opt"
+>خيارات</arg
+> <arg choice="plain"
+>مسار</arg
+> </cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title
+>الوصف</title>
+<para
+>كروسيدر هو مدير ملفات متقدم بلوحين مزدوجين (نمط القائد) لبلازما وسطح مكتب أخرى في عالم *نكس، مشابه لميدنايت أو توتال كوماندر. يوفر كل ميزات إدارة الملفات التي قد ترغب بها. بالإضافة إلى: معالجة واسعة للأرشيف، دعم أنظمة الملفات الموصولة، &FTP;، وحدة بحث متقدمة، عارض/محرر، مزامنة مجلدات (معطلة مبدئيًا)، مقارنات محتوى الملفات، إعادة تسمية دفعة قوية وأكثر بكثير. يدعم صيغ الأرشيف التالية: ace، arj، bzip2، deb، gzip، iso، lha، rar، rpm، tar، xz، zip، و7-zip ويمكنه التعامل مع عَبيد KIO آخرين مثل smb:// أو fish://. هو (تقريبًا) قابل للتخصيص بالكامل، سهل الاستخدام جدًا، سريع ويبدو رائعًا على سطح مكتبك! :-) يجب أن تجربه.</para>
+</refsect1>
+
+<refsect1
+><title
+>خيارات</title>
+<variablelist>
+  <varlistentry>
+      <term
+><option
+>-h</option
+> <option
+>--help</option
+></term>
+  <listitem>
+<para
+>يسرد هذا الخيارات المتاحة في سطر الأوامر</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-v</option
+> <option
+>--version</option
+></term>
+  <listitem>
+<para
+>يسرد معلومات الإصدار لـ&krusader;</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--author</option
+></term>
+  <listitem>
+<para
+>اعرض المؤلفين</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--license</option
+></term>
+  <listitem>
+<para
+>اعرض الترخيص</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--left</option
+> <parameter
+><replaceable
+>&lt;مسار&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>ابدأ اللوحة اليسرى عند <replaceable
+>&lt;مسار&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--right</option
+> <parameter
+><replaceable
+>&lt;مسار&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>ابدأ اللوحة اليمنى عند <replaceable
+>&lt;مسار&gt;</replaceable
+></para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>--profile </option
+><parameter
+><replaceable
+>&lt;تشكيلة-لوحة&gt;</replaceable
+></parameter
+></term>
+  <listitem>
+<para
+>حمّل <replaceable
+>&lt;تشكيلة-لوحة&gt;</replaceable
+> عند بدء التشغيل</para
+> 
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+      <term
+><option
+>-d</option
+> <option
+>--debug</option
+></term>
+  <listitem>
+<para
+>يفعّل مخرجات التنقيح</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term
+><option
+>مسار</option
+></term>
+  <listitem>
+<para
+>إذا كان هناك لسان مفتوح بالفعل بهذا المسار، يُفعّل، وإلا يُفتح لسان جديد في اللوحة النشطة</para>
+  </listitem>
+  </varlistentry>
+</variablelist>
+</refsect1>
+
+<refsect1
+><title
+>أمثلة</title>
+
+<itemizedlist>
+  <listitem
+><para
+>$ krusader --left=/mnt/cdrom --right=ftp://downloads@myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --left=/home,/usr,smb://workgroup.net --right=fish://myserver.net</para
+></listitem>
+  <listitem
+><para
+>$ krusader --profile=ftp_management</para
+></listitem>
+
+</itemizedlist>
+</refsect1>
+
+<refsect1
+><title
+>ملفات</title>
+<para
+>ملفات الضبط:</para>
+
+<para
+><filename
+>~/.config/krusaderrc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/krbookmarks.xml</filename
+> أو <filename
+>krusader/krbookmarks.xml</filename
+> في المجلد الذي يمكن تحديده باستخدام أمر <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>~/.local/share/krusader/useractions.xml</filename
+> أو <filename
+>krusader/useractions.xml</filename
+> في المجلد الذي يمكن تحديده باستخدام أمر <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+<para
+><filename
+>/usr/share/kxmlgui5/krusader/krusaderui.rc</filename
+></para>
+
+<para
+><filename
+>~/.local/share/kxmlgui5/krusader/krusaderui.rc</filename
+> أو <filename
+>kxmlgui5/krusader/krusaderui.rc</filename
+> في المجلد الذي يمكن تحديده باستخدام أمر <userinput
+>qtpaths --paths GenericDataLocation</userinput
+></para>
+
+</refsect1>
+
+<refsect1
+><title
+>المنصات</title>
+<para
+>كل POSIX: لينكس، سولاريس، كل منصات BSD: فري بي إس دي، ماك أو إس-إكس</para>
+
+<para
+><emphasis
+>كيدي 2.x</emphasis
+></para>
+
+<para
+>كروسيدر الإصدار 1.01 المستقر ولكن لا توجد تغييرات مخططة.</para>
+
+<para
+><emphasis
+>كيدي 3.x</emphasis
+></para>
+
+<para
+>يحتاج كروسيدر الإصدار 1.01 إلى مكتبات كيدي 2</para>
+
+<para
+>يحتاج كروسيدر الإصدار 1.02 - 1.40 إلى مكتبات كيدي 3</para>
+
+<para
+>يفضل كروسيدر 1.40 كيدي 3.2 فأعلى</para>
+
+<para
+>كروسيدر الإصدار 1.50 - 1.51: كيدي 3.2 - كيدي 3.3</para>
+
+<para
+>كروسيدر الإصدار 1.60.0 - 1.70.0: كيدي 3.3 - كيدي 3.4</para>
+
+<para
+>كروسيدر 1.70.x - 1.80.x: كيدي 3.4 - كيدي 3.5</para>
+
+<para
+><emphasis
+>كِيدِي 4.x</emphasis
+></para>
+
+<para
+>كروسيدر 2.0 - 2.4: كيدي 4</para>
+
+<para
+><emphasis
+>أطر كيدي 5</emphasis
+></para>
+
+<para
+>كروسيدر 2.5 وما أحدث</para>
+
+<para
+>يمكن العثور على أحدث إصدار من كروسيدر في <ulink url="https://krusader.org/"
+>موقع كروسيدر</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>الميزات</title>
+<para
+>ميزات مدير ملفات من النوع OFM.</para>
+
+<para
+>توجيه قوي بلوحة المفاتيح.</para>
+
+<para
+>عارض ومحرر داخليان قويان.</para>
+
+<para
+>وحدة بحث متقدمة تبحث في الأرشيفات. تدعم: ace وarj وbzip2 وdeb وgzip وiso وlha وrar وrpm وtar وxz وzip و7-zip.</para>
+
+<para
+>مقارنة الدلائل وتصفيتها.</para>
+
+<para
+>عميل &FTP;/سامبا مع مدير اتصالات يدعم SFTP/SCP.</para>
+
+<para
+>مزامن وإجراءات مستخدم وصدفة مضمنة.</para>
+
+<para
+>مقارنة الملفات بالمحتوى. تحرير سهل لأذون الملفات.</para
+> 
+
+<para
+>استخدام القرص وحساب المساحة المشغولة. إنشاء صيغ المجاميع الاختبارية والتحقق منها.</para>
+
+<para
+>واعٍ كامل بنوع MIME (مع أو بدون سحر!).</para>
+
+<para
+>دعم لمدير الوصل وأداة تحديد الموقع وKrename.</para>
+
+<para
+>وضع الجذر ولوحات مبوبة وشريط جانبي. أوضاع اختيار بالفأرة.</para>
+
+<para
+>تشكيلات لـ: اللوحات وارتباطات المفاتيح والألوان.</para
+> 
+
+<para
+>للمزيد من الميزات اقرأ <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=features.html"
+>صفحة الميزات</ulink
+>.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>الرخصة</title>
+<para
+>يُوزع كروسيدر بموجب شروط رخصة جنو العمومية.</para>
+
+<para
+>الإصدار 2 من الرخصة كما نشرته مؤسسة البرمجيات الحرة.</para>
+
+<para
+>انظر المساعدة المضمنة لتفاصيل الرخصة وغياب الضمان.</para>
+
+<para
+>لا تزال حقوق نشر المشروع واسمه محفوظة لـ Shie Erlich وRafi Yanai.</para>
+</refsect1>
+
+<refsect1
+><title
+>تدويل</title>
+<para
+>كروسيدر مترجم إلى لغات عديدة.</para>
+
+<para
+><ulink url="https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/"
+>https://l10n.kde.org/stats/gui/trunk-kf5/po/krusader.po/</ulink
+></para>
+
+<para
+>اقرأ <ulink url="https://l10n.kde.org/docs/translation-howto/"
+>دليل ترجمة كيدي</ulink
+> إذا أردت ترجمة كروسيدر إلى لغتك الأم.</para>
+</refsect1>
+
+<refsect1
+><title
+>الأسئلة الشائعة</title>
+<para
+>أحدث نسخة من الأسئلة الشائعة لكروسيدر موجودة في <ulink url="https://docs.kde.org/?application=krusader&amp;branch=stable5&amp;path=faq.html"
+>موقع توثيق كيدي</ulink
+>.</para>
+</refsect1>
+
+<refsect1
+><title
+>انظر أيضًا</title>
+<simplelist>
+<member
+>دليل كروسيدر، في قائمة المساعدة لكروسيدر.</member>
+
+<member
+>kf5options(7)</member>
+
+<member
+>qt5options(7)</member>
+</simplelist>
+</refsect1>
+
+<refsect1 id='authors'
+><title
+>المؤلفون</title>
+<para
+>كروسيدر يُطوَّر بواسطة فريق مخلص من الأفراد، يُعرف باسم طاقم كروسيدر.</para>
+
+<para
+>شي إرليش، مؤلف [erlich {*} users {.} sourceforge {.} net] (متقاعد)</para>
+
+<para
+>رافي ياناي، مؤلف [yanai {*} users {.} sourceforge {.} net] (متقاعد)</para>
+
+<para
+>ديرك إيشلر، مشرف موقع [deschler {*} users {.} sourceforge {.} net] (متقاعد)</para>
+
+<para
+>تشابا كاراي، مطور [ckarai {*} users {.} sourceforge {.} net] (متقاعد)</para>
+
+<para
+>هاينر إيخمان، مطور [h {.} eichmann {*} gmx.de] (متقاعد)</para>
+
+<para
+>يوناس باهر، مطور [jonas.baehr {*} web.de] (متقاعد)</para>
+
+<para
+>فاتسلاف يوزا، مطور [vaclavjuza {*} seznam {.} cz] (متقاعد)</para>
+
+<para
+>يان ليبر، مطور [jan_lepper {*} gmx {.} de] (متقاعد)</para>
+
+<para
+>أندريه ماتفياكين، مطور [a.matveyakin {*} gmail {.} com] (متقاعد)</para>
+
+<para
+>دافيد جيانفورتي، مطور [davide {*} gengisdave {.} org]</para>
+
+<para
+>ألكسندر بيكادوروف، مطور [alex.bikadorov {*} kdemail {.} net]</para>
+
+<para
+>مارتن كوستولني، مطور [clearmartin {*} zoho {.} com]</para>
+
+<para
+>توني أسينسي إستيف، مطور [toni.asensi {*} kdemail {.} net]</para>
+
+<para
+>نيكيتا ميلنيشينكو، مطور [nikita+kde {*} melnichenko {.} name]</para>
+
+<para
+>فرانك سكولميستر، منسق التوثيق والتسويق [frank_schoolmeesters {*} yahoo {.} com] (متقاعد)</para>
+
+<para
+>ريتشارد هولت، توثيق وتدقيق [richard {.} holt {*} gmail {.} com] (متقاعد)</para>
+
+<para
+>ماتي أوربانشيتش، تسويق وبحث منتجات [matej {*} amis {.} net] (متقاعد)</para>
+
+<para
+>يوري تشورنويفان، توثيق <email
+>yurchor@ukr.net</email
+></para>
+
+<para
+>المشروع مكتوب باستخدام كيدي ديفيلوب ومصمم كيوت.</para>
+
+</refsect1>
+
+<refsect1
+><title
+>العلل</title>
+<para
+>انظر ملف TODO في التوزيعة للحصول على معلومات حول ما يبقى فعله.</para>
+
+ <para
+>للإصلاحات والتصحيحات والتعليقات، أرسل بريدًا إلى <email
+>krusader-devel@googlegroups.com</email
+>.</para>
+
+<para
+>فريق كروسيدر</para>
+</refsect1>
+</refentry>
+

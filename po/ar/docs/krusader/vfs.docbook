@@ -1,0 +1,122 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="vfs">
+  <title
+>نظم ملفات الافتراضية</title>
+  <indexterm>
+    <primary
+>نظم ملفات الافتراضية</primary>
+  </indexterm>
+  <para
+>ميزة <link linkend="features"
+>OFM أساسية</link
+> هي VFS، وهي طبقة مجردة فوق جميع أنواع المعلومات المؤرشفة (ملفات ZIP، خوادم &FTP;، أرشيفات TAR، أنظمة ملفات &NFS;، مشاركات SAMBA، صور ISO &CD;/&DVD;، كتالوجات RPM، &etc;)، تتيح للمستخدم الوصول إلى جميع المعلومات في هذه الأنواع المتباينة من أنظمة الملفات بشفافية - تمامًا مثل دخول مجلد فرعي عادي. يدعم كروسيدر عدة أنظمة ملفات افتراضية:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><link linkend="remote-connections"
+>VFS الاتصالات البعيدة</link
+>: يوفر القدرة على العمل مع جلسة اتصال بعيدة (&FTP;، &NFS;، Samba، FISH، SFTP) كما لو كانت أنظمة ملفات محلية. إنه مثالي للعمليات البعيدة المعقدة ويكاد يكون بقوة معظم عملاء &GUI; البعيدين المستقلين.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS الأرشيفات</link
+>: يسمح بتصفح الأرشيفات في VFS كما لو كانت مجلدًا (ace، arj، bzip2، deb، gzip، iso، lha، rar، rpm، tar، zip و7-zip).</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="archives"
+>VFS البحث</link
+>: <guibutton
+>تغذية إلى قائمة</guibutton
+> يضع نتائج البحث في VFS.</para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="synchronizer"
+>VFS المزامن</link
+>: يضع نتائج المزامن في VFS.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>الإجراءات التي تنفذها على الملفات في VFS تُنفذ على الملفات 'الحقيقية'. أنت لا تحذف الملفات من VFS فقط - بل تحذفها من قرصك الصلب. القيود: لا يمكنك إنشاء مجلدات داخل VFS.</para>
+  <para
+>من الممكن الاحتفاظ بهيكل المجلد عند النسخ من مجلد افتراضي إلى مجلد غير افتراضي، بتحديد مربع الاختيار <quote
+>الاحتفاظ بهيكل المجلد الافتراضي</quote
+> في حوار النسخ. تخيل المجلد الافتراضي التالي: <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile1</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir1/myfile2</userinput
+></screen
+> <screen
+><prompt
+>$</prompt
+> <userinput
+>file:/home/myhome/mydir2/myfile3</userinput
+></screen
+> ثم اتبع الخطوات التالية:</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>اذهب إلى المجلد الافتراضي وحدد الملفات</para>
+    </listitem>
+    <listitem>
+      <para
+>حدد مجلدًا وجهة (غير افتراضي!)</para>
+    </listitem>
+    <listitem>
+      <para
+>اضغط <keycap
+>F5</keycap
+>-&gt; يظهر حوار النسخ</para>
+    </listitem>
+    <listitem>
+      <para
+>حدد <guilabel
+>الاحتفاظ بهيكل المجلد الافتراضي</guilabel
+></para>
+    </listitem>
+    <listitem>
+      <para
+>حدد <filename
+>/home/myhome/</filename
+> كـ &URL; أساسي</para>
+    </listitem>
+    <listitem>
+      <para
+>ابدأ النسخ بالضغط على موافق</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>ستكون النتيجة: <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile1</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir1/myfile2</userinput
+></screen>
+  <screen
+><prompt
+>$</prompt
+> <userinput
+>destinationdir/mydir2/myfile3</userinput
+></screen>
+  </para>
+</sect1>

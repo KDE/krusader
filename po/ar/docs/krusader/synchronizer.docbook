@@ -1,0 +1,840 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="synchronizer">
+  <title
+>المزامن</title>
+  <indexterm>
+    <primary
+>المزامن</primary>
+  </indexterm>
+  
+<sect2 id="synchronizer_introduction">
+  <title
+>مقدمة</title>
+  <para
+>تقارن هذه الوظيفة مجلدين بجميع المجلدات الفرعية وتظهر الفروق بينهما. بعد تحديد بعض الخيارات ووظيفة <guilabel
+>مقارنة</guilabel
+>، يمكنك مزامنة الملفات والمجلدات. يمكن أن تكون إحدى اللوحتين خادم &FTP;. لا تنسَ خيار <guilabel
+>مقارنة بالمحتوى</guilabel
+> إذا بقي حجم الملف متساويًا. اختر <menuchoice
+> <guimenu
+>أدوات</guimenu
+> <guimenuitem
+>مزامنة المجلدات</guimenuitem
+> </menuchoice
+> أو <keycombo action="simul"
+>&Ctrl; <keycap
+>Y</keycap
+></keycombo
+> لبدء هذه الميزة. <link linkend="konfig-color"
+>الألوان</link
+> قابلة للضبط. للمزامن <link linkend="synchronizer_keybindings"
+>روابط مفاتيح</link
+> خاصة به. </para>
+  <note>
+    <para
+>للملفات المحلية: يغير المزامن معلومات التاريخ إلى التواريخ الأصلية.</para>
+  </note>
+  <figure id="screenshot-syncdir" float="1">
+    <title
+>المزامن</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="syncdir.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>مزامن</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para>
+  <orderedlist>
+    <title
+>العملية:</title>
+    <listitem>
+      <para
+>اضبط <guilabel
+>المجلد الأيسر</guilabel
+> و<guilabel
+>المجلد الأيمن</guilabel
+> اللذين تريد مقارنتهما.</para>
+    </listitem>
+    <listitem>
+      <para
+>اضبط <guilabel
+>مرشح الملفات</guilabel
+> الاختياري و<guilabel
+>المرشحات العامة</guilabel
+> و<guilabel
+>المرشحات المتقدمة</guilabel
+>. يتضمن <guilabel
+>المرشحات العامة</guilabel
+> خيار <guilabel
+>لا تبحث في</guilabel
+> الذي يسمح لك باستبعاد المجلدات من المقارنة.</para>
+    </listitem>
+    <listitem>
+      <para
+>اضبط <link linkend="synccomp_checkb_options"
+>خيارات مربعات الاختيار</link
+>: <guilabel
+>تكرر المجلدات الفرعية</guilabel
+> و<guilabel
+>اتبع الروابط الرمزية</guilabel
+> و<guilabel
+>قارن بالمحتوى</guilabel
+> و<guilabel
+>تجاهل التاريخ</guilabel
+> و<guilabel
+>غير متماثل</guilabel
+> و<guilabel
+>تجاهل حالة الأحرف</guilabel
+>. </para>
+    </listitem>
+    <listitem>
+      <para
+>انقر على زر <guibutton
+>مقارنة</guibutton
+> لمقارنة المجلدات.</para>
+    </listitem>
+    <listitem>
+      <para
+>باستخدام <link linkend="synccomp_show_options"
+>خيارات العرض</link
+>، يمكنك تضمين/استبعاد أنواع ملفات معينة. الملفات غير الموجودة في القائمة لن تتأثر بالمزامنة.</para>
+    </listitem>
+    <listitem>
+      <para
+>إذا لزم الأمر، يمكنك تغيير عمليات <guilabel
+>المهمة</guilabel
+> التي يحددها المقارن باستخدام <link linkend="synccomp_right-click"
+>قائمة النقر باليمين</link
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+>عند الموافقة على نتائج <guibutton
+>المقارنة</guibutton
+>، انقر على زر <guibutton
+>مزامنة</guibutton
+> لإظهار حوار المزامنة.</para>
+    </listitem>
+    <listitem>
+      <para
+>بعد تحديد خيارات <link linkend="synchronizer"
+>المزامن</link
+>، انقر على زر <guibutton
+>بدء</guibutton
+> لبدء عملية المزامنة.</para>
+    </listitem>
+  </orderedlist
+>يُوصف شرح مفصل لجميع الوظائف والأزرار في النص التالي.</para>
+
+</sect2>
+
+<sect2 id="synchronizer_comparator">
+  <title
+>مقارن</title
+>  
+
+  <variablelist>
+    <varlistentry>
+      <term
+>عناصر اللوحة</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>الدليل الأيسر</guilabel
+>: المجلد الأساسي للجانب الأيسر.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>الدليل الأيمن</guilabel
+>: المجلد الأساسي للجانب الأيمن.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>مرشح الملفات</guilabel
+>: يرشح أسماء الملفات عند المزامنة. مثل <literal role="extension"
+>*.png</literal
+> يختار فقط الملفات التي تنتهي أسماؤها بـ <literal role="extension"
+>.png</literal
+>. تُدرج المجلدات إذا انتهى اسم المجلد بـ <literal role="extension"
+>.png</literal
+> أو إذا احتوى المجلد على ملفات تنتهي بـ <literal role="extension"
+>.png</literal
+>. مثال تضمين/استبعاد متعدد: <literal role="extension"
+>'*.cpp *.h | *.moc.cpp'</literal
+> يضمّن <literal role="extension"
+>*.cpp *.h</literal
+> ويستبعد <literal role="extension"
+>*.moc.cpp</literal
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>المرشحات العامة</guilabel
+>: ابحث عن نص يحتوي على</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>المرشحات المتقدمة</guilabel
+>: الحجم والتاريخ والملكية</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <variablelist>
+    <varlistentry>
+      <term
+>معايير ترشيح اسم الملف</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>يمكنك استخدام أحرف البدل. تُفصل الأنماط المتعددة بمسافة (تعني OR منطقي) وتُستبعد الأنماط من البحث باستخدام رمز الأنبوب. إذا انتهى النمط بشرطة مائلة (*pattern*/)، فهذا يعني أن النمط يتعلق بالبحث التكراري في المجلدات.</para>
+          </listitem>
+          <listitem>
+            <para
+>pattern - يعني البحث عن الملفات/المجلدات التي اسمها نمط، يمر البحث التكراري عبر جميع المجلدات الفرعية بغض النظر عن قيمة النمط.</para>
+          </listitem>
+          <listitem>
+            <para
+>pattern/ - يعني البحث عن جميع الملفات/المجلدات، لكن البحث التكراري يمر عبر/يستبعد المجلدات التي اسمها نمط.</para>
+          </listitem>
+          <listitem>
+            <para
+>يمكنك استخدام علامات الاقتباس للأسماء التي تحتوي على مسافات. يبحث المرشح <quote
+>Program Files</quote
+> عن الملفات/المجلدات التي اسمها <filename
+>Program Files</filename
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+>أمثلة:</para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.o</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.h *.c??</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>*.cpp *.h | *.moc.cpp</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <literal role="extension"
+>* | CVS/ .svn/</literal>
+            </para>
+          </listitem>
+          <listitem>
+            <para
+>ملاحظة: مصطلح البحث 'text' يعادل '*text*'.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_checkb_options">
+      <term
+>خيارات مربعات الاختيار</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>تكرر المجلدات الفرعية</guilabel
+>: يتنقل المزامن عبر المجلدات الفرعية عند المقارنة.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>اتبع الروابط الرمزية</guilabel
+>: يتبع المزامن الروابط الرمزية إلى المجلدات (وليس الملفات!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>قارن بالمحتوى</guilabel
+>: ستُقارن الملفات المتساوية الأحجام بالمحتوى أيضًا.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>تجاهل التاريخ</guilabel
+>: يتجاهل معلومات التاريخ (مفيد لـ &FTP;، smb، الأرشيف، ...) معلومات التاريخ ذات صلة *فقط* في نظام الملفات المحلي.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>غير متماثل</guilabel
+>: <guilabel
+>الدليل الأيسر</guilabel
+> هو المجلد الهدف، و<guilabel
+>الدليل الأيمن</guilabel
+> هو المجلد المصدر. هذه الوظيفة تزامن محتوى المجلد الأيسر إلى المجلد الأيمن. <itemizedlist
+> <listitem
+> <para
+>الملفات الموجودة فقط في الجانب الأيسر ستُحذف.</para
+> </listitem
+> <listitem
+> <para
+>الملفات الموجودة فقط في الجانب الأيمن ستُنسخ إلى الأيسر.</para
+> </listitem
+> <listitem
+> <para
+>الملفات التي تُعتبر متساوية لن تُلمس.</para
+> </listitem
+> <listitem
+> <para
+>الملفات التي تُعتبر مختلفة ستُنسخ إلى الأيسر. استخدم هذه الميزة بحذر!</para
+> <itemizedlist
+> <listitem
+> <para
+>لاحظ أن هناك إجراءً لتجنب فقدان البيانات: إذا أُخذت التواريخ في الاعتبار (لأن <guilabel
+>تجاهل التاريخ</guilabel
+> معطل)، فإن الإجراء المبدئي هو <emphasis
+>عدم استبدال ملف بنسخة قديمة منه</emphasis
+>. لا يزال المستخدم قادرًا على الاستبدال (بالنقر بالزر الأيمن واختيار <guilabel
+>نسخ من اليمين إلى اليسار</guilabel
+>).</para
+> </listitem
+> </itemizedlist
+> </listitem
+> </itemizedlist
+>هذه الوظيفة مفيدة إذا كانت معلومات التاريخ غير قابلة للاستخدام، أو لمزامنة المجلد الأيسر مع محتوى خادم ملفات (مثل التنزيل). بدلًا من ذلك، هي مفيدة لعمل نسخة احتياطية من المجلد الأيمن إلى المجلد الأيسر. ملاحظة: لا تستخدم هذا الخيار لمزامنة سطح مكتب وحاسوب محمول (مثل الملفات الموجودة فقط في الجانب الأيسر ستُحذف!).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>تمرير النتائج</guilabel
+>: هذا مخصص لخوادم &FTP; البطيئة، ... عندما ينهي المزامن مقارنة ملف، يضع الملف في نهاية القائمة فورًا ويُمرر النافذة إذا لزم الأمر. هذا مهم إذا أردت معرفة ما يفعله المزامن. إذا كان خادم &FTP; بطيئًا، قد تستغرق مقارنة مجلد وقتًا طويلًا. بتشغيل هذا الخيار، يمكنك رؤية أن المقارن <quote
+>حي</quote
+>، لكنه بطيء. لأنظمة الملفات السريعة، قد يُقلل سرعة المقارنة قليلًا.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>تجاهل حالة الأحرف</guilabel
+>: مقارنة أسماء ملفات غير حساسة لحالة الأحرف، هذا مفيد عند مزامنة أنظمة ملفات &Windows;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>تجاهل الملفات المخفية</guilabel
+>: يتجاهل الملفات التي تبدأ بنقطة.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  <para
+>عند الانتهاء من كل ما ذُكر أعلاه، انقر على الزر <guibutton
+>مقارنة</guibutton
+> لمقارنة المجلدات، تُعرض النتائج في <guilabel
+>قائمة الملفات</guilabel
+>.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>قائمة الملفات</term>
+      <listitem>
+        <para
+>تحتوي <guilabel
+>قائمة الملفات</guilabel
+> على الأعمدة التالية: <quote
+>الاسم الأيسر | الحجم الأيسر | الوقت الأيسر | المهمة | الوقت الأيمن | الحجم الأيمن | الاسم الأيمن</quote
+>. هنا يمكنك فحص نتائج المقارنة وتعديل إجراءات المزامنة إذا رغبت. يحدد لون النص اتجاه النسخ المبدئي الذي يحدده المقارن. <itemizedlist
+> <listitem
+> <para
+>أخضر: نسخ من اليسار إلى اليمين.</para
+> </listitem
+> <listitem
+> <para
+>أزرق: نسخ من اليمين إلى اليسار أو حذف في الجانب الأيمن في الوضع غير المتماثل.</para
+> </listitem
+> <listitem
+> <para
+>أحمر: ملفات مختلفة حسب المعايير المعطاة (لا اتجاه نسخ).</para
+> </listitem
+> <listitem
+> <para
+>أسود: ملفات متطابقة (لا اتجاه نسخ).</para
+> </listitem
+> </itemizedlist
+> النقر المزدوج على ملف يستدعي وظيفة <guilabel
+>مقارنة بالمحتوى</guilabel
+> في كروسيدر. يحدد عمود المهام (&lt;=&gt;) اتجاه النسخ المبدئي، الذي يمكن للمستخدم تعديله إذا لزم الأمر. تدعم نافذة النتائج سحب العناصر إلى نوافذ أخرى (سحب [يسار]، &Shift;+سحب [يمين]) ونسخ العناصر المحددة يسارًا/يمينًا إلى الحافظة (<keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+>). </para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><guilabel
+>قائمة الملفات</guilabel
+>: عمود المهام (&lt;=&gt;)</term>
+      <listitem>
+        <para
+>يعرض هذا العمود المهمة المخطط لها للمزامن، يمكن تعديل هذه المهمة باستخدام <link linkend="synccomp_right-click"
+>قائمة النقر بالزر الأيمن</link
+>.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: نسخ من الجانب الأيسر إلى الجانب الأيمن. للمجلدات: <command
+>mkdir</command
+> في الجانب الأيمن.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: الملفات متطابقة، لا تفعل شيئًا.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: الملف مستبعد، أو لا يعرف المزامن ماذا يفعل.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: نسخ من الجانب الأيمن إلى الجانب الأيسر. للمجلدات: <command
+>mkdir</command
+> في الجانب الأيسر.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>DEL</guibutton
+>: حذف الملفات من الجانب الأيمن.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_show_options">
+      <term
+>إظهار الخيارات</term>
+      <listitem>
+        <para
+>هنا يمكنك تضمين/استبعاد أنواع ملفات معينة. تلك الملفات غير الموجودة في القائمة لن تُلمس عند المزامنة.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>-&gt;</guibutton
+>: تمكين/تعطيل مهمة النسخ من اليسار إلى اليمين.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>=</guibutton
+>: تمكين/تعطيل عرض الملفات المتساوية.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>!=</guibutton
+>: تمكين/تعطيل عرض الملفات المستبعدة / <quote
+>لا أعرف ماذا أفعل</quote
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>&lt;-</guibutton
+>: تمكين/تعطيل مهمة النسخ من اليمين إلى اليسار.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>سلة المهملات</guibutton
+>: تمكين/تعطيل مهمة حذف الملفات من الجانب الأيسر.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>مكررات</guibutton
+>: تمكين/تعطيل تلك الملفات الموجودة في كلا الجانبين.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>مفردات</guibutton
+>: تمكين/تعطيل تلك الملفات الموجودة في جانب واحد فقط.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>أزرار الإجراءات</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>مقارنة</guibutton
+>: يقارن المجلدات، تُعرض النتائج في <guilabel
+>قائمة الملفات</guilabel
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>إيقاف</guibutton
+>: يوقف المقارنة.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>مزامنة</guibutton
+>: يعرض حوار المزامنة.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>إغلاق</guibutton
+>: يغلق نافذة المزامن.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>قد يحتوي شريط الحالة على</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>عدد المجلدات الممسوحة أثناء المقارنة.</para>
+          </listitem>
+          <listitem>
+            <para
+>اسم الملف عند المقارنة بالمحتوى (للملفات الكبيرة).</para>
+          </listitem>
+          <listitem>
+            <para
+>عدد الملفات في القائمة.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry id="synccomp_right-click">
+      <term
+>قائمة النقر باليمين على <guilabel
+>قائمة الملفات</guilabel
+></term>
+      <listitem>
+        <para
+>تنقسم قائمة النقر باليمين إلى ثلاثة أقسام:</para>
+        <para
+>1. تغيير عمليات <guilabel
+>المهمة</guilabel
+> التي يحددها المقارن. اختر ملفًا أو أكثر. سيُطبق التغيير على التحديد وليس فقط على العنصر الذي نقرت عليه باليمين. إذا كان العنصر المحدد مجلدًا، فسيُطبق التغيير على ملفاته/مجلداته الفرعية أيضًا.</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>مزامنة المجلدات...</guibutton
+>: يبدأ المزامنة.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>استثناء</guibutton
+>: يستثني ملفًا/مجلدًا من المزامنة (تغيير المهمة إلى !=).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>استعادة العملية الأصلية</guibutton
+>: تغيير المهمة إلى نتيجة المقارنة الأصلية.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>عكس الاتجاه</guibutton
+>: تغيير المهمة (-&gt; إلى &lt;-, و &lt;- إلى -&gt;).</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>نسخ من اليمين إلى اليسار</guibutton
+>: تغيير المهمة إلى &lt;-.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>نسخ من اليسار إلى اليمين</guibutton
+>: تغيير المهمة إلى -&gt;.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>حذف (أيسر منفرد)</guibutton
+>: تغيير المهمة إلى DEL.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>2. تغيير التحديدات</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>تحديد عناصر</guibutton
+>: يفتح حوارًا يتيح لك تحديد العناصر. هذا هو حوار <guimenuitem
+>تحديد مجموعة</guimenuitem
+> من <link linkend="edit-menu"
+>قائمة التحرير</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>إلغاء تحديد عناصر</guibutton
+>: يفتح حوارًا يتيح لك إلغاء تحديد العناصر. هذا هو حوار <guimenuitem
+>إلغاء تحديد مجموعة</guimenuitem
+> من <link linkend="edit-menu"
+>قائمة التحرير</link
+>.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>عكس التحديد</guibutton
+>: يعكس حالة التحديد لجميع العناصر.</para>
+          </listitem>
+        </itemizedlist>
+        <para
+>3. أخرى (لاحظ أن العمليات التالية تعمل على الملف الذي نقرت عليه باليمين وليس على التحديد).</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>عرض الملف الأيسر</guibutton
+>: يبدأ العارض على الملف الأيسر.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>عرض الملف الأيمن</guibutton
+>: يبدأ العارض على الملف الأيمن.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>مقارنة الملفات</guibutton
+>: يبدأ أداة الفرق (مثل &kompare;) على الملفات.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>أزرار أخرى</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>تشكيلات</guibutton
+>: إذا كنت تضطر لمزامنة نفس المجلدات كثيرًا، يمكنك حفظ الإعدادات مثل تضمين الملفات، استثناء الملفات، ... اضغط زر <guibutton
+>تشكيلة</guibutton
+>، وستتمكن من إضافة/تحميل/حفظ/إزالة تشكيلات المزامن.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>تبديل الجانبين</guibutton
+>: يبدل <guilabel
+>قائمة الملفات</guilabel
+>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>المزامنة مع <application
+>kget</application
+></term>
+      <listitem>
+        <para
+>إذا أردت مزامنة مجلد محلي مع خادم &FTP; غير مستقر، فإن <application
+>kget</application
+> هو حل أفضل بكثير من نسخ الملفات البسيط. بعد المقارنة، يمكنك النقر باليمين على قائمة النتائج واختيار <guimenuitem
+>مزامنة مع KGet</guimenuitem
+> لتنفيذ المزامنة، وبعد ذلك سيُحمل الملفات المدرجة باستخدام <application
+>kget</application
+> بدلًا من كروسيدر. بالطبع يجب تثبيت <application
+>kget</application
+> على حاسوبك؛ وإلا فلن يكون متاحًا.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+ 
+</sect2
+>  
+<sect2 id="synchronizer_synchronization">
+  <title
+>المزامنة</title
+>  
+
+  <para
+>بعد الضغط على زر <guibutton
+>مزامنة</guibutton
+> يظهر حوار المزامنة.</para>
+  <variablelist>
+    <varlistentry>
+      <term
+>خانات اختيار</term>
+      <listitem>
+        <para
+>هنا تؤكد عمليات النسخ والحذف للمزامن</para>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>من اليمين إلى اليسار</guilabel
+>: نسخ X1 ملف ( Y1 بايت ) تفعيل/تعطيل النسخ من اليمين إلى اليسار.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>من اليسار إلى اليمين</guilabel
+>: نسخ X2 ملف ( Y2 بايت ) تفعيل/تعطيل النسخ من اليسار إلى اليمين.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>يسار</guilabel
+>: حذف X3 ملف ( Y3 بايت ) تفعيل/تعطيل الحذف في الجانب الأيسر.</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>تأكيد الاستبدال</guilabel
+>: بتفعيل هذا الخيار، سيعرض كروسيدر مربع حوار <guibutton
+>إعادة تسمية، تخطي، استبدال، تخطي الكل، استبدال الكل</guibutton
+> قبل استبدال الملف.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>لصائق الحالة</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guilabel
+>جاهز</guilabel
+>: A1/A2 ملف، B1/B2. يتغير هذا السطر أثناء المزامنة، موضحًا أن المزامن انتهى من A1 ملف من أصل A2 ( B1 بايت من أصل B2 ).</para>
+          </listitem>
+          <listitem>
+            <para
+><guilabel
+>شريط التقدم</guilabel
+>: يُظهر التقدم في المزامنة (بناءً على البايتات).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>أزرار الإجراءات</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+><guibutton
+>بدء</guibutton
+>: يبدأ المزامنة.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>إيقاف مؤقت / استئناف</guibutton
+>: يوقف/يستأنف عملية المزامنة.</para>
+          </listitem>
+          <listitem>
+            <para
+><guibutton
+>إغلاق</guibutton
+>: يُغلق حوار المزامنة (ويوقف المزامنة).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+>مزامنة متوازية</term>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para
+>يمكن إعطاء عدد الخيوط 'الشبه حقيقية'.</para>
+          </listitem>
+          <listitem>
+            <para
+>يمكن أن يزيد السرعة بشكل كبير عند المزامنة مع خوادم &FTP; بطيئة.</para>
+          </listitem>
+          <listitem>
+            <para
+>لا يؤثر على سرعة المزامنة المحلية.</para>
+          </listitem>
+          <listitem>
+            <para
+>المقارنة عن بُعد <quote
+>بالمحتوى</quote
+> و<quote
+>مقارنة المجلدات</quote
+> تُجرى بشكل متوازٍ.</para>
+          </listitem>
+          <listitem>
+            <para
+>المزامنة عن بُعد تُجرى أيضًا بشكل متوازٍ، باستثناء مهام <command
+>mkdir</command
+> (يجب أن يكون <command
+>mkdir</command
+> قبل النسخ).</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+</sect2>
+</sect1>

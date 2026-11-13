@@ -1,0 +1,43 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="calculate">
+  <title
+>احسب المساحة المشغولة</title>
+  <indexterm>
+    <primary
+>المساحة المشغولة</primary>
+  </indexterm>
+  <!-- Thanks to Heiner Eichmann -->
+  <para
+>توجد طريقتان لحساب المساحة المشغولة للملفات/المجلدات.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+>ضغط الاختصار القابل للضبط لـ <guilabel
+>احسب المساحة المشغولة</guilabel
+> على مجلد تحت المؤشر يحسب فورًا الحجم المشغول.</para>
+    </listitem>
+    <listitem>
+      <para
+>لحساب مقدار مساحة القرص المشغولة بواسطة الملفات والمجلدات المحددة في اللوحة النشطة، اختر <menuchoice
+> <guimenu
+>تحرير</guimenu
+> <guimenuitem
+>احسب المساحة المشغولة</guimenuitem
+> </menuchoice
+>. بعد تأخير بسيط، ستُعرض نافذة حوار بالمساحة المشغولة الكلية وعدد الملفات والمجلدات التي حددتها. ستُعرض المساحة المشغولة لكل مجلد محدد كما لو أن المستخدم ضغط للتو الاختصار القابل للضبط على تلك المجلدات. إذا كانت اللوحة النشطة تتصفح أرشيفًا، فستنطبق الأرقام على الحجم غير المضغوط للملفات والمجلدات المحددة، وليس حجمها المضغوط. بعد الحساب، سيُبدّل حالة التحديد وسيتحرك المؤشر خطوة واحدة لأسفل.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>حساب المساحة المشغولة على أنظمة الملفات البعيدة مدعوم. <note
+> <para
+>قد يكون تنفيذ هذه العملية على نظام ملفات كبير جدًا (آلاف الملفات) مستهلكًا للوقت. يمكنك إلغاء عملية الحساب في أي وقت بالنقر على زر <guibutton
+>إلغاء</guibutton
+>.</para>
+  </note
+></para>
+</sect1>
