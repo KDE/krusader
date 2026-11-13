@@ -1,0 +1,701 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="useractions">
+  <title
+>إجراءات المستخدم</title>
+  <indexterm>
+    <primary
+>إجراءات المستخدم</primary>
+  </indexterm>
+  <!-- Thanks to Jonas Bar -->
+  <para
+>باستخدام ActionMan يمكنك ضبط وتكوين وإدارة إجراءات المستخدم. بعض الإعدادات العامة تُضبط باستخدام <link linkend="konfig-useractions"
+>Konfigurator</link
+>. بإجراءات المستخدم يمكنك تنفيذ إجراءات على الملفات في اللوحة أو الوصول إلى وظائف كروسيدر الداخلية باستخدام وسائط مباشرة عبر العناصر النائبة. تندمج الإجراءات بسلاسة في نظام إجراءات &plasma;، مما يعني أن حوارَي شريط الأدوات القياسي وتحرير الاختصارات سيعرضان إجراءات المستخدم أيضًا. تُخزَّن إجراءات المستخدم في <filename
+> ~/.local/share/krusader/useractions.xml</filename
+> أو <filename
+>krusader/useraction.xml</filename
+> في المجلد الذي يمكن تحديده باستخدام الأمر <userinput
+>qtpaths --paths GenericDataLocation</userinput
+>. عدة <link linkend="useraction-xml"
+>أمثلة</link
+> مُدرجة في التوثيق. يمكن تحرير/إضافة/استيراد/تصدير إجراءات المستخدم باستخدام ActionMan. إجراءات المستخدم المبدئية مخزنة في <filename
+> /usr/share/krusader/useraction-examples.xml</filename
+>. يمكن أن تظهر إجراءات المستخدم في أي مكان تقريبًا حيث يمكن وضع إجراءات KActions «العادية». يمكن حتى وضع الإجراءات في شريط القوائم، لكن لذلك يجب تحرير ملف <filename
+>krusaderui.rc</filename
+>. بعض الأمثلة:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="useractions-menu"
+>قائمة إجراءات المستخدم</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="useractions"
+>قائمة المستخدم</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+><link linkend="actions_toolbar"
+>شريط أدوات الإجراءات</link
+></para>
+    </listitem>
+    <listitem>
+      <para
+>قوائم النقر باليمين</para>
+    </listitem>
+    <listitem>
+      <para
+>إلخ</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>أداة إجراءات المستخدم في كروسيدر قوية جدًا وقابلة للتخصيص إذا كنت معتادًا على كتابة إجراءات المستخدم عمومًا.</para>
+  <tip>
+    <para
+>عدة إجراءات مستخدم مُوفَّرة مبدئيًا. رجاءً <link linkend="help_krusader"
+>ارفع إجراءات المستخدم المفضلة لديك</link
+> لتكون متاحة لمجتمع كروسيدر. شكرًا!</para>
+  </tip>
+  <figure id="screenshot-actionman" float="1">
+    <title
+>ActionMan</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="actionman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>ActionMan</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>أساسًا، إجراءات المستخدم هي طريقة لاستدعاء برامج خارجية بوسائط متغيرة. مثلًا، يمكن أن يكون لديك إجراء مستخدم بالأمر التالي <command
+>xmms <option
+>--enqueue %aList("Selected")%</option
+></command
+> لإدراج جميع العناصر المحددة في اللوحة النشطة في النسخة الحالية من xmms. بالإضافة إلى ذلك، هناك وصول محدود إلى وظائف كروسيدر الداخلية التي تتطلب وسائط. مثلًا، <command
+>%aPanelSize("80")%</command
+> سيضبط عرض اللوحة النشطة إلى 80% من النافذة الرئيسة لـ كروسيدر. نظرًا لأن وسيط العناصر النائبة يمكن أن يحتوي على عناصر نائبة أخرى، فبعض النصوص البرمجية ممكنة. </para>
+  <para>
+    <emphasis role="bold"
+>إدارة إجراءات المستخدم</emphasis>
+  </para>
+  <para
+>افتح Konfigurator واختر <menuchoice
+><guimenu
+>إجراءات المستخدم</guimenu
+> <guimenuitem
+>ابدأ ActionMan</guimenuitem
+></menuchoice
+>، حيث يمكنك إضافة وتحرير وإزالة واستيراد وتصدير إجراءات المستخدم.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>أضف إجراءً</guimenuitem
+>: إذا أضفت إجراءً جديدًا، تحصل على قناع إدخال فارغ حيث يمكنك إدخال جميع الخصائص التي ترغب بها. سيُضاف الإجراء بمجرد الضغط على <guimenuitem
+>طبق</guimenuitem
+>. بعد ذلك، يُعرض الاسم في القائمة على اليسار.</para>
+    </listitem>
+    <listitem>
+      <para
+>لتحرير إجراء مستخدم: اختر إجراء المستخدم على اليسار. ثم اختره إذا أردت تحرير خصائصه. لن تصبح التغييرات سارية إلا عند الضغط على <guimenuitem
+>طبق</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>لإزالة إجراء مستخدم</guimenuitem
+>: اختر إجراء المستخدم على اليسار وانقر على الزر <inlinemediaobject
+> <imageobject
+> <imagedata fileref="Icon-edit-delete.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>لاستيراد إجراء مستخدم</guimenuitem
+>: إذا استوردت بعض الإجراءات، ستُضاف آليًا إلى قائمتك. إذا كان هناك تضارب في الأسماء (يجب أن تكون الأسماء فريدة لأنها المعرفات لنظام إجراءات &plasma;)، يُطلب منك حل التضارب. لهذا، ستظهر القائمة على اليسار فقط الإجراءات التي يوجد بها تضارب. يمكنك الآن إعطاؤها أسماء جديدة أو إزالتها.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>صدّر إجراءً</guimenuitem
+>: إذا صدرت إجراء مستخدم، يجب أن تعطي اسم ملف لتخزينه فيه. إذا لم يكن موجودًا، سيُنشأ. إذا كان الملف يحتوي بالفعل على إجراءات مستخدم، سيُضاف الإجراء الذي تصدره إلى ذلك الملف.</para>
+    </listitem>
+  </itemizedlist>
+  <para
+>جميع الإجراءات التي عرّفتها تُعرض الآن في قائمة المستخدم وفي حوارات &plasma; لتغيير الاختصارات وإدارة شريط الأدوات. بالإضافة إلى ذلك، جميع الإجراءات المتاحة للعنصر الحالي ستظهر أيضًا في قائمة النقر باليمين.</para>
+  <para>
+    <emphasis role="bold"
+>خصائص أساسية</emphasis>
+  </para>
+  <para
+><guimenuitem
+>المُعرِّف</guimenuitem
+> و<guimenuitem
+>العنوان</guimenuitem
+> و<guimenuitem
+>سطر الأوامر</guimenuitem
+> مطلوبة دائمًا، جميع الخصائص الأخرى اختيارية.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><guimenuitem
+>المُعرِّف</guimenuitem
+>: اسم فريد لإجراء المستخدم، يُستخدم لتعريفه لنظام إجراءات &plasma;.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>زر الأيقونة</guimenuitem
+>: الأيقونة لإجراء المستخدم الخاص بك.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>التصنيف</guimenuitem
+>: تُستخدم التصنيفات لنظرة عامة أفضل. تظهر كعناصر قائمة فرعية في قائمة <guimenuitem
+>إجراءات المستخدم</guimenuitem
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>العنوان</guimenuitem
+>: العنوان المعروض في القوائم أو الحوارات.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>تلميح الأداة</guimenuitem
+>: تلميح أداة لإجراء المستخدم الخاص بك، مثلًا يُعرض في شريط الأدوات عند المرور بالماوس.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>الوصف</guimenuitem
+>: وصف لما يفعله إجراء المستخدم. يُعرض أيضًا كـ <guimenuitem
+>ما هذا؟</guimenuitem
+> إذا نقرت <keycombo action="simul"
+>&Shift; <keycap
+>F1</keycap
+></keycombo
+> على إجراء المستخدم الخاص بك.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>الأمر</guimenuitem
+>: الأمر الذي سيُنفذ. يمكنك إضافة عنصر نائب باستخدام واجهة رسومية بالزر <guibutton
+>أضف</guibutton
+>.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>دليل العمل</guimenuitem
+>: مجلد العمل للأمر الذي سيُنفذ.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>وضع التنفيذ</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>عادي</guimenuitem
+>: وضع التنفيذ العادي.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>شغّل في الطرفية</guimenuitem
+>: يشغّل الأمر في الطرفية.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>شغّل في مطراف مضمن</guimenuitem
+>: يشغّل الأمر في المطراف المضمن.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>اجمع الخرج</guimenuitem
+>: يجمع خرج البرنامج المنفّذ في نافذة واجهة مستخدم رسومية.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>افصل الخطأ المعياري</guimenuitem
+>: عند استخدام <quote
+>اجمع الخرج</quote
+>، يُجمع خرجا stdout وstderr بشكل منفصل.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>الأمر يقبل</guimenuitem
+>:</para>
+      <itemizedlist>
+        <listitem>
+          <para
+><guimenuitem
+>ملفات محلية فقط (لا عناوين URL)</guimenuitem
+>: يخبر الحامل بأن يعيد عناوين محلية.</para>
+        </listitem>
+        <listitem>
+          <para
+><guimenuitem
+>عناوين URL (بعيدة ومحلية)</guimenuitem
+>: يخبر الحامل بأن يعيد عناوين URL.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <!--    Not yet implemented, but will be after 1.50 stable is released
+        <listitem
+><para
+><guimenuitem
+>On multiple selection</guimenuitem
+>:  </para>
+        <itemizedlist>
+   <listitem
+><para
+><guimenuitem
+>Separate call for each file</guimenuitem
+>: executes the command for each selected file.
+             </para
+></listitem>
+         </itemizedlist>
+      </listitem
+> -->
+    <listitem>
+      <para
+><guimenuitem
+>اختصار مبدئي</guimenuitem
+>: يضبط اختصارًا مبدئيًا لإجراء المستخدم.</para>
+    </listitem>
+    <listitem>
+      <para
+><guimenuitem
+>مفعل</guimenuitem
+>: إذا كان محددًا، يُظهر إجراء المستخدم في <link linkend="useractions"
+>قائمة المستخدم</link
+>، وإلا سيُخفى إجراء المستخدم.</para>
+    </listitem>
+  </itemizedlist>
+  <para>
+    <emphasis role="bold"
+>صياغة سطر الأوامر</emphasis>
+  </para>
+  <para
+>أساسًا، كل ما تكتبه في سطر الأوامر سيُنفّذ (إذا كتبت <quote
+>ls -l</quote
+>، يُنفّذ <quote
+>ls -l</quote
+>). لديك إمكانية الحصول على سلسلة محرفية من كروسيدر تمثل الحالة الحالية للوحة. يُفعل ذلك باستخدام حوامل. يبدأ الحامل بعلامة النسبة المئوية ('%') ويتبعه مؤشر لوحة ('a' للوحة النشطة، 'o' للأخرى، 'l' لليسرى، و'r' لليُمنى. إذا لم يحتج الحامل إلى لوحة ليعمل عليها، يجب أن تشير إلى ذلك بشرطة سفلية ('_')). ثم يأتي اسم الحامل (انظر القائمة أدناه)، الذي قد يأخذ بعض المعاملات محصورة بين علامتي اقتباس. أخيرًا، علامة النسبة المئوية مرة أخرى.</para>
+  <para
+>يبدو هذا معقدًا جدًا، لذا لنأخذ مثالًا: '%aList("Selected")%' يُستبدل بقائمة بكل العناصر المحددة في اللوحة النشطة. لذا أمر مثل 'xmms --enqueue %aList("All", " ", "", "*.mp3")%' سينفّذ xmms بقائمة بكل ملفات .mp3 في اللوحة الحالية، مفصولة بفراغ واحد.</para>
+  <para
+>حاليًا، هذه الحوامل منفّذة:</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+><userinput
+>Path</userinput
+> - يُستبدل بمسار اللوحة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>معامل (اختياري): إفلات المسافات آليًا. المبدئي: نعم</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Count</userinput
+> - يُستبدل بعدد &lt;المعامل الأول&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>معامل: أي العناصر؛ إما <quote
+>All</quote
+> أو <quote
+>Selected</quote
+> أو <quote
+>Files</quote
+> أو <quote
+>Dirs</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Filter</userinput
+> - يُستبدل بقناع التصفية للوحة</para>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Current</userinput
+> - يُستبدل بالعنصر الحالي</para>
+      <orderedlist>
+        <listitem>
+          <para
+>معامل (اختياري): احذف المسار الحالي. المبدئي: لا</para>
+        </listitem>
+        <listitem>
+          <para
+>معامل (اختياري): إفلات المسافات آليًا. المبدئي: نعم</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>List</userinput
+> - يُستبدل بقائمة بكل &lt;المعامل الأول&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>معامل: أي العناصر؛ إما <quote
+>All</quote
+> أو <quote
+>Selected</quote
+> أو <quote
+>Files</quote
+> أو <quote
+>Dirs</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>معامل (اختياري): فاصل بين العناصر. المبدئي: <quote
+>&nbsp;</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>معامل (اختياري): احذف المسار الحالي. المبدئي: لا</para>
+        </listitem>
+        <listitem>
+          <para
+>معامل (اختياري): قناع تصفية (لكل ما عدا <quote
+>Selected</quote
+>). المبدئي: *</para>
+        </listitem>
+        <listitem>
+          <para
+>معامل (اختياري): إفلات المسافات آليًا. المبدئي: نعم</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Select</userinput
+> - يتلاعب بالتحديد في لوحة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>معامل: قناع تصفية</para>
+        </listitem>
+        <listitem>
+          <para
+>معامل (اختياري): يتلاعب بأي طريقة؛ إما <quote
+>Set</quote
+> أو <quote
+>Add</quote
+> أو <quote
+>Remove</quote
+>. المبدئي: <quote
+>Set</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Goto</userinput
+> - يغير مسار اللوحة إلى &lt;المعامل الأول&gt;</para>
+      <orderedlist>
+        <listitem>
+          <para
+>معامل: مسار نسبي أو مطلق، أو عنوان URL</para>
+        </listitem>
+        <listitem>
+          <para
+>معامل (اختياري): افتح الموقع في لسان جديد. المبدئي: لا</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Ask</userinput
+> - يسأل المستخدم عن نص ويُستبدل بالإجابة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>معامل: السؤال</para>
+        </listitem>
+        <listitem>
+          <para
+>وسيط (اختياري): إجابة مبدئية</para>
+        </listitem>
+        <listitem>
+          <para
+>وسيط (اختياري): تسمية لصندوق السؤال</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Clipboard</userinput
+> - يتلاعب بالحافظة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: النص الذي يجب أن يذهب إلى الحافظة (قد ترغب في استخدام <quote
+>%aCurrent%</quote
+> هنا)</para>
+        </listitem>
+        <listitem>
+          <para
+>وسيط (اختياري): ألصق النص إلى المحتوى الحالي للحافظة بهذا الفاصل</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Copy</userinput
+> - ينسخ ملفًا، مفيد للنسخ الاحتياطية المحلية السريعة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: ما يجب نسخه</para>
+        </listitem>
+        <listitem>
+          <para
+>وسيط: أين يجب نسخه</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Sync</userinput
+> - يفتح المزامن مع تشكيلة معطاة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: تشكيلة للمزامن</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>NewSearch</userinput
+> - يفتح نافذة البحث مع تشكيلة معطاة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: تشكيلة لوحدة البحث</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Profile</userinput
+> - يحمل تشكيلة لوحة معطاة</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: تشكيلة لوحة</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Each</userinput
+> - يقسم سطر الأوامر إلى قائمة. تُنفذ هذه الأوامر واحدًا تلو الآخر.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: عنصر قائمة (الكل، كل الملفات، كل الأدلة، كل المحدد).</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>Move</userinput
+> - انقل من المصدر إلى الوجهة.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: مصدر</para>
+        </listitem>
+        <listitem>
+          <para
+>وسيط: وجهة</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>PanelSize</userinput
+> - غير النسبة بين اللوحتين.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط (اختياري): قيمة صحيحة، مثل، 80 تجعل اللوحة النشطة تستخدم 80% من عرض كروسيدر (الارتفاع في الوضع العمودي)، حذف الوسيط يعني 50%.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>اسأل</userinput
+> - ألغِ التنفيذ.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط (اختياري): سلسلة لسؤال الإلغاء.</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ListFile</userinput
+> - يُستبدل بمسار/اسم ملف لملف مؤقت يحتوي على قائمة عناصر</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: مسار/اسم ملف</para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>ColSort</userinput
+> - اضبط الترتيب على عمود لوحة محددة.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: العمود: إما <quote
+>الاسم</quote
+> أو <quote
+>الامتداد</quote
+> أو <quote
+>النوع</quote
+> أو <quote
+>الحجم</quote
+> أو <quote
+>المعدل</quote
+> أو <quote
+>الأذونات</quote
+> أو <quote
+>rwx</quote
+> أو <quote
+>المالك</quote
+> أو <quote
+>المجموعة</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>وسيط: تسلسل الترتيب: إما <quote
+>تبديل</quote
+> أو <quote
+>تصاعدي</quote
+> أو <quote
+>تنازلي</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+    <listitem>
+      <para
+><userinput
+>عرض</userinput
+> - اضبط وضع العرض.</para>
+      <orderedlist>
+        <listitem>
+          <para
+>وسيط: وضع العرض: إما <quote
+>عام</quote
+> أو <quote
+>نص</quote
+> أو <quote
+>سداسي</quote
+></para>
+        </listitem>
+        <listitem>
+          <para
+>المعامل: وضع النافذة: إما <quote
+>تبويب</quote
+> أو <quote
+>نافذة</quote
+></para>
+        </listitem>
+      </orderedlist>
+    </listitem>
+  </itemizedlist>
+  <para
+>يُوفَّر مساعد &GUI; لإضافة العناصر النائبة. المسارات، المسار الحالي، والقائمة يُفلت منها آليًا افتراضيًا. هناك أمر مهم آخر: جميع العناصر النائبة التي تتفاعل مع وظائف كيدي الداخلية تُستدعى عند وقت التوسيع (أي مباشرة عند استبدال العناصر النائبة). البرامج الخارجية تُستدعى عند وقت التنفيذ (أي بعد استبدال جميع العناصر النائبة).</para>
+  <para>
+    <emphasis role="bold"
+>خصائص متقدمة</emphasis>
+  </para>
+  <para
+>هنا يمكنك ضبط أين يجب أن يكون أمرك مرئيًا (لقائمة النقر اليميني). بالإضافة إلى ذلك، يمكن تغيير الأمر المنفذ وتأكيده بشكل منفصل. يمكنك أيضًا تعيين مستخدم يجب تنفيذ الأمر تحته.</para
+> 
+  <itemizedlist>
+    <listitem>
+      <para
+>يضبط إذا كان الإجراء صالحًا لبروتوكول، مسار، نوع &MIME;، أو اسم ملف.</para>
+    </listitem>
+    <listitem>
+      <para
+>تعديل سطر الأوامر قبل تنفيذه.</para>
+    </listitem>
+    <listitem>
+      <para
+>عيّن مستخدمًا مختلفًا للتنفيذ (ليس له تأثير في وظائف كيدي الداخلية)</para>
+    </listitem>
+  </itemizedlist>
+</sect1>

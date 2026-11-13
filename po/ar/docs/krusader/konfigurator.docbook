@@ -1,0 +1,2585 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="konfigurator">
+  <title
+>Konfigurator: مركز ضبط كروسيدر</title>
+  <indexterm>
+    <primary
+>اضبط</primary>
+    <secondary
+>كروسيدر</secondary>
+  </indexterm>
+  <para
+>كونفيغوراتور هو مركز ضبط كروسيدر. عند تشغيل كروسيدر، استخدم <menuchoice
+> <guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط كروسيدر...</guimenuitem
+> </menuchoice
+>، وسيبدأ كونفيغوراتور. هناك يمكنك تعديل طريقة عمل كروسيدر وتخصيصه حسب احتياجاتك. في أي وقت، يؤدي الضغط على الزر <guibutton
+>طبق</guibutton
+> إلى تطبيق التغييرات، والضغط على <guibutton
+>أغلق</guibutton
+> يغلق كونفيغوراتور، والضغط على <guibutton
+>مبدئي</guibutton
+> يعيد تطبيق إعدادات كروسيدر <quote
+>المصنعية</quote
+>. ينقسم كونفيغوراتور إلى صفحات، تحتوي كل منها على عناصر متعلقة بتلك الصفحة. لبعض التغييرات على الواجهة الرسومية، عليك إغلاق كروسيدر وإعادة تشغيله.</para>
+
+<note>
+ <para
+>منذ كروسيدر-1.80.0، حصلت <link linkend="key_bindings"
+>روابط المفاتيح</link
+> و<link linkend="mainwindow"
+>شريط الأدوات الرئيس</link
+>-<link linkend="actions_toolbar"
+>شريط أدوات الإجراءات</link
+> على نوافذ ضبط خاصة بها، وبالتالي لم تعد جزءًا من كونفيغوراتور؛ يمكنك ضبطها الآن عبر <link linkend="settings-menu"
+><guimenu
+>قائمة الإعدادات</guimenu
+></link
+>.</para>
+</note>
+
+  <sect1 id="konfig-startup">
+    <title
+>بدء التشغيل</title>
+    <figure id="screenshot-kgstartup" float="1">
+      <title
+>ضبط بدء التشغيل</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="kgstartup.png"
+></imagedata>
+        </imageobject>
+        <textobject>
+          <phrase
+>ضبط بدء التشغيل</phrase>
+        </textobject>
+      </mediaobject>
+    </figure>
+    <para
+>تحدد صفحة بدء التشغيل طريقة مظهر (وعمل) كروسيدر  عند تشغيله. تنقسم إلى جزأين رئيسين:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>عامّ</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>تشكيلة بدء التشغيل</guilabel
+>: تبدأ <link linkend="panel_profiles"
+>تشكيلة اللوحة</link
+> المحددة عند بدء التشغيل. <guilabel
+>&lt;الجلسة الأخيرة&gt;</guilabel
+> هي تشكيلة لوحة خاصة، تُحفظ آلي عند إغلاق كروسيدر .</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>أظهر شاشة البداية</guilabel
+>: يعرض شاشة بداية عند بدء تشغيل كروسيدر .</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>نمط النسخة المفردة</guilabel
+>: يسمح بتشغيل نسخة واحدة فقط من كروسيدر .</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>سمة الأيقونات الاحتياطية</guilabel
+>: يسمح لك بضبط سمة أيقونات احتياطية لكروسيدر . عندما لا تُوجد الأيقونة في سمة أيقونات النظام، ستُستخدم هذه السمة كاحتياطية. إذا لم تحتوِ السمة الاحتياطية على الأيقونة، فستُستخدم بريز أو أوكسيجن إن وُجدت أي منهما.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>واجهة المستخدم</guilabel>
+        </term>
+        <listitem>
+          <para
+>يحدد أي أجزاء واجهة المستخدم تكون مرئية بعد بدء التشغيل. <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>احفظ آخر موضع وحجم وإعدادات لوحة</guilabel
+>: عند تشغيله، يعيد كروسيدر  تحجيم نفسه إلى الحجم الذي كان عليه عند آخر إيقاف تشغيل. يظهر كروسيدر  أيضًا في نفس الموقع على الشاشة، مع ترتيب اللوحات ومحاذاتها كما كانت. إذا لم يُحدد هذا الخيار، يمكنك استخدام خيار القائمة <menuchoice
+> <guimenu
+>نافذة</guimenu
+> <guimenuitem
+>احفظ الموضع</guimenuitem
+> </menuchoice
+> لضبط حجم وموضع كروسيدر  يدوي عند بدء التشغيل.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>حدّث إعدادات اللوحة المبدئية</guilabel
+>: إذا حُدد، فستُحدّث إعدادات اللوحة المبدئية بعد بدء التشغيل.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>ابدأ إلى علبة النظام</guilabel
+>: إذا حُدد، يبدأ كروسيدر  إلى العلبة (إذا ضُبط التصغير إلى العلبة)، دون إظهار النافذة الرئيسة.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>احفظ إعدادات المكونات عند الخروج</guilabel
+>: إذا حُدد، يستعيد مكونات واجهة المستخدم إلى حالتها عند آخر إيقاف تشغيل.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>أظهر مفاتيح الوظائف</guilabel
+>: إذا حُدد، يكون <link linkend="fnkeys"
+>شريط مفاتيح FN</link
+> مرئي بعد بدء التشغيل.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>أظهر شريط الحالة</guilabel
+>: إذا حُدد، يكون <link linkend="mainwindow"
+>شريط الحالة</link
+> مرئي بعد بدء التشغيل. متاح فقط إذا لم يُحدد العنصر <guilabel
+>احفظ إعدادات المكونات عند الخروج</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>أظهر سطر الأوامر</guilabel
+>: إذا حُدد، يكون <link linkend="cmdline"
+>سطر الأوامر</link
+> مرئي بعد بدء التشغيل. متاح فقط إذا لم يُحدد العنصر <guilabel
+>احفظ إعدادات المكونات عند الخروج</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>أظهر الطرفية المضمنة</guilabel
+>: إذا حُدد، يكون <link linkend="termemu"
+>محاكي الطرفية</link
+> مرئي بعد بدء التشغيل. متاح فقط إذا لم يُحدد العنصر <guilabel
+>احفظ إعدادات المكونات عند الخروج</guilabel
+>.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-panel">
+    <title
+>اللوحة</title>
+    <para
+>هنا يمكنك تحديد مظهر وشعور اللوحة - مما يعني ضبط التطبيق بدقة حسب احتياجاتك. تنقسم الصفحة إلى ستة ألسنة: <guilabel
+>عام</guilabel
+> و<guilabel
+>عرض</guilabel
+> و<guilabel
+>أزرار</guilabel
+> و<guilabel
+>نمط التحديد</guilabel
+> و<guilabel
+>قائمة الوسائط</guilabel
+> و<guilabel
+>تخطيط</guilabel
+>:</para>
+
+    <sect2 id="konfig-panel-general">
+      <title
+>عامّ</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>شريط الملاح</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>نمط التحرير مبدئي</guilabel
+>: إذا حُدد، أظهر مسارًا قابلًا للتحرير في شريط الملاحة مبدئي.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>أظهر المسار الكامل مبدئي</guilabel
+>: إذا حُدد، أظهر دائمًا المسار الكامل في شريط الملاحة مبدئي.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>العملية</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>حدد المجلدات آلي</guilabel
+>: عندما <link linkend="edit-menu"
+>تحدد مجموعة من الملفات</link
+> (إما باستخدام <guilabel
+>حدد مجموعة</guilabel
+> أو باستخدام <guilabel
+>حدد الكل</guilabel
+>)، يتحقق كروسيدر  من هذا الخيار. إذا حُدد، فتُحدد المجلدات المطابقة لمعايير التحديد أيضًا. وإلا، تُحدد الملفات فقط.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>إعادة التسمية تحدد الامتداد</guilabel
+>: عندما <link linkend="renaming"
+>تعيد تسمية ملف</link
+>، يُحدد النص بأكمله. إذا أردت إعادة تسمية مشابهة لـ <trademark class="copyright"
+>توتال كوماندر</trademark
+> للاسم فقط، دون الامتداد، فألغِ تحديد هذا العنصر.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>ألغِ تحديد الملفات قبل النسخ/النقل</guilabel
+>: إذا حُدد، يزيل كروسيدر  علامات التحديد من الملفات أو المجلدات قبل <link linkend="copying"
+>نسخها أو نقلها</link
+> إلى الموقع الجديد.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>حوار التصفية يتذكر الإعدادات</guilabel
+>: إذا حُدد، سيُفتح حوار التصفية بآخر إعدادات تصفية طُبقت على اللوحة.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>١الألسنة</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>استخدم أسماء ألسنة بالمسار الكامل</guilabel
+>: إذا حُدد، اعرض المسار الكامل في <link linkend="folder-tabs"
+>ألسنة المجلدات</link
+>؛ وإلا اعرض الجزء الأخير فقط من المسار.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>ألسنة متوسعة</guilabel
+>: إذا حُدد، يوسع كروسيدر  <link linkend="folder-tabs"
+>ألسنة المجلدات</link
+> لملء الشريط بأكمله.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أغلق اللسان بنقرة مزدوجة</guilabel
+>: إذا حُدد، يسمح كروسيدر  بإغلاق <link linkend="folder-tabs"
+>ألسنة المجلدات</link
+> بالنقر المزدوج عليها.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أدرج الألسنة بعد الحالي</guilabel
+>: إذا حُدد، يُدرج كروسيدر  ألسنة جديدة إلى يمين اللسان الحالي بدلًا من وضعها في نهاية <link linkend="folder-tabs"
+>شريط الألسنة</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>تكرار اللسان النشط بالنقر</guilabel
+>: يتيح لك تحديد وضع تكرار اللسان النشط (<guimenuitem
+>معطل</guimenuitem
+> (بدون ارتباط نقر)، <guimenuitem
+>Alt+نقرة</guimenuitem
+> أو <guimenuitem
+>Ctrl+نقرة</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>موضع شريط الألسنة</guilabel
+>: يتيح لك اختيار موضع <link linkend="folder-tabs"
+>شريط الألسنة</link
+> (<guimenuitem
+>أسفل</guimenuitem
+> أو <guimenuitem
+>أعلى</guimenuitem
+>).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>إظهار أزرار إغلاق الألسنة</guilabel
+>: إذا فُعِّل، يعرض كروسيدر أزرار إغلاق على <link linkend="folder-tabs"
+>الألسنة</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>إظهار زر لسان جديد</guilabel
+>: إذا فُعِّل، يعرض كروسيدر زر لسان جديد على <link linkend="folder-tabs"
+>شريط الألسنة</link
+>.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>إظهار شريط الألسنة عند لسان واحد</guilabel
+>: إذا فُعِّل، يعرض كروسيدر شريط الألسنة حتى لو كان هناك <link linkend="folder-tabs"
+>لسان</link
+> واحد فقط في اللوحة.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>زر اللسان الجديد يكرر لسانًا</guilabel
+>: إذا فُعِّل، يكرر زر اللسان الجديد <link linkend="folder-tabs"
+>لسانًا</link
+>، وإلا يفتح لسانًا في المجلد الرئيسي.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>شريط البحث</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>البدء بالكتابة</guilabel
+>: يتيح اختيار ما إذا كانت ميزة <link linkend="quicksearch"
+>البحث السريع</link
+> مستخدمة. عند التفعيل، يمكنك فتح شريط البحث والبدء بالبحث بكتابة شيء أثناء عرض محتويات المجلد في اللوحة النشطة.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>حساس لحالة الأحرف</guilabel
+>: عند استخدام ميزة <link linkend="quicksearch"
+>البحث</link
+> أو <link linkend="quickfilter"
+>التصفية</link
+>: إذا فُعِّل (المبدئي في &UNIX;)، تظهر جميع الملفات التي تبدأ بأحرف كبيرة قبل الملفات التي تبدأ بأحرف صغيرة؛ وإلا، تظهر جميع الملفات التي تبدأ بحرف محدد (كبير أو صغير) معًا.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أعلى/أسفل يلغي البحث</guilabel
+>: الضغط على مفتاح &Up; أو &Down; يلغي شريط <link linkend="quicksearch"
+>البحث</link
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>التنقل في المجلدات بالسهم الأيمن</guilabel
+>: إذا فُعِّل، يؤدي الضغط على مفتاح &Right; إلى دخول المجلد إذا لم يُلتقط نية تحرير نص البحث. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>الموضع</guilabel
+>: يتيح لك اختيار موضع شريط <link linkend="quicksearch"
+>البحث</link
+> و <link linkend="quickfilter"
+>التصفية</link
+> (<guimenuitem
+>أسفل</guimenuitem
+> أو <guimenuitem
+>أعلى</guimenuitem
+>).</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>الوضع المبدئي</guilabel
+>: يتيح لك اختيار الوضع المبدئي لشريط البحث بين <link linkend="quicksearch"
+>بحث</link
+> و <guilabel
+>تحديد</guilabel
+> و <link linkend="quickfilter"
+>تصفية</link
+>. يمكنك تغيير الوضع لاحقًا باستخدام شريط البحث نفسه.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>بحث المرجعية</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>إظهار شريط البحث دائمًا</guilabel
+>: إذا فُعِّل، يجعل <link linkend="bookman"
+>شريط بحث العلامات</link
+> مرئيًا دائمًا.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>البحث في العناصر الخاصة</guilabel
+>: إذا فُعِّل، يُطبق <link linkend="bookman"
+>بحث العلامات</link
+> أيضًا على العناصر الخاصة في قائمة العلامات مثل <guimenuitem
+>المهملات</guimenuitem
+> و <guimenuitem
+>عناوين URL الشائعة</guimenuitem
+> و <guimenuitem
+>القفز للخلف</guimenuitem
+> &etc;</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>شريط الحالة/الإجماليات</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>إظهار الحجم بالبايت أيضًا</guilabel
+>: إذا فُعِّل، يعرض كروسيدر الحجم بالبايت على شريط الحالة أو شريط الإجماليات.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>إظهار معلومات المساحة</guilabel
+>: إذا فُعِّل، يعرض كروسيدر المساحة الحرة/الإجمالية للقرص في شريط الحالة/الإجماليات.</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-panel-view">
+      <title
+>١اعرض</title>
+      <itemizedlist>
+        <title>
+          <guilabel
+>عامّ</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>خط العرض</guilabel
+>: يتيح لك تغيير الخط المستخدم داخل قوائم الملفات.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>تأخير التلميح (مللي ثانية)</guilabel
+>: يتيح لك ضبط التأخير بالمللي ثانية بين لحظة توقف مؤشر الفأرة فوق عنصر في قائمة الملفات ولحظة ظهور التلميح.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>استخدام حجم ملف مقروء بشريًا</guilabel
+>: إذا فُعِّل، يظهر حجم الملف بالكيلوبايت والميغابايت &etc;، وليس بالبايت (المبدئي).</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أذون رقمية</guilabel
+>: يعرض عمود <guilabel
+>الإذن</guilabel
+> أرقامًا ثمانية '<literal
+>0755</literal
+>' بدلًا من '<literal
+>rwxr-xr-x</literal
+>'.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>إظهار الملفات المخفية</guilabel
+>: إذا فُعِّل، يعرض كروسيدر <quote
+>ملفات النقطة</quote
+> المخفية عادةً.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>تحميل أيقونات المجلدات المعرفة من المستخدم</guilabel
+>: إذا فُعِّل، يحمل كروسيدر أيقونات المجلدات المعرفة من المستخدم.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>إظهار العنصر الحالي دائمًا</guilabel
+>: إذا فُعِّل، يعرض &krusader; زخرفة حدود العنصر الحالي في اللوحة غير النشطة.</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>طريقة الفرز</guilabel>
+	    <itemizedlist>
+             <listitem>
+              <para
+><guilabel
+>كروسيدر  (مبدئي)</guilabel
+>: المقارنة المستخدمة حتى الآن. تستخدم مقارنة بقواعد الإعدادات المحلية (حتى قواعد السياق). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>أبجدي</guilabel
+>: تُقارن السلاسل حرفًا بحرف (بدون تطبيق قواعد سياق الإعدادات المحلية). تُقارن الأحرف الأبجدية بقواعد الإعدادات المحلية، وتُقارن الأحرف الخاصة برمز الحرف. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>أبجدي وأرقام</guilabel
+>: نفس ما سبق، لكن إذا كانت الأسماء تحتوي على أرقام، تُقارن الأرقام عدديًا بدلًا من أبجديًا. </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>رمز الحرف</guilabel
+>: مقارنة برمز الحرف (سريعة). </para>
+             </listitem>
+             <listitem>
+              <para
+><guilabel
+>رمز الحرف والأرقام</guilabel
+>: نفس ما سبق، لكن مع مقارنة عددية للأرقام. </para>
+             </listitem>
+           </itemizedlist>
+	    </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>فرز حساس لحالة الأحرف</guilabel
+>: إذا فُعِّل (المبدئي في &UNIX;)، تظهر جميع الملفات التي تبدأ بأحرف كبيرة قبل الملفات التي تبدأ بأحرف غير كبيرة؛ وإلا، تظهر جميع الملفات التي تبدأ بحرف محدد (كبير أو صغير) معًا.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>فرز المجلدات دائمًا بالاسم</guilabel
+>: يفرز المجلدات بالاسم، بغض النظر عن عمود الفرز.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أظهر المجلدات أولًا</guilabel
+>: إذا كان محددًا، تكون المجلدات ذات أولوية في قوائم المجلدات.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>ترتيب حساس للإعدادات المحلية</guilabel
+>: يرتب الملفات والمجلدات وفقًا لإعدادات اللغة المحلية الحالية.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>أنماط العرض</guilabel>
+        </title>
+       <listitem>
+          <para
+><guilabel
+>نمط العرض المبدئي</guilabel
+>: يسمح لك بتغيير نمط العرض المبدئي. يمكنك اختيار <guimenuitem
+>عرض مفصّل</guimenuitem
+> أو <guimenuitem
+>عرض موجز</guimenuitem
+>. في ألسنة نمطي العرض، يمكنك تحديد الخيارات التالية.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>الحجم المبدئي للأيقونات</guilabel
+>: يسمح لك بتغيير حجم الأيقونات في قوائم الملفات. الأحجام المتاحة هي 12×12 و16×16 و22×22 و32×32 و48×48 و64×64 و128×128 و256×256 بكسل.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>استخدم الأيقونات في أسماء الملفات</guilabel
+>: إذا كان محددًا، أظهر الأيقونات في أسماء الملفات والمجلدات.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أظهر المعاينات مبدئيًا</guilabel
+>: إذا كان محددًا، أظهر معاينات محتويات الملفات.</para>
+        </listitem>
+        <listitem>
+          <para
+>لتضبط الأعمدة، استخدم قائمة النقر بالزر الأيمن في اللوحة عند عرض الملفات. تستخدم اللوحة اليسرى واليمنى أعمدةهما الخاصة بشكل مستقل. الأعمدة التالية متاحة: <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>الاسم</guilabel
+>: يُظهر اسم الملف دون الجزء بعد النقطة الأخيرة، ويُعرض هذا الجزء الأخير في عمود <guilabel
+>الامتداد</guilabel
+>. عندما يكون عمود <guilabel
+>الامتداد</guilabel
+> مخفيًا، يُعرض اسم الملف الكامل في عمود <guilabel
+>الاسم</guilabel
+> كما يفعل &eg; &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>الامتداد</guilabel
+>: يُظهر الجزء الأخير من اسم الملف (الجزء بعد النقطة الأخيرة) في عمود <guilabel
+>الامتداد</guilabel
+>، وليس كاسم ملف كامل في عمود <guilabel
+>الاسم</guilabel
+> كما يفعل &eg; &konqueror;. </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>النوع</guilabel
+>: يُظهر حقل نوع &MIME;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>الحجم</guilabel
+>: يُظهر حقل الحجم.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>المعدّل</guilabel
+>: يُظهر حقل تاريخ ووقت التعديل.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>الأذون</guilabel
+>: يُظهر الأذون الكاملة، &eg;، '<literal
+>rwxr-xr-x</literal
+>' أو كأرقام ثمانية '<literal
+>0755</literal
+>' بدلًا من ذلك مع تمكين/تعطيل <guilabel
+>الأذون الرقمية</guilabel
+> في لسان <guilabel
+>عرض اللوحة</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>rwx</guilabel
+>: يُظهر فقط حقوق المستخدم الحالي، &eg;، <quote
+>-rw</quote
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>المالك</guilabel
+>: يُظهر حقل المالك.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>المجموعة</guilabel
+>: يُظهر حقل المجموعة.</para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist>
+      <tip>
+        <para
+>ألغِ تحديد الأعمدة غير المستخدمة. يتيح ذلك مساحة أكبر للأعمدة المستخدمة.</para>
+      </tip>
+    </sect2>
+    <sect2 id="konfig-panel-buttons">
+      <title
+>١الأزرار</title>
+      <para
+><guilabel
+>أزرار شريط الأدوات لها أيقونات</guilabel
+>: إذا كان محددًا، يعرض كروسيدر أيقونات على أزرار شريط الأدوات.</para>
+      <para
+><guilabel
+>أظهر زر الوسائط</guilabel
+>: إذا كان محددًا، يعرض كروسيدر زر الوسائط.</para>
+      <para
+><guilabel
+>أظهر زر الرجوع</guilabel
+>: إذا كان محددًا، يعرض كروسيدر زر الرجوع.</para>
+      <para
+><guilabel
+>أظهر زر التقدم</guilabel
+>: إذا كان محددًا، يعرض كروسيدر زر التقدم.</para>
+      <para
+><guilabel
+>أظهر زر السجل</guilabel
+>: إذا كان محددًا، يعرض كروسيدر زر السجل.</para>
+      <para
+><guilabel
+>أظهر زر العلامات</guilabel
+>: إذا كان محددًا، يعرض كروسيدر زر العلامات.</para>
+      <para
+><guilabel
+>أظهر شريط أدوات اللوحة</guilabel
+>: إذا كان محددًا، يعرض &krusader; شريط أدوات اللوحة.</para>
+      <para
+>يمكنك جعل الأزرار على <guilabel
+>شريط أدوات اللوحة</guilabel
+> مرئية أو مخفية: <itemizedlist>
+        <title>
+          <guilabel
+>أزرار شريط أدوات اللوحة المرئية</guilabel>
+        </title>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Clear Location Toolbar</guilabel
+> button: Clears
+          the <link linkend="list_panel"
+>Location Toolbar</link
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para>
+          <guilabel
+>زر يساوي (=)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>زر أعلى (..)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>زر المنزل (~)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel
+>زر الجذر (/)</guilabel
+></para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>زر التبديل للتصفح المتزامن</guilabel
+>: إذا كان محددًا، يُظهر زر <link linkend="panel_toolbar"
+>التصفح المتزامن</link
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-selection_modes">
+      <title
+>وضع التحديد</title>
+      <para
+>هنا يمكنك ضبط أوضاع التحديد. <itemizedlist id="selection_modes">
+        <title>
+          <guilabel
+>عامّ</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>وضع &krusader;</guilabel
+>: الطريقة التي عمل بها كروسيدر منذ اليوم الأول. يسمح كلا زرّي الفأرة بتحديد الملفات. لتحديد أكثر من ملف، اضغط مع الاستمرار على مفتاح &Ctrl; وانقر بالزر الأيسر للفأرة. تظهر قائمة النقر بالزر الأيمن بنقرة قصيرة على الزر الأيمن للفأرة.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>وضع &konqueror;</guilabel
+>: الضغط على الزر الأيسر للفأرة يحدد الملفات — يمكنك النقر وتحديد ملفات متعددة. تظهر قائمة النقر بالزر الأيمن بنقرة قصيرة على الزر الأيمن للفأرة.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>وضع القائد الكلي</guilabel
+>: الضغط على الزر الأيمن للفأرة يحدد ملفات متعددة وتظهر قائمة النقر بالزر الأيمن مع <guilabel
+>الضغط والإمساك</guilabel
+> بالزر الأيمن للفأرة. الزر الأيسر للفأرة لا يحدد، بل يعيّن الملف الحالي دون التأثير على التحديد الحالي.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>الوضع المريح</guilabel
+>: لا يحدد &LMB;، بل يعيّن الملف الحالي دون التأثير على التحديد الحالي. يستدعي &RMB; قائمة السياق. يمكنك التحديد باستخدام مفتاح &Ctrl; والزر الأيسر.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>وضع التحديد المخصص</guilabel
+>: أنشئ نمط التحديد الخاص بك!</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <title>
+          <guilabel
+>١التفاصيل</guilabel>
+        </title>
+        <listitem>
+          <para
+><guilabel
+>النقر المزدوج يحدد (تقليدي)</guilabel
+>: نقر واحد على ملف سيحدده ويركز عليه، والنقر المزدوج يفتح الملف أو يدخل إلى المجلد.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أطع سياسة التحديد العامة</guilabel
+>: الضغط على &LMB; يحدد الملفات -- استخدم الإعداد العام: وحدة <menuchoice
+><guimenu
+>أجهزة الإدخال</guimenu
+> <guimenuitem
+>الفأرة </guimenuitem
+></menuchoice
+> في &plasma; &systemsettings;.</para>
+        </listitem>
+        <listitem>
+          <para
+>عناصر وضع التحديد المخصص: <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>مبني على وضع تحديد &plasma;</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; يحدد</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&LMB; يحافظ على التحديد</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; + النقر الأيسر يحدد</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; يحدد</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>&RMB; يحافظ على التحديد</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                  <guilabel
+>&Shift;/&Ctrl; + النقر الأيمن يحدد</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>المسافة تحرك للأسفل</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>الإدخال يحرك للأسفل</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>النقر بزر الفأرة الأيمن يظهر قائمة السياق فورًا</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>زر فأرة عادي يعيد تعيين التحديد</guilabel
+> - يعيد تعيين التحديد عند نقر الفأرة دون معدّلات (أي &Shift; أو &Ctrl;). يجب تمكين التحديد باستخدام &Shift;/&Ctrl; لزر الفأرة لكي يعمل هذا الإعداد. </para>
+            </listitem>
+          </itemizedlist
+></para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-mediamenu">
+      <title
+>قائمة الوسائط</title>
+      <para
+>باستخدام هذه اللسان يمكنك اختيار محتويات قائمة <link linkend="media_button"
+>زر الوسائط</link
+>: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>أظهر مسار الوصل</guilabel
+>: أظهر مسار وصل القسم إذا كان محددًا.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أظهر نوع نظام الملفات</guilabel
+>: أظهر نوع نظام ملفات القسم إذا كان محددًا.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أخفِ مدخلات SquashFS</guilabel
+>: ينشئ <ulink url="https://snapcraft.io/"
+>Snap</ulink
+> العديد من الأقسام الموصولة بـ <ulink url="https://en.wikipedia.org/wiki/SquashFS"
+>SquashFS</ulink
+>، وهي عديمة الفائدة تقريبًا في <link linkend="list_panel"
+>قائمة الوسائط</link
+>، لأن <application
+>snap</application
+> يديرها. من الممكن إخفاء وصلات SquashFS بتحديد هذا العنصر.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أخفِ مدخلات نظام الملفات غير المعروفة</guilabel
+>: قد تظهر عدة مدخلات نظام ملفات غير معروفة في <link linkend="list_panel"
+>قائمة الوسائط</link
+>، وهي عديمة الفائدة تقريبًا هناك. من الممكن إخفاء مدخلات نظام الملفات غير المعروفة بتحديد هذا العنصر.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أخفِ نقاط الوصل التالية</guilabel
+>: تسمح هذه القائمة باستبعاد العناصر غير المرغوب فيها من <link linkend="list_panel"
+>قائمة الوسائط</link
+>. اضغط على الزر <guibutton
+>+</guibutton
+> أعلى القائمة لإضافة نقطة وصل تريد تجاهلها. إذا قررت إزالة نقطة الوصل المضافة من القائمة، فقط انقر عليها واضغط على الزر <guibutton
+>-</guibutton
+>. </para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>أظهر الحجم:</guilabel
+> يسمح باختيار تمثيل الحجم في قائمة الوسائط. يمكن أن يكون <guimenuitem
+>دائمًا</guimenuitem
+> (مبدئي، أظهر حجم القسم دائمًا)، <guimenuitem
+>عندما لا يحتوي الجهاز على لصيقة</guimenuitem
+> (أظهر الحجم للأقسام التي لا تحتوي على لصيقة فقط) أو <guimenuitem
+>أبدًا</guimenuitem
+> (لا تظهر الحجم أبدًا في قائمة الوسائط).</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+    <sect2 id="konfig-panel-layout">
+      <title
+>١التخطيط</title>
+      <para
+>يمكنك اختيار إعدادات التخطيط والإطار: <itemizedlist>
+        <listitem>
+          <para
+><guilabel
+>التخطيط:</guilabel
+> يسمح بتعريف التخطيط. الخيارات المبدئية هي <guimenuitem
+>مبدئي</guimenuitem
+> و<guimenuitem
+>مضغوط</guimenuitem
+> و<guimenuitem
+>تقليدي</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>لون الإطار:</guilabel
+> يحدد لون الإطار. يمكن أن يكون <guimenuitem
+>محددًا بالتخطيط</guimenuitem
+> أو <guimenuitem
+>لا شيء</guimenuitem
+> أو <guimenuitem
+>شريط الحالة</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>شكل الإطار:</guilabel
+> يحدد لون الإطار. يمكن أن يكون <guimenuitem
+>محددًا بالتخطيط</guimenuitem
+> أو <guimenuitem
+>لا شيء</guimenuitem
+> أو <guimenuitem
+>صندوق</guimenuitem
+> أو <guimenuitem
+>لوحة</guimenuitem
+>.</para>
+        </listitem>
+        <listitem>
+          <para
+><guilabel
+>ظل الإطار:</guilabel
+> يحدد لون الإطار. يمكن أن يكون <guimenuitem
+>محددًا بالتخطيط</guimenuitem
+> أو <guimenuitem
+>لا شيء</guimenuitem
+> أو <guimenuitem
+>بارز</guimenuitem
+> أو <guimenuitem
+>غائر</guimenuitem
+>.</para>
+        </listitem>
+      </itemizedlist
+></para>
+    </sect2>
+  </sect1>
+  <sect1 id="konfig-color">
+    <title
+>الألوان</title>
+    <para
+>تضبط هذه الصفحة ألوان <link linkend="list_panel"
+>لوحة القائمة</link
+> و<link linkend="synchronizer"
+>المزامن</link
+>. <guilabel
+>ألوان &kde; المبدئية</guilabel
+> هي تهيئة الألوان المبدئية.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>عامّ</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>استخدم ألوان &kde; المبدئية</guilabel
+>: هذا هو المبدئي، ويستخدم لون &plasma; المحدد في &systemsettings;.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>استخدم لون الخلفية البديل</guilabel
+>: إذا كان محددًا، يتناوب لون <guilabel
+>الخلفية</guilabel
+> ولون <guilabel
+>الخلفية البديلة</guilabel
+> سطرًا تلو الآخر. عندما لا تستخدم ألوان &plasma; المبدئية، يمكنك ضبط الألوان البديلة في مربع <guilabel
+>الألوان</guilabel
+>.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>أظهر العنصر الحالي حتى لو لم يكن مركّزًا</guilabel
+>: إذا كان محددًا، يُظهر آخر موضع للمؤشر في لوحة القائمة غير النشطة. هذا الخيار متاح فقط عندما لا تستخدم ألوان &plasma; المبدئية.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>أخفت ألوان اللوحة غير النشطة</guilabel
+>: إذا كان محددًا، تُخفت ألوان اللوحة غير النشطة. يمكن ضبط هذه الإعدادات في لسان <guilabel
+>غير نشط</guilabel
+> من مربع <guilabel
+>الألوان</guilabel
+>. هذا الخيار متاح فقط عندما لا تستخدم ألوان &plasma; المبدئية.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>الألوان</guilabel>
+        </term>
+        <listitem>
+          <para
+>اضبط الألوان كما تريد، يمكنك رؤية النتيجة في قسم <guilabel
+>المعاينة</guilabel
+>. يمكن ضبط العناصر التالية للوحة النشطة وغير النشطة:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>واجهة</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة المجلد</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة الملف القابل للتنفيذ</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة الرابط الرمزي</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة الرابط الرمزي غير الصالح</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>الخلفيّة</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>الخلفية البديلة</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة المختار</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>الخلفية المحددة</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية المختار البديلة</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة الحالي</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة الحالي المختار</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية الحالي</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة إعادة التسمية</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية إعادة التسمية</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <para
+>يمكن ضبط العناصر التالية لـ <link linkend="synchronizer"
+>المزامن</link
+>:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة المتساوي</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية المتساوي</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة المختلف</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية المختلف</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة النسخ إلى اليسار</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية النسخ إلى اليسار</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة النسخ إلى اليمين</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية النسخ إلى اليسار</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>مقدمة الحذف</guilabel>
+              </para>
+            </listitem>
+            <listitem>
+              <para>
+                <guilabel
+>خلفية الحذف</guilabel>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>معاينة</guilabel>
+        </term>
+        <listitem>
+          <para
+>هنا ترى معاينة للألوان المضبوطة.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>مخططات الألوان</guilabel>
+        </term>
+        <listitem>
+          <para
+>باستخدام زري <guibutton
+>استيراد نظام الألوان</guibutton
+> و<guibutton
+>تصدير نظام الألوان</guibutton
+>، يمكنك تحميل ملف تعريف نظام الألوان وحفظه. وهذا يتيح لـ &krusader; استخدام <trademark class="copyright"
+>Total Commander</trademark
+> أو <application
+>Midnight Commander</application
+> أو ملف تعريف الألوان المخصص الخاص بك. يتم تخزين أنماط الألوان في <filename
+>/usr/share/krusader</filename
+>، حيث يمثل الملف <filename
+>foo.color</filename
+> ملفًا ثنائيًا يحتوي على نمط الألوان.</para>
+          <tip>
+            <para
+>ملفات أنظمة ألوان <application
+>Midnight Commander</application
+> و <trademark class="copyright"
+>Total Commander</trademark
+> متوفرة. يُرجى <link linkend="help_krusader"
+>رفع أنظمة الألوان المفضلة لديك</link
+> لتكون متاحة لمجتمع &krusader;. شكرًا!</para>
+          </tip>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+<sect1 id="konfig-general">
+    <title
+>عامّ</title>
+    <para
+>هنا تضبط العمليات الأساسية. الصفحة مقسمة إلى ثلاث لسانيات: <guilabel
+>عام</guilabel
+> و <guilabel
+>عارض/محرر</guilabel
+> و <guilabel
+>امتدادات ذرية</guilabel
+>.</para>
+    <sect2 id="konfig-general-general">
+      <title
+>عامّ</title>
+      <para
+>تحدد الخيارات التالية جوانب أساسية من التشغيل:</para>
+      <itemizedlist>
+	<listitem>
+	  <para
+><guilabel
+>حذر عند الخروج</guilabel
+>: إذا كان محددًا، يحذرك كروسيدر في كل مرة يُفعَّل فيها إجراء الخروج. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>أظهر وأغلق إلى الدرج</guilabel
+>: إذا كان محددًا، ستظهر أيقونة كروسيدر في درج النظام. عند تصغير &krusader;، لن يظهر في شريط المهام. كما لن يخرج إذا أغلقت النافذة الرئيسة. بدلًا من ذلك يمكنك إنهاء كروسيدر باختيار عنصر القائمة <menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>إنهاء</guimenuitem
+></menuchoice
+> أو قائمة السياق لأيقونة الدرج. </para>
+	</listitem>
+	<listitem>
+	  <para
+><guilabel
+>استخدم سحر نوع &MIME;</guilabel
+>: سحر نوع &MIME; هو آلية تسمح لـ كروسيدر بفحص الملفات في اللوحات وتحديد نوعها حتى لو لم يكن للملف امتداد معرف. على سبيل المثال، إذا أخذت ملف صورة - <filename
+>image1.jpg</filename
+> - وأعدت تسميته إلى <filename
+>image1</filename
+>، سيظل كروسيدر يعرف أنه ملف صورة ويتعامل معه وفقًا لذلك. ومع ذلك، فإن هذا النمط من التشغيل أبطأ (أثناء تحديث اللوحة أو تغيير المجلدات)، لذا جرب كروسيدر مع وبدون سحر نوع &MIME; وقرر ما هو الأفضل لك.</para>
+	 </listitem>
+	 <listitem>
+	   <para
+><guilabel
+>المجلد المؤقت</guilabel
+>: يحدد هذا الخيار المجلد الأساسي للملفات المؤقتة لـ &krusader;. سيُنشأ الملفات الفعلية في مجلدات منفصلة تحت 'المجلد المؤقت'، بحيث يكون لكل مستخدم يشغل كروسيدر مجلداته الفرعية المؤقتة الخاصة تحت المجلد المختار. <note
+> <para
+>يجب أن تختار مجلدًا مؤقتًا يكون لجميع المستخدمين الذين يشغلون كروسيدر أذون كاملة عليه!</para>
+	     </note>
+	   </para>
+	 </listitem>
+      </itemizedlist>
+      <para
+><guilabel
+>نمط الحذف</guilabel
+> (<guilabel
+>احذف الملفات/انقل إلى سلة المهملات</guilabel
+>): عندما يحذف كروسيدر الملفات يمكنه إما حذفها <emphasis
+>فعليًا</emphasis
+> أو نقلها إلى مجلد المهملات، مما يجعلها متاحة عبر سلة مهملات &plasma;. </para>
+      <para
+><guilabel
+>طرفية خارجية</guilabel
+>: اختر أي محاكي طرفية سيُستخدم عندما يفتح كروسيدر نافذة وحدة تحكم (عبر <keycap
+>F9</keycap
+> أو خيار القائمة <menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>ابدأ الطرفية</guimenuitem
+></menuchoice
+>). </para>
+      <para
+><guilabel
+>الطرفية المضمنة ترسل تغيير الدليل عند تغيير اللوحة</guilabel
+>: إذا لم يكن محددًا، فلن يُرسَل أمر <command
+>cd</command
+> إلى محاكي الطرفية إذا تغير مجلد اللوحة.</para>
+      <para
+><guilabel
+>اللوحة النشطة تتبع دليل عمل الطرفية المضمنة</guilabel
+>: إذا لم يكن محددًا، تبقى اللوحة النشطة دون تغيير بينما يتنقل المستخدم في الطرفية المضمنة (باستخدام cd و popd وما إلى ذلك). </para>
+      <para
+><guilabel
+>بدّل الطرفية المضمنة إلى وضع ملء الشاشة</guilabel
+>: إذا كان محددًا، يعرض كروسيدر طرفية بملء الشاشة بأسلوب <application
+>Midnight Commander</application
+> (تُعرض الطرفية بدلًا من نافذة &krusader;). </para>
+    </sect2>
+    <sect2 id="konfig-general-viewer">
+       <title
+>العارض/المحرر</title>
+      <para
+>هنا يمكنك تغيير إعدادات العارض والمحرر: </para>
+      <itemizedlist>
+      <listitem>
+	<para
+><guilabel
+>المحرر والعارض الداخليان يفتحان كل ملف في نافذة منفصلة</guilabel
+>: حدد هذا العنصر إذا أردت فتح كل ملف في نافذة منفصلة. إذا لم يكن محددًا، سيُفتح كل ملف في لسان في نفس نافذة العارض/المحرر. يمكن إغلاق كل لسان في مثل هذه النافذة، من بين طرق شائعة أخرى، بالنقر على اللسان باستخدام &MMB;. </para>
+      </listitem>
+      <listitem>
+	<para
+><guilabel
+>أخفِ شريط اللسانيات عند فتح لسان واحد فقط</guilabel
+>: حدد هذا العنصر إذا أردت إخفاء شريط لسانيات العارض/المحرر إذا كان لسان واحد فقط مفتوحًا. </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>وضع العرض المبدئي</guilabel
+>: <itemizedlist>
+        <listitem>
+         <para
+><guilabel
+>نمط عام</guilabel
+>: استخدم العارض الافتراضي للنظام.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>نمط نصي</guilabel
+>: اعرض الملف في نمط نصي فقط.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>نمط سداسي عشري</guilabel
+>: اعرض الملف في نمط سداسي عشري فقط.</para>
+        </listitem>
+        <listitem>
+         <para
+><guilabel
+>نمط القائمة</guilabel
+>: عارض نص/سداسي عشري سريع لأحجام الملفات الكبيرة. لا يحمّل قائمة كروسيدر الملف بأكمله في الذاكرة أبدًا، بل جزءًا صغيرًا منه فقط، ويستخدم الخبيئة للتمرير الأسرع. تُنزَّل الملفات البعيدة، ولكن أثناء التنزيل، يمكن عرض الجزء المُنزَّل. إذا تغير ملف باستمرار، فيمكن عرضه أيضًا، سترى القائمة دائمًا حالته الحالية.</para>
+        </listitem>
+	<listitem>
+         <para
+><guilabel
+>استخدم القائمة إذا كان الملف النصي أكبر من: 10 م.ب (قيمة مبدئية)</guilabel
+>: يتحقق مما إذا كان الملف النصي أكبر من 10 م.ب (قابل للضبط)، وإذا كان كذلك، فسيُستخدم قائمة كروسيدر بدلًا من العارض المبدئي لـ &plasma;.</para>
+	</listitem>
+	<listitem>
+         <para
+><guilabel
+>استخدم Okteta كعارض سداسي عشري</guilabel
+>: إذا كان محددًا، استخدم محرر &plasma; السداسي العشري <ulink url="https://docs.kde.org/index.php?application=okteta"
+>Okteta</ulink
+> لعرض البيانات الخام. لاستخدام هذا الخيار يجب تثبيت حزمة <application
+>Okteta</application
+> أولًا.</para>
+	</listitem>
+	</itemizedlist>
+      </para>
+      </listitem>
+      <listitem>
+        <para
+><guilabel
+>محرر</guilabel
+>: اختر أي محرر سيُستخدم عند تحرير ملف (عبر <keycap
+>F4</keycap
+>). مبدئيًا يُستخدم العارض الداخلي، وهو العارض المبدئي لـ &plasma;.</para>
+      </listitem>
+    </itemizedlist>
+    </sect2>
+    <sect2 id="konfig-general-atomic">
+      <title
+>الامتدادات الذرية</title>
+        <para
+><guilabel
+>امتدادات ذرية</guilabel
+>: تُظهر الامتدادات الذرية المحددة مسبقًا مثل <literal role="extension"
+>.tar.gz</literal
+> كجزء واحد في عمود <guilabel
+>الامتداد</guilabel
+> في <link linkend="list_panel"
+>لوحة القائمة</link
+>.</para>
+      </sect2>
+  </sect1>
+  <sect1 id="konfig-advanced">
+    <title
+>متقدّم</title>
+    <para
+>تعالج هذه الصفحة مسائل أكثر تقدمًا، لذا ينبغي عليك مراجعة إجراءاتك هنا بعناية: تعديل الإعدادات هنا <emphasis
+>يجعل كروسيدر أداة أكثر قوة وخطورة.</emphasis
+></para>
+
+    <para
+>تنقسم الصفحة إلى ثلاثة أجزاء:</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel
+>عامّ</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+	    <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Preserve attributes for local copy/move
+              (slower)</guilabel
+>: If checked,
+              &krusader; will try to preserve all
+              attributes (time, owner, group) of the local files
+              according to the source file depending on your
+              <link linkend="copying"
+>permissions</link
+>.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>وصل أنظمة الملفات آليًا</guilabel
+>: يجعل هذا كروسيدر يحاول وصل نظام ملفات قبل الدخول إليه. مثلًا، إذا نقرت على <filename class="directory"
+>/mnt/cdrom</filename
+> (ويظهر <filename class="directory"
+>/mnt/cdrom</filename
+> في <filename class="directory"
+>/etc/fstab</filename
+> كنقطة وصل)، سيتحقق كروسيدر مما إذا كان موصولًا. إذا لم يكن، سيحاول وصله لك ثم الدخول، بحيث ترى محتويات &CD-ROM; الخاص بك. لاحظ، مع ذلك، أن كروسيدر لن يفصل عند الخروج من <filename class="directory"
+>/mnt/cdrom</filename
+>.</para>
+            </listitem>
+            <!-- not in master <listitem>
+              <para>
+              <guilabel
+>Do not use KDE media protocol for the
+              Media button (if it is buggy or missing)</guilabel
+>:
+              If checked, &krusader; will not use
+              &kde; media protocol for the
+              <link linkend="list_panel"
+>Media button</link
+>.
+              Choose this when the media protocol is buggy (in some
+              older &kde; versions) or if you have no
+              kdebase package installed on your system.</para>
+	    </listitem
+> -->
+            <listitem>
+              <para
+><guilabel
+>لن يقوم MountMan بوصل (أو فصل) نقاط الوصل التالية</guilabel
+>: إذا كان لديك أنظمة ملفات لا تريد فصلها (أو وصلها) عن طريق الخطأ، فأدخل قائمة بنقاط الوصل مفصولة بفواصل (&eg; <literal
+>/, /boot, /tmp</literal
+>) ولن يحاول <link linkend="mount-man"
+>MountMan</link
+> وصلها (أو فصلها).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>التأكيدات</guilabel>
+        </term>
+        <listitem>
+          <para
+>بتحديد الخيارات في هذا القسم، سيطلب كروسيدر تأكيدًا قبل القيام بإجراء محدد؛ وإلا، فستُنفذ الإجراءات التالية دون تحذير:</para>
+          <itemizedlist>
+            <listitem>
+              <para
+>حذف المجلدات غير الفارغة</para>
+            </listitem>
+            <listitem>
+              <para
+>يحذف الملفّات</para>
+            </listitem>
+            <listitem>
+              <para
+>ينسخ الملفّات</para>
+            </listitem>
+            <listitem>
+              <para
+>ينقل الملفات</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel
+>ضبط دقيق</guilabel>
+        </term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para
+><guilabel
+>حجم خبيئة الأيقونات (كيلوبايت)</guilabel
+>: يستخدم كروسيدر خبيئة أيقونات، لذا لن يضطر إلى إعادة تحميل الأيقونات التي استُخدمت من قبل. بالطبع، كلما كبرت الخبيئة، استطاعت تخزين أيقونات أكثر وتسريع العمليات، لكن البصمة الذاكرية لـ كروسيدر ستصبح أكبر.</para>
+            </listitem>
+            <listitem>
+              <para
+><guilabel
+>وسائط updatedb</guilabel
+>: يضبط وسائط إضافية لـ <command
+>updatedb</command
+>، يُرجى قراءة صفحات الدليل لمزيد من المعلومات.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <sect1 id="konfig-archives">
+    <title
+>الأرشيفات</title>
+    <para
+>تضبط هذه الصفحة بعض جوانب معالجة الأرشيفات في &krusader;. </para>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel
+>تابع الإدخال والإخراج krarc</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>تمكين دعم الكتابة</guilabel
+>: يتيح لك هذا الخيار تمكين كتابة الملفات داخل أرشيف. <warning
+> <para
+>الجانب السلبي هو أنه إذا حدث انقطاع للتيار أثناء العملية، فقد تكون الملفات التي نُقلت قد حُذفت بالفعل، لكنها لم تُضغط بعد في الأرشيف. نقل الأرشيفات إلى داخل نفسها سيحذفها. </para>
+	      </warning>
+	    </para>
+	  </listitem>
+	</varlistentry>
+              <varlistentry>
+	<term>
+	  <guilabel
+>معالجة الأرشيفات</guilabel>
+	</term>
+	<listitem>
+	  <para
+><guilabel
+>تصفح الأرشيفات كمجلدات</guilabel
+>: إذا كان محددًا، سيعالج كروسيدر الأرشيفات بشفافية ويتيح لك فتحها كمجلدات؛ وإلا، سيحاول &krusader; استدعاء تطبيق يفتح الأرشيفات من ذلك النوع. </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel
+>ضبط دقيق</guilabel>
+	  </term>
+	  <listitem>
+      <itemizedlist>
+        <!-- not in master <listitem>
+          <para>
+          <guilabel
+>Allow moving into archives</guilabel
+>: this
+          option allows you to move files into an archive (as
+          opposed to just copying into the archive). The down side
+          is that if a power failure occurs during the process, the
+          files that were moved might already be deleted, but not
+          yet packed into the archive.
+          <note>
+            <para
+>If such a thing happens, the file(s) are NOT
+            LOST. They were actually moved into a subfolder in
+            &krusader;'s
+            <link linkend="konfig-general"
+>temp folder</link
+>.
+            You can search the folder and recover your
+            files.</para>
+          </note
+></para>
+	</listitem
+> -->
+        <listitem>
+          <para
+><guilabel
+>اختبار الأرشيف بعد الضغط</guilabel
+>: يشغل هذا الخيار آليًا اختبارًا على أرشيف مضغوط حديثًا. إنه أكثر أمانًا، لكنه يستغرق وقتًا أطول.</para>
+        </listitem>
+	<listitem>
+          <para
+><guilabel
+>اختبار الأرشيفات قبل فك الضغط</guilabel
+>: يشغل هذا الخيار آليًا اختبارًا قبل فك الضغط. بعض الأرشيفات التالفة قد تسبب تعطلًا؛ لذلك، من الأفضل اختبار الأرشيفات قبل فك الضغط.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+  </sect1>
+  <sect1 id="konfig-dependencies">
+    <title
+>صفحة التبعيات</title>
+    <para
+>تضبط هذه الصفحة المسار الكامل للتطبيقات الخارجية. بل من الممكن ضبط المسار الكامل لـ &krusader;!</para>
+    <para>
+      <emphasis role="bold"
+>لسان عام</emphasis>
+    </para>
+    <para
+>هنا يمكنك ضبط المسار الكامل للتطبيقات الخارجية التالية:</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>التطبيق</entry>
+            <entry
+>مسار كامل قابل للضبط</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kdesu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kdesu</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>kget</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kget</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mailer</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kmail</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para
+>أداة diff</para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/kompare</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <command
+>krename</command>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krename</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>krusader</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/krusader</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>locate</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/locate</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>mount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/mount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>umount</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/umount</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>updatedb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/updatedb</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <tip>
+      <para
+>افتراضيًا، يُستخدم &kompare; كأداة مقارنة خارجية لكن يمكنك أيضًا استخدام أداة المقارنة المفضلة لديك &eg; <ulink url="http://furius.ca/xxdiff/"
+><application
+>xxdiff</application
+></ulink
+> أو <ulink url="https://www.kde.org/applications/development/kdiff3/"
+><application
+>KDiff3</application
+></ulink
+>، فقط املأ المسار الكامل واستمتع.</para>
+    </tip>
+    <para>
+      <emphasis role="bold"
+>لسان الضاغطات</emphasis>
+    </para>
+    <para
+>في لسان <guilabel
+>الضاغطات</guilabel
+> سترى قائمة بصيغ الأرشيفات. بعضها ممتلئ وبعضها فارغ. تلك المتوفرة (الممتلئة) مدعومة من &krusader;. بالنسبة لها، سيعالج كروسيدر الأرشيفات بشفافية ويتيح لك فتحها كمجلدات (بشرط أن تكون قد حددت عنصر <guilabel
+>تصفح الأرشيفات كمجلدات</guilabel
+> في قسم <link linkend="konfig-archives"
+>الأرشيفات</link
+>)؛ وإلا، سيحاول كروسيدراستدعاء تطبيق يفتح الأرشيفات من ذلك النوع. إذا كان عنصر أرشيف معين فارغًا، فهذا يعني أن كروسيدر لم يتمكن من العثور على الملفات التنفيذية المناسبة في المسار المضبوط. الأرشيفات التالية مدعومة: ace, arj, bzip2, deb, gzip, iso, lha, lzma, rar, rpm, tar, xz, zip و 7z.</para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry
+>ضاغطة</entry>
+            <entry
+>مسار كامل قابل للضبط</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>7z</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/7z</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>arj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/arj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>bzip2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>usr/bin/bzip2</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cpio</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/cpio</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>dpkg</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/dpkg</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>gzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/gzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lha</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>lzma</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/lzma</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>rar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/rar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/bin/tar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unace</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unace</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unarj</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unarj</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unrar</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unrar</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>unzip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/unzip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>zip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/zip</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>xz</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/xz</replaceable>
+                </filename>
+              </para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <note>
+      <para
+>قد لا يكون كروسيدر متوافقًا مع ACE رغم أفضل جهودنا. يستخدم Unace مصدرًا مغلقًا ويحتوي على أسطر إضافية تجعل Unace يدخل في حلقة لا نهائية إذا أُعيد توجيه stdin إلى مكان آخر. يعمل بنفس طريقة 'su'، حيث لا يمكنك إدخال كلمة المرور فقط من stdin. كروسيدر&gt;= 1-51 يحاكي بيئة سطر الأوامر لتمكين التعاون مع Unace، لكننا لاحظنا أن Unace يغير دائمًا صيغة مخرجاته من إصدار لآخر، مما يجعل التعاون شبه مستحيل.</para>
+    </note>
+    <para>
+      <emphasis role="bold"
+>لسان أدوات المجموع الاختباري</emphasis>
+    </para>
+    <para
+>هنا يمكنك ضبط المسار الكامل لأدوات <link linkend="checksum"
+>المجموع الاختباري</link
+> الخارجية التالية: <informaltable
+> <tgroup cols="3"
+> <tbody>
+          <row>
+            <entry
+>أدوات المجموع الاختباري</entry>
+            <entry
+>مسار كامل قابل للضبط</entry>
+            <entry
+>المجاميع الاختبارية المدعومة</entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>md5deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/md5deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha1deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha1deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha1</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha224sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha224sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha224</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha256deep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha256deep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha256</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha384sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha384sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha384</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>sha512sum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/sha512sum</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>sha512</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>tigerdeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/tigerdeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>نمر</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>whirlpooldeep</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/whirlpooldeep</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>whirlpool</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command
+>cfv</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                <filename class="directory">
+                  <replaceable
+>/usr/bin/cfv</replaceable>
+                </filename>
+              </para>
+            </entry>
+            <entry>
+              <para
+>md5, sha1, sfv, crc</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable
+></para>
+  </sect1>
+  <sect1 id="konfig-useractions">
+    <title
+>إجراءات المستخدم</title>
+    <para
+>هنا يمكنك ضبط الطرفية لإجراءات المستخدم والخط لتجميع المخرجات. الطرفية المبدئية هي <command
+>konsole --noclose -e</command
+>. لإعداد وإدارة إجراءات المستخدم، استخدم ActionMan (<link linkend="useractions"
+>إجراءات المستخدم</link
+> &URL;).</para>
+
+  </sect1>
+  <sect1 id="konfig-protocols">
+    <title
+>الموافيق</title>
+    <para
+>تربط هذه الصفحة &MIME; بالبروتوكولات. &eg; البروتوكول <quote
+>tar</quote
+> مربوط بـ &MIME; <quote
+>application/x-tar</quote
+>.</para>
+
+    <para
+>في <guilabel
+>الروابط</guilabel
+> سترى &eg; <itemizedlist>
+      <listitem>
+        <para
+>Iso</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-iso</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>krarc</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-ace</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-arj</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-bzip2</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-cpio</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-deb</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-debian-package</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-gzip</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-jar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-lha</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-rpm</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-zip</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para
+>Tar</para>
+        <itemizedlist>
+          <listitem>
+            <para
+>application/x-tar</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tarz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tbz</para>
+          </listitem>
+          <listitem>
+            <para
+>application/x-tgz</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect1>
+</chapter>

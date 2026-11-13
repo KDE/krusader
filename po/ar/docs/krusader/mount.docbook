@@ -1,0 +1,78 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="mount-man">
+  <title
+>مدير الوصل: اعمل مع أنظمة الملفات الموصولة لديك</title>
+  <indexterm>
+    <primary
+>صِل</primary>
+  </indexterm>
+  <para
+>مدير الوصل هو أداة تساعدك في إدارة أنظمة الملفات الموصولة لديك. بمجرد استدعائه، يعرض قائمة بكل نظام ملفات موصول. لكل نظام ملفات، يعرض مدير الوصل اسمه (وهو اسم الجهاز الفعلي - أي <filename class="directory"
+>/dev/sda1</filename
+> لقسم أول على أول <hardware
+>قرص صلب</hardware
+>)، ونوعه (ext4، ext3، ntfs، vfat، ReiserFS...) ونقطة وصله على نظامك (المجلد الذي وُصل عليه نظام الملفات).</para>
+  <para
+>إذا أردت تصفية الأجهزة غير القابلة للإزالة من القائمة، فما عليك إلا تعليم العنصر <guilabel
+>أظهر الأجهزة القابلة للإزالة فقط</guilabel
+> على يسار قائمة الأجهزة. </para>
+  <figure id="screenshot-mountman" float="1">
+    <title
+>مدير الوصل</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="mountman.png"
+></imagedata>
+      </imageobject>
+      <textobject>
+        <phrase
+>مدير الوصل</phrase>
+      </textobject>
+    </mediaobject>
+  </figure>
+  <para
+>يعرض مدير الوصل أيضًا معلومات الاستخدام باستخدام الحجم الكلي، والحجم الحر، والنسبة المئوية للمساحة المتاحة الحرة. إذا كانت تلك الأرقام تقول <guilabel
+>غير متاح</guilabel
+>، فهذا يعني عادةً أن نظام الملفات غير موصول. النقر بزر الفأرة الأيسر على نظام ملفات يعرض مخططًا دائريًا على يسار النافذة، معروضًا بيانيًا معلومات الاستخدام لنظام الملفات. النقر على نظام ملفات غير موصول سيعرض <guilabel
+>غير موصول</guilabel
+> بدلًا من الرسم البياني.</para>
+  <itemizedlist>
+    <listitem>
+      <para
+><keycap
+>النقر المزدوج</keycap
+> على نظام ملفات سيغلق مدير الوصل ويفتح نظام الملفات ذلك داخل اللوحة النشطة لـ&krusader;.</para>
+    </listitem>
+    <listitem>
+      <para
+><keycap
+>النقر بزر الفأرة الأيمن</keycap
+> على نظام ملفات سيفتح قائمة صغيرة تعرض الإجراءات التي يمكن تنفيذها على نظام الملفات ذلك. في الوقت الحالي، يمكنك فقط وصل وفصل وإخراج (إذا نقرت على نظام ملفات قابل للإزالة، مثل &CD-ROM;).</para>
+    </listitem>
+  </itemizedlist>
+  <note>
+    <para
+>نخطط لتوسيع مدير الوصل في التطور التالي لـ&krusader;. سيكون قادرًا على تنسيق الأقسام، وتحرير <filename
+>/etc/fstab</filename
+>، وإنشاء أنظمة ملفات جديدة وأكثر.... بالمناسبة، بدأنا العمل عليه، انظر <quote
+>الوضع السريع لمدير الوصل</quote
+>.</para>
+  </note>
+  <para>
+    <emphasis role="bold"
+>الوضع السريع لمدير الوصل</emphasis>
+  </para>
+  <para
+>لتفعيل الوضع السريع لمدير الوصل، انقر الزر الجانبي مع السهم على زر مدير الوصل في <link linkend="mainwindow"
+>شريط الأدوات الرئيس</link
+>.</para>
+  <para
+>الفكرة العامة: عرض قائمة بكل نقاط الوصل الممكنة. كل مرة تُعرض فيها القائمة، تحدد ما إذا كانت نقطة الوصل موصولة أم لا وتربط الإجراء الصحيح (وصل أو فصل). هذا يوفر واجهة سريعة لمدير الوصل. إنه يعمل، ويستخدم حاليًا KMountMan::mount وunmount. يستخدم خدمات &kf5-full; الجديدة لقراءة fstab وهذا سيمكننا من إزالة الكثير من الشيفرة من مدير الوصل <quote
+>القديم</quote
+>.</para>
+</sect1>

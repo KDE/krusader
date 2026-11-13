@@ -1,0 +1,130 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="archives">
+  <title
+>معالجة الأرشيفات</title>
+  <indexterm>
+    <primary
+>الأرشيفات</primary>
+  </indexterm>
+  <sect2 id="browsing-archives">
+    <title
+>تصفح الأرشيفات</title>
+    <para
+>تتيح لك <link linkend="vfs"
+>أنظمة الملفات الافتراضية (VFS)</link
+> تصفح الأرشيفات كما لو كانت مجلدًا. يدعم كروسيدر حاليًا أنواع الأرشيفات التالية: ace، arj، bzip2، deb، gzip، iso، lha، rar، rpm، tar، xz، zip، و7-zip، ويدعم الأرشيفات المحمية بكلمة مرور التالية: arj، ace، rar وzip. يمكن تخزين كلمات المرور في <application
+>KWallet</application
+>. يُرجى ملاحظة أن دعم الأرشيفات يحتاج أولًا إلى <link linkend="konfig-archives"
+>ضبطه</link
+> بشكل صحيح في Konfigurator. لفتح الأرشيف، استخدم مفتاح &Enter; أو النقر (المزدوج) أو مفتاح &Right;. يدعم كروسيدر أيضًا <emphasis role="bold"
+>الأرشيفات المخفية</emphasis
+>، وهي أرشيفات أعيدت تسميتها بامتداد *خاطئ*، &eg; يستخدم <trademark class="registered"
+>OpenOffice</trademark
+> أرشيفات zip بالامتدادات التالية: <literal role="extension"
+>.odt</literal
+> و<literal role="extension"
+>.sxw</literal
+> و<literal role="extension"
+>.odw</literal
+>. سيفتح مفتاح &Enter; مستند <trademark class="registered"
+>OpenOffice</trademark
+> وسيفتح مفتاح &Right; الأرشيف. مثال آخر هو J2EE، حيث يعني الامتداد <literal role="extension"
+>.jar</literal
+> أرشيف zip. نظرًا لأن كروسيدر يكتشف تلقائيًا أنواع الأرشيفات المدعومة، فسيفتحها بمفتاح &Right; حتى لو كان لها نوع &MIME; آخر. يُرجى ملاحظة أن تصفح الأرشيفات له بعض القيود: <itemizedlist>
+      <listitem>
+        <para
+>ليست كل الوظائف مدعومة من جميع أنواع الأرشيفات. (على سبيل المثال: لا يمكنك حذف الملفات في أرشيفات ace أو rar)</para>
+      </listitem>
+      <listitem>
+        <para
+>الأذون التي لديك داخل الأرشيف هي نفس الأذون التي لديك للأرشيف.</para>
+      </listitem>
+      <listitem>
+        <para
+>لن يتبعك سطر الأوامر (إن كان مرئيًا) داخل الأرشيف بل سيشير إلى مجلد الأرشيف.</para>
+      </listitem>
+      <listitem>
+        <para
+>قبل تنفيذ أي إجراء على الملفات/المجلدات داخل الأرشيف، يجب استخراجها. سيُعاد حزم الأرشيف عند مغادرته أو عندما يكتشف كروسيدر أن الملفات المستخرجة قد تغيرت.</para>
+      </listitem>
+      <listitem>
+        <para
+>الحزم وفك الحزم هما <quote
+>عمليات حظر</quote
+> تعرض حوار تقدم. ومع ذلك، قد يتغير هذا في المستقبل لأننا نخطط لإنشاء المزيد من العمليات الخلفية.</para>
+      </listitem>
+    </itemizedlist
+></para>
+  </sect2>
+  <sect2 id="unpacking-archives">
+    <title
+>فك حزم الملفات</title>
+    <para
+>هناك طريقتان لاستخراج الملفات من الأرشيفات:</para>
+    <para
+>إذا أردت فك حزم أرشيف (أرشيفات) كامل، تصفح إلى موقع الأرشيف، وحدد الأرشيف (الأرشيفات) واختر <menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>فك حزم</guimenuitem
+> </menuchoice
+> أو <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>U</keycap
+></keycombo
+>. سيسألك كروسيدر أين تضع الملفات المستخرجة. الموقع المبدئي هو مجلد اللوحة غير النشطة. إذا لم تلغِ العملية، سيحاول كروسيدر فك حزم جميع الملفات المحددة في اللوحة غير النشطة.</para>
+    <para
+>إذا أردت فقط استخراج جزء من الأرشيف، فـ<link linkend="browsing-archives"
+>تصفح</link
+> الأرشيف وانسخ الملفات التي تريد استخراجها إلى موقعها الجديد تمامًا كما تنسخ الملفات <quote
+>العادية</quote
+>. لاحظ أن فك الحزم من أرشيف مُتصفح يستغرق وقتًا أطول (فك حزم ملف بملف) مقارنة بفك حزم أرشيف كامل بالطريقة الأولى. يمكن وضع عملية فك الحزم في <link linkend="queue"
+>طابور</link
+>.</para>
+  </sect2>
+  <sect2 id="pack-archive">
+    <title
+>حزم الملفات</title>
+    <para
+>إذا أردت إنشاء أرشيف جديد، ابدأ بتحديد العناصر التي تريد حزمها في اللوحة النشطة واختر <menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>حزم...</guimenuitem
+> </menuchoice
+> أو <keycombo action="simul"
+>&Alt;&Shift; <keycap
+>P</keycap
+></keycombo
+>. سيظهر حوار يطالبك بتحديد اسم الأرشيف وموقعه. اختر الحزّام من أحد <link linkend="konfig-archives"
+>امتدادات أسماء الملفات المدعومة</link
+>.</para>
+    <para
+>لإضافة ملفات إلى أرشيف (أرشيفات) موجود، افتح الأرشيف في لوحة واحدة والملفات المراد نسخها في اللوحة الأخرى، ثم انسخ الملفات ببساطة إلى الأرشيف بنفس الطريقة التي تنسخ بها الملفات إلى مجلد <quote
+>عادي</quote
+>. يمكن وضع عملية الحزم في <link linkend="queue"
+>طابور</link
+>.</para>
+  </sect2>
+  <sect2 id="test-archive">
+    <title
+>اختبار الأرشيفات</title>
+    <para
+>لن يتعامل كروسيدر مع الأرشيفات التالفة لأن ذلك قد يؤدي إلى فقدان البيانات. إذا تلقيت رسالة خطأ عند فتح أرشيف، أو إذا اشتبهت في وجود خطأ ما في الأرشيف، فيجب اختباره قبل الاستخدام. لاختبار أرشيف، تصفح (تنقل) إلى موقع الأرشيف وحدد الأرشيف. بعد ذلك اختر <menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>اختبار الأرشيف</guimenuitem
+> </menuchoice
+> أو <keycombo action="simul"
+>&Alt; <keycap
+>E</keycap
+></keycombo
+>. سيختبر كروسيدر ملف الأرشيف ويخبرك ما إذا كان الأرشيف قد اجتاز اختبار سلامة الملف أم لا.</para>
+  </sect2>
+</sect1>

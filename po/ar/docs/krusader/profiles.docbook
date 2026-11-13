@@ -1,0 +1,70 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="profiles">
+  <title
+>التّشكيلات</title>
+  <indexterm>
+    <primary
+>تشكيلات</primary>
+  </indexterm>
+  <para
+>باستخدام التشكيلات، يمكنك حفظ واستعادة إعداداتك المفضلة. تدعم عدة ميزات التشكيلات، يمكنك الحصول على تشكيلات لوحة مختلفة (عمل، منزل، اتصالات بعيدة، إلخ)، تشكيلات بحث، تشكيلات مزامنة، إلخ</para>
+  <sect2 id="panel_profiles">
+    <title
+>تشكيلات اللوحة</title>
+    <para
+>تحتوي تشكيلة اللوحة على ما يلي: جميع مسارات الألسنة (يسار أو يمين)، اللسان الحالي (يسار أو يمين)، واللوحة النشطة (يسار أو يمين). تُخزَّن كل هذه المعلومات في ملف <link linkend="config_files"
+>krusaderrc</link
+>. يمكنك الحصول على عدة تشكيلات لوحة، مثل: إدارة الملفات، إدارة &FTP;، المنزل، العمل، إلخ. يمكن <link linkend="c_panel_profiles"
+>حفظ واستعادة</link
+> تشكيلة اللوحة في قائمة <guimenu
+>النافذة</guimenu
+>. ستُستخدم <link linkend="konfig-startup"
+>تشكيلة البدء المبدئية</link
+> عند بدء كروسيدر، لكن يمكنك تجاوزها باستخدام خيار سطر الأوامر.</para>
+    <para
+>إذا أردت إجراء تغييرات على تشكيلة لوحة: يمكنك تحميل تلك التشكيلة، تغيير بعض الإعدادات، اذهب إلى <menuchoice
+><guimenu
+>النافذة</guimenu
+> <guimenuitem
+>التشكيلات</guimenuitem
+></menuchoice
+> واستبدل تلك التشكيلة.</para>
+  </sect2>
+  <sect2 id="color_profiles">
+    <title
+>تشكيلات الألوان</title>
+    <para
+>يمكن حفظ واستعادة خرائط الألوان باستخدام <link linkend="konfig-color"
+>تشكيلات الألوان</link
+>.</para>
+  </sect2>
+  <sect2 id="key_profiles">
+    <title
+>تشكيلات ربط المفاتيح</title>
+    <para
+>يمكن حفظ واستعادة خرائط المفاتيح باستخدام <link linkend="configure-shortcuts"
+>تشكيلات ربط المفاتيح</link
+>.</para>
+  </sect2>
+  <sect2 id="search_profiles">
+    <title
+>تشكيلات البحث</title>
+    <para
+>إذا كنت تجري نفس عملية البحث بانتظام، يمكنك حفظ إعدادات البحث (مثل: تضمين الملفات، استبعاد الملفات، إلخ) في <link linkend="krusearcher"
+>تشكيلة بحث</link
+>.</para>
+  </sect2>
+  <sect2 id="synchronizer_profiles">
+    <title
+>تشكيلات المزامنة</title>
+    <para
+>إذا كنت تجري نفس عملية المزامنة بانتظام، يمكنك حفظ إعدادات المزامنة في <link linkend="synchronizer"
+>تشكيلة مزامنة</link
+>.</para>
+  </sect2>
+</sect1>

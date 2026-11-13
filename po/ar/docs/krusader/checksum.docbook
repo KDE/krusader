@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<sect1 id="checksum">
+  <title
+>إنشاء المجموع الاختباري والتحقق منه</title>
+  <indexterm>
+    <primary
+>المجموع</primary>
+  </indexterm>
+  <para
+><menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>أنشئ مجموعًا اختباريًا...</guimenuitem
+> </menuchoice
+>: يتحقق كروسيدر من الأدوات المتوفرة لديك، وإذا كانت تلك الأدوات تسمح بالتشغيل التكراري (في حال تحديد مجلدات)، يمكنك إنشاء مجموع اختباري باختيار نوع مجموع اختباري من القائمة (<guilabel
+>md5</guilabel
+>، <guilabel
+>sha</guilabel
+>، إلخ…). ثم يمكنك حفظ المجموع الاختباري إلى ملف، يُسمى عادةً <filename
+>checksum.md5</filename
+> أو <filename
+>checksum.sha1</filename
+>.</para>
+  <para
+><menuchoice
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>تحقق من المجموع الاختباري...</guimenuitem
+> </menuchoice
+>: يتحقق كروسيدر مما إذا كانت لديك أداة تدعم نوع المجموع الاختباري الذي تحتاجه (من ملف المجموع الاختباري المحدد) ويعرض الملفات التي فشلت في المجموع الاختباري (إن وُجدت).</para>
+  <para
+>يُجرّد النظام آليات المجموع الاختباري المختلفة وأدوات المجموع الاختباري. في الوقت الحالي، تُدعم المجاميع الاختبارية التالية: md5، sha1، sha256، sha224، sha256، sha384، sha512، tiger، whirlpool، cfv و crc. يُرجى التحقق من <link linkend="konfig-dependencies"
+>إعدادات أدوات المجموع الاختباري</link
+> قبل استخدام هذه الوظيفة.</para>
+</sect1>

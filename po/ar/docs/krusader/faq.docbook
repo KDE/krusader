@@ -1,0 +1,1098 @@
+<!--
+    SPDX-FileCopyrightText: 2000-2003 Shie Erlich <erlich@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2003 Rafi Yanai <yanai@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2004-2010 Frank Schoolmeesters <codeknight@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2022 Krusader Krew <https://krusader.org>
+-->
+<chapter id="faq">
+  <title
+>الأسئلة الشائعة (&FAQ;)</title>
+  <indexterm>
+    <primary
+>أسئلة شائعة</primary>
+  </indexterm>
+  <para
+>إذا واجهت مشاكل مع كروسيدر، يُرجى مراجعة <ulink url="https://krusader.org/get-involved/index.html"
+>إجراءات التثبيت</ulink
+>، فقد يكون سبب المشكلة تثبيتًا سيئًا.</para>
+  <para
+>تنقسم الأسئلة الشائعة إلى ثلاثة أقسام: <itemizedlist
+> <listitem
+> <para
+> <link linkend="faq_installation"
+>أسئلة شائعة حول التثبيت</link
+> (هذه الصفحة)</para
+> </listitem
+> <listitem
+> <para
+> <link linkend="faq_usage"
+>أسئلة شائعة حول الاستخدام</link
+> (مشاكل تشغيل/استخدام كروسيدر)</para
+> </listitem
+> <listitem
+> <para
+> <link linkend="faq_general"
+>أسئلة شائعة عامة</link
+> (تقارير الأخطاء، المنتدى، القائمة البريدية، ...)</para
+> </listitem
+> </itemizedlist
+>إذا رأيت أن سؤالًا شائعًا مفقودًا أو أن شيئًا غير واضح لك، يُرجى <link linkend="editors_note"
+>إخبارنا</link
+>.</para>
+  <sect1 id="faq_installation">
+    <title
+>أسئلة شائعة حول التثبيت</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqi_kdelibs">
+          <para
+>هل يحتاج كروسيدر إلى &plasma; للتشغيل؟</para>
+        </question>
+        <answer>
+          <para
+><emphasis
+>لا، لا يحتاج كروسيدر إلى مدير النوافذ &plasma;</emphasis
+> للتشغيل على حاسوبك، لكن البيئة الطبيعية لـ كروسيدر هي &plasma;، لأنه يعتمد على خدمات توفرها المكتبات الأساسية لـ &kf5-full;. هناك حاجة فقط لبعض المكتبات المشتركة مثل مكتبات &kde-frameworks; ومكتبات &Qt; و&etc;. هذا يعني أن كروسيدر يعمل على <ulink url="https://www.gnome.org"
+><application
+>جنوم</application
+></ulink
+> و<ulink url="http://www.afterstep.org/"
+><application
+>أفترستيب</application
+></ulink
+> و<ulink url="https://www.xfce.org/"
+><application
+>إكسفسي</application
+></ulink
+> ومديري نوافذ آخرين بشرط تثبيت المكتبات المناسبة على حاسوبك. كل هذا ليس مشكلة لأن عالم apt-get يمكنه حل هذه التبعيات فورًا.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>لا تحتاج إلى التبديل إلى مدير النوافذ &plasma; لاستخدام كروسيدر؛ لا يزال بإمكانك استخدام <ulink url="https://www.gnome.org"
+><application
+>جنوم</application
+></ulink
+> أو <ulink url="http://www.afterstep.org/"
+><application
+>أفترستيب</application
+></ulink
+> أو <ulink url="https://www.xfce.org/"
+><application
+>إكسفسي</application
+></ulink
+> أو مدير نوافذ آخر. ومع ذلك، يتم ضبط خطوط كروسيدر وبعض السلوكيات بتشغيل <command
+>systemsettings</command
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>يعتمد الكثير على ما تريد فعله بـ كروسيدر. يجب أن تعلم أن كروسيدر يستخدم عبيد KIO من &kde-frameworks; للوصول إلى أنظمة الملفات البعيدة، ويتم شحن دعم عدد محدود فقط من أنواع أنظمة الملفات مع مكتبات &kde-frameworks;، ومعظم عبيد KIO مرفقون مع &kf5-full; (بما في ذلك fish وsftp وtar).</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+>للخلاصة، إذا أردت كروسيدر عاملًا - ثبّت &kf5-full;. إذا أردت كروسيدر وظيفيًا فأنت بحاجة إلى &kf5-full; وبعض حزم &plasma; الإضافية. لتحقيق أقصى وظائف، يحتاج كروسيدر إلى بعض تطبيقات &kde; (&ark; و&kdiff3; و<application
+>KRename</application
+>)، لكن مدير النوافذ &plasma; اختياري.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_rpm-notfound">
+          <para
+>لا أجد حزمة لـ كروسيدر، ماذا أفعل؟</para>
+        </question>
+        <answer>
+          <para
+>تحقق مما إذا كانت توزيعتك توفر كروسيدر، وإذا لم تكن توفرها فاتصل بمنشئ توزيعتك واطلب منه تضمين كروسيدر!</para>
+          <para
+>هل ألقيت نظرة على صفحة <ulink url="https://krusader.org/get-involved/index.html"
+>إجراءات التثبيت</ulink
+>؟ إذا فعلت ولم تجد شيئًا، يمكنك دائمًا ترجمة كروسيدر من المصدر. لا تتردد في نشر <link linkend="faqi_help_request"
+>طلب مساعدة</link
+> إذا واجهت مشاكل.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+ 
+      <qandaentry>
+        <question id="faqi_help_request">
+          <para
+>أواجه مشكلة في ترجمة وتثبيت كروسيدر، كيف أرسل طلب مساعدة؟</para>
+        </question>
+        <answer>
+          <para
+>يُرجى قراءة <ulink url="https://krusader.org/get-involved/index.html"
+>إجراءات التثبيت</ulink
+> المفصلة لدينا و<link linkend="faq"
+>الأسئلة الشائعة</link
+>. إذا لم تجد حلًا لمشكلتك، فلا تتردد في نشر <emphasis role="bold"
+>طلب مساعدة</emphasis
+> في منتدى كروسيدر لدينا أو استخدم القائمة البريدية <ulink url="https://groups.google.com/group/krusader-users"
+>كروسيدر-users</ulink
+>. لكن قبل نشر طلب مساعدة، يُرجى تجربة ما يلي: <orderedlist>
+            <listitem>
+              <para
+>استخدم وظيفة البحث في <ulink url="https://groups.google.com/g/krusader-users"
+>صفحة قائمة بريد مستخدمي &krusader;</ulink
+>، فقد تكون مشكلتك قد حُلّت أو نوقشت بالفعل.</para>
+            </listitem>
+            <listitem>
+              <para
+>إذا لم تجد حلًا، يُرجى تدوين المسائل التالية: <itemizedlist
+> <listitem
+> <para
+>إصدار كروسيدر المستخدم</para
+> </listitem
+> <listitem
+> <para
+>توزيعة &Linux; + الإصدار المستخدم</para
+> </listitem
+> <listitem
+> <para
+>وصف جيد للمشكلة</para
+> </listitem
+> </itemizedlist
+>دون هذه المعلومات، من الصعب جدًا علينا مساعدتك. <note
+> <para
+>إذا أعطيتنا رسائل الخطأ (&eg; رسائل خطأ <command
+>make</command
+>)، يُرجى البدء بأول رسالة خطأ، فجميع رسائل الخطأ التي تتبع أول رسالة خطأ هي نتائج وليست سبب مشكلتك.</para>
+              </note
+></para>
+            </listitem>
+            <listitem>
+              <para
+>أرسل طلب المساعدة الخاص بك.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+>شكرًا على تعاونك!</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqi_git_version">
+          <para
+>لماذا يُظهر كروسيدر-git رقم إصدار قديمًا في مربع حول؟</para>
+        </question>
+        <answer>
+          <para
+>لأننا نغير رقم الإصدار فقط قبل إصدار جديد. سيُظهر كروسيدر-git رقم إصدار أقدم، لذا تجاهل رقم الإصدار وتحقق من تاريخ التنزيل. ببساطة لم نقرر بعد ما سيكون رقم الإصدار التالي.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+ </qandaset>
+  </sect1>
+  <sect1 id="faq_usage">
+    <title
+>أسئلة شائعة حول الاستخدام</title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqu_dead_mountpoint">
+          <para
+>لماذا يتجمد كروسيدر أو يتعلق عند نقطة وصل ميتة؟</para>
+        </question>
+        <answer>
+          <para
+>عندما يتصفح كروسيدر مثلًا مشاركة &NFS; ويتعطل خادم &NFS;، سيتجمد كروسيدر. هذا التجمد لـ كروسيدر (وجميع العارضين/المحررين الداخليين المفتوحين الآخرين) قاتل، ولا يمكن تصحيحه إلا بـ <command
+>kill -9</command
+>. ليس لدينا حل لهذا. هذه مشكلة لا تقتصر على مديري الملفات، أو حتى نظام &Linux;! المشكلة هي أنك <quote
+>تتعلق</quote
+> عند أول وصول إلى المشاركة الميتة - لذا لا توجد طريقة لتجنبها، ولا فحص لتجنبها، حتى <command
+>ls</command
+> سيتجمد. مجرد محاولة قراءة شيء - أي شيء - كافٍ لتعليقك. الطريقة الوحيدة لتجاوز هذه المشكلة المعمارية هي استخدام تصميم متعدد الخيوط - بهذه الطريقة إذا تعلقنا، لا نعلق حلقة أحداث التطبيق بأكملها، لكننا لا نعتقد أن الوقت مناسب لإضافة خيوط، لسنا متأكدين من أن *جميع* أنظمة &kde-frameworks; هناك تستخدم &Qt;-mt (الإصدار متعدد الخيوط من مكتبة &Qt;)، وقد لا يكون فريق كروسيدر الأشخاص المناسبين لمعالجة هذه المشكلة الرئيسية على أي حال؛ لذا حاليًا هذا مجرد خطأ يجب أن نتعلم العيش معه.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_resize">
+          <para
+>عندما أحاول تصغير كروسيدر لأجعله أصغر، أكتشف أنني لا أستطيع تصغيره إلى أقل من حجم معين. لماذا؟</para>
+        </question>
+        <answer>
+          <para
+>هل ترى أزرار <guibutton
+>F1, F2</guibutton
+> (&etc;)؟ إنها لا تسمح لـ كروسيدر بالتصغير لأن لها حدًا أدنى للحجم. فقط عطّلها من <menuchoice
+> <guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>إظهار شريط مفاتيح FN</guimenuitem
+> </menuchoice
+> وستتمكن من تصغير كروسيدر حسب رغبتك. منذ الإصدار 1.51 قمنا بتحسين هذا بشكل كبير: عند التصغير ستبدو الأزرار مثل 'F5 ..py'. عندما تكون وجوه الأزرار صغيرة جدًا للقراءة، سيعطي تلميح الأداة النص الكامل. الحد الأدنى للعرض هو 45 بكسل لكل زر.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_samba_codepage">
+          <para
+>صفحة الترميز &Samba; ISO 8859-x / ماذا أفعل إذا لم يقرأ كروسيدر المجلدات المشتركة التي تحتوي على أحرف دولية خاصة؟</para>
+        </question>
+        <answer>
+          <para
+>لا يتعامل كروسيدر (بعد) مع صفحات ترميز &Samba; ISO 8859-x، إذا كنت تستخدم صفحة ترميز مختلفة عن 8859-1 فسيتعين عليك القيام بضبط يدوي. أنشئ أو عدّل الملف: <filename
+>~/.smb/smb.conf</filename
+> <programlisting
+>[global] 
+          workgroup = MyWorkGroup (ex. WORKGROUP) 
+          client code page = MyCodePage (ex. 852)
+          character set = MyCharSet (ex. ISO8859-2)
+          </programlisting
+>يمكنك محاولة تكوين ملف smb.conf باستخدام الوحدة النمطية إعدادات النظام المناسبة.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      
+<qandaentry>
+  <question id="faqu_external_tool">
+  <para
+>ماذا أفعل إذا بدت أداة خارجية لا تعمل؟</para>
+  </question>
+  <answer>
+  <para
+>يستخدم كروسيدر عدة برامج كـ <link linkend="konfig-dependencies"
+>أدوات خارجية</link
+>، وأحيانًا تبدو غير عاملة. افتح طرفية وتحقق مما إذا كانت الأداة foo مثبتة. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>foo</command
+></userinput
+></screen
+> تحقق مما إذا كانت الأداة foo مضبوطة بشكل صحيح في <link linkend="konfig-dependencies"
+>صفحة تبعيات المكون</link
+>. لأدوات الأرشفة: أعد الكشف الآلي عن الأرشيفات باستخدام زر <guibutton
+>ضبط آلي</guibutton
+> في <link linkend="konfig-archives"
+>صفحة أرشيف المكون</link
+>. تحقق من <link linkend="konfig-protocols"
+>صفحة بروتوكول المكون</link
+> إذا لم تعمل، قم بنسخ احتياطي لملف الضبط <filename
+><envar
+>XDG_CONFIG_HOME</envar
+>/krusaderrc</filename
+> (المبدئي هو <filename
+>$<envar
+>HOME</envar
+>/.config/krusaderc</filename
+>) وأزله من هذا الموقع. أعد تشغيل كروسيدر، سيبدأ كروسيدر الآن معالج ضبط التشغيل الأول، اتبع هذه الإرشادات. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqu_jar">
+  <para
+>كيفية تنفيذ ملفات jar (دون الدخول إلى أرشيف jar)؟</para>
+  </question>
+  <answer>
+  <para
+>اذهب إلى <link linkend="konfig-protocols"
+>صفحة بروتوكولات المكونات</link
+> وأزل <guilabel
+>application/x-jar</guilabel
+> من عقدة krarc، عندها لن يدخل كروسيدر إلى الأرشيف بعد الآن. تُدار اقترانات الملفات العامة بواسطة &plasma; وليس كروسيدر. لربط امتداد jar: <itemizedlist>
+            <listitem>
+              <para
+>افتح &plasma; &systemsettings;: <application
+>systemsettings</application
+> </para>
+            </listitem>
+            <listitem>
+              <para>
+               <menuchoice
+><guimenu
+>التطبيقات</guimenu
+> <guimenuitem
+>اقترانات الملفات</guimenuitem
+> </menuchoice>
+              </para>
+            </listitem>
+            <listitem>
+              <para
+>أدخل <filename
+>jar</filename
+> كنمط اسم ملف </para>
+            </listitem>
+            <listitem>
+              <para
+>أضف <filename
+>java</filename
+> كتطبيق </para>
+            </listitem>
+           </itemizedlist>
+   </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+      <!-- Thanks to Dirk Eschler -->
+      <qandaentry>
+        <question id="faqu_ftp_firewall">
+          <para
+>لماذا أواجه مشكلة مع اتصالي بـ &FTP;؟</para>
+        </question>
+        <answer>
+          <para
+>تحدث هذه المشكلة غالبًا عندما تكون خلف جدار ناري أو وكيل. افتح <menuchoice
+> <guimenu
+>إعدادات النظام</guimenu
+> <guimenuitem
+>الشبكة</guimenuitem
+> <guimenuitem
+>الإعدادات</guimenuitem
+> <guimenuitem
+>تفضيلات الاتصال</guimenuitem
+> </menuchoice
+>، يجب تشغيل أو إيقاف <guilabel
+>تمكين الوضع السلبي (PASV)</guilabel
+> حسب حالته الحالية. جرب الآن جلسة &FTP; مرة أخرى لترى إن كانت تعمل. أيضًا، تأكد من عدم وجود جلسات &FTP; أخرى مفتوحة (باستخدام متصفحات الويب، &etc;)، فقد تسبب تعقيدات. يمكن العثور على مزيد من المعلومات في <ulink url="https://slacksite.com/other/ftp.html"
+>&FTP; النشط مقابل &FTP; السلبي، شرح نهائي</ulink
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <!-- Thanks to Karai Csaba -->
+      <qandaentry>
+        <question id="faqu_ftp_http_proxy">
+          <para
+>أحصل على خطأ <errorcode
+>بروتوكول &FTP; غير مدعوم من كروسيدر</errorcode
+> عند محاولة فتح مجلد &FTP; بعيد، ماذا أفعل؟</para>
+        </question>
+        <answer>
+          <para
+>سبب هذا الخطأ هو أن ميزة '&FTP; عبر وكيل &HTTP;' غير مدعومة بعد من كروسيدر. قد يكون هذا الخطأ ناتجًا عن إعداد خاطئ لإعدادات الوكيل في &systemsettings;. عدّل إعدادات الوكيل لعدم استخدام وكيل &HTTP; وسيعمل &FTP;.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_no_part">
+          <para
+>كيف لا أضيف لاحقة <literal role="extension"
+>.part</literal
+> عند نسخ الملفات عبر &FTP;؟</para>
+        </question>
+        <answer>
+          <para
+>عند رفع الملفات، تُضاف لاحقة <literal role="extension"
+>.part</literal
+> إلى اسم الملف، وبمجرد اكتمال الرفع، يُعاد تسمية الملف آليًا لإزالة لاحقة <literal role="extension"
+>.part</literal
+>. يعمل هذا بشكل رائع ولكن أحيانًا لا تسمح بعض خوادم &FTP; بعملية إعادة التسمية. يمكنك حل هذا بإلغاء تحديد خانة الاختيار <guilabel
+>وضع علامة على الملفات المرفوعة جزئيًا</guilabel
+> في &plasma; &systemsettings;. توجد خانة الاختيار في <menuchoice
+> <guimenu
+>الشبكة</guimenu
+> <guimenuitem
+>الإعدادات</guimenuitem
+> <guimenuitem
+>تفضيلات الاتصال</guimenuitem
+> </menuchoice
+>.</para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_close_connection">
+          <para
+>كيف يمكنني إغلاق اتصال بعيد (&eg; اتصال &FTP;)؟</para>
+        </question>
+        <answer>
+          <para
+>هذا موضح في <link linkend="remote-connections"
+>فصل الاتصالات البعيدة</link
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_media_protocol">
+          <para
+>أواجه مشاكل مع بروتوكول media:/، لماذا؟</para>
+        </question>
+        <answer>
+          <para
+>أُزيل بروتوكول media:/ منذ &kde; 4. يُرجى استخدام بروتوكول mtp:/ بدلًا منه.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <!-- Thanks to thepieman at the Krusader Forum -->
+      <qandaentry>
+        <question id="faqu_sound">
+          <para
+>كيف يمكنني تعطيل الأصوات الافتراضية، &eg; عندما أقوم بإجراء حذف؟</para>
+        </question>
+        <answer>
+          <para
+>هذه هي أصوات نظام &plasma; الافتراضية، وليست متعلقة بـ كروسيدر. إذا أردت تعطيلها عالميًا، افتح &plasma; &systemsettings; (<application
+>systemsettings</application
+>): <menuchoice
+> <guimenu
+>التخصيص</guimenu
+> <guisubmenu
+>الإشعارات</guisubmenu
+> <guimenuitem
+>إدارة الإشعارات</guimenuitem
+> </menuchoice
+>، <guilabel
+>مصدر الحدث: "مساحة عمل بلازما"</guilabel
+> وألغِ تحديد عناصر الصوت التي لا تعجبك.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_remoteMan">
+          <para
+>أين مدير الاتصالات البعيدة؟</para>
+        </question>
+        <answer>
+          <para
+>استخدم مدير العلامات لدينا. استخدم <link linkend="remote-connections"
+>&URL; بعيد</link
+> وضَع عليه علامة.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqu_mimetypemagic_archives">
+          <para
+>لماذا لا يعمل سحر نوع &MIME; أحيانًا داخل الأرشيفات؟</para>
+        </question>
+        <answer>
+          <para
+>عندما تدخل أرشيفًا وتضغط <keycap
+>F3</keycap
+> لعرض ملف ليس له امتداد معروف، &eg; <filename
+>README, INSTALL</filename
+> &etc; وإذا فتح العارض في وضع سداسي عشري بدلًا من الوضع المعتاد، فأنت بحاجة إلى تهيئة: <menuchoice
+> <guimenu
+>إعدادات نظام &kde;</guimenu
+> <guimenuitem
+>اقترانات الملفات</guimenuitem
+> <guimenuitem
+>تطبيق</guimenuitem
+> <guimenuitem
+>octet-stream</guimenuitem
+> </menuchoice
+>، يجب إزالة <guilabel
+>عارض ثنائي</guilabel
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_konfigurator">
+          <para
+>أين المكونات، هل أحتاج إلى تثبيت &plasma; لاستخدامه؟</para>
+        </question>
+        <answer>
+          <para
+><link linkend="konfigurator"
+>المكونات</link
+> هي وحدة تهيئة كروسيدر، إذا قمت بتثبيت كروسيدر فلديك أيضًا المكونات. لسبب ما، يعتقد بعض الناس أنها تطبيق &plasma; آخر، لكنها ليست كذلك، لذا لا تحتاج إلى تثبيت &plasma; كامل الميزات لاستخدام المكونات. عند تشغيل كروسيدر، استخدم <menuchoice
+> <guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>اضبط كروسيدر...</guimenuitem
+> </menuchoice
+>، وسيبدأ <link linkend="konfigurator"
+>المكونات</link
+>. يُرجى قراءة الدليل، كروسيدر لديه العديد من خيارات التهيئة، يمكن تخصيص الكثير من الأشياء لاحتياجاتك باستخدام <link linkend="konfigurator"
+>المكونات</link
+>. </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_equal_lookandfeel">
+          <para
+>كيف يمكنني جعل المظهر والشعور لمستخدمين مختلفين متماثلين؟</para>
+        </question>
+        <answer>
+          <para
+>بافتراض أن الإعداد الحالي هو التهيئة الجيدة، يمكنك نسخ التهيئة إلى المستخدم الآخر. <screen
+><prompt
+>#</prompt
+> <userinput
+><command
+>cp ~/.config/krusaderrc /home/foo_user/.config</command
+></userinput
+></screen
+> وعندما يكون المستخدم الآخر هو الجذر، استخدم: <screen
+><prompt
+>#</prompt
+> <userinput
+><command
+>cp ~/.config/krusaderrc /root/.config</command
+></userinput
+></screen>
+          </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question id="faqu_custom_embed_term">
+          <para
+>كيفية تخصيص الطرفية المضمنة لـ كروسيدر؟</para>
+        </question>
+        <answer>
+          <para
+>لتغيير خصائص محاكي الطرفية المضمنة لـ كروسيدر: يمكنك النقر بزر الفأرة الأيمن عليه واختيار خيار، وإذا لم تجد ما تبحث عنه هناك، يمكنك استخدام قائمة <menuchoice
+> <guimenu
+>الإعدادات</guimenu
+> </menuchoice
+> لـ &konsole; (لأن كروسيدر يستخدم جزء كونسول KPart لطرفيته المضمنة). في تلك القائمة، تُرى عناصر أخرى (مثل <menuchoice
+> <guimenuitem
+>"إدارة التشكيلات..."</guimenuitem
+> </menuchoice
+>). </para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+      </answer>
+      </qandaentry>
+
+    </qandaset>
+  </sect1>
+  <sect1 id="faq_general">
+    <title
+>أسئلة وأجوبة عامة </title>
+    <qandaset>
+      <qandaentry>
+        <question id="faqg_wish">
+          <para
+>كيف يمكنني الإبلاغ عن رغبة أو اقتراح أو تعليق؟</para>
+        </question>
+        <answer>
+          <para
+>قوة مشروع مفتوح المصدر الأعظم تأتي من تلقي ملاحظات المستخدمين. لذلك نحب سماع ما لديك لتقوله. شكاويك هي تعليماتنا. بعد حوالي 6 أشهر، لم يعد المبرمجون قادرين على رؤية أخطائهم الخاصة. هذا طبيعي. نريد الأفكار والانتقادات والملاحظات لأننا جميعًا نريد جعل كروسيدر أفضل وأفيد مدير ملفات متاح في أي مكان.</para>
+          <para
+>الطريقة الأكثر ملاءمة للاتصال بنا هي استخدام القائمة البريدية لمستخدمي krusader <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>القائمة البريدية</ulink
+>. للحصول على معلومات حول ما تبقى للقيام به، انظر إلى <ulink url="https://groups.google.com/group/krusader-devel"
+>القائمة البريدية كروسيدر-devel</ulink
+>. نراجع ونناقش كل تقديم.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_patch">
+          <para
+>كيف يمكنني إرسال تصحيح؟</para>
+        </question>
+        <answer>
+          <para
+>ليس من السهل كتابة إرشادات التصحيح، لكن إليك بعضها. <orderedlist numeration="arabic">
+            <listitem>
+              <para
+>التصحيحات أو الشيفرات الجديدة أو الميزات الجديدة مرحب بها دائمًا!</para>
+            </listitem>
+            <listitem>
+              <para
+>ركّز على مشكلة واحدة فقط في كل مرة، حتى يتمكن المطورون من فهمك بسهولة، وتثبيت التصحيح إذا كان يعمل.</para
+>              
+            </listitem>
+            <listitem>
+              <para
+>يفضل أن تبدأ نقاشًا مع المطورين على القوائم البريدية krusader-devel <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>القوائم البريدية</ulink
+> أو على <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
+>صفحة كروسيدر GitLab</ulink
+>. لسوء الحظ، لا يمكننا تطبيق تصحيح إذا كان التصحيح متعارضًا مع التصميم العام لشيفرة كروسيدر (اقرأ المزيد من الإرشادات في هذه الأسئلة الشائعة). يُرجى إرسال طلب تغيير واحد فقط لكل بريد، حتى يسهل متابعة النقاش. يجب تثبيت التعديلات خطوة بخطوة، مع فحص كل سطر. </para>
+            </listitem>
+            <listitem>
+             <para
+>قدّم ملفات التصحيح الخاصة بك على <ulink url="https://invent.kde.org/utilities/krusader/-/merge_requests"
+>GitLab</ulink
+>، حتى تبقى جميع مقترحات التصحيح منظمة ولا تضيع، أرشيفات tar.gz أو diffs عادة ما تكون مقبولة. لا تنسخ التغييرات في بريد. معظم برامج البريد ستغير المسافات البيضاء، بحيث لن يُطبق الـ diff أو لن يختلف مقطع الشيفرة. في الماضي، ضاعت رسائل التصحيح أو أصبحت غير منظمة في العديد من الرسائل، لذا يُرجى استخدام <ulink url="https://community.kde.org/Infrastructure/GitLab"
+>GitLab</ulink
+>، شكرًا! </para
+> 
+            </listitem>
+            <listitem>
+              <para
+>استخدم حلولًا محمولة، يجب أن يعمل كروسيدر على: <itemizedlist
+> <listitem
+> <para
+>جميع أنظمة POSIX (&Linux;/BSD/&UNIX;-like OSes)، &Solaris;.</para
+> </listitem
+> <listitem
+> <para
+>جميع منصات BSD (<trademark class="copyright"
+>FreeBSD</trademark
+>/<trademark class="registered"
+>NetBSD</trademark
+>/<trademark class="registered"
+>OpenBSD</trademark
+>/&MacOS;).</para
+> </listitem
+> <listitem
+> <para
+>&kde; 3.3- &kde; 3.5 وحتى على GNOME مع kdelibs (لـ كروسيدر-2.x).</para
+> </listitem
+> <listitem
+> <para
+>GCC 2.95 - GCC 5.4</para
+> </listitem
+> </itemizedlist
+>تغييرات البنية تُجرى من قبل الفريق فقط.</para>
+            </listitem>
+            <listitem>
+              <para
+>ملاحظة أخيرة: ضع دائمًا في اعتبارك أن التصحيح قد يُرفض. إما أن له آثارًا جانبية لم نتمكن من إصلاحها أو يتعارض مع الفكرة وراء الوحدة المُصححة. بهذا المعنى، يختلف مشروع برمجي عن، لنقل، ويكي: يجب أن يكون لدى مشروع برمجي شخص يتخذ جميع القرارات النهائية. وإلا لن تعمل البرمجية. علاوة على ذلك: ضع في اعتبارك أن فحص التصحيحات قد يستغرق وقتًا، حيث أن لدينا جميعًا حياة خاصة.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_bug_report">
+          <para
+>كيف يمكنني الإبلاغ عن خطأ برمجي؟</para>
+        </question>
+        <answer>
+          <para
+>أخطاء برمجية؟!؟! حسنًا، حسنًا.... لدينا نظام تتبع أخطاء برمجية عبر الإنترنت.</para>
+          <para
+>استخدام متتبع الأخطاء البرمجية عبر الإنترنت يساعدنا في الحصول على طريقة واضحة ومنظمة لمعرفة عدد الأخطاء البرمجية المفتوحة وأولويتها ومتابعتها. ينقذنا من تصفح منتدى كروسيدر بأكمله بحثًا عن خطأ برمجي الأمس. يُرجى استخدام هذا النظام.</para>
+          <para
+>قبل الإبلاغ عن خطأ برمجي، يُرجى قراءة ما يلي: <orderedlist>
+            <listitem>
+              <para
+><emphasis role="bold"
+>تحقق</emphasis
+> مما إذا كان الخطأ البرمجي قد نُشر بالفعل في <ulink url="https://bugs.kde.org"
+>قائمة الأخطاء البرمجية عبر الإنترنت</ulink
+> لنظام تتبع الأخطاء البرمجية.</para>
+            </listitem>
+            <listitem>
+              <para
+>إذا لم تجد هذا الخطأ البرمجي مذكورًا، يُرجى <emphasis role="bold"
+>تقديمه</emphasis
+> في متتبع الأخطاء البرمجية بالنقر على الزر <guibutton
+>تقديم جديد</guibutton
+> في نافذة متتبع الأخطاء البرمجية. يُرجى تقديم المعلومات التالية: إصدار كروسيدر المستخدم، توزيعة &Linux; + الإصدار المستخدم، نوع المعالج، ووصف جيد للمشكلة بقدر ما تستطيع.</para>
+            </listitem>
+          </orderedlist
+></para>
+          <para
+>شكرًا على تعاونك!</para>
+          <note>
+            <para
+>إذا أمكن، حاول القيام بنفس العملية مع &konqueror; أو تطبيق &kde; آخر. إذا واجهت نفس المشكلة، فمن المحتمل أنها خطأ برمجي في KIO Slaves أو &kf5-full;، وليس خطأ برمجي في كروسيدر. يستخدم كروسيدر مكتبات &kde-frameworks; وKIO Slave للعديد من العمليات. في بعض الحالات، قد تواجه مشاكل إذا كانت توزيعتك مهيأة بشكل غير صحيح، يُرجى اختبارها أولًا كما هو موضح أعلاه.</para>
+          </note>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      
+<qandaentry>
+  <question id="faqg_valgrint">
+  <para
+>كيف يمكنني إرسال تقارير تنقيح أو تعطل جيدة؟</para>
+  </question>
+  <answer>
+  <para
+>عادةً لا تحتوي الحزم الثنائية التي تستخدمها توزيعتك على معلومات التنقيح. نظرًا لأننا عادةً ما نطور ونصلح كروسيدر-git فقط، قم بتجميع كروسيدر-git في وضع التنقيح وقم بتثبيته، ثم تحقق مما إذا كان الخطأ البرمجي لا يزال موجودًا. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>cmake</command
+> <option
+>-DCMAKE_BUILD_TYPE=debugfull</option
+></userinput
+></screen
+> قم بتثبيت <ulink url="https://valgrind.org"
+>valgrind</ulink
+>، مجموعة أدوات لتنقيح وتوصيف برامج &Linux;. قم بتشغيل Valgrind/كروسيدر <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>valgrind</command
+> <option
+>--tool=memcheck</option
+> <replaceable
+>{foo_path}/krusader</replaceable
+></userinput
+></screen
+> ستكتب أداة valgrind إلى stdout، ما يحدث بالفعل. إذا تمكنت من إرسال هذه المعلومات قبل التعطل، فمن شبه المؤكد أننا قد نصلح أو نخبرك بما يجب فعله. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+
+<qandaentry>
+  <question id="faqg_crashhandler">
+  <para
+>ماذا تفعل إذا لم يرسل معالج تعطل KDE معلومات تتبع خلفي مفيدة؟</para>
+  </question>
+  <answer>
+  <para
+>عادةً لا تحتوي الحزم الثنائية التي تستخدمها توزيعتك على معلومات التنقيح. نظرًا لأننا عادةً ما نطور ونصلح كروسيدر-git فقط، قم بتجميع كروسيدر-git في وضع التنقيح وقم بتثبيته، ثم تحقق مما إذا كان الخطأ البرمجي لا يزال موجودًا. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>cmake</command
+> <option
+>-DCMAKE_BUILD_TYPE=debugfull</option
+></userinput
+></screen
+> إذا كان معالج تعطل KDE لا يزال لا يوفر معلومات تتبع خلفي مفيدة، ففي بعض الأحيان سيعطي تفريغ أساسي معلومات أفضل. قم بتشغيل Krusader مع تعطيل معالج التعطل. <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>krusader</command
+> <option
+>--nocrashhandler</option
+></userinput
+></screen
+> عند التعطل ستحصل على ملف <filename
+>.core</filename
+>، عادةً في مجلد منزلك. قم بتشغيل <ulink url="https://sourceware.org/gdb/"
+>gdb</ulink
+>، مصحح مشروع GNU <screen
+><prompt
+>$</prompt
+> <userinput
+><command
+>gdb</command
+> <option
+>-c</option
+> <replaceable
+>corefile krusader</replaceable
+></userinput
+></screen
+> الآن اكتب <command
+>bt</command
+> للحصول على التتبع الخلفي واكتب <command
+>q</command
+> للخروج من gdb. غالبًا ما تُعطى أفضل نتائج التنقيح عند استخدام أداة valgrind. </para>
+  <!-- Empty line to make it more readable -->
+  </answer>
+</qandaentry>
+      
+<qandaentry>
+        <question id="faqg_mail_list">
+          <para
+>هل لدى كروسيدر قائمة بريدية؟</para>
+        </question>
+        <answer>
+          <para
+>نعم، لدينا حاليًا عدة <ulink url="https://krusader.org/get-involved/mailing-lists/index.html"
+>قوائم بريدية</ulink
+>. لا بريد مزعج، لا إزعاج، فقط كروسيدر. لا تتردد في الاشتراك وإلغاء الاشتراك.</para>
+          <para
+>نصيحة. يمكن تصفح قوائمنا البريدية عبر الإنترنت أو قراءتها باستخدام قارئ أخبار، بحيث لا تحتاج حتى إلى الاشتراك لمتابعة النشاط على القوائم البريدية. <itemizedlist>
+            <listitem>
+              <para
+><ulink url="https://groups.google.com/group/krusader-devel"
+>كروسيدر-devel</ulink
+> هي القائمة البريدية للمطورين (للقراءة فقط). إذا كنت ترغب في متابعة تطوير كروسيدر على الحافة المتطورة، فهذه هي القائمة لمتابعتها.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://groups.google.com/group/krusader-users"
+>كروسيدر-users</ulink
+> هي القائمة البريدية لمستخدمي كروسيدر. هنا يمكنك طلب المساعدة والتحدث مع مستخدمي ومطوري كروسيدر.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="http://groups.google.com/group/krusader-news"
+>كروسيدر-news</ulink
+> هي قائمة ذات حجم منخفض جدًا، تُستخدم للإعلانات عن الإصدارات الجديدة أو إصلاحات الأخطاء البرمجية الحرجة.</para>
+            </listitem>
+          </itemizedlist
+></para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_newsfeeds">
+          <para
+>هل يوفر كروسيدر خلاصات أخبار؟</para>
+        </question>
+        <answer>
+          <para
+>نعم، نوفر. عدة خلاصات أخبار بتنسيقات متنوعة متاحة. <ulink url="https://groups.google.com/group/krusader-devel/feeds"
+>خلاصة krusader-devel</ulink
+>، <ulink url="https://groups.google.com/group/krusader-users/feeds"
+>خلاصة krusader-users</ulink
+> و <ulink url="https://groups.google.com/group/krusader-news/feeds"
+>خلاصة krusader-news</ulink
+>.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_kru-forum">
+          <para
+>كيف يعمل منتدى كروسيدر؟</para>
+        </question>
+        <answer>
+          <para
+>بروح حرية التعبير، يمكن مناقشة كل ما يتعلق بـ كروسيدر في منتدانا. لا يهم إن كنت وافدًا جديدًا أو مستخدمًا متقدمًا، فالجميع مرحب به. أعظم قوة لمشروع مفتوح المصدر تنبع من تلقي ملاحظات المستخدمين. لذلك نحب سماع ما لديك لتقوله. بملاحظاتك يمكننا جعل كروسيدر أفضل وأفضل؛ وإلا، لن نكون على دراية بالمشكلات والأفكار التي قد تكون لديك. لكن يرجى تذكر ما يلي، حتى نتمكن من الحفاظ على بعض النظام في الفوضى.</para>
+          <para
+>إذا لم تستطع <link linkend="index"
+>الوثائق</link
+>، <link linkend="faq"
+>الأسئلة الشائعة</link
+> و<ulink url="https://groups.google.com/group/krusader-devel"
+>كروسيدر-devel</ulink
+> (يرجى استخدام وظيفة البحث) مساعدتك، فلا تتردد في النشر في منتدانا. فريق كروسيدر أو مجتمع كروسيدر متاح دائمًا لمساعدتك.</para>
+          <para
+>يرجى استخدام وظيفة البحث في <ulink url="https://groups.google.com/g/krusader-users"
+>صفحة قائمة بريد مستخدمي &krusader;</ulink
+> فقد تكون مشكلتك قد نوقشت سابقًا (هذا يسمح لنا بتقليل المشاركات المزدوجة/الثلاثية/...). إذا كانت مشكلتك قد نوقشت في الماضي، فهناك فرصة كبيرة للحصول على حل فوري لمشكلتك. إذا كانت المشكلة قيد النقاش حاليًا، يمكنك الانضمام إلى النقاش. بعض الأسئلة تُطرح مرارًا وتكرارًا، ولهذا أنشأنا <link linkend="faq"
+>الأسئلة الشائعة</link
+> هذه. هذا يسمح لنا بقضاء المزيد من الوقت في تطوير كروسيدر.</para>
+<!--          <para
+>The <ulink url="https://krusader.org/phpBB/index.php"
+>&krusader; Forum</ulink
+> is split into seven
+          sections: 
+          <itemizedlist>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=7"
+>News and Announcements Forum</ulink
+>: all the latest
+              news.</para>
+            </listitem>
+             <listitem>
+              <para
+><ulink url="http://krusader.sourceforge.net/phpBB/viewforum.php?f=12"
+>NewsLetter Forum</ulink
+>: all newsletters.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=3"
+>Bug Discussion Forum</ulink
+>: discussions about
+              bugs, please DO NOT use the forum for
+              <link linkend="faqg_bug_report"
+>bug reports</link
+> (except if you are
+              unsure if you have found a bug).</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=6"
+>New Features Discussion/Requests Forum</ulink
+>: discussions
+              about new features for future &krusader;
+              versions.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+> here you will find
+              the list of the planned features. Registered users
+              will be able to VOTE and COMMENT on the TODO items.
+              Here you get the chance to push your favourite
+              features (+3) and still prefer certain features over
+              others (+1), if you do not care about a feature just
+              simply do not vote on that feature. Unregistered users
+              may only browse the <ulink url="https://krusader.org/phpBB/viewforum.php?f=10"
+>ToDo Forum</ulink
+>. The
+              <ulink url="https://krusader.org/todo.php"
+>ToDo ranking system</ulink
+> contains the results
+              based on the votes. 
+              <link linkend="faqg_patch"
+>Adding ToDo items</link
+> or
+              removing ToDo items which have been implemented will
+              be done by the &krusader; Krew.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=11"
+>UserActions Forum</ulink
+>: discussions
+              about <link linkend="useractions"
+>UserActions</link
+>. Posting your own
+              User Actions is greatly appreciated. We plan to
+              include the best ones in the next
+              &krusader; releases.</para>
+            </listitem>
+            <listitem>
+              <para
+><ulink url="https://krusader.org/phpBB/viewforum.php?f=1"
+>General Discussion Forum</ulink
+>: everything that
+              is &krusader; related and does not belong
+              in the other forums.</para>
+            </listitem>
+              </itemizedlist
+></para
+>-->
+          <para
+>شكرًا على تعاونك!</para>
+          <!--<para
+>We provide a <ulink url="http://krusader.sf.net/phpBB/rss.php"
+>RSS feed</ulink
+> for our forums.
+	  You do not have to check for new posts all the time, instead the news
+          will come to you!</para
+>-->
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_i18n">
+          <para
+>كيف يمكنني ترجمة كروسيدر إلى لغتي الأم؟</para>
+        </question>
+        <answer>
+          <para
+>إذا كنت مهتمًا بترجمة واجهة المستخدم الرسومية أو وثائق كروسيدر، يرجى الاتصال بـ <ulink url="https://l10n.kde.org/teams-list.php"
+>فريق ترجمة كيدي</ulink
+> للغتك.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_support">
+          <para
+>كيف يمكنني دعم كروسيدر؟</para>
+        </question>
+        <answer>
+          <para
+>يمكنك <link linkend="help_krusader"
+>دعم</link
+> كروسيدر بعدة طرق مختلفة. يرجى إرسال <link linkend="faqg_wish"
+>ملاحظات</link
+>، <link linkend="faqg_bug_report"
+>تقارير أخطاء</link
+>، تصحيحات، <link linkend="help_krusader"
+>تبرعات</link
+>، ترجمات، ...</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_mcstyle">
+          <para
+>لماذا &konqueror; في نمط <quote
+>قائد منتصف الليل</quote
+> ليس <link linkend="gloss-ofm"
+>مدير ملفات أرثوذكسي</link
+>؟</para>
+        </question>
+        <answer>
+          <para
+>اللوحتان وسطر الأوامر متاحان، لكن كل الأشياء الأخرى مثل <link linkend="features"
+>ميزات مدير الملفات الأرثوذكسي</link
+> وتفاعل <link linkend="gloss-ofm"
+>مدير الملفات الأرثوذكسي</link
+> مع المستخدم مفقودة من هذه التشكيلة.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question id="faqg_why_ofm">
+          <para
+>لماذا يجب أن أستخدم <link linkend="gloss-ofm"
+>مدير ملفات أرثوذكسي</link
+>؟</para>
+        </question>
+        <answer>
+          <para
+><ulink url="https://www.softpanorama.org/OFM/index.shtml"
+>مدير الملفات الأرثوذكسي</ulink
+> أسرع بكثير من مدير ملفات بلوحة واحدة وأسرع من سطر الأوامر. إذا كنت ترغب في معرفة <ulink url="https://www.softpedia.com/reviews/linux/Krusader-18193.shtml"
+>كيف يبدو كروسيدر</ulink
+>، هناك طريقة واحدة فقط لاكتشاف ذلك: ثبته على حاسوبك واستخدمه لبعض الوقت. إذا كنت تفضل إضاعة الوقت وفقدان الإنتاجية، استمر في استخدام مديري الملفات بلوحة واحدة القائمين على مستكشف &Windows;. كتب ماتي أوربانتشيتش <ulink url="https://murban.blogspot.com/2006/01/krusader-and-konqueror-twin-versus-one.html"
+>مدونة</ulink
+> حول لماذا <link linkend="gloss-ofm"
+>مدير الملفات الأرثوذكسي</link
+> أفضل من مدير ملفات بلوحة واحدة.</para>
+          <para
+></para>
+          <!-- Empty line to make it more readable -->
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect1>
+  <!--
+  <qandaentry>
+       
+      <answer>
+         
+          // Empty line to make it more readable
+      </answer>
+  </qandaentry>
+-->
+</chapter>
