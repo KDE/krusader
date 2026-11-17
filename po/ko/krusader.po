@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
 "PO-Revision-Date: 2026-10-03 20:45+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -5645,57 +5645,57 @@ msgstr "기능 키로 파일에서 빠른 작업을 수행합니다."
 msgid "Horizontal Mode"
 msgstr "수평 모드"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "일반 뷰어(&G)"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "텍스트 뷰어(&T)"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "16진수 뷰어(&H)"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr "목록 보기 도구(&L)"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "텍스트 편집기(&E)"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "탭 떼내기(&D)"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "현재 탭 닫기(&C)"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "다음 탭(&N)"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "이전 탭(&P)"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "KrViewer(&K)"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5705,30 +5705,31 @@ msgstr ""
 "편집기 명령의 따옴표가 잘못됨:\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:362
-#, kde-format
-msgid "Can not open \"%1\""
-msgstr "\"%1\"을(를) 열 수 없음"
+#: app/KrViewer/krviewer.cpp:370
+#, fuzzy, kde-format
+#| msgid "Could not start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "%1을(를) 시작할 수 없음"
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1(편집 중)"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1(보는 중)"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "편집 중: %1"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
@@ -9733,6 +9734,9 @@ msgstr "Krarc 암호 대화 상자"
 msgid "Accessing the file requires a password."
 msgstr "파일에 접근하려면 암호가 필요합니다."
 
+#~ msgid "Can not open \"%1\""
+#~ msgstr "\"%1\"을(를) 열 수 없음"
+
 #~ msgid ""
 #~ "Feedback:\n"
 #~ "https://forum.kde.org/viewforum.php?f=225"
@@ -9745,9 +9749,6 @@ msgstr "파일에 접근하려면 암호가 필요합니다."
 
 #~ msgid "%d will be replaced by the workdir."
 #~ msgstr "%d 자리비움자는 작업 디렉터리로 대체됩니다."
-
-#~ msgid "Could not start %1"
-#~ msgstr "%1을(를) 시작할 수 없음"
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "책갈피 관리"

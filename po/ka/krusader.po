@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
 "PO-Revision-Date: 2026-09-21 04:01+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -5691,57 +5691,57 @@ msgstr ""
 msgid "Horizontal Mode"
 msgstr "ჰორიზონტალური რეჟიმი"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&ზოგადი დამთვალიერებელი"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&ტექსტის დამთვალიერებელი"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "თექვსმეტობითში დამთვალიერებელი"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr "&Lister"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "ტექსტური რ&ედაქტორი"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&ჩანართის მოხსნა"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "მიმდინარე &ჩანართის დახურვა"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "&შემდეგი ჩანართი"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&წინა ჩანართი"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5751,30 +5751,31 @@ msgstr ""
 "არასწორი ციტირება რედაქტორის ბრძანებაში:\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:362
-#, kde-format
-msgid "Can not open \"%1\""
-msgstr "\"%1\" ვერ გავხსენი"
+#: app/KrViewer/krviewer.cpp:370
+#, fuzzy, kde-format
+#| msgid "Could not start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "ვერ გავუშვი %1"
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (ჩასწორება)"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (ნახვა)"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "ჩასწორება: %1"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
@@ -9826,6 +9827,9 @@ msgstr "Krarc-ის პაროლის დიალოგი"
 msgid "Accessing the file requires a password."
 msgstr "ფაილზე წვდომა მოითხოვს პაროლს."
 
+#~ msgid "Can not open \"%1\""
+#~ msgstr "\"%1\" ვერ გავხსენი"
+
 #~ msgid ""
 #~ "Feedback:\n"
 #~ "https://forum.kde.org/viewforum.php?f=225"
@@ -9838,9 +9842,6 @@ msgstr "ფაილზე წვდომა მოითხოვს პარ
 
 #~ msgid "%d will be replaced by the workdir."
 #~ msgstr "%d ჩანაცვლდება სამუშაო საქაღალდით."
-
-#~ msgid "Could not start %1"
-#~ msgstr "ვერ გავუშვი %1"
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "სანიშნეების მართვა"

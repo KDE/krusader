@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
 "PO-Revision-Date: 2014-04-24 18:43+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -5875,57 +5875,57 @@ msgstr "Mit Funkschonentasten kannst Du Dateiakschonen gau utföhren"
 msgid "Horizontal Mode"
 msgstr "Kimmrecht Bedrief"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Standardkieker"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Textkieker"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Hex-Kieker"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr "&Lister"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "Text&editor"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "Paneel &aflösen"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "Aktuell Paneel &tomaken"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Nakamen Paneel"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Verleden Paneel"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrKieker"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5935,30 +5935,31 @@ msgstr ""
 "Leeg Schuultekens binnen Editorbefehl:\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:362
-#, kde-format
-msgid "Can not open \"%1\""
-msgstr "\"%1\" lett sik nich opmaken."
+#: app/KrViewer/krviewer.cpp:370
+#, fuzzy, kde-format
+#| msgid "Could not start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "\"%1\" lett sik nich starten."
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (bewerken)"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (ankieken)"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Bewerken: %1"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
@@ -10180,6 +10181,9 @@ msgstr "KrArc-Passwoortdialoog"
 msgid "Accessing the file requires a password."
 msgstr "För't Togriepen op de Dateien deit en Passwoort noot"
 
+#~ msgid "Can not open \"%1\""
+#~ msgstr "\"%1\" lett sik nich opmaken."
+
 #, fuzzy
 #~| msgid ""
 #~| "Feedback:\n"
@@ -10210,9 +10214,6 @@ msgstr "För't Togriepen op de Dateien deit en Passwoort noot"
 #~ msgstr ""
 #~ "För %t warrt de Titel vun de Akschoon insett,\n"
 #~ "un för %d de Arbeitorner."
-
-#~ msgid "Could not start %1"
-#~ msgstr "\"%1\" lett sik nich starten."
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "Leestekens plegen"

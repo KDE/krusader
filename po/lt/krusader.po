@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
 "PO-Revision-Date: 2019-03-17 17:31+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -5986,57 +5986,57 @@ msgstr "Funkciniai klavišai skirti darbui pagreitinti."
 msgid "Horizontal Mode"
 msgstr "Vertikali veiksena"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Bendra žiūryklė"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Teksto žiūryklė"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Šešioliktainė žiūryklė"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr ""
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "Teksto &redaktorius"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "A&tskirti kortelę"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Užverti dabartinę kortelę"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Kita kortelė"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Ankstesnė kortelė"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "&Žiūryklė"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -6044,34 +6044,34 @@ msgid ""
 "%1"
 msgstr ""
 
-#: app/KrViewer/krviewer.cpp:362
+#: app/KrViewer/krviewer.cpp:370
 #, fuzzy, kde-format
-#| msgid "Cannot open %1!"
-msgid "Can not open \"%1\""
-msgstr "Nepavyko atverti %1!"
+#| msgid "Could not start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "Nepavyko paleisti %1"
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "Redagavimas"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, fuzzy, kde-format
 #| msgid "Viewing"
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "Žvalgosi"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Redagavimas"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, fuzzy, kde-format
 #| msgid "View: "
 msgctxt "filestate: filename"
@@ -10397,6 +10397,11 @@ msgid "Accessing the file requires a password."
 msgstr "Prieiga prie failo reikalauja slaptažodžio."
 
 #, fuzzy
+#~| msgid "Cannot open %1!"
+#~ msgid "Can not open \"%1\""
+#~ msgstr "Nepavyko atverti %1!"
+
+#, fuzzy
 #~| msgid ""
 #~| "Feedback:\n"
 #~| "https://forum.kde.org/viewforum.php?f=225\n"
@@ -10417,9 +10422,6 @@ msgstr "Prieiga prie failo reikalauja slaptažodžio."
 #~| msgid "Terminal:"
 #~ msgid "External Terminal:"
 #~ msgstr "Terminalas:"
-
-#~ msgid "Could not start %1"
-#~ msgstr "Nepavyko paleisti %1"
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "Tvarkyti žymeles"

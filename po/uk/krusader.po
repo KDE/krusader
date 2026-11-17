@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
 "PO-Revision-Date: 2026-09-21 10:01+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -5723,57 +5723,57 @@ msgstr "Клавіші функцій прискорюють роботу з ф�
 msgid "Horizontal Mode"
 msgstr "Горизонтальний режим"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Загальний переглядач"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Переглядач тексту"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Шістн. переглядач"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr "П&ерелік"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "Текстовий &редактор"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Від'єднати вкладку"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Закрити поточну сторінку"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Наступна вкладка"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Попередня вкладка"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5783,30 +5783,31 @@ msgstr ""
 "Помилкове використання лапок у команді редактора:\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:362
-#, kde-format
-msgid "Can not open \"%1\""
-msgstr "Не вдалося відкрити «%1»"
+#: app/KrViewer/krviewer.cpp:370
+#, fuzzy, kde-format
+#| msgid "Could not start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "Не вдалося запустити %1"
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (редагування)"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (перегляд)"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Редагування: %1"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
@@ -9900,6 +9901,9 @@ msgstr "Діалогове вікно пароля Krarc"
 msgid "Accessing the file requires a password."
 msgstr "Для доступу до файла потрібен пароль."
 
+#~ msgid "Can not open \"%1\""
+#~ msgstr "Не вдалося відкрити «%1»"
+
 #~ msgid ""
 #~ "Feedback:\n"
 #~ "https://forum.kde.org/viewforum.php?f=225"
@@ -9912,9 +9916,6 @@ msgstr "Для доступу до файла потрібен пароль."
 
 #~ msgid "%d will be replaced by the workdir."
 #~ msgstr "%d буде замінено на робочий каталог."
-
-#~ msgid "Could not start %1"
-#~ msgstr "Не вдалося запустити %1"
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "Керування закладками"

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: krusader\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
 "PO-Revision-Date: 2026-10-03 08:28+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -5804,57 +5804,57 @@ msgstr ""
 msgid "Horizontal Mode"
 msgstr "Mode horizontal"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "Afficheur &générique"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "Afficheur de &texte"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "Afficheur &hexadécimal"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr "Afficher en &liste"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "&Éditeur de texte"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Détacher l'onglet"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "&Fermer l'onglet actuel"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "Onglet &suivant"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "Onglet &précédent"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5864,30 +5864,31 @@ msgstr ""
 "Guillemets erronés dans la commande de l'éditeur :\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:362
-#, kde-format
-msgid "Can not open \"%1\""
-msgstr "Impossible d'ouvrir « %1 »"
+#: app/KrViewer/krviewer.cpp:370
+#, fuzzy, kde-format
+#| msgid "Could not start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "Impossible de démarrer %1"
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (modification)"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (affichage)"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Modification : %1"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
@@ -9981,6 +9982,9 @@ msgstr "Boite de dialogue de mot de passe pour krarc"
 msgid "Accessing the file requires a password."
 msgstr "L'accès au fichier requiert un mot de passe."
 
+#~ msgid "Can not open \"%1\""
+#~ msgstr "Impossible d'ouvrir « %1 »"
+
 #~ msgid ""
 #~ "Feedback:\n"
 #~ "https://forum.kde.org/viewforum.php?f=225"
@@ -9993,9 +9997,6 @@ msgstr "L'accès au fichier requiert un mot de passe."
 
 #~ msgid "%d will be replaced by the workdir."
 #~ msgstr "%d sera remplacé par le dossier de travail."
-
-#~ msgid "Could not start %1"
-#~ msgstr "Impossible de démarrer %1"
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "Gérer les signets"

@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
-"PO-Revision-Date: 2026-11-15 18:55+0300\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
+"PO-Revision-Date: 2026-11-16 19:12+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -3225,7 +3225,7 @@ msgstr "Durum çubuğu, etkin olmayan arka plan:"
 #: app/Panel/panelcontextmenu.cpp:135
 #, kde-format
 msgid "Preview"
-msgstr "Önizleme"
+msgstr "Ön İzle"
 
 #: app/Konfigurator/kgcolors.cpp:376
 #, kde-format
@@ -4082,12 +4082,12 @@ msgstr "Dosya adları ve klasörler için simgeleri göster."
 #: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews by default"
-msgstr "Önizlemeleri öntanımlı olarak göster"
+msgstr "Öntanımlı olarak ön izlemeleri göster"
 
 #: app/Konfigurator/kgpanel.cpp:403
 #, kde-format
 msgid "Show previews of files and folders."
-msgstr "Dosya ve klasörlerin önizlemelerini gösterin."
+msgstr "Dosya ve klasörlerin ön izlemelerini gösterin."
 
 #: app/Konfigurator/kgpanel.cpp:438
 #, kde-format
@@ -5683,57 +5683,57 @@ msgstr "Fonksiyon düğmeleri, dosyalar üzerinde hızlı işlemlere izin verir.
 msgid "Horizontal Mode"
 msgstr "Yatay Kip"
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "&Genel Görüntüleyici"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "&Metin Görüntüleyicisi"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "&Onaltılık Görüntüleyicisi"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr "&Listeleyici"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "Metin Dü&zenleyicisi"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "Sekmeyi &Ayır"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "Geçerli Sekmeyi &Kapat"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "&Sonraki Sekme"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "&Önceki Sekme"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -5743,30 +5743,31 @@ msgstr ""
 "Düzenleyici komutunda kötü alıntılama:\n"
 "%1"
 
-#: app/KrViewer/krviewer.cpp:362
-#, kde-format
-msgid "Can not open \"%1\""
-msgstr "“%1” açılamadı"
+#: app/KrViewer/krviewer.cpp:370
+#, fuzzy, kde-format
+#| msgid "Could not start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "%1 başlatılamıyor"
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "%1 (Düzenleniyor)"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, kde-format
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "%1 (Görüntüleniyor)"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Düzenleniyor: %1"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, kde-format
 msgctxt "filestate: filename"
 msgid "Viewing: %1"
@@ -7006,7 +7007,7 @@ msgstr "Özel yerleşim: “%1”"
 #: app/Panel/krpreviewpopup.cpp:87
 #, kde-format
 msgid "Preview not available"
-msgstr "Önizleme kullanılamıyor"
+msgstr "Ön izleme kullanılamıyor"
 
 #: app/Panel/krsearchbar.cpp:37
 #, kde-format
@@ -7126,7 +7127,7 @@ msgstr "%1 boş"
 #: app/Panel/listpanel.cpp:1052
 #, kde-format
 msgid "loading previews: %p%"
-msgstr "Önizlemeler yükleniyor: %%p"
+msgstr "Ön izlemeler yükleniyor: %%p"
 
 #: app/Panel/listpanel.cpp:1093
 #, kde-format
@@ -7980,7 +7981,7 @@ msgstr "Ağaç Penceresi: Yerel dosya sisteminin ağaç görünümü"
 #: app/Panel/sidebar.cpp:65
 #, kde-format
 msgid "Preview Panel: display a preview of the current file"
-msgstr "Önizleme Penceresi: Seçili dosya içeriğini gösterir"
+msgstr "Ön İzleme Penceresi: Seçili dosya içeriğini gösterir"
 
 #: app/Panel/sidebar.cpp:72
 #, kde-format
@@ -8005,7 +8006,7 @@ msgstr "Ağaç:"
 #: app/Panel/sidebar.cpp:218
 #, kde-format
 msgid "Preview:"
-msgstr "Önizleme:"
+msgstr "Ön izleme:"
 
 #: app/Panel/sidebar.cpp:223
 #, kde-format
@@ -8015,7 +8016,7 @@ msgstr "Görünüm:"
 #: app/Panel/sidebar.cpp:253
 #, kde-format
 msgid "Preview: %1"
-msgstr "Önizleme: %1"
+msgstr "Ön izleme: %1"
 
 #: app/Panel/sidebar.cpp:260
 #, kde-format
@@ -8102,7 +8103,7 @@ msgstr "Ayarları Diğer Sekmelere Uygula"
 #: app/Panel/viewactions.cpp:44
 #, kde-format
 msgid "Show Previews"
-msgstr "Önizlemeleri Göster"
+msgstr "Ön İzlemeleri Göster"
 
 #: app/Panel/viewactions.cpp:45
 #, kde-format
@@ -9802,6 +9803,9 @@ msgstr "Krarc Parola İletişim Kutusu"
 msgid "Accessing the file requires a password."
 msgstr "Dosyaya erişmek için parola gerekiyor."
 
+#~ msgid "Can not open \"%1\""
+#~ msgstr "“%1” açılamadı"
+
 #~ msgid ""
 #~ "Feedback:\n"
 #~ "https://forum.kde.org/viewforum.php?f=225"
@@ -9814,6 +9818,3 @@ msgstr "Dosyaya erişmek için parola gerekiyor."
 
 #~ msgid "%d will be replaced by the workdir."
 #~ msgstr "%d, çalışma dizini ile değiştirilecek."
-
-#~ msgid "Could not start %1"
-#~ msgstr "%1 başlatılamıyor"

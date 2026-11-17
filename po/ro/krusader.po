@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-11-09 00:59+0000\n"
+"POT-Creation-Date: 2026-11-17 01:12+0000\n"
 "PO-Revision-Date: 2026-06-15 13:28+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -5993,57 +5993,57 @@ msgstr "Tastele funcționale permit efectuarea de operații rapizi pe fișiere."
 msgid "Horizontal Mode"
 msgstr "Modul orizontal."
 
-#: app/KrViewer/krviewer.cpp:98
+#: app/KrViewer/krviewer.cpp:100
 #, kde-format
 msgid "&Generic Viewer"
 msgstr "Vizualizor &generic"
 
-#: app/KrViewer/krviewer.cpp:99
+#: app/KrViewer/krviewer.cpp:101
 #, kde-format
 msgid "&Text Viewer"
 msgstr "Vizualizor &text"
 
-#: app/KrViewer/krviewer.cpp:100
+#: app/KrViewer/krviewer.cpp:102
 #, kde-format
 msgid "&Hex Viewer"
 msgstr "Vizualizor &hexa"
 
-#: app/KrViewer/krviewer.cpp:101
+#: app/KrViewer/krviewer.cpp:103
 #, kde-format
 msgid "&Lister"
 msgstr "&Modul listare"
 
-#: app/KrViewer/krviewer.cpp:104
+#: app/KrViewer/krviewer.cpp:106
 #, kde-format
 msgid "Text &Editor"
 msgstr "&Editor text"
 
-#: app/KrViewer/krviewer.cpp:128
+#: app/KrViewer/krviewer.cpp:130
 #, kde-format
 msgid "&Detach Tab"
 msgstr "&Detașare filă"
 
-#: app/KrViewer/krviewer.cpp:140
+#: app/KrViewer/krviewer.cpp:142
 #, kde-format
 msgid "&Close Current Tab"
 msgstr "În&chide fila curentă"
 
-#: app/KrViewer/krviewer.cpp:146
+#: app/KrViewer/krviewer.cpp:148
 #, kde-format
 msgid "&Next Tab"
 msgstr "Fila &următoare"
 
-#: app/KrViewer/krviewer.cpp:152
+#: app/KrViewer/krviewer.cpp:154
 #, kde-format
 msgid "&Previous Tab"
 msgstr "Fila &anterioară"
 
-#: app/KrViewer/krviewer.cpp:227
+#: app/KrViewer/krviewer.cpp:229
 #, kde-format
 msgid "&KrViewer"
 msgstr "&KrViewer"
 
-#: app/KrViewer/krviewer.cpp:355
+#: app/KrViewer/krviewer.cpp:356
 #, kde-format
 msgctxt "Arg is a string containing the bad quoting."
 msgid ""
@@ -6051,33 +6051,34 @@ msgid ""
 "%1"
 msgstr ""
 
-#: app/KrViewer/krviewer.cpp:362
-#, kde-format
-msgid "Can not open \"%1\""
-msgstr "Nu s-a putut deschide „%1”"
+#: app/KrViewer/krviewer.cpp:370
+#, fuzzy, kde-format
+#| msgid "Couldn't start %1"
+msgid "Could not launch the editor \"%1\""
+msgstr "Nu s-a putut porni %1"
 
-#: app/KrViewer/krviewer.cpp:674
+#: app/KrViewer/krviewer.cpp:688
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgctxt "filename (filestate)"
 msgid "%1 (Editing)"
 msgstr "Se editează"
 
-#: app/KrViewer/krviewer.cpp:675
+#: app/KrViewer/krviewer.cpp:689
 #, fuzzy, kde-format
 #| msgid "Viewing"
 msgctxt "filename (filestate)"
 msgid "%1 (Viewing)"
 msgstr "Se vizualizează"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgctxt "filestate: filename"
 msgid "Editing: %1"
 msgstr "Se editează"
 
-#: app/KrViewer/krviewer.cpp:681
+#: app/KrViewer/krviewer.cpp:695
 #, fuzzy, kde-format
 #| msgid "View: %1"
 msgctxt "filestate: filename"
@@ -10353,6 +10354,9 @@ msgstr "Dialog parolă Krarc"
 msgid "Accessing the file requires a password."
 msgstr "Accesarea fișierului necesită o parolă."
 
+#~ msgid "Can not open \"%1\""
+#~ msgstr "Nu s-a putut deschide „%1”"
+
 #, fuzzy
 #~| msgid ""
 #~| "Feedback:\n"
@@ -10383,11 +10387,6 @@ msgstr "Accesarea fișierului necesită o parolă."
 #~ msgstr ""
 #~ "%t va fi înlocuit de titlul acțiunii,\n"
 #~ "%d cu dosarul-de-lucru."
-
-#, fuzzy
-#~| msgid "Couldn't start %1"
-#~ msgid "Could not start %1"
-#~ msgstr "Nu s-a putut porni %1"
 
 #~ msgid "Manage Bookmarks"
 #~ msgstr "Gestionare semne de carte"
