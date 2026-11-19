@@ -108,6 +108,14 @@ public:
     virtual void updateFilesystemInfo()
     {
     }
+    /// Stop watching the current directory (e.g. to allow unmounting while the panel is inactive).
+    virtual void stopWatching()
+    {
+    }
+    /// Resume watching the current directory after stopWatching().
+    virtual void startWatching()
+    {
+    }
 
     /**
      * Scan all files and directories in a directory and create the file items for them. Blocking.

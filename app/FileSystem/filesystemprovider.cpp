@@ -7,6 +7,8 @@
 */
 
 #include "filesystemprovider.h"
+#include "localdeletejob.h"
+#include "mountpath.h"
 
 #ifdef HAVE_POSIX_ACL
 #include <sys/acl.h>
@@ -98,6 +100,34 @@ void FileSystemProvider::refreshFilesystems(const QUrl &directory, bool removed)
             fs->updateFilesystemInfo();
         }
     }
+}
+
+void FileSystemProvider::stopWatchingMountPoint(const QString &mntPoint)
+{
+    if (mntPoint.isEmpty())
+        return;
+
+    QMutableListIterator<QPointer<FileSystem>> it(_fileSystems);
+    while (it.hasNext()) {
+        if (it.next().isNull())
+            it.remove();
+    }
+
+    for (const QPointer<FileSystem> &fileSystemPointer : _fileSystems) {
+        FileSystem *fs = fileSystemPointer.data();
+        if (!fs)
+            continue;
+        const QUrl dir = fs->currentDirectory();
+        if (!dir.isLocalFile())
+            continue;
+        if (MountPath::isSameOrChild(mntPoint, dir.toLocalFile()))
+            fs->stopWatching();
+    }
+}
+
+void FileSystemProvider::abortLocalDeleteJobsUnderMount(const QString &mntPoint)
+{
+    LocalDeleteJob::abortJobsUnderMount(mntPoint);
 }
 
 FileSystem *FileSystemProvider::getFilesystemInstance(const QUrl &directory)

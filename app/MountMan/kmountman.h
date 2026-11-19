@@ -34,7 +34,11 @@ class KMountMan : public QObject
     friend class KMountManGUI;
 
 public:
-    enum mntStatus { DOESNT_EXIST, NOT_MOUNTED, MOUNTED };
+    enum mntStatus {
+        DOESNT_EXIST,
+        NOT_MOUNTED,
+        MOUNTED
+    };
 
     inline bool operational()
     {
@@ -45,6 +49,8 @@ public:
     void unmount(const QString &mntPoint, bool blocking = true); // this is probably what you need for unmount
     mntStatus getStatus(const QString &mntPoint); // return the status of a mntPoint (if any)
     void eject(const QString &mntPoint);
+    /** Release cwd, watches, jobs and panels so a mount point can be unmounted. */
+    void leaveMountPoint(const QString &mntPoint);
     bool ejectable(QString path);
     bool removable(QString path);
     bool removable(Solid::Device d);
@@ -85,18 +91,24 @@ protected:
     {
         emit refreshPanel(url);
     }
+    /** Request Solid/KIO teardown without nesting another leaveMountPoint(). */
+    void performTeardown(const QString &mntPoint, bool blocking);
 
 signals:
     void refreshPanel(const QUrl &);
 
 private:
-    enum ActionType { Mount, Unmount };
+    enum ActionType {
+        Mount,
+        Unmount
+    };
 
     KToolBarPopupAction *_action;
     QAction *_manageAction;
 
     bool _operational; // if false, something went terribly wrong on startup
     bool waiting; // used to block krusader while waiting for (un)mount operation
+    bool _teardownInProgress = false; // reentrancy guard for performTeardown
     KMountManGUI *mountManGui;
     // the following is the FS type
     QStringList invalid_fs;

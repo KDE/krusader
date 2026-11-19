@@ -65,6 +65,10 @@ public:
     static FileSystem::FS_TYPE getFilesystemType(const QUrl &url);
     /** Get ACL permissions for a file */
     static void getACL(FileItem *file, QString &acl, QString &defAcl);
+    /** Stop directory watches for all filesystems currently under a local mount point. */
+    void stopWatchingMountPoint(const QString &mntPoint);
+    /** Abort in-process local delete/trash jobs that touch a mount point. */
+    void abortLocalDeleteJobsUnderMount(const QString &mntPoint);
 
 public slots:
     /**

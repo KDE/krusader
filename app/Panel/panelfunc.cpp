@@ -9,6 +9,7 @@
 // QtCore
 #include <QDir>
 #include <QEventLoop>
+#include <QFileInfo>
 #include <QList>
 #include <QMimeData>
 #include <QTemporaryFile>
@@ -56,6 +57,8 @@
 #include "../FileSystem/fileitem.h"
 #include "../FileSystem/filesystemprovider.h"
 #include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/mountleavestate.h"
+#include "../FileSystem/mountpath.h"
 #include "../FileSystem/sizecalculator.h"
 #include "../FileSystem/virtualfilesystem.h"
 #include "../KrViewer/krviewer.h"
@@ -95,6 +98,8 @@ ListPanelFunc::ListPanelFunc(ListPanel *parent)
 ListPanelFunc::~ListPanelFunc()
 {
     if (fileSystemP) {
+        // Release inotify/KDirWatch immediately; deleteLater alone can keep a mount busy.
+        fileSystemP->stopWatching();
         fileSystemP->deleteLater();
     }
     delete history;
@@ -271,6 +276,7 @@ void ListPanelFunc::doRefresh()
         // disconnect older signals
         disconnect(fileSystemP, nullptr, panel, nullptr);
 
+        fileSystemP->stopWatching();
         fileSystemP->deleteLater();
         fileSystemP = fileSystem; // v != 0 so this is safe
     } else {
@@ -312,9 +318,9 @@ void ListPanelFunc::doRefresh()
 
     panel->setCursor(Qt::ArrowCursor);
 
-    // on local file system change the working directory
+    // on local file system change the working directory (never onto a mount being left)
     if (files()->isLocal())
-        QDir::setCurrent(KrServices::urlToLocalPath(files()->currentDirectory()));
+        MountLeaveState::instance().setCwdIfNotLeaving(KrServices::urlToLocalPath(files()->currentDirectory()));
 
     // see if the open url operation failed, and if so,
     // put the attempted url in the navigator bar and let the user change it
@@ -342,10 +348,50 @@ void ListPanelFunc::setPaused(bool paused)
         return;
     _isPaused = paused;
 
-    // TODO: disable refresh() in local file system when paused
+    // Inactive tabs must not keep KDirWatch/inotify on a mount — that blocks unmounting
+    // removable devices until Krusader is closed.
+    if (fileSystemP) {
+        if (_isPaused)
+            fileSystemP->stopWatching();
+        else if (!_refreshAfterPaused)
+            fileSystemP->startWatching();
+    }
 
     if (!_isPaused && _refreshAfterPaused)
         refresh();
+}
+
+void ListPanelFunc::leaveMountPoint(const QString &mntPoint)
+{
+    if (mntPoint.isEmpty())
+        return;
+
+    const QUrl current = virtualDirectory();
+    if (!current.isLocalFile())
+        return;
+
+    if (!MountPath::isSameOrChild(mntPoint, current.toLocalFile()))
+        return;
+
+    // Drop the directory watch immediately.
+    if (fileSystemP)
+        fileSystemP->stopWatching();
+
+    const QString canonicalMnt = MountPath::canonical(mntPoint);
+    QUrl fallback = QUrl::fromLocalFile(QFileInfo(canonicalMnt).absolutePath());
+    if (fallback.path().isEmpty() || MountPath::isSameOrChild(canonicalMnt, fallback.toLocalFile()))
+        fallback = QUrl::fromLocalFile(QDir::homePath());
+
+    // Navigate synchronously: openUrl()+delayTimer would race with Solid teardown.
+    delayTimer.stop();
+    history->add(cleanPath(fallback), QString());
+    const bool wasPaused = _isPaused;
+    _isPaused = false;
+    _refreshAfterPaused = false;
+    doRefresh();
+    _isPaused = wasPaused;
+    if (_isPaused && fileSystemP)
+        fileSystemP->stopWatching();
 }
 
 void ListPanelFunc::redirectLink()

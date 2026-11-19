@@ -10,6 +10,7 @@
 
 // QtCore
 #include <QDebug>
+#include <QDir>
 #include <QEvent>
 #include <QList>
 // QtGui
@@ -204,6 +205,17 @@ void KrusaderView::updateCurrentActivePath()
     KConfigGroup cfg = krConfig->group("General");
     if (_terminalDock->isInitialised() && cfg.readEntry("Send CDs", Defaults::sendCDs)) {
         _terminalDock->sendCd(path);
+    }
+}
+
+void KrusaderView::leaveMountPoint(const QString &mntPoint)
+{
+    leftMng->leaveMountPoint(mntPoint);
+    rightMng->leaveMountPoint(mntPoint);
+
+    KConfigGroup cfg = krConfig->group("General");
+    if (_terminalDock->isInitialised() && cfg.readEntry("Send CDs", Defaults::sendCDs)) {
+        _terminalDock->sendCd(QDir::homePath());
     }
 }
 

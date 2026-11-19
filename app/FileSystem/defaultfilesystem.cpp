@@ -11,10 +11,10 @@
 #include <QDebug>
 #include <QDir>
 #include <QEventLoop>
+#include <QStorageInfo>
 
 #include <KFileItem>
 #include <KIO/DropJob>
-#include <KIO/FileSystemFreeSpaceJob>
 #include <KIO/FileUndoManager>
 #include <KIO/JobUiDelegate>
 #include <KIO/ListJob>
@@ -32,6 +32,7 @@
 #include "../krglobal.h"
 #include "../krservices.h"
 #include "fileitem.h"
+#include "mountleavestate.h"
 
 DefaultFileSystem::DefaultFileSystem()
 {
@@ -157,32 +158,44 @@ void DefaultFileSystem::updateFilesystemInfo()
         return;
     }
 
-    const QString path = _currentDirectory.path();
-    KIO::FileSystemFreeSpaceJob *job = KIO::fileSystemFreeSpace(QUrl::fromLocalFile(path));
-
-    connect(job, &KIO::FileSystemFreeSpaceJob::finished, this, &DefaultFileSystem::freeSpaceResult);
-}
-
-void DefaultFileSystem::freeSpaceResult(KJob *job)
-{
-    if (!job->error()) {
-        KIO::FileSystemFreeSpaceJob *freeSpaceJob = qobject_cast<KIO::FileSystemFreeSpaceJob *>(job);
-        Q_ASSERT(freeSpaceJob);
-        QString path = freeSpaceJob->url().toLocalFile();
-        const KMountPoint::Ptr mountPoint = KMountPoint::currentMountPoints().findByPath(path);
-        QString fsType;
-        if (mountPoint != nullptr) {
-            fsType = mountPoint->mountType();
-            _mountPoint = mountPoint->mountPoint();
-        } else {
-            fsType = "";
-            _mountPoint = "";
-        }
-        emit fileSystemInfoChanged("", fsType, freeSpaceJob->size(), freeSpaceJob->availableSize());
-    } else {
+    // Use QStorageInfo instead of KIO::fileSystemFreeSpace for local paths.
+    // The KIO job keeps a file ioslave open on the mount and prevents unmounting
+    // until Krusader exits (see bugs.kde.org/445549).
+    const QStorageInfo storage(_currentDirectory.path());
+    if (!storage.isValid() || !storage.isReady()) {
         _mountPoint = "";
         emit fileSystemInfoChanged(i18n("Space information unavailable"), "", 0, 0);
+        return;
     }
+
+    _mountPoint = storage.rootPath();
+    emit fileSystemInfoChanged("", QString::fromUtf8(storage.fileSystemType()), storage.bytesTotal(), storage.bytesAvailable());
+}
+
+void DefaultFileSystem::stopWatching()
+{
+    delete _watcher;
+}
+
+void DefaultFileSystem::startWatching()
+{
+    if (!_watcher.isNull() || !isLocal())
+        return;
+    installWatcher();
+}
+
+void DefaultFileSystem::installWatcher()
+{
+    delete _watcher;
+    _watcher = new KDirWatch(this);
+    // if the current dir is a link path the watcher needs to watch the real path - and signal
+    // parameters will be the real path
+    _watcher->addDir(realPath(), KDirWatch::WatchFiles);
+    connect(_watcher.data(), &KDirWatch::dirty, this, &DefaultFileSystem::slotWatcherDirty);
+    // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
+    // connect(_watcher.data(), &KDirWatch::created, this, &DefaultFileSystem::slotWatcherCreated);
+    connect(_watcher.data(), &KDirWatch::deleted, this, &DefaultFileSystem::slotWatcherDeleted);
+    _watcher->startScan(false);
 }
 
 // ==== protected ====
@@ -383,19 +396,13 @@ bool DefaultFileSystem::refreshLocal(const QUrl &directory, bool onlyScan)
     }
     // clean up
     QT_CLOSEDIR(dir);
-    QDir::setCurrent(savedDir);
+    // Never restore cwd onto a mount that is being left for unmount (EBUSY race).
+    MountLeaveState::instance().setCwdIfNotLeaving(savedDir);
 
     if (!onlyScan) {
-        // start watching the new dir for file changes
-        _watcher = new KDirWatch(this);
-        // if the current dir is a link path the watcher needs to watch the real path - and signal
-        // parameters will be the real path
-        _watcher->addDir(realPath(), KDirWatch::WatchFiles);
-        connect(_watcher.data(), &KDirWatch::dirty, this, &DefaultFileSystem::slotWatcherDirty);
-        // NOTE: not connecting 'created' signal. A 'dirty' is send after that anyway
-        // connect(_watcher.data(), &KDirWatch::created, this, &DefaultFileSystem::slotWatcherCreated);
-        connect(_watcher.data(), &KDirWatch::deleted, this, &DefaultFileSystem::slotWatcherDeleted);
-        _watcher->startScan(false);
+        // Do not reinstall a watcher on a mount that is being unmounted.
+        if (!MountLeaveState::instance().isLeavingPath(path))
+            installWatcher();
     }
 
     return true;

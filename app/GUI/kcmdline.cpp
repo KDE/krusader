@@ -29,6 +29,7 @@
 #include <utility>
 
 #include "../ActionMan/addplaceholderpopup.h"
+#include "../FileSystem/mountleavestate.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "../krglobal.h"
@@ -214,7 +215,8 @@ void KCMDLine::setCurrent(const QString &path)
     completion.setDir(QUrl::fromLocalFile(path));
     // make sure our command is executed in the right directory
     // This line is important for Krusader overall functions -> do not remove !
-    QDir::setCurrent(path);
+    // Never pin cwd on a mount that is being left for unmount.
+    MountLeaveState::instance().setCwdIfNotLeaving(path);
 }
 
 void KCMDLine::slotRun()

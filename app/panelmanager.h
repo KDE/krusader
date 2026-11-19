@@ -98,6 +98,10 @@ public:
      * Delete what is stored about a closed tab.
      */
     void delClosedTab(QAction *action);
+    /**
+     * Navigate all tabs away from the given local mount point so it can be unmounted.
+     */
+    void leaveMountPoint(const QString &mntPoint);
 
 signals:
     void draggingTab(PanelManager *from, QMouseEvent *);

@@ -9,15 +9,18 @@
 #include "kmountman.h"
 
 // QtCore
+#include <QCoreApplication>
 #include <QDir>
+#include <QEvent>
+#include <QEventLoop>
 // QtWidgets
 #include <QApplication>
 #include <QMenu>
 
+#include <KIO/JobTracker>
 #include <KIO/JobUiDelegate>
 #include <KIO/JobUiDelegateFactory>
 #include <KIO/SimpleJob>
-#include <KIO/JobTracker>
 #include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -35,12 +38,16 @@
 #include <utility>
 
 #include "../Dialogs/krdialogs.h"
+#include "../FileSystem/filesystemprovider.h"
 #include "../FileSystem/krpermhandler.h"
+#include "../FileSystem/mountleavestate.h"
+#include "../FileSystem/mountpath.h"
 #include "../defaults.h"
 #include "../icon.h"
 #include "../kractions.h"
 #include "../krglobal.h"
 #include "../krservices.h"
+#include "../krusaderview.h"
 #include "kmountmangui.h"
 
 #ifdef _OS_SOLARIS_
@@ -209,14 +216,53 @@ void KMountMan::mount(const QString &mntPoint, bool blocking)
     }
 }
 
-void KMountMan::unmount(const QString &mntPoint, bool blocking)
+void KMountMan::leaveMountPoint(const QString &mntPoint)
 {
-    // if working dir is below mountpoint cd to ~ first
-    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
-        QDir::setCurrent(QDir::homePath());
+    if (mntPoint.isEmpty())
+        return;
 
-    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()) == QUrl::fromLocalFile(QDir::current().canonicalPath()))
+    const QString canonicalMnt = MountPath::canonical(mntPoint);
+    if (canonicalMnt.isEmpty())
+        return;
+
+    auto &leaveState = MountLeaveState::instance();
+
+    // Idempotent: nested teardownRequested/unmount must not re-enter navigation.
+    if (leaveState.contains(canonicalMnt)) {
         QDir::setCurrent(QDir::homePath());
+        return;
+    }
+    leaveState.begin(canonicalMnt);
+
+    // Abort in-process delete/trash jobs that still hold the mount open.
+    FileSystemProvider::instance().abortLocalDeleteJobsUnderMount(canonicalMnt);
+    QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+
+    // Navigate panels/tabs off the device and stop directory watches before unmounting.
+    if (MAIN_VIEW)
+        MAIN_VIEW->leaveMountPoint(canonicalMnt);
+
+    FileSystemProvider::instance().stopWatchingMountPoint(canonicalMnt);
+
+    // Process cwd must not remain on the mount (blocks umount with EBUSY).
+    QDir::setCurrent(QDir::homePath());
+
+    // Ensure deferred deletions of FileSystem/KDirWatch objects run before teardown.
+    QCoreApplication::sendPostedEvents(nullptr, QEvent::DeferredDelete);
+
+    // Keep leave-guard until teardown finishes so delayed refresh cannot restore cwd.
+}
+
+void KMountMan::performTeardown(const QString &mntPoint, bool blocking)
+{
+    if (_teardownInProgress)
+        return;
+    _teardownInProgress = true;
+
+    const QString canonicalMnt = MountPath::canonical(mntPoint);
+    auto clearLeaveGuard = [canonicalMnt]() {
+        MountLeaveState::instance().end(canonicalMnt);
+    };
 
     QString udi = findUdiForPath(mntPoint, Solid::DeviceInterface::StorageAccess);
     if (!udi.isNull()) {
@@ -225,6 +271,9 @@ void KMountMan::unmount(const QString &mntPoint, bool blocking)
         if (access && access->isAccessible()) {
             connect(access, &Solid::StorageAccess::teardownDone, this, &KMountMan::slotTeardownDone, Qt::UniqueConnection);
             access->teardown();
+        } else {
+            _teardownInProgress = false;
+            clearLeaveGuard();
         }
     } else {
         if (blocking)
@@ -236,22 +285,40 @@ void KMountMan::unmount(const QString &mntPoint, bool blocking)
             KProcess proc;
             proc << KrServices::fullPathName("umount") << mntPoint;
             proc.start();
-            if (!blocking)
+            if (!blocking) {
+                // Panels/watches/cwd already released; do not keep the leaving-guard forever.
+                _teardownInProgress = false;
+                clearLeaveGuard();
                 return;
+            }
             proc.waitForFinished(-1); // -1 msec blocks without timeout
-            if (proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0)
+            if (proc.exitStatus() == QProcess::NormalExit && proc.exitCode() == 0) {
+                _teardownInProgress = false;
+                clearLeaveGuard();
                 return;
+            }
+            // Fall through to KIO::unmount; leave-guard stays until that job finishes.
         }
 
         KIO::SimpleJob *job = KIO::unmount(mntPoint, KIO::DefaultFlags);
         job->setUiDelegate(KIO::createDefaultJobUiDelegate());
         KIO::getJobTracker()->registerJob(job);
-        connect(job, &KIO::SimpleJob::result, this, &KMountMan::jobResult);
+        connect(job, &KIO::SimpleJob::result, this, [this, canonicalMnt](KJob *finishedJob) {
+            _teardownInProgress = false;
+            MountLeaveState::instance().end(canonicalMnt);
+            jobResult(finishedJob);
+        });
     }
     while (blocking && waiting) {
         qApp->processEvents();
         usleep(1000);
     }
+}
+
+void KMountMan::unmount(const QString &mntPoint, bool blocking)
+{
+    leaveMountPoint(mntPoint);
+    performTeardown(mntPoint, blocking);
 }
 
 KMountMan::mntStatus KMountMan::getStatus(const QString &mntPoint)
@@ -311,9 +378,7 @@ void KMountMan::eject(const QString &mntPoint)
     if (drive == nullptr)
         return;
 
-    // if working dir is below mountpoint cd to ~ first
-    if (QUrl::fromLocalFile(QDir(mntPoint).canonicalPath()).isParentOf(QUrl::fromLocalFile(QDir::current().canonicalPath())))
-        QDir::setCurrent(QDir::homePath());
+    leaveMountPoint(mntPoint);
 
     connect(drive, &Solid::OpticalDrive::ejectDone, this, &KMountMan::slotTeardownDone);
 
@@ -391,8 +456,8 @@ void KMountMan::quickList()
             QString("%1 %2 (%3)").arg(needUmount ? i18n("Unmount") : i18n("Mount"), possibleMountPoint->mountPoint(), possibleMountPoint->mountedFrom());
 
         QAction *act = _action->popupMenu()->addAction(text);
-        act->setData(QList<QVariant>(
-            {QVariant(needUmount ? static_cast<int>(KMountMan::ActionType::Unmount) : static_cast<int>(KMountMan::ActionType::Mount)), QVariant(possibleMountPoint->mountPoint())}));
+        act->setData(QList<QVariant>({QVariant(needUmount ? static_cast<int>(KMountMan::ActionType::Unmount) : static_cast<int>(KMountMan::ActionType::Mount)),
+                                      QVariant(possibleMountPoint->mountPoint())}));
     }
     connect(_action->popupMenu(), &QMenu::triggered, this, &KMountMan::delayedPerformAction);
 }
@@ -471,9 +536,16 @@ QString KMountMan::pathForUdi(const QString &udi)
         return QString();
 }
 
-void KMountMan::slotTeardownDone(Solid::ErrorType error, const QVariant &errorData, const QString & /*udi*/)
+void KMountMan::slotTeardownDone(Solid::ErrorType error, const QVariant &errorData, const QString &udi)
 {
     waiting = false;
+    _teardownInProgress = false;
+    const QString mnt = pathForUdi(udi);
+    if (!mnt.isEmpty())
+        MountLeaveState::instance().end(mnt);
+    else
+        MountLeaveState::instance().clear();
+
     if (error != Solid::NoError && errorData.isValid()) {
         KMessageBox::error(parentWindow, errorData.toString());
     }
@@ -489,8 +561,10 @@ void KMountMan::slotSetupDone(Solid::ErrorType error, const QVariant &errorData,
 
 void KMountMan::slotTeardownRequested(const QString &udi)
 {
+    // Solid asks us to free resources holding the device busy, then retry teardown.
     const QString mntPoint = KMountMan::pathForUdi(udi);
-    KMountMan::unmount(mntPoint, false);
+    leaveMountPoint(mntPoint);
+    performTeardown(mntPoint, false);
 }
 
 void KMountMan::deviceAdded(const QString &udi)

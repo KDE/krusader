@@ -541,6 +541,15 @@ void PanelManager::deletePanel(ListPanel *p)
     delete p;
 }
 
+void PanelManager::leaveMountPoint(const QString &mntPoint)
+{
+    for (int i = 0; i < _tabbar->count(); ++i) {
+        ListPanel *panel = _tabbar->getPanel(i);
+        if (panel)
+            panel->func->leaveMountPoint(mntPoint);
+    }
+}
+
 void PanelManager::slotCloseInactiveTabs()
 {
     int i = 0;

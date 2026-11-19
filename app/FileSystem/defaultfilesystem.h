@@ -11,8 +11,6 @@
 
 #include "filesystem.h"
 
-#include <QFileSystemWatcher>
-
 #include <KDirWatch>
 
 /**
@@ -60,6 +58,8 @@ public:
         return !_watcher.isNull();
     }
     void updateFilesystemInfo() override;
+    void stopWatching() override;
+    void startWatching() override;
 
 protected:
     bool refreshInternal(const QUrl &origin, bool onlyScan) override;
@@ -88,7 +88,7 @@ protected slots:
 private:
     bool refreshLocal(const QUrl &directory, bool onlyScan); // NOTE: this is very fast
     FileItem *createLocalFileItem(const QString &name);
-    void freeSpaceResult(KJob *job);
+    void installWatcher();
 
     /// Returns the current path with symbolic links resolved
     QString realPath();

@@ -8,6 +8,7 @@
 
 #include "filesystem.h"
 
+#include <algorithm>
 #include <memory>
 
 // QtCore
@@ -17,8 +18,11 @@
 // QtWidgets
 #include <qplatformdefs.h>
 
+#include <KIO/JobTracker>
 #include <KIO/JobUiDelegate>
+#include <KIO/JobUiDelegateFactory>
 #include <KIO/WidgetsAskUserActionHandler>
+#include <KJobTrackerInterface>
 #include <KLocalizedString>
 #include <KSharedConfig>
 
@@ -28,6 +32,7 @@
 #include "../krglobal.h"
 #include "fileitem.h"
 #include "krpermhandler.h"
+#include "localdeletejob.h"
 
 FileSystem::FileSystem()
     : DirListerInterface(nullptr)
@@ -141,6 +146,28 @@ bool FileSystem::scanOrRefresh(const QUrl &directory, bool onlyScan)
 
 void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
 {
+    // Local files: delete/trash without KIO so kioslaves do not keep removable mounts busy
+    // (see bugs.kde.org/445549). Remote URLs still use KIO.
+    const bool allLocal = !urls.isEmpty() && std::all_of(urls.cbegin(), urls.cend(), [](const QUrl &url) {
+        return url.isLocalFile();
+    });
+
+    if (allLocal) {
+        auto *job = new LocalDeleteJob(urls, moveToTrash, this);
+        job->setUiDelegate(KIO::createDefaultJobUiDelegate());
+        KIO::getJobTracker()->registerJob(job);
+        connect(job, &KJob::result, this, [=](KJob *finishedJob) {
+            slotJobResult(finishedJob, false);
+            if (!finishedJob->error()) {
+                emit fileSystemChanged(urls.first().adjusted(QUrl::RemoveFilename), true);
+                if (moveToTrash)
+                    emit fileSystemChanged(QUrl(QStringLiteral("trash:/")), false);
+            }
+        });
+        job->start();
+        return;
+    }
+
     KrJob *krJob = KrJob::createDeleteJob(urls, moveToTrash);
     connect(krJob, &KrJob::started, this, [=](KIO::Job *job) {
         connectJobToSources(job, urls);
@@ -155,19 +182,21 @@ void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
                 // at <https://invent.kde.org/frameworks/kio/-/blob/master/src/widgets/deleteortrashjob.cpp>
                 auto *widgetAskHandler = new KIO::WidgetsAskUserActionHandler(this);
                 // Connect to the result signal in order to handle the choice of the user
-                connect(widgetAskHandler, &KIO::WidgetsAskUserActionHandler::askUserDeleteResult,
-                        this, [this, widgetAskHandler](bool allowDelete,
-                                            const QList<QUrl> &urlsToDelete,
-                                            KIO::AskUserActionInterface::DeletionType /*deletionType*/,
-                                            QWidget * /*parentWidget*/) {
-                    // If the user clicked the "Delete Permanently" button
-                    if (allowDelete) {
-                        // Perform the operation again, this time setting `moveToTrash` to `false`
-                        this->deleteFiles(urlsToDelete, false);
-                    }
-                    // Schedule the handler for deletion
-                    widgetAskHandler->deleteLater();
-                });
+                connect(widgetAskHandler,
+                        &KIO::WidgetsAskUserActionHandler::askUserDeleteResult,
+                        this,
+                        [this, widgetAskHandler](bool allowDelete,
+                                                 const QList<QUrl> &urlsToDelete,
+                                                 KIO::AskUserActionInterface::DeletionType /*deletionType*/,
+                                                 QWidget * /*parentWidget*/) {
+                            // If the user clicked the "Delete Permanently" button
+                            if (allowDelete) {
+                                // Perform the operation again, this time setting `moveToTrash` to `false`
+                                this->deleteFiles(urlsToDelete, false);
+                            }
+                            // Schedule the handler for deletion
+                            widgetAskHandler->deleteLater();
+                        });
                 // Show the dialog for DeleteNoTrashAvailable.
                 // Note: Using ForceConfirmation causes that the "The trash is not available for this
                 // item’s location. Permanently delete it instead?" is always shown before permanently
@@ -181,12 +210,10 @@ void FileSystem::deleteFiles(const QList<QUrl> &urls, bool moveToTrash)
                 // into an unconfirmed permanent deletion.
                 // Note: Passing nullptr for the parent QWidget allows the widgetAskHandler to
                 // automatically fall back to qApp->activeWindow()
-                widgetAskHandler->askUserDelete(
-                    urls,
-                    KIO::AskUserActionInterface::DeleteNoTrashAvailable,
-                    KIO::AskUserActionInterface::ForceConfirmation,
-                    nullptr
-                );
+                widgetAskHandler->askUserDelete(urls,
+                                                KIO::AskUserActionInterface::DeleteNoTrashAvailable,
+                                                KIO::AskUserActionInterface::ForceConfirmation,
+                                                nullptr);
             } else {
                 // Use `false` to avoid a redundant refresh,
                 // as connectJobToSources already emits fileSystemChanged

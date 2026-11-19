@@ -105,6 +105,8 @@ public slots:
     void syncOtherPanel();
     /** Disable refresh if panel is not visible. */
     void setPaused(bool paused);
+    /** Navigate away from a local mount point so it can be unmounted. */
+    void leaveMountPoint(const QString &mntPoint);
 
 public:
     explicit ListPanelFunc(ListPanel *parent);

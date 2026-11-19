@@ -84,6 +84,8 @@ public:
     void swapSides();
     void setPanelSize(bool leftPanel, int percent);
     bool isTerminalEmulatorFullscreen();
+    /** Navigate all panels/tabs away from a local mount point so it can be unmounted. */
+    void leaveMountPoint(const QString &mntPoint);
 
 public slots:
     void slotSetActiveManager(PanelManager *manager);

@@ -7,6 +7,7 @@ set(FileSystem_SRCS
     krpermhandler.cpp
     krquery.cpp
     krtrashhandler.cpp
+    localdeletejob.cpp
     sizecalculator.cpp
     virtualfilesystem.cpp
 )
