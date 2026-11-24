@@ -230,7 +230,7 @@
         </term>
         <listitem>
           <para
->Dış bir grafiksel karşılaştırma aracı kullanarak, her panelden birer dosya olmak üzere, var olan iki dosyayı içeriklerine göre karşılaştırır. Öntanımlı olarak &kompare; kullanılır; ancak <ulink url="http://furius.ca/xxdiff/"
+>Dış bir grafiksel karşılaştırma aracı kullanarak, her panelden birer dosya olmak üzere, var olan iki dosyayı içeriklerine göre karşılaştırır. Varsayılan olarak &kompare; kullanılır; ancak <ulink url="http://furius.ca/xxdiff/"
 ><application
 >xxdiff</application
 ></ulink
@@ -745,7 +745,7 @@
               <para
 ><guimenuitem
 >Daha Yeni ve Tek Olanı Seç</guimenuitem
-> (Öntanımlı)</para>
+> (Varsayılan)</para>
             </listitem>
             <listitem>
               <para>
@@ -1024,7 +1024,7 @@
 ><guimenu
 >Görünüm</guimenu
 > <guimenuitem
->Öntanımlı Yakınlaştırma</guimenuitem
+>Varsayılan Yakınlaştırma</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1138,12 +1138,12 @@
 ><guimenu
 >Görünüm</guimenu
 > <guimenuitem
->Önizlemeleri Göster</guimenuitem
+>Ön İzlemeleri Göster</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
           <para
->İşaretlenirse etkin paneldeki tüm dosya ve klasörlerin önizlemeleri gösterilir.</para>
+>İşaretlenirse etkin paneldeki tüm dosya ve klasörlerin ön izlemeleri gösterilir.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1188,7 +1188,7 @@
 ><guimenu
 >Görünüm</guimenu
 > <guimenuitem
->Ayarları Öntanımlı Olarak Kaydet</guimenuitem
+>Ayarları Varsayılan Olarak Kaydet</guimenuitem
 > </menuchoice>
         </term>
         <listitem>
@@ -1365,7 +1365,7 @@
         </term>
         <listitem>
           <para
->Geçerli klasördeki var olan dosyanın yedeğini alır ve kullanıcıdan yeni bir dosya adı ister. Öntanımlı olarak, özgün dosya adının sonuna <literal role="extension"
+>Geçerli klasördeki var olan dosyanın yedeğini alır ve kullanıcıdan yeni bir dosya adı ister. Varsayılan olarak, özgün dosya adının sonuna <literal role="extension"
 >.old</literal
 > iliştirilir.</para>
         </listitem>
@@ -1632,7 +1632,7 @@
         </term>
         <listitem>
           <para
->Öntanımlı klasörde bir uçbirim penceresi açar (genellikle ana klasörünüz olur). <link linkend="konfig-general"
+>Varsayılan klasörde bir uçbirim penceresi açar (genellikle ana klasörünüz olur). <link linkend="konfig-general"
 >Yapılandırıcı Genel</link
 > sayfasından tercih ettiğiniz uçbirim uygulamasını ayarlayabilirsiniz.</para>
         </listitem>
@@ -1656,7 +1656,7 @@
           <para
 >&krusader;’ı aynı konumda <link linkend="root-mode"
 >kök kipinde</link
-> başlatır. Öntanımlı olarak, kök kipindeyken &krusader;, <command
+> başlatır. Varsayılan olarak, kök kipindeyken &krusader;, <command
 >kdesu</command
 > komutuna gereksinim duyar. <command
 >kdesu</command
@@ -2195,7 +2195,7 @@
 >Kısayollar</secondary>
           </indexterm>
           <para
->&krusader; düğme bağıntılarını yapılandırabileceğiniz bir iletişim kutusu açar.</para>
+>&krusader;, düğme bağıntılarını yapılandırabileceğiniz bir iletişim kutusu açar.</para>
           <para
 ><guibutton
 >Kısayollar İçe Aktar</guibutton
@@ -2205,7 +2205,7 @@
 >Total Commander</trademark
 >, <application
 >Midnight Commander</application
->, foo-commander bağıntılarını veya kendi özel düğme bağıntılarınızı kullanabilmenize olanak tanır. Buradaki tek sınırlama ise global &plasma; düğme bağıntılarının ve bazı &krusader; düğme bağıntılarının henüz değiştirilemez olması ve foo-commander’daki bizde olmayan veya gerek duymadığımız bazı özelliklerin kullanılabilir olmamasıdır. Düğme bağıntıları, <filename
+> bağıntılarını veya kendi özel düğme bağıntılarınızı kullanabilmenize olanak tanır. Buradaki tek sınırlama ise global &plasma; düğme bağıntılarının ve bazı &krusader; düğme bağıntılarının henüz değiştirilemez olması ve diğer alışılagelmiş dosya yöneticilerindeki bizde olmayan veya gerek duymadığımız bazı özelliklerin kullanılabilir olmamasıdır. Düğme bağıntıları, <filename
 >/usr/share/krusader</filename
 > konumunda depolanır; <filename
 >foo.keymap.info</filename

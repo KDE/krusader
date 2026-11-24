@@ -26,7 +26,7 @@
 > yapılandırılabilir</para
 > </listitem
 > </orderedlist
->Biz yalnızca öntanımlı yapılandırma ile gelen en önemli klavye kısayollarını aktaracağız; ancak <link linkend="key_bindings"
+>Biz yalnızca varsayılan yapılandırma ile gelen en önemli klavye kısayollarını aktaracağız; ancak <link linkend="key_bindings"
 >düğme bağıntılarının</link
 > çoğunun yapılandırılabilir olduğunu aklınızda tutun. Belirli bir komutu çok kullandığınızı farkettiyseniz ve bu komut için olan kısayolu öğrenmek istiyorsanız <link linkend="key_bindings"
 >Kısayolları Yapılandır</link
@@ -253,7 +253,7 @@
       <para
 >Tez Süzme kipinde &Enter; düğmesine basmak odağı panele ayarlar; panel veya Tez Süzme odaklandığında &Esc; düğmesi Tez Süzme’yi kapatır. </para>
       <para
->Tez Süzme’nin öntanımlı kısayolunu değiştirmek için <link linkend="key_bindings"
+>Tez Süzme’nin varsayılan kısayolunu değiştirmek için <link linkend="key_bindings"
 >Kısayolları Yapılandır</link
 > penceresini kullanın (<menuchoice
 ><guimenu
@@ -289,7 +289,7 @@
       <para
 >Tez Seçme kipinde &Enter; düğmesine basmak odağı panele ayarlar; panel veya Tez Seçme odaklandığında &Esc; düğmesi Tez Seçme’yi kapatır. </para>
       <para
->Tez Seçme’nin öntanımlı kısayolunu değiştirmek için <link linkend="key_bindings"
+>Tez Seçme’nin varsayılan kısayolunu değiştirmek için <link linkend="key_bindings"
 >Kısayolları Yapılandır</link
 > penceresini kullanın (<menuchoice
 ><guimenu
@@ -328,7 +328,7 @@
           <para
 ><link linkend="termemu"
 >Uçbirim Öykünücüsü</link
-> (sinyal gönder, yazıtipi, geçmiş, …)</para>
+> (sinyal gönder, yazı tipi, geçmiş, …)</para>
         </listitem>
         <listitem>
           <para
@@ -395,9 +395,9 @@
       <title
 >Dosyaları Yürütmek</title>
       <para
->Yalnızca etkin liste panelindeki dosyaları yürütebilirsiniz. Bir dosyayı yürütmek için liste imleci altındayken üzerine (çift) tıklayın veya &Enter; düğmesine basın. &krusader; dosyayı bu dosya türü için öntanımlı uygulamada (resim, metin dosyası, …) açacak veya dosyayı çalıştıracaktır (betik, ikili dosya, …). Dosyayı açmak için başka bir uygulama kullanmak istiyorsanız dosyaya &RMB; ile tıklayın ve daha fazla seçenek sunan <guisubmenu
+>Yalnızca etkin liste panelindeki dosyaları yürütebilirsiniz. Bir dosyayı yürütmek için liste imleci altındayken üzerine (çift) tıklayın veya &Enter; düğmesine basın. &krusader; dosyayı bu dosya türü için varsayılan uygulamada (resim, metin dosyası, …) açacak veya dosyayı çalıştıracaktır (betik, ikili dosya, …). Dosyayı açmak için başka bir uygulama kullanmak istiyorsanız dosyaya &RMB; ile tıklayın ve daha fazla seçenek sunan <guisubmenu
 >Birlikte Aç</guisubmenu
-> alt menüsüne gidin. &krusader;, &krusader; paneli içinde açılan ve dış bir uygulamada açılmayan arşivler dışında, tüm dosya türleri için &plasma; öntanımlı dosya yöneticisiyle uyumludur. Ayrıntılar için Yapılandırıcı içindeki <link linkend="konfig-archives"
+> alt menüsüne gidin. &krusader;, &krusader; paneli içinde açılan ve dış bir uygulamada açılmayan arşivler dışında, tüm dosya türleri için &plasma; varsayılan dosya yöneticisiyle uyumludur. Ayrıntılar için Yapılandırıcı içindeki <link linkend="konfig-archives"
 >arşivler sayfasına</link
 > bakın.</para>
     </sect2>
@@ -419,7 +419,7 @@
         </mediaobject>
       </figure>
       <para
->Dosyaları/klasörleri kopyalamak veya taşımak için bunları seçin ve kopyalamak için F5, taşımak içinse F6 düğmesine basın. &krusader; değişiklik zamanını korumaya çalışır. Bir klasör kopyalandığında, sahibi klasörü kopyalayan kullanıcıya, grubu ise kullanıcının öntanımlı grubuna değiştirilir. Bir dosya kopyalandığında, sahibi dosyayı kopyalayan kullanıcıya, grubu ise kullanıcının öntanımlı grubuna değiştirilir ve izinler korunur. Dosya veya klasör taşınırken sahip, grup ve izinler korunur. Dosyaları/klasörleri kopyalarken veya taşırken bir iletişim kutusu görünür ve işlemin hedef konumunu seçmenize olanak tanır. Öntanımlı hedef, diğer panelde göz atılan klasördür. Kısmî bir URL girerseniz &krusader; geçerli panel klasörünü URL tabanı olarak kullanır.</para>
+>Dosyaları/klasörleri kopyalamak veya taşımak için bunları seçin ve kopyalamak için F5, taşımak içinse F6 düğmesine basın. &krusader; değişiklik zamanını korumaya çalışır. Bir klasör kopyalandığında, sahibi klasörü kopyalayan kullanıcıya, grubu ise kullanıcının varsayılan grubuna değiştirilir. Bir dosya kopyalandığında, sahibi dosyayı kopyalayan kullanıcıya, grubu ise kullanıcının varsayılan grubuna değiştirilir ve izinler korunur. Dosya veya klasör taşınırken sahip, grup ve izinler korunur. Dosyaları/klasörleri kopyalarken veya taşırken bir iletişim kutusu görünür ve işlemin hedef konumunu seçmenize olanak tanır. Varsayılan hedef, diğer panelde göz atılan klasördür. Kısmî bir URL girerseniz &krusader; geçerli panel klasörünü URL tabanı olarak kullanır.</para>
     </sect2>
     <sect2 id="queue">
       <title
@@ -459,7 +459,7 @@
 > veya <keycap
 >Sil</keycap
 > düğmesine basılarak yapılır. <link linkend="konfig-general"
->Öntanımlı</link
+>Varsayılan</link
 > olarak, &plasma;’nın çöp kutusuna taşınır. &plasma; çöp kutusunu, <link linkend="main_toolbar"
 >Ana Araç Çubuğu</link
 > üzerindeki çöp kutusu simgesine tıklayarak veya <filename

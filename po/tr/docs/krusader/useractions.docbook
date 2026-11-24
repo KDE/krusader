@@ -23,7 +23,7 @@
 >qtpaths --paths GenericDataLocation</userinput
 > komutu kullanılabilir. Belgelendirmede birkaç <link linkend="useraction-xml"
 >örnek</link
-> içerilmektedir. Kullanıcı eylemlerini düzenlemek, içe aktarmak, dışa aktarmak için Eylemci kullanılabilir. Öntanımlı Kullanıcı Eylemleri, <filename
+> içerilmektedir. Kullanıcı eylemlerini düzenlemek, içe aktarmak, dışa aktarmak için Eylemci kullanılabilir. Varsayılan Kullanıcı Eylemleri, <filename
 > /usr/share/krusader/useraction-examples.xml</filename
 > konumunda depolanırlar. Kullanıcı Eylemleri, <quote
 >normal</quote
@@ -63,7 +63,7 @@
 >Eylem kodu yazmak ile haşır neşirseniz &krusader;’ın Kullanıcı Eylemleri aracını pek güçlü ve özelleştirilebilir olarak bulacaksınız.</para>
   <tip>
     <para
->Birkaç kullanıcı eylemi öntanımlı olarak sağlanır. Yazdığınız kullanıcı eylemlerini lütfen <link linkend="help_krusader"
+>Birkaç kullanıcı eylemi varsayılan olarak sağlanır. Yazdığınız kullanıcı eylemlerini lütfen <link linkend="help_krusader"
 >topluluk için yükleyin</link
 >; böylece tüm &krusader; topluluğu bunlardan yararlanabilir. Çok teşekkürler!</para>
   </tip>
@@ -294,8 +294,8 @@
     <listitem>
       <para
 ><guimenuitem
->Öntanımlı kısayol</guimenuitem
->: Kullanıcı eylemi için öntanımlı bir kısayol yapılandırır.</para>
+>Varsayılan kısayol</guimenuitem
+>: Kullanıcı eylemi için varsayılan bir kısayol yapılandırır.</para>
     </listitem>
     <listitem>
       <para
@@ -330,7 +330,7 @@
       <orderedlist>
         <listitem>
           <para
->Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Öntanımlı: Evet</para>
+>Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Varsayılan: Evet</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -368,11 +368,11 @@
       <orderedlist>
         <listitem>
           <para
->Parametre (isteğe bağlı): Geçerli yolu atla · Öntanımlı: Hayır</para>
+>Parametre (isteğe bağlı): Geçerli yolu atla · Varsayılan: Hayır</para>
         </listitem>
         <listitem>
           <para
->Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Öntanımlı: Evet</para>
+>Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Varsayılan: Evet</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -396,23 +396,23 @@
         </listitem>
         <listitem>
           <para
->Parametre (isteğe bağlı): Ögeler arasındaki ayırıcı · Öntanımlı: <quote
+>Parametre (isteğe bağlı): Ögeler arasındaki ayırıcı · Varsayılan: <quote
 >&nbsp;</quote
 ></para>
         </listitem>
         <listitem>
           <para
->Parametre (isteğe bağlı): Geçerli yolu atla · Öntanımlı: Hayır</para>
+>Parametre (isteğe bağlı): Geçerli yolu atla · Varsayılan: Hayır</para>
         </listitem>
         <listitem>
           <para
 >Parametre (isteğe bağlı): Süzgeç maskesi (<quote
 >Selected</quote
-> dışındaki tümü için)· Öntanımlı: *</para>
+> dışındaki tümü için)· Varsayılan: *</para>
         </listitem>
         <listitem>
           <para
->Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Öntanımlı: Evet</para>
+>Parametre (isteğe bağlı): Kendiliğinden kaçış boşlukları · Varsayılan: Evet</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -434,7 +434,7 @@
 >Add</quote
 > ya da <quote
 >Remove</quote
-> · Öntanımlı: <quote
+> · Varsayılan: <quote
 >Set</quote
 ></para>
         </listitem>
@@ -452,7 +452,7 @@
         </listitem>
         <listitem>
           <para
->Parametre (isteğe bağlı): Konumu yeni bir sekmede aç· Öntanımlı: Hayır</para>
+>Parametre (isteğe bağlı): Konumu yeni bir sekmede aç· Varsayılan: Hayır</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -468,11 +468,11 @@
         </listitem>
         <listitem>
           <para
->Parametre (isteğe bağlı): Öntanımlı yanıt</para>
+>Parametre (isteğe bağlı): Varsayılan yanıt</para>
         </listitem>
         <listitem>
           <para
->Parametre (isteğe bağlı): Soru kutusu için alt yazı</para>
+>Parametre (isteğe bağlı): Soru kutusu için başlık</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -582,7 +582,7 @@
       <orderedlist>
         <listitem>
           <para
->Parametre (isteğe bağlı): Bir tamsayı değer; yani, 80, etkin panelin &krusader;’ın genişliğinin (dikey kipteyken yükseklik) yüzde seksenini kullanmasını sağlar; parametreyi boş bırakmak yüzde ellisi anlamına gelir.</para>
+>Parametre (isteğe bağlı): Bir tam sayı değer; yani, 80, etkin panelin &krusader;’ın genişliğinin (dikey kipteyken yükseklik) yüzde seksenini kullanmasını sağlar; parametreyi boş bırakmak yüzde ellisi anlamına gelir.</para>
         </listitem>
       </orderedlist>
     </listitem>
@@ -678,7 +678,7 @@
     </listitem>
   </itemizedlist>
   <para
->Yer tutucu eklemek için grafik arayüz tabanlı bir yardımcı sağlanmıştır. Path, Current ve List bünyesindeki boşluklar öntanımlı olarak kendiliğinden kaçış karakteriyle işlenir. Bilmeniz gereken bir önemli nokta daha var: &krusader;’ın içsel işlevleriyle etkileşim kuran tüm yer tutucular genişletme zamanında (yani yer tutucular değiştirildiğinde doğrudan) çağrılır. Dış programlar ise yürütme zamanında (yani tüm yer tutucular değiştirildikten sonra) çağrılır.</para>
+>Yer tutucu eklemek için grafik arayüz tabanlı bir yardımcı sağlanmıştır. Path, Current ve List bünyesindeki boşluklar varsayılan olarak kendiliğinden kaçış karakteriyle işlenir. Bilmeniz gereken bir önemli nokta daha var: &krusader;’ın içsel işlevleriyle etkileşim kuran tüm yer tutucular genişletme zamanında (yani yer tutucular değiştirildiğinde doğrudan) çağrılır. Dış programlar ise yürütme zamanında (yani tüm yer tutucular değiştirildikten sonra) çağrılır.</para>
   <para>
     <emphasis role="bold"
 >Gelişmiş Özellikler</emphasis>
