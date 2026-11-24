@@ -126,7 +126,7 @@
 >İş Araç Çubuğu</secondary>
       </indexterm>
       <para
->Öntanımlı olarak, &krusader; İş Araç Çubuğu (<link linkend="queue"
+>Varsayılan olarak, &krusader; İş Araç Çubuğu (<link linkend="queue"
 >Kuyruk Yöneticisi</link
 > veya daha basitçe), ana araç çubuğunun sağ tarafında bulunur. Bu araç çubuğu, sürmekte olan işlerin ilerlemesini görüntülemenize, yürütülen işleri duraklatabilmenize ve daha sonra sürdürmenize ve hatta son yapılan işi geri almanıza olanak tanır.</para>
     </sect2>
@@ -305,7 +305,7 @@
         <para
 ><link linkend="sidebar"
 >Kenar Çubuğu</link
->: Odaklanılan dosya veya klasör için Önizle, Ağaç, Tez Seçim, Görünüm ve Disk Kullanımı olmak üzere çeşitli görüntüleme kipleri bulunur. Kenar Çubuğu, isteğe bağlı olarak açık veya kapalı bırakılabilir.</para>
+>: Odaklanılan dosya veya klasör için Ön İzle, Ağaç, Tez Seçim, Görünüm ve Disk Kullanımı olmak üzere çeşitli görüntüleme kipleri bulunur. Kenar Çubuğu, isteğe bağlı olarak açık veya kapalı bırakılabilir.</para>
       </listitem>
     </itemizedlist>
     <para
@@ -321,7 +321,7 @@
 >Araç Çubuğu</guilabel
 >’ndan bir komut seçerseniz komut, etkin paneldeki dosyalar üzerinde etkili olur. Paneller arasında &Tab; düğmesiyle veya <guilabel
 >Bilgi veya Toplamlar</guilabel
-> etiketinin üzerine tıklayarak veya paneldeki herhangi dosyayı fareyle seçerek geçiş yapabilirsiniz. Her zaman olduğu üzere, öntanımlı başlangıç ayarlarında <link linkend="konfigurator"
+> etiketinin üzerine tıklayarak veya paneldeki herhangi dosyayı fareyle seçerek geçiş yapabilirsiniz. Her zaman olduğu üzere, varsayılan başlangıç ayarlarında <link linkend="konfigurator"
 >Yapılandırıcı</link
 > başlangıç sayfasından değişiklikler yapılabilir ve geçerli oturum içinse <link linkend="settings-menu"
 >Ayarlar</link
@@ -350,7 +350,7 @@
 >Liste Paneli</secondary>
       </indexterm>
       <para
->Bu, öntanımlı paneldir ve büyük olasılıkla çoğu zaman kullanacağınız paneldir. Bu panel, yerel (bağlı dosya sistemlerinizin bir parçası, yerel bir dosya veya bir arşivin içindeki dosyalar) veya uzak dosyalar (&FTP;, &NFS; veya Samba aracılığıyla erişilen) olabilen bir klasörün içeriğini gösterir. İki kip vardır: Dosya adını, büyüklüğünü, oluşturma tarihini ve özniteliklerini gösteren <link linkend="view-menu"
+>Bu, varsayılan paneldir ve büyük olasılıkla çoğu zaman kullanacağınız paneldir. Bu panel, yerel (bağlı dosya sistemlerinizin bir parçası, yerel bir dosya veya bir arşivin içindeki dosyalar) veya uzak dosyalar (&FTP;, &NFS; veya Samba aracılığıyla erişilen) olabilen bir klasörün içeriğini gösterir. İki kip vardır: Dosya adını, büyüklüğünü, oluşturma tarihini ve özniteliklerini gösteren <link linkend="view-menu"
 >Ayrıntılı Görünüm</link
 > ve yalnızca dosya adlarını gösteren <link linkend="view-menu"
 >Özet Görünüm</link
@@ -412,13 +412,13 @@
 > <guilabel
 >Sütun Başlıkları</guilabel
 > </emphasis
->: Burada dosya ve klasörlerin sıralama düzenini istediğiniz gibi değiştirebilirsiniz. Öntanımlı sıralama düzeni <guilabel
+>: Burada dosya ve klasörlerin sıralama düzenini istediğiniz gibi değiştirebilirsiniz. Varsayılan sıralama düzeni <guilabel
 >Ad</guilabel
 > özniteliğine göredir. Sıralama düzeni, <guilabel
 >Sütun Başlıkları</guilabel
-> arasından birine tıklanarak anında değiştirilebilir. Sıralama düzenini tersine çevirmek için sütun başlığına ikinci kez tıklayın. Sütun başlığı metninin sağında, sıralama yönünü gösteren bir ok belirecektir (Yukarı ok = A–Z, Aşağı ok = Z–A). Öntanımlı <link linkend="useractions"
+> arasından birine tıklanarak anında değiştirilebilir. Sıralama düzenini tersine çevirmek için sütun başlığına ikinci kez tıklayın. Sütun başlığı metninin sağında, sıralama yönünü gösteren bir ok belirecektir (Yukarı ok = A–Z, Aşağı ok = Z–A). Varsayılan <link linkend="useractions"
 >Kullanıcı Eylemleri</link
->, sütun başlıkları için bir düğme bağıntısı ayarlar. Öntanımlı <guilabel
+>, sütun başlıkları için bir düğme bağıntısı ayarlar. Varsayılan <guilabel
 >Sütun Başlıkları</guilabel
 > şunlardır: <guilabel
 >Ad</guilabel
@@ -480,11 +480,11 @@
         </listitem>
       </itemizedlist>
       <para
->Öntanımlı <quote
+>Varsayılan <quote
 >&kde; <link linkend="konfig-color"
 >renkleri</link
 ></quote
-> kullanılıyorsa seçili dosyalar mavi olarak ve geçerli dosya ise bir dörtgenle çevrili olarak gösterilir. Öntanımlı olarak dosya türüne göre bir simge gösterilir. Öntanımlı yapılandırmayı bireysel gereksinimlerinize göre değiştirmek için <link linkend="konfig-panel"
+> kullanılıyorsa seçili dosyalar mavi olarak ve geçerli dosya ise bir dörtgenle çevrili olarak gösterilir. Varsayılan olarak dosya türüne göre bir simge gösterilir. Varsayılan yapılandırmayı bireysel gereksinimlerinize göre değiştirmek için <link linkend="konfig-panel"
 >Yapılandırıcı Paneli</link
 >  sayfasını kullanın.</para>
       <para
@@ -550,9 +550,9 @@
           <para
 ><emphasis
 > <guilabel
->Önizleme Paneli</guilabel
+>Ön İzleme Paneli</guilabel
 > </emphasis
->: Odaklanmış olan dosyanın (şu anda seçili dosya) önizlemesini gösterir.</para>
+>: Odaklanmış olan dosyanın (şu anda seçili dosya) ön izlemesini gösterir.</para>
         </listitem>
         <listitem>
           <para

@@ -49,7 +49,7 @@
 > görüntüleyicisi arasından seçim yapabilir.</para
 > </listitem
 > </itemizedlist
->Öntanımlı görüntüleyici kipini <link linkend="konfig-general"
+>Varsayılan görüntüleyici kipini <link linkend="konfig-general"
 >Yapılandırıcı Genel sayfasından</link
 > yapılandırabilirsiniz.</para>
     <para
@@ -171,7 +171,7 @@
     <para
 >&krusader;’ın içsel düzenleyicisi, bir düzenleyiciden bekleyebileceğiniz her şeye sahiptir. Düzenleme işlemi, görüntülemeye benzerdir; ancak <keycap
 >F4</keycap
-> düğmesiyle yapılır. Öntanımlı düzenleyici, &krusader;’ın içsel düzenleyicisidir. Başka bir düzenleyici kullanmayı yeğliyorsanız öntanımlı düzenleyiciyi <link linkend="konfig-general"
+> düğmesiyle yapılır. Varsayılan düzenleyici, &krusader;’ın içsel düzenleyicisidir. Başka bir düzenleyici kullanmayı yeğliyorsanız varsayılan düzenleyiciyi <link linkend="konfig-general"
 >Yapılandırıcı Genel</link
 > sayfasından değiştirebilirsiniz.</para>
     <tip>
@@ -834,7 +834,7 @@
 </term>
 <listitem>
 <para
->Bir yazıtipi şeması seçin.</para>
+>Bir yazı tipi şeması seçin.</para>
 </listitem>
 </varlistentry>
 
@@ -896,7 +896,7 @@
 > <guimenuitem
 >Düzenleyiciyi Yapılandır…</guimenuitem
 ></menuchoice
-> bölümünde tanımlandığı gibi, sözcük kaydırma sütununda dikey bir çizgi çizilecektir. Lütfen sözcük kaydırma işaretinin yalnızca sabit genişlikli bir yazıtipi kullanıyorsanız çizileceğini unutmayın.</para>
+> bölümünde tanımlandığı gibi, sözcük kaydırma sütununda dikey bir çizgi çizilecektir. Lütfen sözcük kaydırma işaretinin yalnızca sabit genişlikli bir yazı tipi kullanıyorsanız çizileceğini unutmayın.</para>
 </listitem>
 </varlistentry>
 
@@ -1072,12 +1072,12 @@
 <term
 ><menuchoice
 ><guimenuitem
->Yazıtipini Puntosunu Artır</guimenuitem
+>Yazı Tipi Puntosunu Artır</guimenuitem
 ></menuchoice>
 </term>
 <listitem
 ><para
->Yazıtipinin görüntülenme puntosunu artırır.</para
+>Yazı tipinin görüntülenme puntosunu artırır.</para
 ></listitem>
 </varlistentry>
 
@@ -1085,12 +1085,12 @@
 <term
 ><menuchoice
 ><guimenuitem
->Yazıtipini Puntosunu Azalt</guimenuitem
+>Yazı Tipi Puntosunu Azalt</guimenuitem
 ></menuchoice>
 </term>
 <listitem
 ><para
->Yazıtipinin görüntülenme puntosunu azaltır.</para
+>Yazı tipinin görüntülenme puntosunu azaltır.</para
 ></listitem>
 </varlistentry>
 </variablelist>
@@ -1292,7 +1292,7 @@ Pipe to Terminal, Syncronizise Terminal with Current Document, Focus Terminal at
 > <guimenuitem
 >Düzenleyiciyi Yapılandır…</guimenuitem
 ></menuchoice
-> bölümünde ayarlanan öntanımlı kodlamayı geçersiz kılarak geçerli belgeniz için farklı bir kodlama ayarlayabilirsiniz. Burada ayarladığınız kodlama yalnızca şu anki belgeniz için geçerli olacaktır.</para>
+> bölümünde ayarlanan varsayılan kodlamayı geçersiz kılarak geçerli belgeniz için farklı bir kodlama ayarlayabilirsiniz. Burada ayarladığınız kodlama yalnızca şu anki belgeniz için geçerli olacaktır.</para>
  </listitem>
 </varlistentry>
 
@@ -2009,7 +2009,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <title
 >Düzenleyici Bileşeni Yapılandırması</title>
 <para
->Bu grup, uygulamanın düzenleyici bileşeni ile ilgili olan tüm sayfaları içerir. Buradaki ayarların çoğu öntanımlıdır; bir <link linkend="katepart-pref-open-save-modes-filetypes"
+>Bu grup, uygulamanın düzenleyici bileşeni ile ilgili olan tüm sayfaları içerir. Buradaki ayarların çoğu varsayılandır; bir <link linkend="katepart-pref-open-save-modes-filetypes"
 >dosya türü tanımlayarak</link
 >, <ulink url="help:/katepart/config-variables.html"
 >belge değişkenleriyle</ulink
@@ -2226,10 +2226,10 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <sect3 id="katepart-prefcolors"
 ><!-- checked for 4.7 + synced with kwrite -->
 <title
->Yazıtipleri ve Renkler</title>
+>Yazı Tipleri ve Renkler</title>
 
 <para
->Bu iletişim kutusu bölümü, sahip olduğunuz herhangi bir renk şemasındaki tüm yazıtiplerini ve renkleri yapılandırmanıza, ayrıca yeni şemalar oluşturmanıza veya var olanları silmenize olanak tanır. Her şemanın renkler, yazıtipleri ve normal ve vurgulu metin biçemleri için ayarları vardır. </para>
+>Bu iletişim kutusu bölümü, sahip olduğunuz herhangi bir renk şemasındaki tüm yazı tiplerini ve renkleri yapılandırmanıza, ayrıca yeni şemalar oluşturmanıza veya var olanları silmenize olanak tanır. Her şemanın renkler, yazı tipleri ve normal ve vurgulu metin stilleri için ayarları vardır. </para>
 
 <para
 >&kappname; sizin için şu anda etkin olan şemayı önceden seçecektir; farklı bir şema üzerinde çalışmak istiyorsanız <guilabel
@@ -2265,7 +2265,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem
 ><para
->Bu, düzenleyici alanının öntanımlı arka planıdır ve düzenleyici alanında baskın renk olacaktır.</para
+>Bu, düzenleyici alanının varsayılan arka planıdır ve düzenleyici alanında baskın renk olacaktır.</para
 ></listitem>
 </varlistentry>
 
@@ -2276,7 +2276,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem
 ><para
->Bu, seçili metnin arka planıdır. Öntanımlı değer, &plasma; renk tercihlerinizde ayarladığınız genel seçim rengidir. </para
+>Bu, seçili metnin arka planıdır. Varsayılan değer, &plasma; renk tercihlerinizde ayarladığınız genel seçim rengidir. </para
 ></listitem>
 </varlistentry>
 
@@ -2382,35 +2382,35 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 
 <sect4 id="katepart-prefcolors-fonts">
 <title
->Yazıtipleri</title>
+>Yazı Tipleri</title>
 <para
->Burada şema için olan yazıtipini seçebilirsiniz. Sisteminizde bulunan herhangi bir yazıtipini seçebilir ve öntanımlı bir boyut belirleyebilirsiniz. Seçimlerinizin etkisini görebilmeniz için iletişim kutusunun alt kısmında örnek bir metin görüntülenir. </para>
+>Burada şema için olan yazı tipini seçebilirsiniz. Sisteminizde bulunan herhangi bir yazı tipini seçebilir ve varsayılan bir boyut belirleyebilirsiniz. Seçimlerinizin etkisini görebilmeniz için iletişim kutusunun alt kısmında örnek bir metin görüntülenir. </para>
 </sect4>
 
 <sect4 id="katepart-prefcolors-normal-text-styles">
 <title
->Normal Metin Biçemleri</title>
+>Normal Metin Stilleri</title>
 <para
->Normal metin biçemleri, vurgulanan metin biçemlerine de aktarılır; bu sayede düzenleyici, metni oldukça tutarlı bir şekilde sunabilir. Örneğin, yorum metni, uygulamanın vurgulayabileceği hemen hemen tüm metin biçimlerinde aynı biçemi kullanır.</para>
+>Normal metin stilleri, vurgulanan metin stillerine de aktarılır; bu sayede düzenleyici, metni oldukça tutarlı bir şekilde sunabilir. Örneğin, yorum metni, uygulamanın vurgulayabileceği hemen hemen tüm metin biçimlerinde aynı stili kullanır.</para>
 <para
->Biçem listesindeki ad, öge için yapılandırılmış biçemi kullanır ve biçem yapılandırırken size anında önizleme sağlar. </para>
+>Stil listesindeki ad, öge için yapılandırılmış stili kullanır ve stil yapılandırırken size anında ön izleme sağlar. </para>
 <para
->Her biçem, ortak özelliklerin yanı sıra ön plan ve arka plan renklerini seçmenize olanak tanır. Arka plan rengini kaldırmak için sağ tıklayarak bağlam menüsünü kullanın.</para>
+>Her stil, ortak özelliklerin yanı sıra ön plan ve arka plan renklerini seçmenize olanak tanır. Arka plan rengini kaldırmak için sağ tıklayarak bağlam menüsünü kullanın.</para>
 </sect4>
 
 <sect4 id="katepart-prefcolors-highlighting-text-styles">
 <title
->Vurgulanan Metin Biçemleri</title>
+>Vurgulanan Metin Stilleri</title>
 <para
->Burada belirli bir vurgu tanımı tarafından kullanılan metin biçemlerini düzenleyebilirsiniz. Düzenleyici, geçerli belgeniz tarafından kullanılan vurguyu önceden seçer. Farklı bir vurgu üzerinde çalışmak için, biçem listesinin üzerindeki <guilabel
+>Burada belirli bir vurgu tanımı tarafından kullanılan metin stillerini düzenleyebilirsiniz. Düzenleyici, geçerli belgeniz tarafından kullanılan vurguyu önceden seçer. Farklı bir vurgu üzerinde çalışmak için, stil listesinin üzerindeki <guilabel
 >Vurgu</guilabel
 > açılır kutusundan birini seçin. </para>
 <para
->Biçem listesindeki ad, öge için yapılandırılmış biçemi kullanır ve biçem yapılandırırken size anında önizleme sağlar. </para>
+>Stil listesindeki ad, öge için yapılandırılmış stili kullanır ve stil yapılandırırken size anında ön izleme sağlar. </para>
 <para
->Her biçem, ortak özelliklerin yanı sıra ön plan ve arka plan renklerini seçmenize olanak tanır. Arka plan rengini kaldırmak için sağ tıklayarak bağlam menüsünü kullanın. Ayrıca, bir biçemin öge için kullanılan öntanımlı biçemle aynı olup olmadığını görebilir ve değilse öntanımlı biçeme ayarlayabilirsiniz.</para>
+>Her stil, ortak özelliklerin yanı sıra ön plan ve arka plan renklerini seçmenize olanak tanır. Arka plan rengini kaldırmak için sağ tıklayarak bağlam menüsünü kullanın. Ayrıca, bir stilin öge için kullanılan varsayılan stille aynı olup olmadığını görebilir ve değilse varsayılan stile ayarlayabilirsiniz.</para>
 <para
->Birçok vurgunun, biçem listesindeki gruplar tarafından temsil edilen diğer vurguları içerdiğini fark edeceksiniz. Örneğin, çoğu vurgu Uyarı vurgusunu içe aktarır ve birçok kaynak kod biçimi Doxygen vurgusunu içe aktarır. Bu gruplardaki renkleri düzenlemek, yalnızca düzenlenmiş vurgu biçiminde kullanıldığında biçemleri etkiler. </para>
+>Birçok vurgunun, stil listesindeki gruplar tarafından temsil edilen diğer vurguları içerdiğini fark edeceksiniz. Örneğin, çoğu vurgu Uyarı vurgusunu içe aktarır ve birçok kaynak kod biçimi Doxygen vurgusunu içe aktarır. Bu gruplardaki renkleri düzenlemek, yalnızca düzenlenmiş vurgu biçiminde kullanıldığında stilleri etkiler. </para>
 </sect4>
 
 </sect3>
@@ -2458,7 +2458,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 > <guimenuitem
 >Düzenleyiciyi Yapılandır…</guimenuitem
 ></menuchoice
-> bölümünde tanımlandığı gibi, sözcük kaydırma sütununda dikey bir çizgi çizilecektir. Lütfen sözcük kaydırma işaretinin yalnızca sabit genişlikli bir yazıtipi kullanıyorsanız çizileceğini unutmayın.</para>
+> bölümünde tanımlandığı gibi, sözcük kaydırma sütununda dikey bir çizgi çizilecektir. Lütfen sözcük kaydırma işaretinin yalnızca sabit genişlikli bir yazı tipi kullanıyorsanız çizileceğini unutmayın.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -2637,11 +2637,11 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 <varlistentry>
 <term
 ><guilabel
->Öntanımlı girintileme kipi:</guilabel
+>Varsayılan girintileme kipi:</guilabel
 ></term>
 <listitem>
 <para
->Öntanımlı olarak kullanmak istediğiniz kendiliğinden girintileme kipini seçin. Burada <userinput
+>Varsayılan olarak kullanmak istediğiniz kendiliğinden girintileme kipini seçin. Burada <userinput
 >Yok</userinput
 > veya <userinput
 >Normal</userinput
@@ -2922,7 +2922,7 @@ only the items Show Toolbar and Show Statusbar are swapped and Configure kate is
 ></term>
 <listitem>
 <para
->Öntanımlı olarak, Vi giriş kipi etkinleştirildiğinde ek bir durum çubuğu kullanılır. Bu durum çubuğu, komutlar yazılırken ve Vi komutlarının ürettiği iletileri/hataları gösterir.</para>
+>Varsayılan olarak, Vi giriş kipi etkinleştirildiğinde ek bir durum çubuğu kullanılır. Bu durum çubuğu, komutlar yazılırken ve Vi komutlarının ürettiği iletileri/hataları gösterir.</para>
 <para
 >Bu seçeneği işaretlemek, bu ek durum satırını gizleyecektir.</para>
 </listitem>
@@ -3120,9 +3120,9 @@ Line Length Limit missing
 ></term>
 <listitem
 ><para
->Kaydetme sırasında yedekleme, değişiklikleri kaydetmeden önce uygulamanın disk dosyasını &lt;önek&gt;&lt;dosya-adı&gt;&lt;sonek&gt; şeklinde ayarlamasına neden olur. Sonek öntanımlı olarak <emphasis role="bold"
+>Kaydetme sırasında yedekleme, değişiklikleri kaydetmeden önce uygulamanın disk dosyasını &lt;önek&gt;&lt;dosya-adı&gt;&lt;sonek&gt; şeklinde ayarlamasına neden olur. Sonek varsayılan olarak <emphasis role="bold"
 >~</emphasis
-> ve önek ise öntanımlı olarak boştur. </para>
+> ve önek ise varsayılan olarak boştur. </para>
 <variablelist>
 <varlistentry>
 <term
@@ -3190,7 +3190,7 @@ Line Length Limit missing
 <title
 >Kipler ve Dosya Türleri</title>
 <para
->Bu sayfa, belirtilen &MIME; türlerindeki belgeler için öntanımlı yapılandırmayı geçersiz kılmanıza olanak tanır. Düzenleyici bir belgeyi yüklediğinde, tanımlanmış dosya türlerinden birine ait dosya maskeleri veya &MIME; türleriyle eşleşip eşleşmediğini denetler ve eşleşiyorsa tanımlanmış değişkenleri uygular. Birden fazla dosya türü eşleşirse en yüksek önceliğe sahip olan kullanılır. </para>
+>Bu sayfa, belirtilen &MIME; türlerindeki belgeler için varsayılan yapılandırmayı geçersiz kılmanıza olanak tanır. Düzenleyici bir belgeyi yüklediğinde, tanımlanmış dosya türlerinden birine ait dosya maskeleri veya &MIME; türleriyle eşleşip eşleşmediğini denetler ve eşleşiyorsa tanımlanmış değişkenleri uygular. Birden fazla dosya türü eşleşirse en yüksek önceliğe sahip olan kullanılır. </para>
 <variablelist>
 <varlistentry>
 <term

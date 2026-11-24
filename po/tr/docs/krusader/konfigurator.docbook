@@ -25,7 +25,7 @@
 > düğmesine basmak değişiklikleri uygular; <guibutton
 >Kapat</guibutton
 > düğmesi ise Yapılandırıcı’yı kapatır. <guibutton
->Öntanımlılar</guibutton
+>Varsayılanlar</guibutton
 >, &krusader;’ı <quote
 >fabrika</quote
 > ayarlarına geri döndürür. Yapılandırıcı, her birinin o sayfa ile ilgili ayarları gösteren sayfalara ayrılmıştır. Arayüze yaptığınız değişikliklerin uygulanabilmesi için &krusader;’ı yeniden başlatmanız gerekir.</para>
@@ -126,8 +126,8 @@
             <listitem>
               <para
 ><guilabel
->Öntanımlı panel ayarlarını güncelle</guilabel
->: Bu seçenek işaretlenirse öntanımlı panel ayarları başlatma işleminden sonra güncellenecektir.</para>
+>Varsayılan panel ayarlarını güncelle</guilabel
+>: Bu seçenek işaretlenirse varsayılan panel ayarları başlatma işleminden sonra güncellenecektir.</para>
             </listitem>
             <listitem>
               <para
@@ -214,14 +214,14 @@
         <listitem>
           <para
 ><guilabel
->Öntanımlı olarak düzenleme kipi</guilabel
->: İşaretlenirse düzenlemeye açık yolu öntanımlı olarak Dolaşım çubuğunda gösterin.</para>
+>Varsayılan olarak düzenleme kipi</guilabel
+>: İşaretlenirse düzenlemeye açık yolu varsayılan olarak Dolaşım çubuğunda gösterin.</para>
         </listitem>
 	<listitem>
           <para
 ><guilabel
->Öntanımlı olarak tam yolu göster</guilabel
->: İşaretlenirse tam yolu öntanımlı olarak Dolaşım çubuğunda gösterin.</para>
+>Varsayılan olarak tam yolu göster</guilabel
+>: İşaretlenirse tam yolu varsayılan olarak Dolaşım çubuğunda gösterin.</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
@@ -381,7 +381,7 @@
 >Arama</link
 > veya <link linkend="quickfilter"
 >Süzme</link
-> özelliğini kullanırken: İşaretlenmişse (&UNIX; sistemlerde öntanımlı) BÜYÜK harfle başlayan tüm dosyalar, küçük harfle başlayan dosyaların önünde görünür; aksi takdirde nasıl bir harfle başlarsa başlasın, tüm dosyalar birlikte görüntüleneceklerdir.</para>
+> özelliğini kullanırken: İşaretlenmişse (&UNIX; sistemlerde varsayılan) BÜYÜK harfle başlayan tüm dosyalar, küçük harfle başlayan dosyaların önünde görünür; aksi takdirde nasıl bir harfle başlarsa başlasın, tüm dosyalar birlikte görüntüleneceklerdir.</para>
         </listitem>
         <listitem>
           <para
@@ -414,14 +414,14 @@
 	<listitem>
           <para
 ><guilabel
->Öntanımlı kip</guilabel
+>Varsayılan kip</guilabel
 >: <link linkend="quicksearch"
 >Arama</link
 >, <guilabel
 >Seçme</guilabel
 > ve <link linkend="quickfilter"
 >Süzme</link
-> kipleri arasından öntanımlı arama çubuğu davranışını seçmenize olanak tanır. Daha sonra arama çubuğunun kendisini kullanarak kipi değiştirebilirsiniz.</para>
+> kipleri arasından varsayılan arama çubuğu davranışını seçmenize olanak tanır. Daha sonra arama çubuğunun kendisini kullanarak kipi değiştirebilirsiniz.</para>
         </listitem>
       </itemizedlist>
       <itemizedlist>
@@ -482,8 +482,8 @@
         <listitem>
           <para
 ><guilabel
->Görüntüleme yazıtipi</guilabel
->: Dosya listelerinde kullanılan yazıtipini değiştirmenize olanak tanır.</para>
+>Görüntüleme yazı tipi</guilabel
+>: Dosya listelerinde kullanılan yazı tipini değiştirmenize olanak tanır.</para>
         </listitem>
         <listitem>
           <para
@@ -495,7 +495,7 @@
           <para
 ><guilabel
 >Okunaklı dosya büyüklüğü kullan</guilabel
->: İşaretlenmişse dosya büyüklüğü, bayt (öntanımlı) yerine kB, MB vb. türünden görünür.</para>
+>: İşaretlenmişse dosya büyüklüğü, bayt (varsayılan) yerine kB, MB vb. türünden görünür.</para>
         </listitem>
         <listitem>
           <para
@@ -537,7 +537,7 @@
              <listitem>
               <para
 ><guilabel
->Krusader (öntanımlı)</guilabel
+>Krusader (varsayılan)</guilabel
 >: Şimdiye kadar kullanılan karşılaştırma. Yerel ayar kurallarını (hatta bağlam kurallarını) kullanarak karşılaştırma yapar. </para>
              </listitem>
              <listitem>
@@ -571,7 +571,7 @@
           <para
 ><guilabel
 >BÜYÜK/küçük harf duyarlı sıralama</guilabel
->: İşaretlenmişse (&UNIX; öntanımlısı), BÜYÜK harfle başlayan tüm dosyalar küçük harfle başlayan dosyalardan önce görünür; aksi takdirde, belirtilen harfle (BÜYÜK veya küçük) başlayan tüm dosyalar birlikte görünür.</para>
+>: İşaretlenmişse (&UNIX; varsayılanı), BÜYÜK harfle başlayan tüm dosyalar küçük harfle başlayan dosyalardan önce görünür; aksi takdirde, belirtilen harfle (BÜYÜK veya küçük) başlayan tüm dosyalar birlikte görünür.</para>
         </listitem>
         <listitem>
           <para
@@ -600,8 +600,8 @@
        <listitem>
           <para
 ><guilabel
->Öntanımlı görüntüleme kipi</guilabel
->: Öntanımlı görünüm kipini değiştirmenize olanak tanır. <guimenuitem
+>Varsayılan görüntüleme kipi</guilabel
+>: Varsayılan görünüm kipini değiştirmenize olanak tanır. <guimenuitem
 >Ayrıntılı Görünüm</guimenuitem
 > veya <guimenuitem
 >Özet Görünüm</guimenuitem
@@ -610,7 +610,7 @@
         <listitem>
           <para
 ><guilabel
->Öntanımlı simge boyutu</guilabel
+>Varsayılan simge boyutu</guilabel
 >: Dosya listelerindeki simgelerin boyutunu değiştirmenize olanak tanır. Kullanılabilir boyutlar 12 × 12, 16 × 16, 22 × 22, 32 × 32, 48 × 48, 64 × 64, 128 × 128 ve 256 × 256 pikseldir.</para>
         </listitem>
         <listitem>
@@ -622,8 +622,8 @@
         <listitem>
           <para
 ><guilabel
->Önizlemeleri öntanımlı olarak göster</guilabel
->: İşaretlenirse, dosya içeriklerinin önizlemelerini gösterin.</para>
+>Ön izlemeleri varsayılan olarak göster</guilabel
+>: İşaretlenirse, dosya içeriklerinin ön izlemelerini gösterin.</para>
         </listitem>
         <listitem>
           <para
@@ -994,7 +994,7 @@
 >Büyüklüğü göster:</guilabel
 > Ortam menüsünde büyüklük gösterimine olanak tanır. <guimenuitem
 >Her zaman</guimenuitem
-> (öntanımlı, bölüntü büyüklüğü her zaman gösterilir), <guimenuitem
+> (varsayılan, bölüntü büyüklüğü her zaman gösterilir), <guimenuitem
 >Aygıtın etiketi olmadığında</guimenuitem
 > (etiketsiz bölüntülerin büyüklüğü) veya <guimenuitem
 >Asla</guimenuitem
@@ -1012,8 +1012,8 @@
           <para
 ><guilabel
 >Yerleşim</guilabel
->: Yerleşimi tanımlamanıza olanak tanır. Öntanımlı seçenekler: <guimenuitem
->Öntanımlı</guimenuitem
+>: Yerleşimi tanımlamanıza olanak tanır. Varsayılan seçenekler: <guimenuitem
+>Varsayılan</guimenuitem
 >, <guimenuitem
 >Sıkışık</guimenuitem
 > ve <guimenuitem
@@ -1072,8 +1072,8 @@
 >Liste Paneli</link
 > ve <link linkend="synchronizer"
 >Eşzamanlayıcı</link
-> renklerini yapılandırmanıza olanak tanır. Öntanımlı renk yapılandırması, <guilabel
->&kde; öntanımlı renklerinden</guilabel
+> renklerini yapılandırmanıza olanak tanır. Varsayılan renk yapılandırması, <guilabel
+>&kde; varsayılan renklerinden</guilabel
 > alınır.</para>
 
     <variablelist>
@@ -1087,8 +1087,8 @@
             <listitem>
               <para
 ><guilabel
->Öntanımlı &kde; renklerini kullan</guilabel
->: Bu, öntanımlı ayardır; &systemsettings; içindeki tanımlı &plasma; renklerini kullanır.</para>
+>Varsayılan &kde; renklerini kullan</guilabel
+>: Bu, varsayılan ayardır; &systemsettings; içindeki tanımlı &plasma; renklerini kullanır.</para>
             </listitem>
             <listitem>
               <para
@@ -1098,7 +1098,7 @@
 >Arka plan</guilabel
 > ve <guilabel
 >Alternatif arka plan</guilabel
-> rengi satır satır değişir. Öntanımlı &plasma; arka plan renklerini kullanmadığınızda alternatif renkleri <guilabel
+> rengi satır satır değişir. Varsayılan &plasma; arka plan renklerini kullanmadığınızda alternatif renkleri <guilabel
 >Renkler</guilabel
 > kutusundan yapılandırabilirsiniz.</para>
             </listitem>
@@ -1106,7 +1106,7 @@
               <para
 ><guilabel
 >Odaklı değilse bile geçerli ögeyi göster</guilabel
->: İşaretlenmişse etkin olmayan liste panelinde imlecin son konumunu gösterir. Bu seçenek yalnızca öntanımlı renkleri kullanmadığınızda kullanılabilirdir.</para>
+>: İşaretlenmişse etkin olmayan liste panelinde imlecin son konumunu gösterir. Bu seçenek yalnızca varsayılan renkleri kullanmadığınızda kullanılabilirdir.</para>
             </listitem>
             <listitem>
               <para
@@ -1116,7 +1116,7 @@
 >Renkler</guilabel
 > kutusunun <guilabel
 >Pasif</guilabel
-> sekmesinde yapılandırılabilir. Bu seçenek yalnızca öntanımlı renkleri kullanmadığınızda kullanılabilirdir.</para>
+> sekmesinde yapılandırılabilir. Bu seçenek yalnızca varsayılan renkleri kullanmadığınızda kullanılabilirdir.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -1129,7 +1129,7 @@
         <listitem>
           <para
 >Renkleri istediğiniz gibi yapılandırın, sonucu <guilabel
->Önizleme</guilabel
+>Ön İzleme</guilabel
 > bölümünde görebilirsiniz. Etkin ve etkin olmayan panelin aşağıdaki ögeleri yapılandırılabilirdir:</para>
           <itemizedlist>
             <listitem>
@@ -1294,11 +1294,11 @@
       <varlistentry>
         <term>
           <guilabel
->Önizleme</guilabel>
+>Ön İzleme</guilabel>
         </term>
         <listitem>
           <para
->Burada, yapılandırılan renklerin bir önizlemesini görebilirsiniz.</para>
+>Burada, yapılandırılan renklerin bir ön izlemesini görebilirsiniz.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1449,13 +1449,13 @@
       <listitem>
         <para
 ><guilabel
->Öntanımlı görüntüleyici kipi</guilabel
+>Varsayılan görüntüleyici kipi</guilabel
 >: <itemizedlist>
         <listitem>
          <para
 ><guilabel
 >Genel kip</guilabel
->: Sistemin öntanımlı görüntüleyicisini kullanın.</para>
+>: Sistemin varsayılan görüntüleyicisini kullanın.</para>
         </listitem>
         <listitem>
          <para
@@ -1473,13 +1473,13 @@
          <para
 ><guilabel
 >Listeleyici kipi</guilabel
->: Büyük dosya boyutları için hızlı metin/onaltılık görüntüleyici. &krusader; listeleyicisi, dosyanın tamamını belleğe yüklemez, yalnızca küçük bir bölümünü yükler ve daha hızlı sarma için önbellekleme kullanır. Uzak dosyalar indirilir; ancak indirme sırasında indirilen bölümü görüntülemek olanaklıdır. Bir dosya sürekli değişiyorsa yine de görüntülenebilir; listeleyici her zaman geçerli durumunu görecektir.</para>
+>: Büyük dosya boyutları için hızlı metin/onaltılık görüntüleyici. &krusader; listeleyicisi, dosyanın tamamını belleğe yüklemez, yalnızca küçük bir bölümünü yükler ve daha hızlı sarma için ön bellek kullanır. Uzak dosyalar indirilir; ancak indirme sırasında indirilen bölümü görüntülemek olanaklıdır. Bir dosya sürekli değişiyorsa yine de görüntülenebilir; listeleyici her zaman geçerli durumunu görecektir.</para>
         </listitem>
 	<listitem>
          <para
 ><guilabel
->Metin dosyası şu boyuttan daha büyükse listeleyiciyi kullan (öntanımlı değer)</guilabel
->: Metin dosyasının 10 MB’tan büyük olup olmadığını denetler (yapılandırılabilir) ve eğer büyükse &plasma;’nın öntanımlı görüntüleyicisi yerine &krusader;’ın listeleyicisi kullanılır.</para>
+>Metin dosyası şu boyuttan daha büyükse listeleyiciyi kullan (varsayılan değer)</guilabel
+>: Metin dosyasının 10 MB’tan büyük olup olmadığını denetler (yapılandırılabilir) ve eğer büyükse &plasma;’nın varsayılan görüntüleyicisi yerine &krusader;’ın listeleyicisi kullanılır.</para>
 	</listitem>
 	<listitem>
          <para
@@ -1500,7 +1500,7 @@
 >Düzenleyici</guilabel
 >: Bir dosyayı düzenlemek için hangi düzenleyicinin kullanılacağını seçin (<keycap
 >F4</keycap
-> ile). Öntanımlı olarak içsel görüntüleyici kullanılır, bu &plasma;’nın öntanımlı görüntüleyicisidir.</para>
+> ile). Varsayılan olarak içsel görüntüleyici kullanılır, bu &plasma;’nın varsayılan görüntüleyicisidir.</para>
       </listitem>
     </itemizedlist>
     </sect2>
@@ -1630,8 +1630,8 @@
             <listitem>
               <para
 ><guilabel
->Simge önbellek büyüklüğü (KB)</guilabel
->: &krusader; bir simge önbelleği kullanır, bu nedenle daha önce kullanılan simgeleri yeniden yüklemek zorunda kalmaz. Elbette, önbellek büyüdükçe daha fazla simge depolayabilir ve işlemleri daha da hızlandırabilir; ancak &krusader;’ın bellek kullanımı da artacaktır.</para>
+>Simge ön bellek büyüklüğü (KB)</guilabel
+>: &krusader; bir simge ön belleği kullanır, bu nedenle daha önce kullanılan simgeleri yeniden yüklemek zorunda kalmaz. Elbette, ön bellek büyüdükçe daha fazla simge depolayabilir ve işlemleri daha da hızlandırabilir; ancak &krusader;’ın bellek kullanımı da artacaktır.</para>
             </listitem>
             <listitem>
               <para
@@ -1909,7 +1909,7 @@
     </informaltable>
     <tip>
       <para
->Öntanımlı olarak, dış diff izlencesi olarak &kompare; kullanılır; ancak yeğlediğiniz uygulamayı da seçebilirsiniz; örneğin, <ulink url="http://furius.ca/xxdiff/"
+>Varsayılan olarak, dış diff izlencesi olarak &kompare; kullanılır; ancak yeğlediğiniz uygulamayı da seçebilirsiniz; örneğin, <ulink url="http://furius.ca/xxdiff/"
 ><application
 >xxdiff</application
 ></ulink
@@ -2470,7 +2470,7 @@
     <title
 >Kullanıcı Eylemleri</title>
     <para
->Buradan uçbirimi kullanıcı eylemleri ve çıktı koleksiyonu için yazıtipini yapılandırabilirsiniz. Öntanımlı uçbirim <command
+>Buradan uçbirimi kullanıcı eylemleri ve çıktı koleksiyonu için yazı tipini yapılandırabilirsiniz. Varsayılan uçbirim <command
 >konsole --noclose -e</command
 > olarak ayarlıdır. To set up, configure and manage your UserActions use ActionMan (<link linkend="useractions"
 >UserActions</link
