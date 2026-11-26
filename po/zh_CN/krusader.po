@@ -1306,7 +1306,7 @@ msgstr "密码"
 #: app/Dialogs/packguibase.cpp:227
 #, kde-format
 msgid "Again"
-msgstr ""
+msgstr "重试"
 
 #: app/Dialogs/packguibase.cpp:245
 #, kde-format
@@ -2209,12 +2209,12 @@ msgstr "加载(&L)"
 #: app/Filter/generalfilter.cpp:217
 #, kde-format
 msgid "Searc&h in"
-msgstr ""
+msgstr "搜索于(&H)"
 
 #: app/Filter/generalfilter.cpp:232
 #, kde-format
 msgid "&Do not search in"
-msgstr ""
+msgstr "不要搜索于(&D)"
 
 #: app/Filter/generalfilter.cpp:265
 #, kde-format
@@ -2270,17 +2270,17 @@ msgstr "跟随链接(&L)"
 #: app/Filter/generalfilter.cpp:473
 #, kde-format
 msgid "Exclude Folder Names"
-msgstr ""
+msgstr "排除文件夹名称"
 
 #: app/Filter/generalfilter.cpp:474
 #, kde-format
 msgid "Filters out specified folder names from the results."
-msgstr ""
+msgstr "从结果中过滤掉指定的文件夹名称。"
 
 #: app/Filter/generalfilter.cpp:489
 #, kde-format
 msgid "Enter space-separated folder names"
-msgstr ""
+msgstr "输入以空格分隔的文件夹名称"
 
 #: app/Filter/generalfilter.cpp:491
 #, kde-format
@@ -2288,11 +2288,13 @@ msgid ""
 "You can insert names with escaped spaces or quoted.\n"
 "Example: .git \"target build\" build\\ krusader"
 msgstr ""
+"可通过转义或加引号来使用带空格的名称。\n"
+"例如：.git \"target build\" build\\ krusader"
 
 #: app/Filter/generalfilter.cpp:577
 #, kde-format
 msgid "No search criteria entered."
-msgstr ""
+msgstr "未输入搜索条件。"
 
 #: app/Filter/generalfilter.cpp:607
 #, kde-format
@@ -2302,12 +2304,12 @@ msgstr "请指定要搜索的位置。"
 #: app/GUI/dirhistorybutton.cpp:30 app/GUI/dirhistorybutton.cpp:31
 #, kde-format
 msgid "Open the folder history list"
-msgstr ""
+msgstr "打开文件夹历史列表"
 
 #: app/GUI/kcmdline.cpp:47
 #, kde-format
 msgid "Name of folder where command will be processed."
-msgstr ""
+msgstr "处理命令的文件夹名称。"
 
 #: app/GUI/kcmdline.cpp:175
 #, kde-format
@@ -2316,6 +2318,8 @@ msgid ""
 "Krusader obeys.</p><p><b>Tip</b>: move within command line history with &lt;"
 "Up&gt; and &lt;Down&gt; arrows.</p></qt>"
 msgstr ""
+"<qt><p>这其实很简单：您在这里输入命令，Krusader 就会照做。</p><p><b>提示</b> "
+"：使用&lt;Up&gt;和&lt;Down&gt;键在命令行历史中移动。</p></qt>"
 
 #: app/GUI/kcmdmodebutton.cpp:37
 #, kde-format
@@ -2345,7 +2349,7 @@ msgstr "移动"
 #: app/GUI/kfnkeys.cpp:27
 #, kde-format
 msgid "Mkdir"
-msgstr ""
+msgstr "创建目录"
 
 #: app/GUI/kfnkeys.cpp:28
 #, kde-format
@@ -2376,7 +2380,7 @@ msgstr "打开可用媒体列表"
 #, kde-format
 msgctxt "%1 is the mount point of the remote share"
 msgid "Remote Share [%1]"
-msgstr ""
+msgstr "远程共享 [%1]"
 
 #: app/GUI/mediabutton.cpp:163
 #, kde-format
@@ -2520,17 +2524,17 @@ msgstr ""
 #: app/JobMan/jobman.cpp:54
 #, kde-format
 msgid "Cancel Job"
-msgstr ""
+msgstr "取消任务"
 
 #: app/JobMan/jobman.cpp:98
 #, kde-format
 msgid "Pause Job"
-msgstr ""
+msgstr "暂停任务"
 
 #: app/JobMan/jobman.cpp:98
 #, kde-format
 msgid "Resume Job"
-msgstr ""
+msgstr "恢复任务"
 
 #: app/JobMan/jobman.cpp:98
 #, kde-format
@@ -2545,27 +2549,27 @@ msgstr "没有任务"
 #: app/JobMan/jobman.cpp:173
 #, kde-format
 msgid "Play/Pause &Job"
-msgstr ""
+msgstr "继续/暂停任务(&J)"
 
 #: app/JobMan/jobman.cpp:191
 #, kde-format
 msgid "Job Progress Bar"
-msgstr ""
+msgstr "任务进度条"
 
 #: app/JobMan/jobman.cpp:198
 #, kde-format
 msgid "Job Queue Mode"
-msgstr ""
+msgstr "任务队列模式"
 
 #: app/JobMan/jobman.cpp:199
 #, kde-format
 msgid "Run only one job in parallel"
-msgstr ""
+msgstr "仅并行运行一个任务"
 
 #: app/JobMan/jobman.cpp:211 app/JobMan/jobman.cpp:356
 #, kde-format
 msgid "Undo Last Job"
-msgstr ""
+msgstr "撤销最后任务"
 
 #: app/JobMan/jobman.cpp:231
 #, kde-format
@@ -2576,7 +2580,7 @@ msgstr "您确定要退出吗？"
 #, kde-format
 msgid "There is one job operation left."
 msgid_plural "There are %1 job operations left."
-msgstr[0] ""
+msgstr[0] "还剩 %1 项任务操作。"
 
 #: app/JobMan/jobman.cpp:423
 #, kde-format
@@ -2592,12 +2596,12 @@ msgstr[0] "%1 个任务"
 #: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Clear Job List"
-msgstr ""
+msgstr "清空任务列表"
 
 #: app/JobMan/jobman.cpp:429
 #, kde-format
 msgid "Pause All Jobs"
-msgstr ""
+msgstr "暂停所有任务"
 
 #: app/JobMan/jobman.cpp:429
 #, kde-format
@@ -2607,13 +2611,13 @@ msgstr ""
 #: app/JobMan/krjob.cpp:23
 #, kde-format
 msgid "Move %1 to trash"
-msgstr ""
+msgstr "移动 %1 到回收站"
 
 #: app/JobMan/krjob.cpp:23
 #, kde-format
 msgid "Move %1 file to trash"
 msgid_plural "Move %1 files to trash"
-msgstr[0] ""
+msgstr[0] "移动 %1 个文件到回收站"
 
 #: app/JobMan/krjob.cpp:24
 #, kde-format
@@ -2624,7 +2628,7 @@ msgstr "删除 %1"
 #, kde-format
 msgid "Delete %1 file"
 msgid_plural "Delete %1 files"
-msgstr[0] ""
+msgstr[0] "删除 %1 个文件"
 
 #: app/JobMan/krjob.cpp:48
 #, kde-format
@@ -2634,7 +2638,7 @@ msgstr "复制到 %1"
 #: app/JobMan/krjob.cpp:52
 #, kde-format
 msgid "Move to %1"
-msgstr ""
+msgstr "移动到 %1"
 
 #: app/JobMan/krjob.cpp:56
 #, kde-format
@@ -2678,11 +2682,13 @@ msgid ""
 "\n"
 "Request user confirmation for the following operations:\n"
 msgstr ""
+"\n"
+"对以下操作请求用户确认：\n"
 
 #: app/Konfigurator/kgadvanced.cpp:64
 #, kde-format
 msgid "Deleting non-empty folders"
-msgstr ""
+msgstr "删除非空文件夹"
 
 #: app/Konfigurator/kgadvanced.cpp:65
 #, kde-format
@@ -2831,6 +2837,8 @@ msgid ""
 "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
 "Application Appearance  -> Colors</i></p>"
 msgstr ""
+"<p>使用 KDE 的全局颜色配置。</p><p><i>KDE 系统设置 -> 应用外观 -> 颜色</i></"
+"p>"
 
 #: app/Konfigurator/kgcolors.cpp:67
 #, kde-format
@@ -2844,6 +2852,8 @@ msgid ""
 "alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
+"<p><b>背景色</b>与<b>交替背景</b>颜色逐行交替。</p><p>当你未使用<i>KDE 默认颜"
+"色</i>时，可在<i>颜色</i>框中配置交替颜色。</p>"
 
 #: app/Konfigurator/kgcolors.cpp:74
 #, kde-format
@@ -2857,18 +2867,20 @@ msgid ""
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
+"<p>在非活动列表面板中显示上次光标位置。</p><p>仅当你未使用<i>KDE 默认颜色</i>"
+"时，此选项才可用。</p>"
 
 #: app/Konfigurator/kgcolors.cpp:81
 #, kde-format
 msgid "Dim the colors of the inactive panel"
-msgstr ""
+msgstr "调暗非活动面板的颜色"
 
 #: app/Konfigurator/kgcolors.cpp:83
 #, kde-format
 msgid ""
 "<p>The colors of the inactive panel are calculated by a dim color and a dim "
 "factor.</p>"
-msgstr ""
+msgstr "<p>非活动面板的颜色由一个调暗色和一个调暗系数计算得出。</p>"
 
 #: app/Konfigurator/kgcolors.cpp:100 app/Konfigurator/kgcolors.cpp:359
 #: app/Konfigurator/konfigurator.cpp:120
@@ -2894,7 +2906,7 @@ msgstr "前景色："
 #: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:163
 #, kde-format
 msgid "Folder foreground:"
-msgstr ""
+msgstr "文件夹前景："
 
 #: app/Konfigurator/kgcolors.cpp:119 app/Konfigurator/kgcolors.cpp:120
 #: app/Konfigurator/kgcolors.cpp:121 app/Konfigurator/kgcolors.cpp:122
@@ -2937,7 +2949,7 @@ msgstr "自定义的背景色："
 #: app/Konfigurator/kgcolors.cpp:126 app/Konfigurator/kgcolors.cpp:195
 #, kde-format
 msgid "Selected foreground:"
-msgstr ""
+msgstr "选中项前景："
 
 #: app/Konfigurator/kgcolors.cpp:127 app/Konfigurator/kgcolors.cpp:201
 #, kde-format
@@ -2952,12 +2964,12 @@ msgstr "与自定义的背景色相同"
 #: app/Konfigurator/kgcolors.cpp:130 app/Konfigurator/kgcolors.cpp:210
 #, kde-format
 msgid "Alternate selected background:"
-msgstr ""
+msgstr "交替选中项背景："
 
 #: app/Konfigurator/kgcolors.cpp:132 app/Konfigurator/kgcolors.cpp:208
 #, kde-format
 msgid "Same as selected background"
-msgstr ""
+msgstr "与选中项背景相同"
 
 #: app/Konfigurator/kgcolors.cpp:135 app/Konfigurator/kgcolors.cpp:215
 #, kde-format
@@ -2973,12 +2985,12 @@ msgstr "没有使用。"
 #: app/Konfigurator/kgcolors.cpp:136 app/Konfigurator/kgcolors.cpp:216
 #, kde-format
 msgid "Same as selected foreground"
-msgstr ""
+msgstr "与选中项前景相同"
 
 #: app/Konfigurator/kgcolors.cpp:137 app/Konfigurator/kgcolors.cpp:220
 #, kde-format
 msgid "Selected current foreground:"
-msgstr ""
+msgstr "选中项当前前景："
 
 #: app/Konfigurator/kgcolors.cpp:138 app/Konfigurator/kgcolors.cpp:226
 #, kde-format
@@ -2988,12 +3000,12 @@ msgstr "当前的背景色："
 #: app/Konfigurator/kgcolors.cpp:139
 #, kde-format
 msgid "Rename foreground:"
-msgstr ""
+msgstr "重命名前景："
 
 #: app/Konfigurator/kgcolors.cpp:140
 #, kde-format
 msgid "Rename background:"
-msgstr ""
+msgstr "重命名背景："
 
 #: app/Konfigurator/kgcolors.cpp:150
 #, kde-format
@@ -3014,12 +3026,12 @@ msgstr "与活动的相同"
 #: app/Konfigurator/kgcolors.cpp:249
 #, kde-format
 msgid "Dim target color:"
-msgstr ""
+msgstr "调暗目标色："
 
 #: app/Konfigurator/kgcolors.cpp:252
 #, kde-format
 msgid "Dim factor:"
-msgstr ""
+msgstr "调暗系数："
 
 #: app/Konfigurator/kgcolors.cpp:264 app/Konfigurator/kgcolors.cpp:265
 #: app/Konfigurator/kgcolors.cpp:317 app/Konfigurator/kgcolors.cpp:318
@@ -3090,22 +3102,22 @@ msgstr "其他"
 #: app/Konfigurator/kgcolors.cpp:313
 #, kde-format
 msgid "Quicksearch, match foreground:"
-msgstr ""
+msgstr "快速搜索，匹配项前景："
 
 #: app/Konfigurator/kgcolors.cpp:314
 #, kde-format
 msgid "Quicksearch, match background:"
-msgstr ""
+msgstr "快速搜索，匹配项背景："
 
 #: app/Konfigurator/kgcolors.cpp:315
 #, kde-format
 msgid "Quicksearch, non-match foreground:"
-msgstr ""
+msgstr "快速搜索，非匹配项前景："
 
 #: app/Konfigurator/kgcolors.cpp:316
 #, kde-format
 msgid "Quicksearch, non-match background:"
-msgstr ""
+msgstr "快速搜索，非匹配项背景："
 
 #: app/Konfigurator/kgcolors.cpp:320
 #, kde-format
@@ -3231,7 +3243,7 @@ msgstr "选择一个颜色方案"
 #: app/Konfigurator/kgcolors.cpp:673
 #, kde-format
 msgid "Error: unable to read from file"
-msgstr ""
+msgstr "错误：无法从文件读取"
 
 #: app/Konfigurator/kgcolors.cpp:684
 #, kde-format
@@ -3425,7 +3437,7 @@ msgstr ""
 #: app/Konfigurator/kggeneral.cpp:240
 #, kde-format
 msgid "Temp Folder:"
-msgstr ""
+msgstr "临时文件夹："
 
 #: app/Konfigurator/kggeneral.cpp:248
 #, kde-format
@@ -3465,7 +3477,7 @@ msgstr "终端"
 #: app/Konfigurator/kggeneral.cpp:273
 #, kde-format
 msgid "External Terminal:"
-msgstr ""
+msgstr "外部终端："
 
 #: app/Konfigurator/kggeneral.cpp:277
 #, kde-format
@@ -3533,7 +3545,7 @@ msgstr "导航栏"
 #: app/Konfigurator/kgpanel.cpp:77
 #, kde-format
 msgid "Edit Mode by default"
-msgstr ""
+msgstr "默认编辑模式"
 
 #: app/Konfigurator/kgpanel.cpp:77
 #, kde-format
@@ -3623,32 +3635,32 @@ msgstr "在标签页中显示完整的路径名， 否则，只是路径的最�
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Show close tab buttons"
-msgstr ""
+msgstr "显示“关闭标签页”按钮"
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
 msgid "Show close tab buttons."
-msgstr ""
+msgstr "显示“关闭标签页”按钮。"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Expanding tabs"
-msgstr ""
+msgstr "标签页可扩展"
 
 #: app/Konfigurator/kgpanel.cpp:139
 #, kde-format
 msgid "Expanding tabs."
-msgstr ""
+msgstr "标签页可扩展。"
 
 #: app/Konfigurator/kgpanel.cpp:140
 #, kde-format
 msgid "Show new tab button"
-msgstr ""
+msgstr "显示“新标签页”按钮"
 
 #: app/Konfigurator/kgpanel.cpp:140
 #, kde-format
 msgid "Show new tab button."
-msgstr ""
+msgstr "显示“新标签页”按钮。"
 
 #: app/Konfigurator/kgpanel.cpp:141
 #, kde-format
@@ -3673,12 +3685,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:143
 #, kde-format
 msgid "Close tab by double click"
-msgstr ""
+msgstr "双击关闭标签页"
 
 #: app/Konfigurator/kgpanel.cpp:143
 #, kde-format
 msgid "Close tab by double click."
-msgstr ""
+msgstr "双击关闭标签页。"
 
 #: app/Konfigurator/kgpanel.cpp:147
 #, kde-format
@@ -3705,12 +3717,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Alt+Click"
-msgstr ""
+msgstr "Alt+点击"
 
 #: app/Konfigurator/kgpanel.cpp:159
 #, kde-format
 msgid "Ctrl+Click"
-msgstr ""
+msgstr "Ctrl+点击"
 
 #: app/Konfigurator/kgpanel.cpp:170
 #, kde-format
@@ -3735,7 +3747,7 @@ msgstr "底部"
 #: app/Konfigurator/kgpanel.cpp:195
 #, kde-format
 msgid "Search bar"
-msgstr ""
+msgstr "搜索栏"
 
 #: app/Konfigurator/kgpanel.cpp:203
 #, kde-format
@@ -3755,7 +3767,7 @@ msgstr "区分大小写"
 #: app/Konfigurator/kgpanel.cpp:206
 #, kde-format
 msgid "Search must match case."
-msgstr ""
+msgstr "搜索必须匹配大小写。"
 
 #: app/Konfigurator/kgpanel.cpp:210
 #, kde-format
@@ -3788,7 +3800,7 @@ msgstr "位置："
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
 msgid "Default mode:"
-msgstr ""
+msgstr "默认模式："
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
@@ -3809,17 +3821,17 @@ msgstr "滤镜"
 #: app/Konfigurator/kgpanel.cpp:251
 #, kde-format
 msgid "Set the default mode on first usage"
-msgstr ""
+msgstr "首次使用时设置默认模式"
 
 #: app/Konfigurator/kgpanel.cpp:262
 #, kde-format
 msgid "Bookmark Search"
-msgstr ""
+msgstr "书签搜索"
 
 #: app/Konfigurator/kgpanel.cpp:266
 #, kde-format
 msgid "Always show search bar"
-msgstr ""
+msgstr "始终显示搜索栏"
 
 #: app/Konfigurator/kgpanel.cpp:266
 #, kde-format
@@ -3846,7 +3858,7 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:285
 #, kde-format
 msgid "Show size in bytes too"
-msgstr ""
+msgstr "同时以字节显示大小"
 
 #: app/Konfigurator/kgpanel.cpp:286
 #, kde-format
@@ -3962,7 +3974,7 @@ msgstr "在文件名中使用图标"
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
 msgid "Show the icons for filenames and folders."
-msgstr ""
+msgstr "显示文件名和文件夹的图标。"
 
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
@@ -4116,12 +4128,12 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:545
 #, kde-format
 msgid "View modes"
-msgstr ""
+msgstr "视图模式"
 
 #: app/Konfigurator/kgpanel.cpp:552
 #, kde-format
 msgid "Default view mode:"
-msgstr ""
+msgstr "默认视图模式："
 
 #: app/Konfigurator/kgpanel.cpp:599
 #, kde-format
@@ -4156,22 +4168,22 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:612
 #, kde-format
 msgid "Show History Button"
-msgstr ""
+msgstr "显示历史按钮"
 
 #: app/Konfigurator/kgpanel.cpp:612
 #, kde-format
 msgid "The history button will be visible."
-msgstr ""
+msgstr "历史按钮将可见。"
 
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
 msgid "Show Bookmarks Button"
-msgstr ""
+msgstr "显示书签按钮"
 
 #: app/Konfigurator/kgpanel.cpp:613
 #, kde-format
 msgid "The bookmarks button will be visible."
-msgstr ""
+msgstr "书签按钮将可见。"
 
 #: app/Konfigurator/kgpanel.cpp:614
 #, kde-format
@@ -4496,22 +4508,22 @@ msgstr ""
 #: app/Konfigurator/kgpanel.cpp:836
 #, kde-format
 msgid "Show Mount Path"
-msgstr ""
+msgstr "显示挂载路径"
 
 #: app/Konfigurator/kgpanel.cpp:837
 #, kde-format
 msgid "Show File System Type"
-msgstr ""
+msgstr "显示文件系统类型"
 
 #: app/Konfigurator/kgpanel.cpp:838
 #, kde-format
 msgid "Hide SquashFS entries"
-msgstr ""
+msgstr "隐藏 SquashFS 条目"
 
 #: app/Konfigurator/kgpanel.cpp:845
 #, kde-format
 msgid "Show Size:"
-msgstr ""
+msgstr "显示大小："
 
 #: app/Konfigurator/kgpanel.cpp:848
 #, kde-format
@@ -4523,7 +4535,7 @@ msgstr "总是显示"
 #, kde-format
 msgctxt "setting 'show size'"
 msgid "When Device has no Label"
-msgstr ""
+msgstr "当设备没有标签时"
 
 #: app/Konfigurator/kgpanel.cpp:850
 #, kde-format
@@ -4534,17 +4546,17 @@ msgstr "永不"
 #: app/Konfigurator/kgpanel.cpp:882
 #, kde-format
 msgid "Hide following mountpoints:"
-msgstr ""
+msgstr "隐藏以下挂载点："
 
 #: app/Konfigurator/kgpanel.cpp:911
 #, kde-format
 msgid "Add new hidden mount point"
-msgstr ""
+msgstr "添加新的隐藏挂载点"
 
 #: app/Konfigurator/kgpanel.cpp:911
 #, kde-format
 msgid "Mount point:"
-msgstr ""
+msgstr "挂载点："
 
 #: app/Konfigurator/kgprotocols.cpp:34
 #, kde-format
@@ -4584,7 +4596,7 @@ msgstr "协议"
 #: app/Konfigurator/kgprotocols.cpp:96
 #, kde-format
 msgid "MIMEs"
-msgstr ""
+msgstr "MIME"
 
 #: app/Konfigurator/kgstartup.cpp:35
 #, kde-format
@@ -4607,7 +4619,7 @@ msgstr "启动时的配置文件："
 #: app/Konfigurator/kgstartup.cpp:41
 #, kde-format
 msgid "<Last session>"
-msgstr ""
+msgstr "<上次会话>"
 
 #: app/Konfigurator/kgstartup.cpp:60
 #, kde-format
@@ -4632,7 +4644,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:67
 #, kde-format
 msgid "Fallback Icon Theme:"
-msgstr ""
+msgstr "备用图标主题："
 
 #: app/Konfigurator/kgstartup.cpp:69
 #, kde-format
@@ -4667,7 +4679,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
 msgid "Update default panel settings"
-msgstr ""
+msgstr "更新默认面板设置"
 
 #: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
@@ -4679,7 +4691,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
 msgid "Start to tray"
-msgstr ""
+msgstr "启动到托盘"
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
@@ -4689,7 +4701,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:114
 #, kde-format
 msgid "Save component settings on exit"
-msgstr ""
+msgstr "退出时保存组件设置"
 
 #: app/Konfigurator/kgstartup.cpp:116
 #, kde-format
@@ -5162,7 +5174,7 @@ msgstr "定位(&L)..."
 #: app/kractions.cpp:272
 #, kde-format
 msgid "Synchronize Fol&ders..."
-msgstr ""
+msgstr "同步文件夹(&D)..."
 
 #: app/kractions.cpp:274
 #, kde-format
@@ -5212,7 +5224,7 @@ msgstr "选择远程字符集"
 #: app/kractions.cpp:300
 #, kde-format
 msgid "Recently Closed Tabs"
-msgstr ""
+msgstr "最近关闭的标签页"
 
 #: app/kractions.cpp:304
 #, kde-format
@@ -5232,12 +5244,12 @@ msgstr ""
 #: app/kractions.cpp:315
 #, kde-format
 msgid "Move Focus Up"
-msgstr ""
+msgstr "焦点上移"
 
 #: app/kractions.cpp:316
 #, kde-format
 msgid "Move Focus Down"
-msgstr ""
+msgstr "焦点下移"
 
 #: app/kractions.cpp:331
 #, kde-format
@@ -5535,7 +5547,7 @@ msgstr ""
 #: app/KViewer/krviewer.cpp:104
 #, kde-format
 msgid "Text &Editor"
-msgstr ""
+msgstr "文本编辑器(&E)"
 
 #: app/KViewer/krviewer.cpp:128
 #, kde-format
@@ -5719,7 +5731,7 @@ msgstr ""
 #: app/KViewer/lister.cpp:1914
 #, kde-format
 msgid "Nothing is selected."
-msgstr ""
+msgstr "未选中任何内容。"
 
 #: app/KViewer/lister.cpp:1993
 #, kde-format
@@ -5753,12 +5765,12 @@ msgstr ""
 #: app/KViewer/panelviewer.cpp:356
 #, kde-format
 msgid "%1 is bigger than %2 MB"
-msgstr ""
+msgstr "%1 大于 %2 MB"
 
 #: app/KViewer/panelviewer.cpp:384
 #, kde-format
 msgid "Cannot edit %1"
-msgstr ""
+msgstr "无法编辑 %1"
 
 #: app/Locate/locate.cpp:111
 #, kde-format

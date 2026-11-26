@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: extragear-utils-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-08 00:17+0000\n"
-"PO-Revision-Date: 2026-11-17 18:59+0300\n"
+"PO-Revision-Date: 2026-11-23 18:15+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -363,13 +363,13 @@ msgstr "Çalışma dizini:"
 #: app/ActionMan/actionproperty.ui:357
 #, kde-format
 msgid "Default shortcut:"
-msgstr "Öntanımlı kısayol:"
+msgstr "Varsayılan kısayol:"
 
 #. i18n: ectx: property (whatsThis), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:383
 #, kde-format
 msgid "Set a default keyboard shortcut."
-msgstr "Öntanımlı kısayol tanımlayın:"
+msgstr "Varsayılan kısayol tanımlayın:"
 
 #. i18n: ectx: property (text), widget (KKeySequenceWidget, KeyButtonShortcut)
 #: app/ActionMan/actionproperty.ui:386
@@ -1665,17 +1665,17 @@ msgstr "Küçük dosyaları göster"
 #: app/DiskUsage/dufilelight.cpp:102
 #, kde-format
 msgid "Vary label font sizes"
-msgstr "Değişken etiket yazıtipi puntosu"
+msgstr "Değişken etiket yazı tipi puntosu"
 
 #: app/DiskUsage/dufilelight.cpp:106 app/DiskUsage/dufilelight.cpp:176
 #, kde-format
 msgid "Minimum font size"
-msgstr "En küçük yazıtipi puntosu"
+msgstr "En küçük yazı tipi puntosu"
 
 #: app/DiskUsage/dufilelight.cpp:176
 #, kde-format
 msgid "Krusader::Filelight"
-msgstr "Krusader::Dosya Feneri"
+msgstr "Krusader::Filelight"
 
 #: app/DiskUsage/dulines.cpp:183
 #, kde-format
@@ -2288,7 +2288,7 @@ msgstr "Kodlama:"
 #, kde-format
 msgctxt "Default encoding"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: app/Filter/generalfilter.cpp:329
 #, kde-format
@@ -2775,7 +2775,7 @@ msgid ""
 "Ask for a result name when feeding items to the listbox. By default the "
 "standard value is used."
 msgstr ""
-"Liste kutusuna dökümlenen ögeler için bir sonuç iste. Öntanımlı olarak "
+"Liste kutusuna dökümlenen ögeler için bir sonuç iste. Varsayılan olarak "
 "hâlihazırdaki girdiler kullanılacaktır."
 
 #: app/Konfigurator/kgadvanced.cpp:74
@@ -2794,14 +2794,14 @@ msgid ""
 "The icon cache size influences how fast the contents of a panel can be "
 "displayed. However, too large a cache might consume your memory."
 msgstr ""
-"Simge önbellek büyüklüğü, panel içeriğinin görüntülenme hızını "
-"etkileyecektir. Çok yüksek önbellek değerleri, bellek harcamasını "
+"Simge ön bellek büyüklüğü, panel içeriğinin görüntülenme hızını "
+"etkileyecektir. Çok yüksek ön bellek değerleri, bellek harcamasını "
 "artırabilir."
 
 #: app/Konfigurator/kgadvanced.cpp:90
 #, kde-format
 msgid "Icon cache size (KB):"
-msgstr "Simge önbellek büyüklüğü (KB):"
+msgstr "Simge ön bellek büyüklüğü (KB):"
 
 #: app/Konfigurator/kgadvanced.cpp:96
 #, kde-format
@@ -2892,18 +2892,22 @@ msgstr ""
 "usr/bin)."
 
 #: app/Konfigurator/kgcolors.cpp:60
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use KDE Plasma's default colors"
 msgid "Use the default KDE colors"
-msgstr "Öntanımlı KDE renklerini kullan"
+msgstr "Varsayılan KDE Plasma renklerini kullan"
 
 #: app/Konfigurator/kgcolors.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Use KDE Plasma's global color configuration.</p><p><i>KDE Plasma "
+#| "System Settings -> Appearance & Style -> Colors & Themes -> Colors</i></p>"
 msgid ""
 "<p>Use KDE's global color configuration.</p><p><i>KDE System Settings -> "
 "Application Appearance  -> Colors</i></p>"
 msgstr ""
-"<p>KDE’nin global renk yapılandırmasını kullan.</p><p><i>KDE Sistem Ayarları "
-"→ Uygulama Görünüşü → Renkler</i></p>"
+"<p>KDE Plasma’nın global renk yapılandırmasını kullanın.</p><p><i>KDE Sistem "
+"Ayarları → Uygulama Görünüşü → Renkler</i></p>"
 
 #: app/Konfigurator/kgcolors.cpp:67
 #, kde-format
@@ -2911,15 +2915,20 @@ msgid "Use alternate background color"
 msgstr "Başka bir arka plan rengi kullan"
 
 #: app/Konfigurator/kgcolors.cpp:69
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>The <b>background color</b> and the <b>alternate background</b> color "
+#| "alternates line by line.</p><p>When you don't use <i>KDE Plasma's default "
+#| "colors</i>, you can configure the alternate colors in the <i>colors</i> "
+#| "box.</p>"
 msgid ""
 "<p>The <b>background color</b> and the <b>alternate background</b> color "
 "alternates line by line.</p><p>When you don't use the <i>KDE default colors</"
 "i>, you can configure the alternate colors in the <i>colors</i> box.</p>"
 msgstr ""
 "<p>Arka plan rengi</b> ve alternatif arka plan rengi satır satır değişir.</"
-"p><p>KDE öntanımlı renklerini</i> kullanmadığınızda, alternatif renkleri "
-"<i>renkler</i> kutusundan yapılandırabilirsiniz.</p>"
+"p><p>KDE Plasma varsayılan renklerini</i> kullanmadığınızda alternatif "
+"renkleri, <i>renkler</i> kutusundan yapılandırabilirsiniz.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:74
 #, kde-format
@@ -2927,14 +2936,18 @@ msgid "Show current item even if not focused"
 msgstr "Odaklı değilse bile geçerli ögeyi göster"
 
 #: app/Konfigurator/kgcolors.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Shows the last cursor position in the non active list panel.</"
+#| "p><p>This option is only available when you don't use <i>KDE Plasma's "
+#| "default colors</i>.</p>"
 msgid ""
 "<p>Shows the last cursor position in the non active list panel.</p><p>This "
 "option is only available when you don't use the <i>KDE default colors</i>.</"
 "p>"
 msgstr ""
-"<p>Etkin olmayan panelde, imlecin en son bulunduğu yeri göster.</p> <p>Bu "
-"seçenek yalnızca <i>KDE öntanımlı renkleri</i> kullanılmamışsa etkin "
+"<p>Etkin olmayan panelde, imlecin en son bulunduğu yeri gösterin.</p> <p>Bu "
+"seçenek yalnızca <i>KDE Plasma varsayılan renkleri</i> kullanılmamışsa etkin "
 "olacaktır.</p>"
 
 #: app/Konfigurator/kgcolors.cpp:81
@@ -3106,7 +3119,7 @@ msgstr "Soldurma çarpanı:"
 #: app/Konfigurator/kgcolors.cpp:317 app/Konfigurator/kgcolors.cpp:318
 #, kde-format
 msgid "KDE default"
-msgstr "KDE öntanımlısı"
+msgstr "KDE varsayılanı"
 
 #: app/Konfigurator/kgcolors.cpp:269
 #, kde-format
@@ -3387,7 +3400,7 @@ msgstr "Görüntüleyici"
 #: app/Konfigurator/kggeneral.cpp:100
 #, kde-format
 msgid "Default viewer mode:"
-msgstr "Öntanımlı görüntüleyici kipi:"
+msgstr "Varsayılan görüntüleyici kipi:"
 
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
@@ -3397,7 +3410,7 @@ msgstr "Genel kip"
 #: app/Konfigurator/kggeneral.cpp:105
 #, kde-format
 msgid "Use the system's default viewer"
-msgstr "Öntanımlı görüntüleyiciyi kullan"
+msgstr "Varsayılan görüntüleyiciyi kullan"
 
 #: app/Konfigurator/kggeneral.cpp:106 app/KViewer/lister.cpp:2271
 #, kde-format
@@ -3630,22 +3643,22 @@ msgstr "Dolaşım Çubuğu"
 #: app/Konfigurator/kgpanel.cpp:77
 #, kde-format
 msgid "Edit Mode by default"
-msgstr "Öntanımlı olarak düzenleme kipi"
+msgstr "Varsayılan olarak düzenleme kipi"
 
 #: app/Konfigurator/kgpanel.cpp:77
 #, kde-format
 msgid "Show editable path in Navigator bar by default"
-msgstr "Öntanımlı olarak, dolaşım çubuğunda düzenlenebilir yolu göster"
+msgstr "Varsayılan olarak, dolaşım çubuğunda düzenlenebilir yolu göster"
 
 #: app/Konfigurator/kgpanel.cpp:78
 #, kde-format
 msgid "Show full path by default"
-msgstr "Öntanımlı olarak tam yolu göster"
+msgstr "Varsayılan olarak tam yolu göster"
 
 #: app/Konfigurator/kgpanel.cpp:78
 #, kde-format
 msgid "Always show full path in Navigator bar by default."
-msgstr "Öntanımlı olarak, dolaşım çubuğunda her zaman tam yolu göster."
+msgstr "Varsayılan olarak, dolaşım çubuğunda her zaman tam yolu göster."
 
 #: app/Konfigurator/kgpanel.cpp:88
 #, kde-format
@@ -3722,8 +3735,8 @@ msgid ""
 "Display the full path in the folder tabs. By default only the last part of "
 "the path is displayed."
 msgstr ""
-"Sekme başlığında tüm klasör yolunu gösterir. Öntanımlı olarak yolun yalnızca "
-"son parçası gösterilir."
+"Sekme başlığında tüm klasör yolunu gösterir. Varsayılan olarak yolun "
+"yalnızca son parçası gösterilir."
 
 #: app/Konfigurator/kgpanel.cpp:138
 #, kde-format
@@ -3898,7 +3911,7 @@ msgstr "Konum:"
 #: app/Konfigurator/kgpanel.cpp:237
 #, kde-format
 msgid "Default mode:"
-msgstr "Öntanımlı kip:"
+msgstr "Varsayılan kip:"
 
 #: app/Konfigurator/kgpanel.cpp:239 app/KViewer/lister.cpp:1215
 #: app/Panel/krsearchbar.cpp:42 app/Search/krsearchdialog.cpp:166
@@ -3919,7 +3932,7 @@ msgstr "Süzgeç"
 #: app/Konfigurator/kgpanel.cpp:251
 #, kde-format
 msgid "Set the default mode on first usage"
-msgstr "İlk kullanımda öntanımlı kipi ayarla"
+msgstr "İlk kullanımda varsayılan kipi ayarla"
 
 #: app/Konfigurator/kgpanel.cpp:262
 #, kde-format
@@ -4064,7 +4077,7 @@ msgstr "Batık"
 #: app/Konfigurator/kgpanel.cpp:366
 #, kde-format
 msgid "Default icon size:"
-msgstr "Öntanımlı simge boyutu:"
+msgstr "Varsayılan simge boyutu:"
 
 #: app/Konfigurator/kgpanel.cpp:395
 #, kde-format
@@ -4079,17 +4092,17 @@ msgstr "Dosya adları ve klasörler için simgeleri göster."
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews by default"
-msgstr "Öntanımlı olarak ön izlemeleri göster"
+msgstr "Varsayılan olarak ön izlemeleri göster"
 
 #: app/Konfigurator/kgpanel.cpp:396
 #, kde-format
 msgid "Show previews of files and folders."
-msgstr "Dosya ve klasörlerin önizlemelerini gösterin."
+msgstr "Dosya ve klasörlerin ön izlemelerini gösterin."
 
 #: app/Konfigurator/kgpanel.cpp:431
 #, kde-format
 msgid "View font:"
-msgstr "Görüntüleme yazıtipi:"
+msgstr "Görüntüleme yazı tipi:"
 
 #: app/Konfigurator/kgpanel.cpp:441
 #, kde-format
@@ -4202,7 +4215,7 @@ msgid ""
 "non-capital letters (UNIX default)."
 msgstr ""
 "BÜYÜK harf ile başlayan dosyalar, küçük harfle başlayanlardan önce "
-"listelenecek (UNIX öntanımlısı)."
+"listelenecek (UNIX varsayılanı)."
 
 #: app/Konfigurator/kgpanel.cpp:521
 #, kde-format
@@ -4240,7 +4253,7 @@ msgstr "Görünüm Kipleri"
 #: app/Konfigurator/kgpanel.cpp:552
 #, kde-format
 msgid "Default view mode:"
-msgstr "Öntanımlı görüntüleme kipi:"
+msgstr "Varsayılan görüntüleme kipi:"
 
 #: app/Konfigurator/kgpanel.cpp:599
 #, kde-format
@@ -4820,7 +4833,7 @@ msgstr ""
 #: app/Konfigurator/kgstartup.cpp:100
 #, kde-format
 msgid "Update default panel settings"
-msgstr "Öntanımlı panel ayarlarını güncelle"
+msgstr "Varsayılan panel ayarlarını güncelle"
 
 #: app/Konfigurator/kgstartup.cpp:102
 #, kde-format
@@ -4829,7 +4842,7 @@ msgid ""
 "panels of the same type."
 msgstr ""
 "Bir panelin ayarları değiştirildiğinde aynı türdeki yeni paneller için "
-"öntanımlı olarak kaydedin."
+"varsayılan olarak kaydedin."
 
 #: app/Konfigurator/kgstartup.cpp:103
 #, kde-format
@@ -4931,17 +4944,17 @@ msgstr "Çıktı Toplama"
 #: app/Konfigurator/kguseractions.cpp:63
 #, kde-format
 msgid "Normal font:"
-msgstr "Normal yazıtipi:"
+msgstr "Normal yazı tipi:"
 
 #: app/Konfigurator/kguseractions.cpp:76
 #, kde-format
 msgid "Font with fixed width:"
-msgstr "Eş aralıklı yazıtipi:"
+msgstr "Eş aralıklı yazı tipi:"
 
 #: app/Konfigurator/kguseractions.cpp:88
 #, kde-format
 msgid "Use fixed width font as default"
-msgstr "Öntanımlı olarak eş aralıklı yazıtipi kullan"
+msgstr "Varsayılan olarak eş aralıklı yazı tipi kullan"
 
 #: app/Konfigurator/konfigurator.cpp:45
 #, kde-format
@@ -5023,7 +5036,7 @@ msgstr "Özel renk"
 #, kde-format
 msgctxt "Default color"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: app/Konfigurator/konfiguratoritems.cpp:595
 #, kde-format
@@ -5422,7 +5435,7 @@ msgid ""
 "path. Hint: Krusader supports KMail."
 msgstr ""
 "Krusader desteklenen bir e-posta istemcisi bulamadı. Lütfen birini yolunuza "
-"kurun. İpucu: Krusader, K Posta’yı destekler."
+"kurun. İpucu: Krusader, KMail’i destekler."
 
 #: app/krslots.cpp:109
 #, kde-format
@@ -5607,13 +5620,13 @@ msgstr "&Dosya"
 #: app/krusaderui.rc:35
 #, kde-format
 msgid "&Edit"
-msgstr "Dü&zenle"
+msgstr "Dü&zen"
 
 #. i18n: ectx: Menu (compare setup)
 #: app/krusaderui.rc:53
 #, kde-format
 msgid "Compare Se&tup"
-msgstr "Karşılaştırma &Ayarları"
+msgstr "&Karşılaştırma Ayarları"
 
 #. i18n: ectx: Menu (myview)
 #: app/krusaderui.rc:65
@@ -5643,7 +5656,7 @@ msgstr "Ayar&lar"
 #: app/krusaderui.rc:125
 #, kde-format
 msgid "Command Execution &Mode Setup"
-msgstr "Komut Yürütme Kipi &Ayarları"
+msgstr "&Komut Yürütme Kipi Ayarları"
 
 #. i18n: ectx: Menu (window)
 #: app/krusaderui.rc:139
@@ -6988,7 +7001,7 @@ msgstr "Özellikler"
 #, kde-format
 msgctxt "Default layout"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: app/Panel/krlayoutfactory.cpp:45
 #, kde-format
@@ -7407,7 +7420,7 @@ msgid ""
 "is <b>internal editor</b>.</p></qt>"
 msgstr ""
 "<qt><p>Dosyayı düzenle.</p><p>Düzenleyici, Yapılandırıcı içinde "
-"tanımlanabilir, öntanımlı olarak <b>içsel düzenleyici</b> kullanılır.</p></"
+"tanımlanabilir, varsayılan olarak <b>içsel düzenleyici</b> kullanılır.</p></"
 "qt>"
 
 #: app/Panel/listpanelactions.cpp:129
@@ -7431,13 +7444,17 @@ msgid "Delete file, folder, etc."
 msgstr "Dosya, klasör vb. sil"
 
 #: app/Panel/listpanelactions.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt><p>Edit file.</p><p>The editor can be defined in Konfigurator, "
+#| "default is <b>internal editor</b>.</p></qt>"
 msgid ""
 "<qt><p>Open terminal in current folder.</p><p>The terminal can be defined in "
 "Konfigurator, default is <b>konsole</b>.</p></qt>"
 msgstr ""
-"<qt><p>Bulunulan klasörde uçbirim aç.</p><p>Uçbirim, Yapılandırıcı içinde "
-"tanımlanabilir, öntanımlı olarak <b>Konsole</b> açılacaktır.</p></qt>"
+"<qt><p>Dosyayı düzenle.</p><p>Düzenleyici, Yapılandırıcı içinde "
+"tanımlanabilir, varsayılan olarak <b>içsel düzenleyici</b> kullanılır.</p></"
+"qt>"
 
 #: app/Panel/panelcontextmenu.cpp:101
 #, kde-format
@@ -7703,9 +7720,10 @@ msgstr[1] ""
 "dokunulmayacaktır)?"
 
 #: app/Panel/panelfunc.cpp:950
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "<qt>Could not start <b>%1</b>.</qt>"
 msgid "Could not start %1"
-msgstr "%1 başlatılamıyor"
+msgstr "<qt><b>%1</b> başlatılamadı.</qt>"
 
 #: app/Panel/panelfunc.cpp:962
 #, kde-format
@@ -7993,7 +8011,7 @@ msgstr "Ağaç:"
 #: app/Panel/sidebar.cpp:219
 #, kde-format
 msgid "Preview:"
-msgstr "Önizleme:"
+msgstr "Ön izleme:"
 
 #: app/Panel/sidebar.cpp:224
 #, kde-format
@@ -8003,7 +8021,7 @@ msgstr "Görünüm:"
 #: app/Panel/sidebar.cpp:254
 #, kde-format
 msgid "Preview: %1"
-msgstr "Önizleme: %1"
+msgstr "Ön izleme: %1"
 
 #: app/Panel/sidebar.cpp:261
 #, kde-format
@@ -8018,7 +8036,7 @@ msgstr "Disk kullanımı: %1"
 #: app/Panel/viewactions.cpp:22
 #, kde-format
 msgid "Default Zoom"
-msgstr "Öntanımlı Yakınlaştırma"
+msgstr "Varsayılan Yakınlaştırma"
 
 #: app/Panel/viewactions.cpp:25
 #, kde-format
@@ -8095,7 +8113,7 @@ msgstr "Ön İzlemeleri Göster"
 #: app/Panel/viewactions.cpp:45
 #, kde-format
 msgid "Save settings as default"
-msgstr "Ayarları Öntanımlı Olarak Kaydet"
+msgstr "Ayarları Varsayılan Olarak Kaydet"
 
 #: app/Panel/viewactions.cpp:48
 #, kde-format
@@ -8115,7 +8133,7 @@ msgstr "Tümünün seçimini kaldır"
 #: app/Panel/viewactions.cpp:51
 #, kde-format
 msgid "Save settings as default for new instances of this view type"
-msgstr "Bu görünüm türü için ayarları öntanımlı olarak kaydet"
+msgstr "Bu görünüm türü için ayarları varsayılan olarak kaydet"
 
 #: app/panelmanager.cpp:51 app/panelmanager.cpp:52
 #, kde-format
@@ -9458,7 +9476,7 @@ msgstr "Çıktı"
 #: app/UserAction/kraction.cpp:104
 #, kde-format
 msgid "Use font with fixed width"
-msgstr "Eş aralıklı yazıtipi kullan"
+msgstr "Eş aralıklı yazı tipi kullan"
 
 #: app/UserAction/kraction.cpp:120
 #, kde-format
@@ -9693,7 +9711,7 @@ msgid ""
 "filename. By default \".old\" is appended to the original filename."
 msgstr ""
 "Geçerli dosya geçerli klasörde yedeklenir ve kullanıcıya yeni bir dosya adı "
-"sorulur. Öntanımlı olarak asıl dosya adına “.old” eklenir."
+"sorulur. Varsayılan olarak asıl dosya adına “.old” eklenir."
 
 #: plugins/krarc/krarc.cpp:202
 #, kde-format
@@ -9768,13 +9786,16 @@ msgid "Listing folders is not supported for %1 archives"
 msgstr "%1 arşivleri için klasör listeleme özelliği desteklenmiyor."
 
 #: plugins/krarc/krarc.cpp:1759
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "\"%1\".\n"
+#| "Make sure that the \"%2\" binary is installed properly on your system"
 msgid ""
 "\n"
 "Make sure that the %1 binary is installed properly on your system."
 msgstr ""
-"\n"
-"Sisteminizde %1 ikilisinin kurulu olduğundan emin olun."
+"“%1”\n"
+"“%2” ikilisinin sisteminizde düzgünce kurulu olduğundan emin olun."
 
 #: plugins/krarc/krarc.cpp:1841 plugins/krarc/krarc.cpp:1867
 #, kde-format
@@ -9786,8 +9807,35 @@ msgstr "Krarc Parola İletişim Kutusu"
 msgid "Accessing the file requires a password."
 msgstr "Dosyaya erişmek için parola gerekiyor."
 
+#~ msgctxt "%1=temporary file name"
+#~ msgid "The temporary file \"%1\" could not be opened."
+#~ msgstr "Geçici dosya “%1” açılamadı."
+
+#~ msgid "A temporary file with the template \"%1\" could not be opened."
+#~ msgstr "“%1” şablonunu içeren bir geçici dosya açılamadı."
+
 #~ msgid "Hide unknown File System entries"
 #~ msgstr "Bilinmeyen dosya sistemi girdilerini gizle"
+
+#~ msgid "Could not launch the editor \"%1\""
+#~ msgstr "“%1” düzenleyicisi başlatılamadı."
+
+#~ msgid ""
+#~ "Feedback:\n"
+#~ "https://krusader.org/get-involved/mailing-lists/index.html"
+#~ msgstr ""
+#~ "Geri bildirim için şu adresi ziyaret edin:\n"
+#~ "https://krusader.org/get-involved/mailing-lists/index.html"
+
+#~ msgid ""
+#~ "<qt><p>Open terminal in current folder.</p><p>It uses the system default "
+#~ "terminal emulator.</p></qt>"
+#~ msgstr ""
+#~ "<qt><p>Geçerli klasörde uçbirim açın.</p><p>Varsayılan sistem uçbirim "
+#~ "öykünücüsünü kullanır.</p></qt>"
+
+#~ msgid "The file \"%1\" could not be created."
+#~ msgstr "“%1” dosyası oluşturulamadı."
 
 #~ msgid "The proposed name (\"%1\") is the same as the previous one."
 #~ msgstr "Önerilen ad (“%1”), bir öncekiyle aynı."
